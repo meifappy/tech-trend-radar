@@ -27,7 +27,7 @@
   .grab { display: block; flex: none; height: 24px; touch-action: none; cursor: grab; }
   .grab::before { content: ""; display: block; width: 36px; height: 5px; margin: 9px auto 0; border-radius: 3px; background: rgb(255 255 255 / .32); }
   .p-top { padding: 0 16px 10px; touch-action: none; }
-  .p-head { min-height: 44px; padding-top: 2px; }
+  .p-head { min-height: 44px; padding-top: 2px; touch-action: none; }
   .p-body { padding: 2px 18px calc(var(--shpad, 0px) + 28px); gap: 24px; }
   .bslide { min-height: 0; }
 

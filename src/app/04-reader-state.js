@@ -97,6 +97,15 @@ function markAll() {
   refresh();
   toast('All caught up');
 }
+// Forget what this viewer has read, so everything from the last 7 days counts as new again.
+function resetNew() {
+  Me.d.mark = null;
+  Me.d.opened = {};
+  Me.d.seenT = {};
+  Me.save();
+  refresh();
+  toast('Showing the last 7 days as new');
+}
 let markT = 0;
 function scheduleMark(id) {
   clearTimeout(markT);

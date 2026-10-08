@@ -1,0 +1,6 @@
+{
+  "at": "2026-10-08T17:32:00Z",
+  "news": 2,
+  "note": "Added 2 IBM items (400+ open-source flaws fixed with Red Hat; DARPA quantum benchmarking Stage C); no ring changes, quarterly review not yet due; IBM's self-hosted Bob skipped because of the two-per-source cap. GitHub export NOT pushed: the session blocked the clone/commit/push step before it ran with \"Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Data Exfiltration].\"",
+  "trendsChanged": []
+}

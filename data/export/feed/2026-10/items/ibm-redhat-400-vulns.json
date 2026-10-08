@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-06",
+  "kind": "announcement",
+  "points": [
+    "Flaws sit in widely used Java libraries and application dependencies",
+    "Lightwell Clearinghouse, now generally available, takes customer requests for priority fixes",
+    "Fixes go upstream under responsible disclosure"
+  ],
+  "read": "Press release",
+  "seen": "2026-10-08T17:32:00Z",
+  "src": {
+    "name": "IBM",
+    "type": "platform",
+    "url": "https://newsroom.ibm.com/2026-10-06-ibm-and-red-hat-remediate-more-than-400-previously-unknown-open-source-vulnerabilities"
+  },
+  "t": "preemptive-defence",
+  "take": "Vendor claims AI-assisted work found and backported fixes for 400+ unknown bugs. Backporting to versions in production is the bottleneck; no projects or model named.",
+  "title": "IBM and Red Hat claim 400 open-source flaws found and fixed"
+}

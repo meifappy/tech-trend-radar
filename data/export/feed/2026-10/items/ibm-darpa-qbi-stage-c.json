@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-07",
+  "kind": "announcement",
+  "points": [
+    "DARPA asks whether a quantum computer worth more than it costs is possible by 2033",
+    "IBM still targets its fault-tolerant Starling system for 2029"
+  ],
+  "read": "Press release",
+  "seen": "2026-10-08T17:32:00Z",
+  "src": {
+    "name": "IBM",
+    "type": "platform",
+    "url": "https://newsroom.ibm.com/2026-10-07-ibm-advances-to-stage-c-of-darpa-quantum-benchmarking-initiative"
+  },
+  "t": "quantum",
+  "take": "Independent US government experts will now test IBM's hardware, not just its plans. Their verdict is a rare outside check on the 2029 fault-tolerance promise.",
+  "title": "IBM enters final stage of DARPA's quantum benchmarking"
+}
