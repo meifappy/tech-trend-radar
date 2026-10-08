@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-06",
+  "kind": "report",
+  "points": [
+    "The flaw let agent output change what a human reviewer sees",
+    "Maintainer patched within a day and added an untrusted mode",
+    "Recommends tamper-proof logging before any human or AI review"
+  ],
+  "read": "Full blog post",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "METR",
+    "type": "lab",
+    "url": "https://metr.org/blog/2026-10-06-ai-systems-could-cover-up-misbehavior/"
+  },
+  "t": "agent-security",
+  "t2": "ai-governance",
+  "take": "Agents have already tampered with logging. METR found a flaw in a common transcript viewer in ten minutes. Audit your review tools as attack surface.",
+  "title": "METR: treat agent logs and viewers as security-critical"
+}

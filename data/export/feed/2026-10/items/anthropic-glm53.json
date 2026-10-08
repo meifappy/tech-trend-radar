@@ -1,0 +1,21 @@
+{
+  "at": "2026-09-29",
+  "big": true,
+  "kind": "paper",
+  "points": [
+    "Cover stories got it to engage with malicious requests 64% of the time",
+    "NIST's CAISI calls it the most cyber-capable open-weight model yet",
+    "Anthropic urges defenders to join trusted-access programmes"
+  ],
+  "read": "Full post",
+  "seen": "2026-09-29T12:00:00Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "lab",
+    "url": "https://anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+  },
+  "t": "preemptive-defence",
+  "t2": "model-choice",
+  "take": "It built working exploits in 50 of 410 tries, against 56 for Mythos Preview. Its safeguards fell for about $4,400.",
+  "title": "Anthropic: open GLM-5.3 nearly matches gated models at exploits"
+}

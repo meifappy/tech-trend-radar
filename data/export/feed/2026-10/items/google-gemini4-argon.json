@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-30",
+  "kind": "announcement",
+  "seen": "2026-09-30T12:00:00Z",
+  "src": {
+    "name": "Google",
+    "type": "platform",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/"
+  },
+  "t": "model-choice",
+  "t2": "preemptive-defence",
+  "take": "Cyber defenders in its Fairwind Program get early access; a version without cyber guardrails is planned for them.",
+  "title": "Google gives Gemini 4 Argon to vetted defenders first"
+}

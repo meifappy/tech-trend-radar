@@ -1,0 +1,13 @@
+{
+  "at": "2026-04-14",
+  "kind": "report",
+  "seen": "2026-04-14T12:00:00Z",
+  "src": {
+    "name": "BCG",
+    "type": "consultancy",
+    "url": "https://www.bcg.com/publications/2026/how-physical-ai-is-reshaping-robotics-today"
+  },
+  "t": "physical-ai",
+  "take": "Three-quarters of a robot's lifetime cost is setup and re-engineering. Software-defined robots could halve that.",
+  "title": "BCG: back robot capabilities, not body shapes"
+}

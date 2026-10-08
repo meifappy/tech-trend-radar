@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-05",
+  "kind": "announcement",
+  "seen": "2026-10-05T12:00:00Z",
+  "src": {
+    "name": "AWS",
+    "type": "platform",
+    "url": "https://aws.amazon.com/blogs/aws/aws-weekly-roundup-amazon-bedrock-managed-agents-powered-by-openai-q3-service-availability-updates-kiro-workflows-and-more-october-5-2026/"
+  },
+  "t": "agentic-ai",
+  "take": "Agents run inside a customer's AWS account with its existing identities and permissions. Model makers now sell through each other's clouds.",
+  "title": "AWS previews OpenAI-powered managed agents"
+}

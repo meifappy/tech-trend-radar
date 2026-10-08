@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-08",
+  "kind": "announcement",
+  "points": [
+    "Claude for more than 15 agencies, including NASA, NIH and NSF",
+    "Credits for several hundred Genesis Mission research projects",
+    "Joint work on fusion energy and quantum computing"
+  ],
+  "read": "Full announcement; vendor commitment, no breakdown of the money",
+  "seen": "2026-10-08T16:59:00Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "vendor",
+    "url": "https://www.anthropic.com/news/genesis-mission-commitment"
+  },
+  "t": "ai-science",
+  "take": "Vendors are now funding government science directly. Shows where AI-for-research capacity is concentrating; European research leaders should compare their own access.",
+  "title": "Anthropic: $150m over three years for US federal science AI"
+}

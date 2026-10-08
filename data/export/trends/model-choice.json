@@ -1,0 +1,124 @@
+{
+  "analysts": [
+    {
+      "as": "Frontier models",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Domain-specific language models",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "Growth of open GenAI models and ecosystem",
+      "by": "Gartner",
+      "list": "Top Trends in Software Engineering 2025",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond"
+    }
+  ],
+  "area": "ai",
+  "caveat": "The June shutdown account comes from Anthropic's own statements; the GLM-5.3 figures are Anthropic's tests of a rival.",
+  "expert": [
+    {
+      "at": "2025-04",
+      "by": "Gartner",
+      "text": "By 2027 usage of small, task-specific models will be at least three times that of general-purpose LLMs.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-04-09-gartner-predicts-by-2027-organizations-will-use-small-task-specific-ai-models-three-times-more-than-general-purpose-large-language-models",
+      "verbatim": false
+    },
+    {
+      "at": "2025-10",
+      "by": "Gartner",
+      "text": "AI sovereignty is now an operational imperative; use modular, interoperable platforms to reduce vendor lock-in.",
+      "url": "https://www.deepset.ai/guides/gartner-predicts-2026-ai-sovereignty",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "prepare"
+    }
+  ],
+  "lens": {
+    "cio": "Avoid single-vendor lock-in in AI contracts and ask how access can change by region or policy.",
+    "ciso": "Treat downloadable open models as potential exploit tools and set rules for their internal use.",
+    "cto": "Keep a tested fallback model for every critical workflow; access to a frontier model can stop overnight.",
+    "eng": "Route routine tasks to small or open models and benchmark them on your own data."
+  },
+  "line": "Frontier, open and small specialised models now compete. Access to the best can change overnight.",
+  "owners": [
+    "cto",
+    "eng"
+  ],
+  "rated": "2026-10-07",
+  "ring": "prepare",
+  "scope": "Which models you use and your access to them. Not what they cost.",
+  "short": "Model strategy",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-07-01",
+      "name": "Anthropic",
+      "title": "Redeploying Claude Fable 5",
+      "type": "platform",
+      "url": "https://www.anthropic.com/news/redeploying-fable-5"
+    },
+    {
+      "date": "2026-09-29",
+      "name": "Anthropic",
+      "title": "GLM-5.3 and the spread of advanced cyber capabilities",
+      "type": "lab",
+      "url": "https://anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+    },
+    {
+      "date": "2026-09-16",
+      "name": "Gartner",
+      "title": "Worldwide AI spending to grow 49.5% in 2026",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026"
+    },
+    {
+      "date": "2026-07-28",
+      "name": "Scientific Reports",
+      "title": "Domain-specific versus general large language models",
+      "type": "journal",
+      "url": "https://www.nature.com/articles/s41598-026-62884-7"
+    },
+    {
+      "date": "2026-09-22",
+      "name": "OpenAI",
+      "title": "Announcing GPT-6 Sol and GPT-6 Luna",
+      "type": "platform",
+      "url": "https://community.openai.com/t/announcing-gpt-6-sol-and-gpt-6-luna-in-the-api-codex-and-chatgpt/1399925"
+    }
+  ],
+  "stats": [
+    {
+      "l": "frontier models offline",
+      "v": "19 days"
+    },
+    {
+      "l": "spend on AI models in 2026",
+      "v": "+117%"
+    },
+    {
+      "l": "OpenAI API prices, Sept",
+      "v": "−50%"
+    }
+  ],
+  "status": "active",
+  "title": "Model strategy",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "A US directive took two frontier models offline for 19 days in June.",
+    "Open-weight GLM-5.3 nearly matches gated models at writing exploits.",
+    "Small domain models beat big general ones on narrow tasks, far cheaper."
+  ]
+}

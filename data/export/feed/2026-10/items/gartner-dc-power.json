@@ -1,0 +1,13 @@
+{
+  "at": "2026-06-10",
+  "kind": "report",
+  "seen": "2026-06-10T12:00:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-06-10-gartner-says-data-center-electricity-demand-to-grow-26-percent-in-2026"
+  },
+  "t": "ai-compute",
+  "take": "565 TWh in 2026, with AI servers taking 31%. Gartner says grid supply will not keep up with planned construction.",
+  "title": "Gartner: data centres use 26% more power this year"
+}

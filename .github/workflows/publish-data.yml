@@ -1,0 +1,33 @@
+# Turns the raw database export in data/export/ (pushed by the scheduled scan) into the site's data files.
+# The scan only commits JSON; this job runs scripts/build_data.py and commits public/radar-data.json and
+# public/archive/. Cloudflare redeploys on that commit.
+name: publish-data
+on:
+  push:
+    branches: [main]
+    paths: ['data/export/**', 'scripts/build_data.py']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publish-data
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python3 -I scripts/build_data.py data/export public/radar-data.json
+      - name: Commit the site data if it changed
+        run: |
+          git add public/radar-data.json public/archive
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          git config user.name "radar-bot"
+          git config user.email "radar-bot@users.noreply.github.com"
+          git commit -m "Site data from scan $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase origin main
+          git push origin HEAD:main

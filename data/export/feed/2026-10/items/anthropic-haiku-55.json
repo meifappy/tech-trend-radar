@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-07",
+  "kind": "announcement",
+  "points": [
+    "$0.10 input, $0.50 output per million tokens for prompts up to 100k tokens",
+    "Anthropic claims it beats GPT-6 Luna on its listed benchmarks; vendor figures, not independently checked",
+    "Sonnet 5.5 cache-read price halved"
+  ],
+  "read": "Full launch page",
+  "seen": "2026-10-08T12:40:00Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "vendor",
+    "url": "https://www.anthropic.com/claude-haiku-5-5"
+  },
+  "t": "ai-value",
+  "t2": "model-choice",
+  "take": "High-volume agent work gets much cheaper. Re-run cost-per-outcome figures and check which workloads can move down a model tier.",
+  "title": "Anthropic: Claude Haiku 5.5 cuts small-model prices by up to 90%"
+}

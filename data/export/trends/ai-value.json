@@ -1,0 +1,110 @@
+{
+  "analysts": [
+    {
+      "as": "The AI infrastructure reckoning",
+      "by": "Deloitte",
+      "list": "Tech Trends 2026",
+      "url": "https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends.html"
+    },
+    {
+      "as": "ROI on AI investment",
+      "by": "IDC",
+      "list": "FutureScape 2026",
+      "url": "https://www.idc.com/resource-center/press-releases/idc-futurescape-2026-predictions-reveal-the-rise-of-agentic-ai-and-a-turning-point-in-enterprise-transformation/"
+    }
+  ],
+  "area": "ai",
+  "expert": [
+    {
+      "at": "2026-04",
+      "by": "Gartner",
+      "text": "CFOs will not get margin gains from isolated AI pilots; managing AI as a portfolio can add 10 margin points by 2029.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-04-28-gartnerpredicts-by-2029-cfos-who-implement-strategic-ai-deploymnt-will-add-10-margin-points-of-growth",
+      "verbatim": false
+    },
+    {
+      "at": "2026-09",
+      "by": "Gartner",
+      "text": "Worldwide AI spending of $2.7 trillion in 2026, up 49.5% year over year.",
+      "url": "https://gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "prepare"
+    }
+  ],
+  "lens": {
+    "cio": "Tie AI budgets to measured outcomes; spending has doubled while only a third see profit impact.",
+    "ciso": "Cap open-ended agent loops; runaway AI usage is also becoming an attack target.",
+    "cto": "Track cost per business outcome for each AI workflow, not cost per token.",
+    "eng": "Instrument every AI workflow for tokens, latency and outcome, and tune it before scaling."
+  },
+  "line": "Token prices keep falling, yet AI bills more than doubled because usage grew faster.",
+  "owners": [
+    "cio",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "prepare",
+  "scope": "AI spend and return. Not model selection.",
+  "short": "AI FinOps",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-09-29",
+      "name": "Bain & Company",
+      "title": "Managing Token Spending without Choking Off Opportunity",
+      "type": "consultancy",
+      "url": "https://www.bain.com/insights/managing-token-spending-without-choking-off-opportunity-technology-report-2026/"
+    },
+    {
+      "date": "2026-09-30",
+      "name": "BCG",
+      "title": "AI Is Starting to Pay Off (Applied AI Index 2026)",
+      "type": "consultancy",
+      "url": "https://www.bcg.com/press/30september2026-ai-starting-to-pay-off-companies-generate-value"
+    },
+    {
+      "date": "2026-08",
+      "name": "McKinsey",
+      "title": "The state of AI in 2026: On the road to ROI",
+      "type": "consultancy",
+      "url": "https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/the-state-of-ai-in-2026-on-the-road-to-roi.pdf"
+    },
+    {
+      "date": "2026-09-15",
+      "name": "Gartner",
+      "title": "Top Strategic Predictions for 2027 and Beyond",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond"
+    }
+  ],
+  "stats": [
+    {
+      "l": "price per token in 15 months",
+      "v": "−58%"
+    },
+    {
+      "l": "token use, same period",
+      "v": "5.4×"
+    },
+    {
+      "l": "of revenue spent on AI",
+      "v": "3.3%"
+    }
+  ],
+  "status": "active",
+  "title": "AI value & FinOps",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "AI spending doubled to 3.3% of revenue in under a year.",
+    "A new agent workflow can cost ten times too much before tuning.",
+    "Only 37% of firms see any profit impact from AI yet."
+  ]
+}

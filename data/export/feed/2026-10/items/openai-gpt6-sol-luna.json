@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-22",
+  "kind": "announcement",
+  "seen": "2026-09-22T12:00:00Z",
+  "src": {
+    "name": "OpenAI",
+    "type": "platform",
+    "url": "https://community.openai.com/t/announcing-gpt-6-sol-and-gpt-6-luna-in-the-api-codex-and-chatgpt/1399925"
+  },
+  "t": "ai-value",
+  "t2": "model-choice",
+  "take": "API prices are 50% below the previous generation's promotional rates, and OpenAI says the cut is permanent.",
+  "title": "OpenAI ships GPT-6 Sol and Luna at half the price"
+}

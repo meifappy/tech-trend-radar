@@ -1,0 +1,129 @@
+{
+  "analysts": [
+    {
+      "as": "Multiagent systems",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "Agentic AI",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    },
+    {
+      "as": "The agentic reality check",
+      "by": "Deloitte",
+      "list": "Tech Trends 2026",
+      "url": "https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends.html"
+    },
+    {
+      "as": "Multi-agent systems",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    }
+  ],
+  "area": "ai",
+  "expert": [
+    {
+      "at": "2025-06",
+      "by": "Gartner",
+      "text": "Over 40% of agentic AI projects will be canceled by the end of 2027",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027",
+      "verbatim": true
+    },
+    {
+      "at": "2026-08",
+      "by": "McKinsey",
+      "text": "About 20% of respondents have scaled AI agents across their organization; among firms with over $1 billion revenue the share is 40%.",
+      "url": "https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "act"
+    }
+  ],
+  "lens": {
+    "cio": "Choose three workflows to redesign end to end, with clear success and rollback criteria.",
+    "ciso": "Give every agent its own identity, least privilege and an audit trail before it reaches production.",
+    "cto": "Pick one agent platform and the open standards MCP and A2A now, before teams build incompatible ones.",
+    "eng": "Build agents on MCP and A2A, with tests, sandboxing and human approval for irreversible steps."
+  },
+  "line": "Firms are moving AI agents from pilots into daily work. Few have the controls to match.",
+  "owners": [
+    "cio",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "act",
+  "scope": "Agents doing enterprise work, and their platforms. Not shopping agents, agent security or raw capability.",
+  "short": "Agentic AI",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-08",
+      "name": "McKinsey",
+      "title": "The state of AI in 2026: On the road to ROI",
+      "type": "consultancy",
+      "url": "https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/the-state-of-ai-in-2026-on-the-road-to-roi.pdf"
+    },
+    {
+      "date": "2026-09-30",
+      "name": "BCG",
+      "title": "AI Is Starting to Pay Off (Applied AI Index 2026)",
+      "type": "consultancy",
+      "url": "https://www.bcg.com/press/30september2026-ai-starting-to-pay-off-companies-generate-value"
+    },
+    {
+      "date": "2026-08-17",
+      "name": "Agentic AI Foundation",
+      "title": "A2A joins AAIF's open agentic stack",
+      "type": "public",
+      "url": "https://aaif.io/blog/a2a-joins-aaif"
+    },
+    {
+      "date": "2026-07-28",
+      "name": "Model Context Protocol",
+      "title": "The 2026-07-28 Specification",
+      "type": "public",
+      "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/"
+    },
+    {
+      "date": "2026-09-15",
+      "name": "Gartner",
+      "title": "Top Strategic Predictions for 2027 and Beyond",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond"
+    }
+  ],
+  "stats": [
+    {
+      "l": "of large firms scale agents",
+      "v": "40%"
+    },
+    {
+      "l": "have full agent controls",
+      "v": "5%"
+    },
+    {
+      "l": "see any profit impact",
+      "v": "37%"
+    }
+  ],
+  "status": "active",
+  "title": "Agentic AI & multiagent systems",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 3,
+  "why": [
+    "40% of large firms now scale agents, up from 27% a year ago.",
+    "Only 5% of firms have a full set of agent safeguards.",
+    "The open agent standards MCP and A2A now share one neutral foundation."
+  ]
+}

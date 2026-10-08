@@ -1,0 +1,116 @@
+{
+  "analysts": [
+    {
+      "as": "Geopatriation",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "Geopatriation",
+      "by": "Gartner",
+      "list": "Top Trends in Infrastructure & Operations 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-12-11-gartner-identifies-the-top-trends-impacting-infrastructure-and-operations-for-2026"
+    },
+    {
+      "as": "Managing cloud risk",
+      "by": "IDC",
+      "list": "FutureScape 2026",
+      "url": "https://www.idc.com/resource-center/press-releases/idc-futurescape-2026-predictions-reveal-the-rise-of-agentic-ai-and-a-turning-point-in-enterprise-transformation/"
+    }
+  ],
+  "area": "cloud",
+  "expert": [
+    {
+      "at": "2026-02-09",
+      "by": "Gartner",
+      "text": "Worldwide sovereign cloud IaaS spending is forecast at $80 billion in 2026, up 35.6%; Europe is expected to overtake North America in 2027.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-02-09-gartner-says-worldwide-sovereign-cloud-iaas-spending-will-total-us-dollars-80-billion-in-2026",
+      "verbatim": false
+    },
+    {
+      "at": "2025-11-12",
+      "by": "Gartner CIO survey",
+      "text": "61% of Western European CIOs and IT leaders expect geopolitics to increase their reliance on local or regional cloud providers.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-11-12-gartner-survey-reveals-geopolitics-will-drive-61-percent-of-cios-and-information-technology-leaders-in-western-europe-to-increase-reliance-on-local-cloud-providers",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "prepare"
+    }
+  ],
+  "lens": {
+    "cio": "Sort workloads by sovereignty need and score providers on the EU framework before renewals.",
+    "ciso": "Check where data and admin access sit; sovereignty is also an access-control question.",
+    "cto": "Design sensitive workloads so they can run on an EU-sovereign setup.",
+    "eng": "Keep deployments portable across regions and providers."
+  },
+  "line": "Europe now scores cloud providers on sovereignty, and spending is set to nearly double.",
+  "owners": [
+    "cio",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "prepare",
+  "scope": "Jurisdiction and control of cloud. Not encryption in use.",
+  "short": "Sovereign cloud",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-04-17",
+      "name": "European Commission",
+      "title": "Commission advances cloud sovereignty through strategic procurement",
+      "type": "public",
+      "url": "https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en"
+    },
+    {
+      "date": "2026-02-09",
+      "name": "Gartner",
+      "title": "Worldwide sovereign cloud IaaS spending will total $80 billion in 2026",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-02-09-gartner-says-worldwide-sovereign-cloud-iaas-spending-will-total-us-dollars-80-billion-in-2026"
+    },
+    {
+      "date": "2026-09-28",
+      "name": "AWS",
+      "title": "AWS European Sovereign Cloud: demonstrating an independent operation",
+      "type": "platform",
+      "url": "https://aws.amazon.com/blogs/security/aws-european-sovereign-cloud-demonstrating-an-independent-operation/"
+    },
+    {
+      "date": "2026-07-21",
+      "name": "Microsoft",
+      "title": "Microsoft and Mistral expand strategic partnership",
+      "type": "platform",
+      "url": "https://news.microsoft.com/source/2026/07/21/microsoft-and-mistral-expand-strategic-partnership-to-give-enterprises-and-regulated-industries-frontier-ai-they-can-control/"
+    }
+  ],
+  "stats": [
+    {
+      "l": "EU sovereign IaaS in 2026",
+      "v": "$12.6bn"
+    },
+    {
+      "l": "growth this year",
+      "v": "+83%"
+    },
+    {
+      "l": "reached by three EU providers",
+      "v": "SEAL-3"
+    }
+  ],
+  "status": "active",
+  "title": "Sovereign cloud & geopatriation",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "The Commission's EUR 180m award turned its SEAL scale into a template.",
+    "AWS runs its EU sovereign cloud cut off from its backbone on 24 October.",
+    "Europe passes North America in sovereign cloud spending in 2027."
+  ]
+}

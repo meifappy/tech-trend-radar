@@ -1,0 +1,105 @@
+{
+  "analysts": [
+    {
+      "as": "Confidential computing",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    }
+  ],
+  "area": "cloud",
+  "caveat": "NVIDIA's throughput numbers are its own benchmark. The DDRop attack needs physical access to the server.",
+  "expert": [
+    {
+      "at": "2025-10-23",
+      "by": "Gartner",
+      "text": "By 2029 more than 75% of operations on untrusted infrastructure will be protected in use by confidential computing.",
+      "url": "https://www.helpnetsecurity.com/2025/10/23/gartner-2026-technology-trends/",
+      "verbatim": false
+    },
+    {
+      "at": "2025-12-03",
+      "by": "IDC for the Confidential Computing Consortium",
+      "text": "Among 600+ IT leaders, 75% are adopting confidential computing and 18% run it in production; attestation validation is the top barrier at 84%.",
+      "url": "https://www.linuxfoundation.org/press/new-study-finds-confidential-computing-emerging-as-a-strategic-imperative-for-secure-ai-and-data-collaboration",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "watch"
+    }
+  ],
+  "lens": {
+    "cio": "Use confidential computing to unlock AI on sensitive data shared with partners.",
+    "ciso": "Demand verifiable attestation, and keep physical attacks in your hosting due diligence.",
+    "cto": "Pilot confidential GPUs for one regulated AI workload; the overhead is a few percent.",
+    "eng": "Try attestation tooling on one workload; a new IETF standard defines the evidence format."
+  },
+  "line": "Data stays encrypted even while it is processed, now also on AI chips.",
+  "owners": [
+    "ciso",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "watch",
+  "scope": "Protecting data while it is processed. Not where it is hosted.",
+  "short": "Confidential computing",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2025-10-20",
+      "name": "Gartner",
+      "title": "Top Strategic Technology Trends for 2026",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "date": "2026-09-22",
+      "name": "NVIDIA",
+      "title": "Private high-performance AI inference with NVIDIA Confidential Computing",
+      "type": "platform",
+      "url": "https://developer.nvidia.com/blog/enabling-private-high-performance-production-ai-inference-with-nvidia-confidential-computing/"
+    },
+    {
+      "date": "2026-09-14",
+      "name": "KU Leuven, ETH Zurich, Durham University",
+      "title": "DDRop (ACM CCS 2026)",
+      "type": "lab",
+      "url": "https://ddropattack.eu/"
+    },
+    {
+      "date": "2026-07-14",
+      "name": "IETF",
+      "title": "RFC 9999: RATS Conceptual Message Wrapper",
+      "type": "public",
+      "url": "https://www.rfc-editor.org/rfc/rfc9999.html"
+    }
+  ],
+  "stats": [
+    {
+      "l": "untrusted ops secured by 2029",
+      "v": "75%+"
+    },
+    {
+      "l": "LLM throughput kept",
+      "v": "96–98%"
+    },
+    {
+      "l": "device that broke TEEs",
+      "v": "$159"
+    }
+  ],
+  "status": "active",
+  "title": "Confidential computing",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 1,
+  "why": [
+    "NVIDIA reports 96–98% of normal LLM throughput in confidential mode.",
+    "A $159 memory device broke Intel TDX and AMD SEV-SNP with physical access.",
+    "A new IETF standard carries attestation evidence across formats."
+  ]
+}

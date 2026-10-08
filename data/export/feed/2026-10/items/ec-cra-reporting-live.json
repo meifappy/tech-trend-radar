@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-11",
+  "kind": "rule",
+  "seen": "2026-09-11T12:00:00Z",
+  "src": {
+    "name": "European Commission",
+    "type": "public",
+    "url": "https://digital-strategy.ec.europa.eu/en/policies/cra-reporting"
+  },
+  "t": "cyber-rules",
+  "take": "Manufacturers must flag actively exploited flaws and severe incidents within 24 hours, then send a fuller notice within 72.",
+  "title": "EU's 24-hour CRA reporting duty takes effect"
+}

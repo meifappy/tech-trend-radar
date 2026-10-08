@@ -1,0 +1,14 @@
+{
+  "at": "2026-08-11",
+  "kind": "announcement",
+  "seen": "2026-08-11T12:00:00Z",
+  "src": {
+    "name": "NVIDIA",
+    "type": "platform",
+    "url": "https://blogs.nvidia.com/blog/nemotron-lightning-switchyard-rtx-dgx/"
+  },
+  "t": "model-choice",
+  "t2": "ai-value",
+  "take": "A 30B open model to tune on your own data. NVIDIA claims its router matches frontier accuracy at a third of the cost.",
+  "title": "NVIDIA's open Nemotron 3.5 targets cheaper agent work"
+}

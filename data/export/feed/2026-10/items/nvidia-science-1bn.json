@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-08",
+  "dup": "anthropic-genesis-150m",
+  "kind": "announcement",
+  "points": [
+    "Funds universities, quantum work and clouds serving US government",
+    "Seven new systems at Argonne and Los Alamos labs",
+    "No split of the money given"
+  ],
+  "read": "Full press release; vendor commitment with few details",
+  "seen": "2026-10-08T17:16:00Z",
+  "src": {
+    "name": "NVIDIA",
+    "type": "vendor",
+    "url": "https://www.globenewswire.com/news-release/2026/10/08/3377484/0/en/nvidia-commits-1-billion-to-advance-us-science-over-the-next-five-years.html"
+  },
+  "t": "ai-science",
+  "t2": "quantum",
+  "take": "A second, larger vendor pledge at the same Genesis Mission event. AI-for-science capacity keeps concentrating in US national labs.",
+  "title": "NVIDIA: $1bn over five years for US science AI"
+}

@@ -1,0 +1,115 @@
+{
+  "analysts": [
+    {
+      "as": "Quantum technologies",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    },
+    {
+      "as": "Quantum computing",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Quantum simulation for drug discovery",
+      "by": "World Economic Forum",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.weforum.org/publications/top-10-emerging-technologies-of-2026/in-full/"
+    }
+  ],
+  "area": "sci",
+  "expert": [
+    {
+      "at": "2025-06",
+      "by": "McKinsey Quantum Technology Monitor",
+      "text": "Quantum computing revenue is forecast at $28-72 billion by 2035, up from about $4 billion in 2024.",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-year-of-quantum-from-concept-to-reality-in-2025",
+      "verbatim": false
+    },
+    {
+      "at": "2025-06",
+      "by": "McKinsey Quantum Technology Monitor",
+      "text": "As qubit counts grow, effective error correction, suppression and mitigation is no longer optional; the field is shifting from growing to stabilizing qubits.",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-year-of-quantum-from-concept-to-reality-in-2025",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "horizon"
+    }
+  ],
+  "lens": {
+    "cio": "Keep watching; there is no business case for most firms before about 2029.",
+    "ciso": "Quantum timelines set the deadline for your post-quantum migration.",
+    "cto": "No build decision yet; use the 2029 fault-tolerance targets to time your crypto plan.",
+    "eng": "No action beyond crypto-agility; follow error-correction milestones."
+  },
+  "line": "Error correction now works on real machines. Useful fault-tolerant computers are targeted for 2029.",
+  "owners": [
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "horizon",
+  "scope": "Quantum computers. Not post-quantum encryption.",
+  "short": "Quantum computing",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-07-22",
+      "name": "Google Research",
+      "title": "Towards a quantum computer that learns from its errors (Nature)",
+      "type": "journal",
+      "url": "https://research.google/blog/towards-a-quantum-computer-that-learns-from-its-errors/"
+    },
+    {
+      "date": "2026-09-02",
+      "name": "arXiv (Quantinuum)",
+      "title": "Experimental validation of a compact fault-tolerant architecture",
+      "type": "lab",
+      "url": "https://arxiv.org/abs/2609.03194"
+    },
+    {
+      "date": "2026-08-19",
+      "name": "IBM",
+      "title": "IBM connects its first modular cryogenic systems",
+      "type": "platform",
+      "url": "https://newsroom.ibm.com/2026-08-19-ibm-connects-its-first-modular-cryogenic-systems-in-milestone-toward-fault-tolerant-quantum-computing"
+    },
+    {
+      "date": "2026-04-28",
+      "name": "McKinsey",
+      "title": "Quantum Technology Monitor 2026",
+      "type": "consultancy",
+      "url": "https://www.mckinsey.com/capabilities/mckinsey-technology/our-insights/mckinsey-quantum-technology-monitor-2026-a-commercial-tipping-point"
+    }
+  ],
+  "stats": [
+    {
+      "l": "IBM's fault-tolerant target",
+      "v": "2029"
+    },
+    {
+      "l": "start-up funding in 2025",
+      "v": "$12.6bn"
+    },
+    {
+      "l": "errors with AI tuning",
+      "v": "−20%"
+    }
+  ],
+  "status": "active",
+  "title": "Quantum computing",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 1,
+  "why": [
+    "An AI agent cut logical errors 20% beyond expert tuning on Google's chip.",
+    "IBM linked two cryogenic modules into one system and commits over $10bn.",
+    "Start-up funding rose 6.3-fold to $12.6bn in 2025."
+  ]
+}

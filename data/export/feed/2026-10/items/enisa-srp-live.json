@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-11",
+  "dup": "ec-cra-reporting-live",
+  "kind": "rule",
+  "seen": "2026-09-11T12:00:00Z",
+  "src": {
+    "name": "ENISA",
+    "type": "public",
+    "url": "https://www.enisa.europa.eu/news/the-cra-single-reporting-platform-is-launched"
+  },
+  "t": "cyber-rules",
+  "take": "Manufacturers file once and the report reaches the right national teams. Open-source stewards join in December 2027.",
+  "title": "ENISA switches on the CRA reporting platform"
+}

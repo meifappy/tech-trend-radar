@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-29",
+  "kind": "report",
+  "points": [
+    "A new agentic workflow can cost about ten times too much before tuning",
+    "Underuse is a more common problem than overspending",
+    "Ring-fence open-ended loops; encourage predictable, high-value work"
+  ],
+  "read": "Full article",
+  "seen": "2026-09-29T12:00:00Z",
+  "src": {
+    "name": "Bain & Company",
+    "type": "consultancy",
+    "url": "https://www.bain.com/insights/managing-token-spending-without-choking-off-opportunity-technology-report-2026/"
+  },
+  "t": "ai-value",
+  "take": "Usage grew 5.4-fold in 15 months. Manage cost per workflow outcome instead of capping each employee.",
+  "title": "Bain: token prices fell 58%, bills still doubled"
+}

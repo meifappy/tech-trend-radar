@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-28",
+  "kind": "paper",
+  "seen": "2026-07-28T12:00:00Z",
+  "src": {
+    "name": "Scientific Reports",
+    "type": "journal",
+    "url": "https://www.nature.com/articles/s41598-026-62884-7"
+  },
+  "t": "model-choice",
+  "take": "A 1.5B domain-tuned model scored 0.43 F1 against 0.12 or less, and ran 23–95 times faster on CPU. Small test set.",
+  "title": "A small medical model beats compressed general models"
+}

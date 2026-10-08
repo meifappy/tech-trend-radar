@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-30",
+  "kind": "podcast",
+  "seen": "2026-09-30T12:00:00Z",
+  "src": {
+    "name": "Latent Space",
+    "type": "podcast",
+    "url": "https://www.latent.space/p/devday-2026"
+  },
+  "t": "agentic-ai",
+  "take": "OpenAI's assistants each run a Linux desktop in the cloud. Computer-use tasks cost about a seventh as much on the new mid-tier model.",
+  "title": "Latent Space on DevDay: agents get their own cloud computers"
+}

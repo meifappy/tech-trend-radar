@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-30",
+  "kind": "announcement",
+  "seen": "2026-07-30T12:00:00Z",
+  "src": {
+    "name": "Google DeepMind",
+    "type": "lab",
+    "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/"
+  },
+  "t": "physical-ai",
+  "take": "Grippers succeed on 74% to 90% of tasks. Multi-finger hands manage 32% to 92%, which DeepMind calls still challenging.",
+  "title": "DeepMind's Gemini Robotics 2 runs whole humanoids"
+}

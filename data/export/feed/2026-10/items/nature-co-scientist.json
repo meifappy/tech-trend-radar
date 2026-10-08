@@ -1,0 +1,13 @@
+{
+  "at": "2026-05-19",
+  "kind": "paper",
+  "seen": "2026-05-19T12:00:00Z",
+  "src": {
+    "name": "Nature",
+    "type": "journal",
+    "url": "https://www.nature.com/articles/s41586-026-10644-y"
+  },
+  "t": "ai-science",
+  "take": "Google DeepMind's system proposed leukaemia and liver-fibrosis drug candidates that worked in cell tests.",
+  "title": "Nature: an AI co-scientist's ideas hold up in the lab"
+}

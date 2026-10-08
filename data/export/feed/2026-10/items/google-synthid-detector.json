@@ -1,0 +1,13 @@
+{
+  "at": "2026-10-07",
+  "kind": "announcement",
+  "seen": "2026-10-07T12:00:00Z",
+  "src": {
+    "name": "Google DeepMind",
+    "type": "platform",
+    "url": "https://blog.google/innovation-and-ai/models-and-research/google-deepmind/synth-id-ai-content/"
+  },
+  "t": "provenance",
+  "take": "It now also reads OpenAI, NVIDIA and Kakao watermarks. More than 180 billion images and videos carry SynthID since 2023.",
+  "title": "Google opens its SynthID detector worldwide"
+}

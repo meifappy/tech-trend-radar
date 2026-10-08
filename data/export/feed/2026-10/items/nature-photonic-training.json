@@ -1,0 +1,13 @@
+{
+  "at": "2026-03-18",
+  "kind": "paper",
+  "seen": "2026-03-18T12:00:00Z",
+  "src": {
+    "name": "Nature",
+    "type": "journal",
+    "url": "https://www.nature.com/articles/s41586-026-10262-8"
+  },
+  "t": "novel-computing",
+  "take": "Nokia Bell Labs ran backpropagation on a photonic chip and matched a digital model at over 90% accuracy.",
+  "title": "Nature: a light-based chip trains itself"
+}

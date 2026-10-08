@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-07",
+  "kind": "report",
+  "points": [
+    "Paralegals told AI enriches their job used it 58% more",
+    "They also experimented with it 70% more",
+    "Based on 184 interviews at three firms and a two-year law firm study"
+  ],
+  "read": "Full article on the research; peer-review status not stated",
+  "seen": "2026-10-08T17:16:00Z",
+  "src": {
+    "name": "Stanford HAI",
+    "type": "research",
+    "url": "https://hai.stanford.edu/news/want-employees-to-embrace-ai-stop-selling-it-as-a-productivity-tool"
+  },
+  "t": "ai-skills",
+  "take": "How managers introduce AI changes uptake. Leaders should explain how it improves the job, give time to explore, and stop measuring volume.",
+  "title": "Stanford HAI: pitch AI as job enrichment, not productivity"
+}

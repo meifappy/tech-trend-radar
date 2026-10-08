@@ -1,0 +1,123 @@
+{
+  "analysts": [
+    {
+      "as": "Digital provenance",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "Disinformation security",
+      "by": "Gartner",
+      "list": "Top Trends in Infrastructure & Operations 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-12-11-gartner-identifies-the-top-trends-impacting-infrastructure-and-operations-for-2026"
+    },
+    {
+      "as": "GenAI breaks traditional cybersecurity awareness tactics",
+      "by": "Gartner",
+      "list": "Top Cybersecurity Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-02-05-gartner-identifies-the-top-cybersecurity-trends-for-2026"
+    }
+  ],
+  "area": "sec",
+  "expert": [
+    {
+      "at": "2025-09-03",
+      "by": "NSA, CISA and partners",
+      "text": "Build SBOM generation, analysis and sharing into existing security processes, with one shared SBOM approach.",
+      "url": "https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4292020/nsa-cisa-and-others-release-a-shared-vision-of-software-bill-of-materials-sbom/",
+      "verbatim": false
+    },
+    {
+      "at": "2025-01-30",
+      "by": "NSA, ACSC, CCCS, NCSC-UK",
+      "text": "Organisations adopting Content Credentials should keep metadata unaltered through internal processes; missing provenance should not automatically mean media is fake.",
+      "url": "https://www.cyber.gov.au/business-government/secure-design/artificial-intelligence/content-credentials-strengthening-multimedia-integrity-in-generative-ai-era",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "act"
+    }
+  ],
+  "lens": {
+    "cio": "Ask suppliers for signed SBOMs, and label AI content for EU customers by 2 December.",
+    "ciso": "Self-spreading npm worms and deepfake calls are live threats; harden CI tokens and caller checks.",
+    "cto": "Require signed SBOMs and trusted publishing across your software supply chain.",
+    "eng": "Remove long-lived CI tokens, pin dependencies and switch to trusted publishing."
+  },
+  "line": "Prove where code, data and media come from. Self-spreading worms and deepfakes make it urgent.",
+  "owners": [
+    "ciso",
+    "eng"
+  ],
+  "rated": "2026-10-07",
+  "ring": "act",
+  "scope": "Proof of origin for code, data and media, including SBOMs and AI labels. Not reporting duties.",
+  "short": "Digital provenance",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-08-04",
+      "name": "Microsoft",
+      "title": "ChainDrop supply chain compromise: anatomy of a self-propagating worm",
+      "type": "platform",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/"
+    },
+    {
+      "date": "2026-07-28",
+      "name": "GitHub",
+      "title": "Disrupting supply chain attacks on npm and GitHub Actions",
+      "type": "platform",
+      "url": "https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/"
+    },
+    {
+      "date": "2026-07-29",
+      "name": "NSA and CISA",
+      "title": "Updated minimum elements for a Software Bill of Materials",
+      "type": "public",
+      "url": "https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4558391/nsa-collaborates-with-cisa-to-co-author-the-updated-software-bill-of-materials/"
+    },
+    {
+      "date": "2026-09-22",
+      "name": "Gartner",
+      "title": "41% of CISOs reported a deepfake social-engineering incident",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-22-gartner-survey-finds-41-percent-of-cisos-reported-at-least-one-social-engineering-incident-involving-a-deepfake-in-the-past-12-months"
+    },
+    {
+      "date": "2026-07-20",
+      "name": "European Commission",
+      "title": "Guidelines on AI transparency obligations (IP/26/1653)",
+      "type": "public",
+      "url": "https://europa.eu/newsroom/ecpc-failover/pdf/ip-26-1653_en.pdf"
+    }
+  ],
+  "stats": [
+    {
+      "l": "npm packages hit by one worm",
+      "v": "400+"
+    },
+    {
+      "l": "of CISOs met an audio deepfake",
+      "v": "41%"
+    },
+    {
+      "l": "EU AI content marking due",
+      "v": "2 Dec 2026"
+    }
+  ],
+  "status": "active",
+  "title": "Digital provenance",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "The ChainDrop worm hit more than 400 npm packages in August.",
+    "US agencies now want SBOMs signed and hashed, including AI software.",
+    "41% of CISOs faced a deepfake on an audio call in the past year."
+  ]
+}

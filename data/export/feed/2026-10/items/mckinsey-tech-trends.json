@@ -1,0 +1,21 @@
+{
+  "at": "2026-09",
+  "big": true,
+  "kind": "report",
+  "points": [
+    "Job postings for agentic AI rose 952% in a year",
+    "AI budgets were exceeded at 93% of respondents' organisations",
+    "US power demand for AI: about 30 GW in 2025, more than 90 GW by 2030"
+  ],
+  "read": "Report PDF, pages 1-41",
+  "seen": "2026-09-01T12:00:00Z",
+  "src": {
+    "name": "McKinsey",
+    "type": "consultancy",
+    "url": "https://www.mckinsey.com/~/media/mckinsey/business%20functions/mckinsey%20digital/our%20insights/the%20top%20trends%20in%20tech%202026/mckinsey%20technology%20trends%20outlook%202026.pdf"
+  },
+  "t": "agentic-ai",
+  "t2": "ai-compute",
+  "take": "AI produces breakthroughs faster than organisations can absorb them. Five trends are on pace to double investment this year.",
+  "title": "McKinsey: AI moves faster than firms can absorb it"
+}

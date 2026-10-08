@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-01",
+  "kind": "announcement",
+  "seen": "2026-07-01T12:00:00Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "platform",
+    "url": "https://www.anthropic.com/news/redeploying-fable-5"
+  },
+  "t": "model-choice",
+  "take": "A US directive on 12 June forced a shutdown for all users. Controls lifted on 30 June; access returned with an extra safety filter.",
+  "title": "Anthropic restores Fable 5 after an export-control pause"
+}

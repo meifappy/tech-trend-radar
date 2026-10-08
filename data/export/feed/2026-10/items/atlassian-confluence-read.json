@@ -1,0 +1,14 @@
+{
+  "at": "2026-10",
+  "kind": "advisory",
+  "minor": true,
+  "seen": "2026-10-01T12:00:00Z",
+  "src": {
+    "name": "Atlassian",
+    "type": "platform",
+    "url": "https://jira.atlassian.com/browse/CONFSERVER-104488"
+  },
+  "t": "preemptive-defence",
+  "take": "Attackers without a login can read web-root files in every Confluence Data Center version (CVSS 9.3). Fixed in 9.2.26 and 10.2.19.",
+  "title": "Atlassian fixes a critical file-read flaw in Confluence"
+}

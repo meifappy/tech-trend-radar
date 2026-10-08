@@ -1,0 +1,13 @@
+{
+  "at": "2026-06-22",
+  "kind": "rule",
+  "seen": "2026-06-22T12:00:00Z",
+  "src": {
+    "name": "The White House",
+    "type": "public",
+    "url": "https://www.whitehouse.gov/fact-sheets/2026/06/fact-sheet-president-donald-j-trump-secures-the-nation-against-advanced-cryptographic-attacks/"
+  },
+  "t": "quantum-safe",
+  "take": "High-value federal systems must move by 2030 or 2031. Contractors must meet federal security standards by the end of 2030.",
+  "title": "US sets 2030 deadlines for post-quantum federal systems"
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-15",
+  "kind": "announcement",
+  "seen": "2026-09-15T12:00:00Z",
+  "src": {
+    "name": "Apple",
+    "type": "platform",
+    "url": "https://security.apple.com/blog/apple-reference-image/"
+  },
+  "t": "provenance",
+  "take": "An opt-in iPhone 18 Pro mode signs pixels at capture with a hybrid post-quantum signature, unlike C2PA labels added later.",
+  "title": "Apple signs photos at the camera sensor"
+}

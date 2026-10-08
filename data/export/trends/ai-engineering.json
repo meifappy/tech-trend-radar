@@ -1,0 +1,134 @@
+{
+  "analysts": [
+    {
+      "as": "AI-native development platforms",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "AI-native software engineering",
+      "by": "Gartner",
+      "list": "Top Trends in Software Engineering 2025",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond"
+    },
+    {
+      "as": "Agentic software development",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    },
+    {
+      "as": "Agentic software development",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Generative coding",
+      "by": "MIT Technology Review",
+      "list": "10 Breakthrough Technologies 2026",
+      "url": "https://www.technologyreview.com/2026/01/12/1130697/10-breakthrough-technologies-2026/"
+    },
+    {
+      "as": "Putting coding agents on a leash",
+      "by": "Thoughtworks",
+      "list": "Technology Radar Vol. 34",
+      "url": "https://www.thoughtworks.com/en-us/radar"
+    }
+  ],
+  "area": "cloud",
+  "expert": [
+    {
+      "at": "2025-09-23",
+      "by": "Google Cloud DORA report",
+      "text": "AI adoption among software professionals reached 90%; change culture, processes and systems, not just tools.",
+      "url": "https://blog.google/technology/developers/dora-report-2025/",
+      "verbatim": false
+    },
+    {
+      "at": "2025-07",
+      "by": "Stack Overflow survey 2025",
+      "text": "46% of developers actively distrust the accuracy of AI tools versus 33% who trust it, despite 84% using or planning to use them.",
+      "url": "https://survey.stackoverflow.co/2025/ai",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "act"
+    }
+  ],
+  "lens": {
+    "cio": "Measure delivered outcomes, not tool adoption; measured gains are 20 to 27 percent.",
+    "ciso": "Review what coding agents may access and ship; AI-written code needs the same checks.",
+    "cto": "Redesign team roles; engineers now spend about a quarter of their time directing agents.",
+    "eng": "Strengthen tests and review rules before adding more coding agents."
+  },
+  "line": "Agents now write much of the code. Review, testing and decisions are the new bottleneck.",
+  "owners": [
+    "cto",
+    "eng"
+  ],
+  "rated": "2026-10-07",
+  "ring": "act",
+  "scope": "How software gets built with AI. Not the platform it runs on.",
+  "short": "AI-native dev",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-09-29",
+      "name": "Bain & Company",
+      "title": "The Half-Finished Redesign: How AI Reshapes Software Organizations",
+      "type": "consultancy",
+      "url": "https://www.bain.com/insights/the-half-finished-redesign-how-ai-reshapes-software-organizations-technology-report-2026/"
+    },
+    {
+      "date": "2026-08",
+      "name": "McKinsey",
+      "title": "The state of AI in 2026: On the road to ROI",
+      "type": "consultancy",
+      "url": "https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/the-state-of-ai-in-2026-on-the-road-to-roi.pdf"
+    },
+    {
+      "date": "2026-05-20",
+      "name": "Gartner",
+      "title": "Enterprise AI coding agents enter a new phase",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-05-20-gartner-says-the-market-for-enterprise-ai-coding-agents-is-entering-a-new-phase-of-expansion-and-competitive-realignment"
+    },
+    {
+      "date": "2026-04-15",
+      "name": "Thoughtworks",
+      "title": "Technology Radar Vol. 34",
+      "type": "consultancy",
+      "url": "https://www.thoughtworks.com/en-us/about-us/news/2026/combat-ai-cognitive-debt-radar-v34"
+    }
+  ],
+  "stats": [
+    {
+      "l": "of time spent directing agents",
+      "v": "23%"
+    },
+    {
+      "l": "built instead of buying",
+      "v": "32%"
+    },
+    {
+      "l": "measured productivity gain",
+      "v": "20–27%"
+    }
+  ],
+  "status": "active",
+  "title": "AI-native development",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 3,
+  "why": [
+    "Engineers spend 23% of their time directing agents, up from 4%.",
+    "Measured gains are 20–27%, far below the 95% leaders expect.",
+    "Gartner expects the IDE to become optional for agentic teams by 2027."
+  ]
+}

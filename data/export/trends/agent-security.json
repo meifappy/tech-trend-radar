@@ -1,0 +1,122 @@
+{
+  "analysts": [
+    {
+      "as": "AI security platforms",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "Agentic AI demands cybersecurity oversight",
+      "by": "Gartner",
+      "list": "Top Cybersecurity Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-02-05-gartner-identifies-the-top-cybersecurity-trends-for-2026"
+    },
+    {
+      "as": "AI security and trust",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Securing permission-hungry agents",
+      "by": "Thoughtworks",
+      "list": "Technology Radar Vol. 34",
+      "url": "https://www.thoughtworks.com/en-us/radar"
+    }
+  ],
+  "area": "sec",
+  "expert": [
+    {
+      "at": "2025-12-08",
+      "by": "UK NCSC",
+      "text": "Prompt injection may never be totally mitigated, so design LLM systems with deterministic controls limiting what the model can do.",
+      "url": "https://www.ncsc.gov.uk/blog-post/prompt-injection-is-not-sql-injection",
+      "verbatim": false
+    },
+    {
+      "at": "2025-06-11",
+      "by": "Gartner",
+      "text": "Deploy guardian agents as reviewers, monitors and protectors; they will reach 10–15% of the agentic AI market by 2030.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-06-11-gartner-predicts-that-guardian-agents-will-capture-10-15-percent-of-the-agentic-ai-market-by-2030",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "prepare"
+    }
+  ],
+  "lens": {
+    "cio": "Require agent security controls in vendor contracts before any rollout.",
+    "ciso": "Monitor agents like privileged users; prompt injection and data theft lead the attacks.",
+    "cto": "Make agent identity and permission design part of every agent project from day one.",
+    "eng": "Sandbox agents, scope their tokens narrowly and require approval for irreversible actions."
+  },
+  "line": "Agents with broad permissions are a new way in. Prompt injection and poisoned memory lead.",
+  "owners": [
+    "ciso",
+    "eng"
+  ],
+  "rated": "2026-10-07",
+  "ring": "prepare",
+  "scope": "Attacks on AI agents and models. Not general patching.",
+  "short": "AI security",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-10-01",
+      "name": "Microsoft",
+      "title": "Insights from the 2026 Microsoft Digital Defense Report",
+      "type": "platform",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/"
+    },
+    {
+      "date": "2026-05-19",
+      "name": "METR",
+      "title": "Frontier Risk Report (February to March 2026)",
+      "type": "lab",
+      "url": "https://metr.org/blog/2026-05-19-frontier-risk-report/"
+    },
+    {
+      "date": "2026-02-17",
+      "name": "NIST",
+      "title": "Announcing the AI Agent Standards Initiative",
+      "type": "public",
+      "url": "https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure"
+    },
+    {
+      "date": "2026-09-16",
+      "name": "Latent Space",
+      "title": "Underwriting Superintelligence, with Rune Kvist",
+      "type": "podcast",
+      "url": "https://www.latent.space/p/aiuc"
+    }
+  ],
+  "stats": [
+    {
+      "l": "of enterprises trial agents",
+      "v": "88%"
+    },
+    {
+      "l": "of AI attacks inject links",
+      "v": "52%"
+    },
+    {
+      "l": "give agents free rein",
+      "v": "~40%"
+    }
+  ],
+  "status": "active",
+  "title": "AI security platforms",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "Link injection and data theft make up 52% of attacks on AI workloads.",
+    "About 40% of surveyed staff gave agents unrestricted command rights.",
+    "Insurers now price agent risk against the AIUC-1 standard."
+  ]
+}

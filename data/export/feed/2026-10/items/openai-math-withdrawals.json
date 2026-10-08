@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-07",
+  "dup": "openai-math-release",
+  "kind": "announcement",
+  "points": [
+    "Two of the withdrawn papers relied on the first one's construction",
+    "300 of 719 top-line results are now formally machine-checked"
+  ],
+  "read": "Repository change history",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "OpenAI",
+    "type": "vendor",
+    "url": "https://github.com/openai/math/blob/main/history.md"
+  },
+  "t": "ai-science",
+  "take": "A day after release, one sign error sank three papers and 14 more needed repairs. Unreviewed AI proofs are not yet results.",
+  "title": "OpenAI withdraws three AI-written maths papers over a sign error"
+}

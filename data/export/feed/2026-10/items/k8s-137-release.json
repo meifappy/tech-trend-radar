@@ -1,0 +1,14 @@
+{
+  "at": "2026-08-26",
+  "dup": "k8s-workload-aware",
+  "kind": "announcement",
+  "seen": "2026-08-26T12:00:00Z",
+  "src": {
+    "name": "Kubernetes",
+    "type": "public",
+    "url": "https://kubernetes.io/blog/2026/08/26/kubernetes-v1-37-release/"
+  },
+  "t": "platform-engineering",
+  "take": "67 enhancements, 16 of them stable. Sharing GPU claims across a job group moves to beta.",
+  "title": "Kubernetes 1.37 'Garhwal' ships 67 changes"
+}

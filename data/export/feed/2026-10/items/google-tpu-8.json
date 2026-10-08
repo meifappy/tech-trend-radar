@@ -1,0 +1,14 @@
+{
+  "at": "2026-04-22",
+  "kind": "announcement",
+  "seen": "2026-04-22T12:00:00Z",
+  "src": {
+    "name": "Google Cloud",
+    "type": "platform",
+    "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/"
+  },
+  "t": "ai-compute",
+  "t2": "novel-computing",
+  "take": "The inference chip claims 80% better performance per dollar than the last generation.",
+  "title": "Google's eighth-generation TPUs split training and inference"
+}

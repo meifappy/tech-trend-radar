@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-08",
+  "kind": "report",
+  "points": [
+    "2026 revenue forecast: $869.9m, up 22.9%",
+    "Public sector leads spending until banking and insurance overtake it in 2028",
+    "Gartner says early quantum advantage has arrived for limited tasks"
+  ],
+  "read": "Full press release",
+  "seen": "2026-10-08T12:40:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "analyst",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-08-gartner-says-global-quantum-computing-revenue-will-reach-over-us-dollars-1-billion-in-2027"
+  },
+  "t": "quantum",
+  "take": "Still a tiny market: $870m this year. Gartner expects over half of quantum startups to exit by 2030, so choose partners carefully.",
+  "title": "Gartner: quantum computing revenue passes $1bn in 2027"
+}

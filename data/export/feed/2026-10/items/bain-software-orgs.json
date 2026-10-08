@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-29",
+  "big": true,
+  "kind": "report",
+  "points": [
+    "Coding fell from 34% to 21% of engineers' time in two years",
+    "Pyramid-shaped teams dropped from 66% to 29%",
+    "Junior engineers went from a third of teams to under a fifth"
+  ],
+  "read": "Full article",
+  "seen": "2026-09-29T12:00:00Z",
+  "src": {
+    "name": "Bain & Company",
+    "type": "consultancy",
+    "url": "https://www.bain.com/insights/the-half-finished-redesign-how-ai-reshapes-software-organizations-technology-report-2026/"
+  },
+  "t": "ai-engineering",
+  "take": "Engineers spend 23% of their time directing agents. Seven in ten firms still decide centrally, so the gains stall.",
+  "title": "Bain: software teams are only half redesigned for AI"
+}

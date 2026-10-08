@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-06",
+  "kind": "announcement",
+  "seen": "2026-10-06T12:00:00Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "platform",
+    "url": "https://www.anthropic.com/news/cyber-verification-program"
+  },
+  "t": "model-choice",
+  "t2": "preemptive-defence",
+  "take": "Verified defenders, red teams and a few critical-infrastructure testers get different limits. Glasswing partners found 129,000 flaws in four months.",
+  "title": "Anthropic puts its cyber models behind three access tiers"
+}

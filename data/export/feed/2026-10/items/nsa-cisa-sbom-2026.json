@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-29",
+  "kind": "rule",
+  "seen": "2026-07-29T12:00:00Z",
+  "src": {
+    "name": "NSA and CISA",
+    "type": "public",
+    "url": "https://www.nsa.gov/Press-Room/Press-Releases-Statements/Press-Release-View/Article/4558391/nsa-collaborates-with-cisa-to-co-author-the-updated-software-bill-of-materials/"
+  },
+  "t": "provenance",
+  "take": "SBOMs should now carry the author's signature, a version and component hashes, and cover open-source, AI and SaaS software.",
+  "title": "US agencies update the minimum elements of an SBOM"
+}

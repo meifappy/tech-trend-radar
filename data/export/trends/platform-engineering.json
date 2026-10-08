@@ -1,0 +1,110 @@
+{
+  "analysts": [
+    {
+      "as": "GenAI platform engineering",
+      "by": "Gartner",
+      "list": "Top Trends in Software Engineering 2025",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond"
+    },
+    {
+      "as": "Hybrid computing",
+      "by": "Gartner",
+      "list": "Top Trends in Infrastructure & Operations 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-12-11-gartner-identifies-the-top-trends-impacting-infrastructure-and-operations-for-2026"
+    }
+  ],
+  "area": "cloud",
+  "expert": [
+    {
+      "at": "2025-07-01",
+      "by": "Gartner",
+      "text": "By 2027, 70% of organizations with platform teams will include GenAI capabilities in their internal developer platforms.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-07-01-gartner-identifies-the-top-strategic-trends-in-software-engineering-for-2025-and-beyond",
+      "verbatim": false
+    },
+    {
+      "at": "2026-01-20",
+      "by": "CNCF survey",
+      "text": "82% of container users run Kubernetes in production, up from 66% in 2023; 66% of generative-AI hosts use it for inference.",
+      "url": "https://www.cncf.io/announcements/2026/01/20/kubernetes-established-as-the-de-facto-operating-system-for-ai-as-production-use-hits-82-in-2025-cncf-annual-cloud-native-survey/",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "act"
+    }
+  ],
+  "lens": {
+    "cio": "Fund the Ingress NGINX migration now; it has had no security fixes since March.",
+    "ciso": "Flag clusters still running Ingress NGINX as unpatched exposure.",
+    "cto": "Treat Kubernetes as the AI platform and retire unsupported parts such as Ingress NGINX.",
+    "eng": "Move to Gateway API or a supported controller, then test Kubernetes 1.37 GPU scheduling."
+  },
+  "line": "Internal platforms let teams ship faster and safer. They now also run your AI.",
+  "owners": [
+    "eng",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "act",
+  "scope": "The internal platform teams build and run software on, including Kubernetes. Not coding practice.",
+  "short": "Platform engineering",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-01-29",
+      "name": "Kubernetes",
+      "title": "Ingress NGINX: statement from the Steering and Security Response Committees",
+      "type": "public",
+      "url": "https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/"
+    },
+    {
+      "date": "2025-11-11",
+      "name": "Kubernetes",
+      "title": "Ingress NGINX retirement: what you need to know",
+      "type": "public",
+      "url": "https://kubernetes.io/blog/2025/11/11/ingress-nginx-retirement/"
+    },
+    {
+      "date": "2026-08-26",
+      "name": "Kubernetes",
+      "title": "Kubernetes v1.37: Garhwal",
+      "type": "public",
+      "url": "https://kubernetes.io/blog/2026/08/26/kubernetes-v1-37-release/"
+    },
+    {
+      "date": "2026-09-08",
+      "name": "Kubernetes",
+      "title": "v1.37: Advancing workload-aware scheduling",
+      "type": "public",
+      "url": "https://kubernetes.io/blog/2026/09/08/kubernetes-v1-37-advancing-workload-aware-scheduling/"
+    }
+  ],
+  "stats": [
+    {
+      "l": "of setups used Ingress NGINX",
+      "v": "~50%"
+    },
+    {
+      "l": "retired, no more fixes",
+      "v": "Mar 2026"
+    },
+    {
+      "l": "enhancements in v1.37",
+      "v": "67"
+    }
+  ],
+  "status": "active",
+  "title": "Platform engineering",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "Teams with a good internal platform ship more often with fewer incidents.",
+    "Ingress NGINX, used in about half of Kubernetes setups, gets no security fixes since March.",
+    "Kubernetes 1.37 schedules whole AI jobs as one unit."
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-06",
+  "kind": "announcement",
+  "points": [
+    "Built on OAuth; customers grant read-only or write access",
+    "Version 0.1 specification promised later in October; no spec to test yet",
+    "Payments support is planned, not included"
+  ],
+  "read": "Full announcement on Sierra's blog; no Meta post found",
+  "seen": "2026-10-08T12:40:00Z",
+  "src": {
+    "name": "Sierra (with Meta)",
+    "type": "vendor",
+    "url": "https://sierra.ai/blog/introducing-personal-agent-protocol"
+  },
+  "t": "agentic-commerce",
+  "t2": "agentic-ai",
+  "take": "Another agent protocol, backed by Shopify, Stripe and Walmart. It lets a business identify a customer's agent and limit what it may do.",
+  "title": "Meta and Sierra propose a standard for customers' AI agents"
+}

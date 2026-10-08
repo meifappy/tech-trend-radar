@@ -10,7 +10,8 @@ src/index.html            page shell (markup and icons)
 src/styles/*.css          styles, in cascade order: tokens, base, layout, radar, panel, dock and briefing, responsive, preferences
 src/app/*.js              app code, in load order (helpers → data → radar → panel → start); one closure, no globals
 scripts/build.mjs         joins src/ into public/index.html (static site) and dist/artifact.html (Claude artifact)
-scripts/build_data.py     turns a database export into public/radar-data.json and public/archive/<YYYY-MM>.json
+scripts/build_data.py     turns data/export/ into public/radar-data.json and public/archive/<YYYY-MM>.json
+data/export/              raw database export pushed by the scheduled scan (JSON only)
 tests/smoke.mjs           opens the built site at desktop and phone size and fails on errors
 public/                   what Cloudflare serves: index.html, radar-data.json, archive/, _headers
 wrangler.jsonc            Cloudflare config (serves ./public)
@@ -38,9 +39,11 @@ what it owns.
 1. A scheduled Claude task runs every 12 hours (00:29 and 12:29 UTC). It adds only new stories to the
    database (a delta), flags must-reads as `hot`, and marks repeats as `dup` so they stay in the archive
    but out of the feed.
-2. It exports the database, runs `scripts/build_data.py`, and commits `public/radar-data.json` and
-   `public/archive/` to `main`. Nothing is ever deleted: older months live in `public/archive/`.
-3. Cloudflare redeploys on every push to `main` within a minute or two. No build command is needed.
+2. It exports the database as plain JSON into `data/export/` and pushes that folder to `main`. It runs no
+   code from this repository.
+3. The `publish-data` GitHub Action runs `scripts/build_data.py` on `data/export/` and commits
+   `public/radar-data.json` and `public/archive/`. Nothing is ever deleted: older months live in the archive.
+4. Cloudflare redeploys on every push to `main` within a minute or two. No build command is needed.
 
 Trend ratings hold for a quarter (`validUntil` on each trend); news changes every run.
 

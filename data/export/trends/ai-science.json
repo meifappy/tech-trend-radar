@@ -1,0 +1,97 @@
+{
+  "analysts": [
+    {
+      "as": "AI for scientific discovery and engineering",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    }
+  ],
+  "area": "sci",
+  "caveat": "OpenAI's Navier-Stokes result has a machine-checked proof but no independent peer review yet.",
+  "expert": [
+    {
+      "at": "2026-01",
+      "by": "Nature",
+      "text": "Scientists using AI get 4.84 times more citations, but AI adoption is linked to a 4.63% narrower range of topics studied.",
+      "url": "https://www.nature.com/articles/s41586-025-09922-y",
+      "verbatim": false
+    },
+    {
+      "at": "2026-04",
+      "by": "NBER working paper",
+      "text": "Basic research on proteins newly structured by AlphaFold rose 15 to 40% versus others, but no evidence yet of drug-development uptake.",
+      "url": "https://www.nber.org/papers/w35143",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "watch"
+    }
+  ],
+  "lens": {
+    "cio": "Keep watching; for most firms the value is indirect for now.",
+    "ciso": "No direct action needed.",
+    "cto": "R&D-heavy teams can pilot an AI research assistant on one real problem.",
+    "eng": "Use AI assistants for literature and data analysis where results can be checked."
+  },
+  "line": "AI systems now propose hypotheses and proofs that hold up in the lab and under formal checks.",
+  "owners": [
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "watch",
+  "scope": "AI that makes scientific discoveries. Not robots.",
+  "short": "AI for science",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-05-19",
+      "name": "Nature",
+      "title": "Accelerating scientific discovery with Co-Scientist",
+      "type": "journal",
+      "url": "https://www.nature.com/articles/s41586-026-10644-y"
+    },
+    {
+      "date": "2026-09-08",
+      "name": "OpenAI",
+      "title": "On the Navier-Stokes Millennium Prize Problem",
+      "type": "platform",
+      "url": "https://openai.com/index/navier-stokes-solution/"
+    },
+    {
+      "date": "2026-09",
+      "name": "McKinsey",
+      "title": "Technology Trends Outlook 2026",
+      "type": "consultancy",
+      "url": "https://www.mckinsey.com/~/media/mckinsey/business%20functions/mckinsey%20digital/our%20insights/the%20top%20trends%20in%20tech%202026/mckinsey%20technology%20trends%20outlook%202026.pdf"
+    }
+  ],
+  "stats": [
+    {
+      "l": "invested in H1 2026",
+      "v": "$12.5bn"
+    },
+    {
+      "l": "to match an unpublished result",
+      "v": "~2 days"
+    },
+    {
+      "l": "agents on one maths problem",
+      "v": "10,000"
+    }
+  ],
+  "status": "active",
+  "title": "AI for science",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 1,
+  "why": [
+    "DeepMind's Co-Scientist found drug candidates that worked in cell tests.",
+    "OpenAI claims a machine-checked Navier-Stokes proof, not yet peer reviewed.",
+    "Investment reached $12.5bn in the first half of 2026."
+  ]
+}

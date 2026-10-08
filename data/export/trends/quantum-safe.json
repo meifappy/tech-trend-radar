@@ -1,0 +1,102 @@
+{
+  "analysts": [
+    {
+      "as": "Postquantum computing moves into action plans",
+      "by": "Gartner",
+      "list": "Top Cybersecurity Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-02-05-gartner-identifies-the-top-cybersecurity-trends-for-2026"
+    },
+    {
+      "as": "Lattice-based cryptography",
+      "by": "World Economic Forum",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.weforum.org/publications/top-10-emerging-technologies-of-2026/in-full/"
+    }
+  ],
+  "area": "sec",
+  "expert": [
+    {
+      "at": "2025-03-20",
+      "by": "UK NCSC",
+      "text": "Finish discovery and an initial PQC plan by 2028, do priority migration by 2031, and complete migration by 2035.",
+      "url": "https://ncsc.gov.uk/guidance/pqc-migration-timelines",
+      "verbatim": false
+    },
+    {
+      "at": "2025-06",
+      "by": "European Commission",
+      "text": "All Member States should start PQC transition by end of 2026, moving high-risk use cases no later than end of 2030.",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/post-quantum-cryptography",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "prepare"
+    }
+  ],
+  "lens": {
+    "cio": "Ask every vendor for a post-quantum roadmap at renewal; EU states must start by end 2026.",
+    "ciso": "Start a cryptographic inventory this year; data stolen today can be decrypted later.",
+    "cto": "Design for crypto-agility so algorithms can be swapped without rebuilding systems.",
+    "eng": "Map where TLS, signing and key exchange are used, and prefer libraries with post-quantum options."
+  },
+  "line": "Today's encryption must be replaced before quantum computers can break it. Deadlines are set.",
+  "owners": [
+    "ciso",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "prepare",
+  "scope": "Replacing today's encryption. Not quantum computers themselves.",
+  "short": "Post-quantum crypto",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "name": "European Commission",
+      "title": "Post-Quantum Cryptography",
+      "type": "public",
+      "url": "https://digital-strategy.ec.europa.eu/en/policies/post-quantum-cryptography"
+    },
+    {
+      "date": "2026-06-22",
+      "name": "The White House",
+      "title": "Fact sheet: Securing the Nation Against Advanced Cryptographic Attacks",
+      "type": "public",
+      "url": "https://www.whitehouse.gov/fact-sheets/2026/06/fact-sheet-president-donald-j-trump-secures-the-nation-against-advanced-cryptographic-attacks/"
+    },
+    {
+      "date": "2026-03-25",
+      "name": "Google",
+      "title": "Google's timeline for PQC migration",
+      "type": "platform",
+      "url": "https://blog.google/innovation-and-ai/technology/safety-security/cryptography-migration-timeline/"
+    }
+  ],
+  "stats": [
+    {
+      "l": "EU states start",
+      "v": "End 2026"
+    },
+    {
+      "l": "Google's own deadline",
+      "v": "2029"
+    },
+    {
+      "l": "EU high-risk uses done",
+      "v": "2030"
+    }
+  ],
+  "status": "active",
+  "title": "Post-quantum cryptography",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "EU states must start by the end of 2026 and protect high-risk uses by 2030.",
+    "US federal systems must move by 2030 or 2031; Google targets 2029.",
+    "Data stolen today can be decrypted once quantum machines arrive."
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "at": "2026-04-15",
+  "kind": "report",
+  "seen": "2026-04-15T12:00:00Z",
+  "src": {
+    "name": "Thoughtworks",
+    "type": "consultancy",
+    "url": "https://www.thoughtworks.com/en-us/about-us/news/2026/combat-ai-cognitive-debt-radar-v34"
+  },
+  "t": "ai-engineering",
+  "t2": "agent-security",
+  "take": "It warns of 'cognitive debt' as AI writes more code, and treats sandboxing and zero trust as the baseline for agents.",
+  "title": "Thoughtworks Radar 34: put coding agents on a leash"
+}

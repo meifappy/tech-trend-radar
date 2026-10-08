@@ -1,0 +1,14 @@
+{
+  "at": "2026-02-17",
+  "kind": "rule",
+  "seen": "2026-02-17T12:00:00Z",
+  "src": {
+    "name": "NIST",
+    "type": "public",
+    "url": "https://www.nist.gov/news-events/news/2026/02/announcing-ai-agent-standards-initiative-interoperable-and-secure"
+  },
+  "t": "agentic-ai",
+  "t2": "agent-security",
+  "take": "It covers agent security, identity and authorisation, with open protocols as one of three pillars.",
+  "title": "NIST starts an AI agent standards initiative"
+}

@@ -1,0 +1,19 @@
+{
+  "at": "2026-10-08",
+  "kind": "announcement",
+  "points": [
+    "Each agent has an attested identity; actions are logged to it, not a person",
+    "Routes work across Gemini and Anthropic's Claude models",
+    "Per-project spend caps pause an agent when hit"
+  ],
+  "read": "Full keynote post; vendor claims",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "Google Cloud",
+    "type": "platform",
+    "url": "https://cloud.google.com/blog/products/ai-machine-learning/welcome-to-gemini-at-work-2026"
+  },
+  "t": "agentic-ai",
+  "take": "Google's new Gemini agent can act as a coworker with its own Workspace account and audited identity. No price or release date given.",
+  "title": "Google Cloud: agents get their own mailbox and directory entry"
+}

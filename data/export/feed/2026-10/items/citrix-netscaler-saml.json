@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-03",
+  "kind": "advisory",
+  "minor": true,
+  "seen": "2026-10-03T12:00:00Z",
+  "src": {
+    "name": "Citrix",
+    "type": "platform",
+    "url": "https://support.citrix.com/external/article/CTX697174/citrix-netscaler-adc-and-citrix-netscale.html"
+  },
+  "t": "preemptive-defence",
+  "take": "Gateways used for SAML sign-in can be knocked offline (CVSS 8.7). Fixed builds exist for all supported versions.",
+  "title": "Citrix fixes a NetScaler flaw in SAML setups"
+}

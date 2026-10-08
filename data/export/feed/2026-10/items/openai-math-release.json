@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-06",
+  "kind": "announcement",
+  "points": [
+    "Many proofs are formalised in Lean; others are not yet",
+    "Average result took about three hours of model thinking",
+    "Released on GitHub rather than through a journal"
+  ],
+  "read": "Full announcement",
+  "seen": "2026-10-08T12:40:00Z",
+  "src": {
+    "name": "OpenAI",
+    "type": "vendor",
+    "url": "https://openai.com/index/sharing-ai-progress-in-mathematics"
+  },
+  "t": "ai-science",
+  "t2": "ai-capability",
+  "take": "OpenAI claims an unreleased model produced many new results. Only some are machine-checked and none are peer reviewed; treat as a claim.",
+  "title": "OpenAI publishes a batch of AI-written maths proofs, unreviewed"
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-01-21",
+  "kind": "report",
+  "seen": "2026-01-21T12:00:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-01-21-gartner-predicts-fewer-than-20-companies-will-scale-humanoid-robots-for-manufacturing-and-supply-chain-to-production-stage-by-2028"
+  },
+  "t": "physical-ai",
+  "take": "Fewer than 20 companies will run them in production. Wheeled multi-purpose robots give better uptime for the money.",
+  "title": "Gartner: humanoid robots stay rare until 2028"
+}

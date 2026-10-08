@@ -1,0 +1,13 @@
+{
+  "at": "2026-08-17",
+  "kind": "announcement",
+  "seen": "2026-08-17T12:00:00Z",
+  "src": {
+    "name": "Agentic AI Foundation",
+    "type": "public",
+    "url": "https://aaif.io/blog/a2a-joins-aaif"
+  },
+  "t": "agentic-ai",
+  "take": "Agent-to-agent and agent-to-tool standards now share one neutral home. Google Cloud, Azure and AWS all support A2A.",
+  "title": "A2A joins MCP under the Agentic AI Foundation"
+}

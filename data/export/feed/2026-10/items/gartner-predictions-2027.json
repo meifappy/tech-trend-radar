@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-15",
+  "kind": "report",
+  "points": [
+    "More than 10 billion autonomous agents by the end of 2030",
+    "80% of firms with public-facing AI will face a cost-exhaustion attack by 2030",
+    "80% of front-line workers at international firms assisted by physical AI by 2030"
+  ],
+  "read": "Press release",
+  "seen": "2026-09-15T12:00:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-15-gartner-unveils-top-strategic-predictions-for-2027-and-beyond"
+  },
+  "t": "ai-governance",
+  "t2": "ai-value",
+  "take": "By 2028, 60% of the largest firms will control AI cost at the moment of use. Insurers, not regulators, will set AI governance by 2030.",
+  "title": "Gartner: insurers, not regulators, will set AI governance"
+}

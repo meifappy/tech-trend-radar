@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-07",
+  "kind": "announcement",
+  "points": [
+    "RTX Spark: up to 128GB unified memory; laptops available 16 October, compact desktops in November",
+    "Microsoft Execution Containers generally available: agents run in the background under OS control",
+    "DGX Station for Windows in preview, 748GB memory; NVIDIA claims models of about a trillion parameters"
+  ],
+  "read": "Full event post; vendor claims",
+  "seen": "2026-10-08T16:59:00Z",
+  "src": {
+    "name": "NVIDIA",
+    "type": "vendor",
+    "url": "https://blogs.nvidia.com/blog/local-ai-rtx-spark-microsoft-windows-event/"
+  },
+  "t": "ai-compute",
+  "t2": "model-choice",
+  "take": "Large models and always-on agents can now run on a laptop or desk machine, off the cloud meter. Worth testing for sensitive data; no prices given.",
+  "title": "NVIDIA and Microsoft: Windows PCs built to run agents locally"
+}

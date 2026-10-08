@@ -1,0 +1,13 @@
+{
+  "at": "2026-04-28",
+  "kind": "podcast",
+  "seen": "2026-04-28T12:00:00Z",
+  "src": {
+    "name": "Stratechery",
+    "type": "podcast",
+    "url": "https://stratechery.com/2026/an-interview-with-openai-ceo-sam-altman-and-aws-ceo-matt-garman-about-bedrock-managed-agents/"
+  },
+  "t": "agentic-ai",
+  "take": "Both say identity and permissions for agents are unsolved. OpenAI's models will run on a mix of Trainium and GPUs.",
+  "title": "Stratechery: Altman and Garman on agents inside AWS"
+}

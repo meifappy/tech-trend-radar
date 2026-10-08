@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-01",
+  "big": true,
+  "kind": "report",
+  "points": [
+    "88% of enterprises are experimenting with agents; 82% plan wider rollouts within 18 months",
+    "Link injection and data exfiltration make up 52% of attacks on AI workloads",
+    "About 72,000 CVEs expected in 2026, a record"
+  ],
+  "read": "Report PDF, in part",
+  "seen": "2026-10-01T12:00:00Z",
+  "src": {
+    "name": "Microsoft",
+    "type": "platform",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/10/01/insights-from-the-2026-microsoft-digital-defense-report/"
+  },
+  "t": "agent-security",
+  "t2": "preemptive-defence",
+  "take": "Most attacks on AI workloads try to plant links or pull data out. New flaws are turned into weapons in under a day.",
+  "title": "Microsoft: most attacks on AI systems plant links or steal data"
+}

@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-08",
+  "kind": "report",
+  "points": [
+    "Surveys of 213 and 134 procurement leaders, closed April 2026",
+    "Gartner advises auditing tasks with staff and a penalty-free sandbox"
+  ],
+  "read": "Press release",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "analyst",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-08-gartner-survey-shows-chief-procurement-officers-stalling-on-needed-ai-role-redesign"
+  },
+  "t": "ai-skills",
+  "take": "63% expect AI to lift procurement performance within three years, yet 25% have changed any jobs. Role design, not tooling, is the gap.",
+  "title": "Gartner: only a quarter of procurement chiefs redesigned roles for AI"
+}

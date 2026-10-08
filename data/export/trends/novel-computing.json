@@ -1,0 +1,98 @@
+{
+  "analysts": [
+    {
+      "as": "Energy-efficient computing",
+      "by": "Gartner",
+      "list": "Top Trends in Infrastructure & Operations 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-12-11-gartner-identifies-the-top-trends-impacting-infrastructure-and-operations-for-2026"
+    },
+    {
+      "as": "Application-specific semiconductors",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    }
+  ],
+  "area": "sci",
+  "expert": [
+    {
+      "at": "2025-01",
+      "by": "Anand Subramoney, Royal Holloway",
+      "text": "Neuromorphic computing aims to be 10-1000 times more energy efficient than current standard hardware.",
+      "url": "https://www.royalholloway.ac.uk/research-and-education/subjects/computer-science/news/in-nature-article-researchers-chart-course-for-scalable-neuromorphic-computing-systems",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "horizon"
+    }
+  ],
+  "lens": {
+    "cio": "No action needed.",
+    "ciso": "No action needed.",
+    "cto": "No action; look again when a photonic chip runs a production-size model.",
+    "eng": "No action; specialised AI chips are the near-term efficiency lever."
+  },
+  "line": "Chips that compute with light or work like brains could cut AI's energy bill. Still lab-scale.",
+  "owners": [
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "horizon",
+  "scope": "Photonic, neuromorphic and other new chips. Not today's GPUs.",
+  "short": "Efficient computing",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-03-18",
+      "name": "Nature",
+      "title": "Integrated photonic neural network with on-chip backpropagation training",
+      "type": "journal",
+      "url": "https://www.nature.com/articles/s41586-026-10262-8"
+    },
+    {
+      "date": "2026",
+      "name": "Nature Communications",
+      "title": "Programmable three-dimensional photonic neural network chip",
+      "type": "journal",
+      "url": "https://www.nature.com/articles/s41467-026-72316-9"
+    },
+    {
+      "date": "2026",
+      "name": "Nature Reviews Physics",
+      "title": "Scaling strategies for photonic neural networks",
+      "type": "journal",
+      "url": "https://www.nature.com/articles/s42254-026-00984-z"
+    },
+    {
+      "date": "2026-04-22",
+      "name": "Google Cloud",
+      "title": "Eighth-generation TPUs for the agentic era",
+      "type": "platform",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/eighth-generation-tpu-agentic-era/"
+    }
+  ],
+  "stats": [
+    {
+      "l": "accuracy, trained on-chip",
+      "v": "90%+"
+    },
+    {
+      "l": "perf per dollar, TPU 8i",
+      "v": "+80%"
+    }
+  ],
+  "status": "active",
+  "title": "Energy-efficient computing",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 1,
+  "why": [
+    "Nokia Bell Labs trained a light-based chip on the chip itself.",
+    "Specialised AI chips already help: Google claims 80% better inference cost.",
+    "Gartner files optical and neuromorphic chips under energy-efficient computing."
+  ]
+}

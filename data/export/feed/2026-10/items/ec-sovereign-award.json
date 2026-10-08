@@ -1,0 +1,13 @@
+{
+  "at": "2026-04-17",
+  "kind": "rule",
+  "seen": "2026-04-17T12:00:00Z",
+  "src": {
+    "name": "European Commission",
+    "type": "public",
+    "url": "https://commission.europa.eu/news-and-media/news/commission-advances-cloud-sovereignty-through-strategic-procurement-2026-04-17_en"
+  },
+  "t": "sovereign-cloud",
+  "take": "Four European groups won. Three reached SEAL-3 on the new sovereignty scale; one, using Google technology, reached SEAL-2.",
+  "title": "Commission awards EUR 180m of sovereign cloud contracts"
+}

@@ -1,0 +1,7 @@
+{
+  "focus": "Agent Pay",
+  "name": "Mastercard",
+  "on": true,
+  "type": "platform",
+  "url": "https://www.mastercard.com/news/"
+}

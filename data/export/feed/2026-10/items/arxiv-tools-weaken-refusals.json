@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-02",
+  "kind": "paper",
+  "points": [
+    "Refusal failures rose by up to 68.7% in relative terms across three benchmarks",
+    "Based on more than 100,000 responses from open and closed models"
+  ],
+  "read": "Abstract only; full text was unavailable. NVIDIA affiliation is reported by press, not confirmed on the page read",
+  "seen": "2026-10-08T12:40:00Z",
+  "src": {
+    "name": "arXiv (accepted at NeurIPS 2026)",
+    "type": "paper",
+    "url": "https://arxiv.org/abs/2610.03938"
+  },
+  "t": "agent-security",
+  "take": "Every leading model tested was less safe with tools than without. Safety tests run on a chat model do not cover the same model as an agent.",
+  "title": "NeurIPS paper: AI models refuse harmful requests less when using tools"
+}

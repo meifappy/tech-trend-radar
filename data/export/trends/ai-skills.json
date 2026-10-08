@@ -1,0 +1,53 @@
+{
+  "analysts": [
+    {
+      "as": "AI skills",
+      "by": "ManpowerGroup",
+      "list": "Global Talent Shortage Survey 2026",
+      "url": "https://www.manpowergroup.com/"
+    }
+  ],
+  "area": "ai",
+  "caveat": "Talent-shortage figures come from an employer survey, not from hiring data.",
+  "expert": [
+    {
+      "at": "2025-10",
+      "by": "Gartner",
+      "text": "75% of hiring processes will include certifications and testing for workplace AI proficiency by 2027.",
+      "url": "https://gartner.com/en/newsroom/press-releases/2025-10-21-gartner-unveils-top-predictions-for-it-organizations-and-users-in-2026-and-beyond",
+      "verbatim": false
+    },
+    {
+      "at": "2025-10",
+      "by": "Gartner",
+      "text": "Loss of critical thinking through GenAI will push 50% of organisations to require AI-free skills assessments by 2026.",
+      "url": "https://gartner.com/en/newsroom/press-releases/2025-10-21-gartner-unveils-top-predictions-for-it-organizations-and-users-in-2026-and-beyond",
+      "verbatim": false
+    }
+  ],
+  "history": [],
+  "line": "AI skills are now the hardest to hire. Most gains depend on people, not tools.",
+  "rated": "2026-10-08",
+  "ring": "prepare",
+  "scope": "Skills, roles and change management for AI. Not the tools themselves.",
+  "short": "AI skills",
+  "since": "2026-10-08",
+  "sources": [
+    {
+      "date": "2026-02-27",
+      "name": "ManpowerGroup (via TechIntelPro)",
+      "title": "AI skills top global talent shortage in 2026",
+      "url": "https://techintelpro.com/news/hr/ai/ai-skills-top-global-talent-shortage-in-2026-survey"
+    }
+  ],
+  "status": "active",
+  "title": "AI skills & workforce",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "AI development and AI literacy top the 2026 global talent-shortage list for the first time.",
+    "83% of German employers report hiring difficulties, the highest of 41 countries.",
+    "Engineers already spend about a quarter of their time directing AI agents."
+  ]
+}

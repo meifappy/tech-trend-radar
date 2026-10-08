@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-14",
+  "kind": "rule",
+  "seen": "2026-07-14T12:00:00Z",
+  "src": {
+    "name": "IETF",
+    "type": "public",
+    "url": "https://www.rfc-editor.org/rfc/rfc9999.html"
+  },
+  "t": "confidential-computing",
+  "take": "RFC 9999 lets remote-attestation results travel across CBOR, JWT and X.509 formats, a building block for verifiable trust.",
+  "title": "IETF standardises a wrapper for attestation evidence"
+}

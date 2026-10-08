@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-24",
+  "kind": "paper",
+  "seen": "2026-07-24T12:00:00Z",
+  "src": {
+    "name": "METR",
+    "type": "lab",
+    "url": "https://metr.org/notes/2026-07-24-metrics-of-model-ability/"
+  },
+  "t": "ai-capability",
+  "take": "When agents beat people at every budget, 'how long a task' stops meaning much. METR surveys cost-based replacements.",
+  "title": "METR: the time-horizon yardstick is running out"
+}

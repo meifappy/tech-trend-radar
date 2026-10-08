@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-22",
+  "kind": "announcement",
+  "seen": "2026-09-22T12:00:00Z",
+  "src": {
+    "name": "NVIDIA",
+    "type": "platform",
+    "url": "https://developer.nvidia.com/blog/enabling-private-high-performance-production-ai-inference-with-nvidia-confidential-computing/"
+  },
+  "t": "confidential-computing",
+  "take": "On eight B200 GPUs with Intel TDX, confidential mode kept 96–98% of LLM throughput, by NVIDIA's own benchmark.",
+  "title": "NVIDIA: confidential AI inference costs a few percent"
+}

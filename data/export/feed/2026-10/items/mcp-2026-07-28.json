@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-28",
+  "kind": "rule",
+  "seen": "2026-07-28T12:00:00Z",
+  "src": {
+    "name": "Model Context Protocol",
+    "type": "public",
+    "url": "https://blog.modelcontextprotocol.io/posts/2026-07-28/"
+  },
+  "t": "agentic-ai",
+  "take": "Servers can sit behind ordinary load balancers and authorisation is tighter. Older transports get a twelve-month exit.",
+  "title": "MCP's new specification goes stateless"
+}

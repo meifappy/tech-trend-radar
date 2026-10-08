@@ -1,0 +1,21 @@
+{
+  "basis": [
+    "Gartner Top Strategic Technology Trends 2026",
+    "Gartner Top Cybersecurity Trends 2026",
+    "McKinsey Technology Trends Outlook 2026",
+    "Deloitte Tech Trends 2026",
+    "Forrester Top 10 Emerging Technologies 2026",
+    "WEF Top 10 Emerging Technologies 2026",
+    "MIT Technology Review 10 Breakthrough Technologies 2026",
+    "Thoughtworks Technology Radar Vol. 34"
+  ],
+  "cadence": "News every 12 hours. Ratings reviewed every quarter.",
+  "lastScan": "2026-10-08T17:16:00Z",
+  "lastTaxonomyReview": "2026-10-08",
+  "lastTrendReview": "2026-10-08T06:00:00Z",
+  "months": [
+    "2026-10"
+  ],
+  "nextTaxonomyReview": "After Gartner's 2027 trends on 20 October 2026",
+  "trendCount": 23
+}

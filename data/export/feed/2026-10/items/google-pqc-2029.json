@@ -1,0 +1,13 @@
+{
+  "at": "2026-03-25",
+  "kind": "announcement",
+  "seen": "2026-03-25T12:00:00Z",
+  "src": {
+    "name": "Google",
+    "type": "platform",
+    "url": "https://blog.google/innovation-and-ai/technology/safety-security/cryptography-migration-timeline/"
+  },
+  "t": "quantum-safe",
+  "take": "It urges other engineering teams to move authentication and digital signatures first.",
+  "title": "Google sets 2029 for its post-quantum switch"
+}

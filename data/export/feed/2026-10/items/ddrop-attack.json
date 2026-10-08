@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-14",
+  "kind": "paper",
+  "seen": "2026-09-14T12:00:00Z",
+  "src": {
+    "name": "KU Leuven, ETH Zurich, Durham University",
+    "type": "lab",
+    "url": "https://ddropattack.eu/"
+  },
+  "t": "confidential-computing",
+  "take": "Researchers silently dropped memory writes and forged Intel TDX attestation. It needs physical access and has no simple patch.",
+  "title": "DDRop: a $159 device breaks confidential VMs"
+}

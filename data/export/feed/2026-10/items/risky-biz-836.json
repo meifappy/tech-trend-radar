@@ -1,0 +1,13 @@
+{
+  "at": "2026-05-06",
+  "kind": "podcast",
+  "seen": "2026-05-06T12:00:00Z",
+  "src": {
+    "name": "Risky Business",
+    "type": "podcast",
+    "url": "https://risky.biz/RB836/"
+  },
+  "t": "preemptive-defence",
+  "take": "The hosts argue faster patching alone will not hold now that many models can find zero-days. Prevention matters more.",
+  "title": "Risky Business: you can't patch your way out"
+}

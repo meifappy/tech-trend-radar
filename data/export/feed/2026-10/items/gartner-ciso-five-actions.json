@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-30",
+  "kind": "report",
+  "points": [
+    "Govern agents by what they are allowed to do, not by how capable the model is",
+    "A recognised face or voice should never be enough to approve an action",
+    "51% of CISOs have not started post-quantum work; Gartner predicts delay beyond 2027 triples migration cost"
+  ],
+  "read": "Full press release",
+  "seen": "2026-10-08T12:40:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "analyst",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-30-gartner-identifies-top-five-actions-for-cisos-to-take-by-end-of-2026"
+  },
+  "t": "agent-security",
+  "t2": "quantum-safe",
+  "take": "Five actions for CISOs by year end. 54% of firms have no defined way to limit what AI agents can access.",
+  "title": "Gartner: treat every frontier AI deployment as an insider risk"
+}

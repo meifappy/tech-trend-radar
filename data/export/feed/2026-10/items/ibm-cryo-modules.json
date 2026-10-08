@@ -1,0 +1,13 @@
+{
+  "at": "2026-08-19",
+  "kind": "announcement",
+  "seen": "2026-08-19T12:00:00Z",
+  "src": {
+    "name": "IBM",
+    "type": "platform",
+    "url": "https://newsroom.ibm.com/2026-08-19-ibm-connects-its-first-modular-cryogenic-systems-in-milestone-toward-fault-tolerant-quantum-computing"
+  },
+  "t": "quantum",
+  "take": "Two cryogenic modules cooled as one system, a step toward chaining hundreds of chips. The fault-tolerant target stays 2029.",
+  "title": "IBM links its first modular quantum fridges"
+}

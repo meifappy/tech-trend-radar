@@ -1,0 +1,53 @@
+{
+  "analysts": [
+    {
+      "as": "AI-ready data",
+      "by": "Gartner",
+      "list": "Lack of AI-ready data puts AI projects at risk",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk"
+    }
+  ],
+  "area": "cloud",
+  "caveat": null,
+  "expert": [
+    {
+      "at": "2025-02-26",
+      "by": "Gartner",
+      "text": "Above all, if the data has issues, then the data is not ready for AI.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk",
+      "verbatim": true
+    },
+    {
+      "at": "2025-02-26",
+      "by": "Gartner",
+      "text": "Organizations will abandon 60% of AI projects through 2026 if they lack AI-ready data; 63% lack or are unsure of suitable data management practices.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk",
+      "verbatim": false
+    }
+  ],
+  "history": [],
+  "line": "AI is only as good as the data behind it. Most firms are not ready.",
+  "rated": "2026-10-08",
+  "ring": "act",
+  "scope": "Quality, ownership and access of the data AI uses. Not models or platforms.",
+  "short": "AI-ready data",
+  "since": "2026-10-08",
+  "sources": [
+    {
+      "date": "2025-02-26",
+      "name": "Gartner",
+      "title": "Lack of AI-ready data puts AI projects at risk",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-02-26-lack-of-ai-ready-data-puts-ai-projects-at-risk"
+    }
+  ],
+  "status": "active",
+  "title": "AI-ready data",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 3,
+  "why": [
+    "63% of organisations lack, or are unsure of, data practices fit for AI.",
+    "Gartner predicts firms will abandon 60% of AI projects without AI-ready data through 2026.",
+    "Agents act on data directly, so errors now turn into actions."
+  ]
+}

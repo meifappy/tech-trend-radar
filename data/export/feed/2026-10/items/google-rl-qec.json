@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-22",
+  "kind": "paper",
+  "seen": "2026-07-22T12:00:00Z",
+  "src": {
+    "name": "Google Research",
+    "type": "journal",
+    "url": "https://research.google/blog/towards-a-quantum-computer-that-learns-from-its-errors/"
+  },
+  "t": "quantum",
+  "take": "Published in Nature. An AI agent used the chip's own error signals to cut logical errors 20% beyond expert calibration.",
+  "title": "Google: a quantum chip that retunes itself mid-run"
+}

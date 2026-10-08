@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-28",
+  "kind": "announcement",
+  "seen": "2026-09-28T12:00:00Z",
+  "src": {
+    "name": "AWS",
+    "type": "platform",
+    "url": "https://aws.amazon.com/blogs/security/aws-european-sovereign-cloud-demonstrating-an-independent-operation/"
+  },
+  "t": "sovereign-cloud",
+  "take": "A test on 24 October runs the Brandenburg cloud for several hours without the AWS backbone, to show it can operate alone.",
+  "title": "AWS to test its EU sovereign cloud fully cut off"
+}

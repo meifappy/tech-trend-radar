@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-30",
+  "big": true,
+  "kind": "report",
+  "points": [
+    "7.5% 'future-built' plus 41% scaling make up nearly half the market",
+    "AI spending rose from 1.7% to 3.3% of revenue in under a year",
+    "42% expect agents to hold decision authority by 2030"
+  ],
+  "read": "Press release",
+  "seen": "2026-09-30T12:00:00Z",
+  "src": {
+    "name": "BCG",
+    "type": "consultancy",
+    "url": "https://www.bcg.com/press/30september2026-ai-starting-to-pay-off-companies-generate-value"
+  },
+  "t": "agentic-ai",
+  "take": "A year ago BCG put that at 5%. Leaders redesign whole workflows; only 5% of firms have full agent controls.",
+  "title": "BCG: nearly half of companies now get real value from AI"
+}

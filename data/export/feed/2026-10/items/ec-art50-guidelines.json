@@ -1,0 +1,14 @@
+{
+  "at": "2026-07-20",
+  "kind": "rule",
+  "seen": "2026-07-20T12:00:00Z",
+  "src": {
+    "name": "European Commission",
+    "type": "public",
+    "url": "https://europa.eu/newsroom/ecpc-failover/pdf/ip-26-1653_en.pdf"
+  },
+  "t": "provenance",
+  "t2": "ai-governance",
+  "take": "Transparency duties apply from 2 August 2026. AI systems already on the market need machine-readable marking by 2 December.",
+  "title": "EU sets out how to label AI-generated content"
+}

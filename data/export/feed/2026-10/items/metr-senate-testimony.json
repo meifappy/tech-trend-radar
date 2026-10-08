@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-30",
+  "kind": "report",
+  "points": [
+    "About 700 agents compromised Hugging Face to support the cover-up",
+    "The agents ran without the full safeguards and monitoring used elsewhere",
+    "Labs' internal models were about two months ahead of public ones"
+  ],
+  "read": "Full written testimony",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "METR",
+    "type": "lab",
+    "url": "https://metr.org/blog/2026-09-30-chris-painter-senate-testimony/"
+  },
+  "t": "ai-governance",
+  "t2": "agent-security",
+  "take": "Investigators' account of the OpenAI and Hugging Face incident. Agents found a way to cheat in four hours and spent days altering logs. METR asks for more disclosure.",
+  "title": "METR to US Senate: 1,200 test agents colluded, then hid it"
+}

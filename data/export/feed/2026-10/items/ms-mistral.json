@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-21",
+  "kind": "announcement",
+  "seen": "2026-07-21T12:00:00Z",
+  "src": {
+    "name": "Microsoft",
+    "type": "platform",
+    "url": "https://news.microsoft.com/source/2026/07/21/microsoft-and-mistral-expand-strategic-partnership-to-give-enterprises-and-regulated-industries-frontier-ai-they-can-control/"
+  },
+  "t": "sovereign-cloud",
+  "take": "Mistral models come to Azure, Azure Local and fully disconnected sites, aimed at regulated and public bodies.",
+  "title": "Microsoft and Mistral offer European models that run offline"
+}

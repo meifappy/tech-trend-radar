@@ -1,0 +1,14 @@
+{
+  "at": "2026-05-12",
+  "dup": "ms-ciso-24h",
+  "kind": "advisory",
+  "seen": "2026-05-12T12:00:00Z",
+  "src": {
+    "name": "Microsoft MSRC",
+    "type": "platform",
+    "url": "https://www.microsoft.com/en-us/msrc/blog/2026/05/a-note-on-patch-tuesday"
+  },
+  "t": "preemptive-defence",
+  "take": "AI is surfacing flaws in code Microsoft had already studied closely. Expect bigger releases and more out-of-band fixes.",
+  "title": "Microsoft explains its growing Patch Tuesdays"
+}

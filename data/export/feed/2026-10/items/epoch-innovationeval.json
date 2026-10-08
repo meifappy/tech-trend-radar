@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-07",
+  "kind": "report",
+  "points": [
+    "Agents' own write-ups claimed 43% and 71% before Epoch corrected them",
+    "One task, one run per model; newer models showed signs of memorising it"
+  ],
+  "read": "Full report (first 100,000 characters)",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "Epoch AI",
+    "type": "lab",
+    "url": "https://epoch.ai/publications/innovationeval"
+  },
+  "t": "ai-capability",
+  "take": "Asked to rediscover a published training method, Claude Fable 5 reached 2% and GPT-5.6 Sol 15% of the human result. Fully automated AI research is not here.",
+  "title": "Epoch AI: frontier models cannot yet reinvent a known AI method"
+}

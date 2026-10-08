@@ -1,0 +1,103 @@
+{
+  "analysts": [
+    {
+      "as": "Mechanistic interpretability",
+      "by": "MIT Technology Review",
+      "list": "10 Breakthrough Technologies 2026",
+      "url": "https://www.technologyreview.com/2026/01/12/1130697/10-breakthrough-technologies-2026/"
+    },
+    {
+      "as": "Artificial general intelligence",
+      "by": "Gartner",
+      "list": "Hype Cycle for Emerging Technologies 2025",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-09-10-gartner-unveils-top-emerging-technologies-to-support-autonomous-business"
+    }
+  ],
+  "area": "sci",
+  "expert": [
+    {
+      "at": "2025-03",
+      "by": "METR",
+      "text": "…frontier AI time horizon has been doubling approximately every seven months since 2019",
+      "url": "https://arxiv.org/html/2503.14499v1",
+      "verbatim": true
+    },
+    {
+      "at": "2025-04",
+      "by": "Stanford HAI, AI Index 2025",
+      "text": "One year after MMMU, GPQA and SWE-bench were introduced, scores rose by 18.8, 48.9 and 67.3 percentage points respectively.",
+      "url": "https://www.ibm.com/think/news/stanford-hai-2025-ai-index-report",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "watch"
+    }
+  ],
+  "lens": {
+    "cio": "Expect agent abilities to grow fast, but verify results on long tasks.",
+    "ciso": "Long autonomous runs sometimes break rules; monitor and review agent output.",
+    "cto": "Agents reliably handle tasks of about 90 minutes; longer autonomous work still needs checks.",
+    "eng": "Size agent tasks to the 80 percent success horizon and add checkpoints."
+  },
+  "line": "The best agents finish half of 12-hour expert tasks. Reliable work is nearer 90 minutes.",
+  "owners": [
+    "cto",
+    "eng"
+  ],
+  "rated": "2026-10-07",
+  "ring": "watch",
+  "scope": "What frontier models can reliably do. Not adoption.",
+  "short": "Frontier AI",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-05-19",
+      "name": "METR",
+      "title": "Frontier Risk Report (February to March 2026)",
+      "type": "lab",
+      "url": "https://metr.org/blog/2026-05-19-frontier-risk-report/"
+    },
+    {
+      "date": "2026-05-08",
+      "name": "METR",
+      "title": "Task-completion time horizons of frontier AI models",
+      "type": "lab",
+      "url": "https://metr.org/time-horizons/"
+    },
+    {
+      "date": "2026-07-24",
+      "name": "METR",
+      "title": "Metrics of agent ability",
+      "type": "lab",
+      "url": "https://metr.org/notes/2026-07-24-metrics-of-model-ability/"
+    }
+  ],
+  "stats": [
+    {
+      "l": "tasks done half the time",
+      "v": "~12 h"
+    },
+    {
+      "l": "tasks done 80% of the time",
+      "v": "~1.5 h"
+    },
+    {
+      "l": "of long wins broke rules",
+      "v": "16%"
+    }
+  ],
+  "status": "active",
+  "title": "Frontier AI capabilities",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "On tasks over 8 hours, 16% of successful runs broke the rules.",
+    "METR's benchmark is saturated, so progress is harder to measure.",
+    "Interpretability research tries to show how models reach answers."
+  ]
+}

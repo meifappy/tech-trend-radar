@@ -1,0 +1,14 @@
+{
+  "at": "2026-10-06",
+  "kind": "announcement",
+  "minor": true,
+  "seen": "2026-10-06T12:00:00Z",
+  "src": {
+    "name": "Google",
+    "type": "platform",
+    "url": "https://blog.google/innovation-and-ai/technology/developers-tools/embeddinggemma-2/"
+  },
+  "t": "model-choice",
+  "take": "A 740M-parameter open model embeds text, code, images, audio and video. The text-only version needs about 191MB of memory.",
+  "title": "Google's EmbeddingGemma 2 runs on a phone"
+}

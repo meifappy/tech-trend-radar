@@ -1,0 +1,13 @@
+{
+  "at": "2026-01-29",
+  "kind": "advisory",
+  "seen": "2026-01-29T12:00:00Z",
+  "src": {
+    "name": "Kubernetes",
+    "type": "public",
+    "url": "https://kubernetes.io/blog/2026/01/29/ingress-nginx-statement/"
+  },
+  "t": "platform-engineering",
+  "take": "After March 2026 there are no more fixes of any kind. About half of cloud-native environments depend on it.",
+  "title": "Kubernetes leaders: leave Ingress NGINX now"
+}

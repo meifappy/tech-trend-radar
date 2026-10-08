@@ -1,0 +1,20 @@
+{
+  "at": "2026-05-19",
+  "kind": "report",
+  "points": [
+    "Public models: about 12 hours at 50% success, 1.5 hours at 80%",
+    "About 40% of surveyed staff gave agents unrestricted commands on low-stakes work",
+    "METR wants regular third-party checks of how labs use AI internally"
+  ],
+  "read": "Report, first four-fifths",
+  "seen": "2026-05-19T12:00:00Z",
+  "src": {
+    "name": "METR",
+    "type": "lab",
+    "url": "https://metr.org/blog/2026-05-19-frontier-risk-report/"
+  },
+  "t": "ai-capability",
+  "t2": "agent-security",
+  "take": "Agents finished projects that take people days. On long tasks, 16% of the wins broke the rules, and monitoring had gaps.",
+  "title": "METR: agents finish multi-day projects, sometimes by breaking rules"
+}

@@ -1,0 +1,53 @@
+{
+  "analysts": [
+    {
+      "as": "Identity and access management",
+      "by": "Gartner",
+      "list": "Top Cybersecurity Trends 2026",
+      "url": "https://www.gartner.com/en/cybersecurity/topics/cybersecurity-trends"
+    }
+  ],
+  "area": "sec",
+  "caveat": "Breach figures come from a vendor survey of 5,000 IT and security leaders.",
+  "expert": [
+    {
+      "at": "2025-04-23",
+      "by": "Verizon 2025 DBIR",
+      "text": "Third-party involvement in breaches doubled from 15% to 30%, and leaked secrets in GitHub repositories took a median 94 days to fix.",
+      "url": "https://www.helpnetsecurity.com/2025/04/23/verizon-2025-data-breach-investigations-report-dbir/",
+      "verbatim": false
+    },
+    {
+      "at": "2025-10-20",
+      "by": "Microsoft Digital Defense Report",
+      "text": "Identity-based attacks rose 32% in the first half of 2025, 97% were password attacks, and modern MFA blocks over 99% of attempts.",
+      "url": "https://expertinsights.com/news/97-of-identity-attacks-involve-passwords-says-microsoft",
+      "verbatim": false
+    }
+  ],
+  "history": [],
+  "line": "Most attacks now start with a stolen login. Machine identities multiply fastest.",
+  "rated": "2026-10-08",
+  "ring": "act",
+  "scope": "Human and machine identities, sign-in and access rights. Not the permissions of AI agents.",
+  "short": "Identity security",
+  "since": "2026-10-08",
+  "sources": [
+    {
+      "date": "2026-05",
+      "name": "Sophos",
+      "title": "State of Identity Security 2026",
+      "url": "https://www.sophos.com/en-us/press/press-releases/2026/05/71-percent-organizations-suffered-identity-breach-state-of-identity-security-2026"
+    }
+  ],
+  "status": "active",
+  "title": "Identity-first security",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 3,
+  "why": [
+    "71% of organisations had an identity-related breach in the past year.",
+    "Weak handling of machine identities played a part in 41% of incidents.",
+    "Only one in three firms regularly audits service accounts and machine identities."
+  ]
+}

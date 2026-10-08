@@ -1,0 +1,14 @@
+{
+  "at": "2026-09-22",
+  "kind": "report",
+  "seen": "2026-09-22T12:00:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-22-gartner-survey-finds-41-percent-of-cisos-reported-at-least-one-social-engineering-incident-involving-a-deepfake-in-the-past-12-months"
+  },
+  "t": "provenance",
+  "t2": "preemptive-defence",
+  "take": "In a survey of 297 CISOs, 41% reported a deepfake on an audio call in the past year and 36% on video.",
+  "title": "Gartner: 41% of CISOs met a deepfake on a call"
+}

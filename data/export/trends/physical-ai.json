@@ -1,0 +1,121 @@
+{
+  "analysts": [
+    {
+      "as": "Physical AI",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "AI goes physical",
+      "by": "Deloitte",
+      "list": "Tech Trends 2026",
+      "url": "https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends.html"
+    },
+    {
+      "as": "Physical AI and robotics",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Future of robotics",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    },
+    {
+      "as": "World models",
+      "by": "World Economic Forum",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.weforum.org/publications/top-10-emerging-technologies-of-2026/in-full/"
+    }
+  ],
+  "area": "sci",
+  "expert": [
+    {
+      "at": "2025-09",
+      "by": "IFR World Robotics 2025",
+      "text": "Industrial robot installations reached 542,000 units in 2024, more than double 10 years earlier; China took 54% (295,000 units).",
+      "url": "https://ifr.org/ifr-press-releases/news/global-robot-demand-in-factories-doubles-over-10-years",
+      "verbatim": false
+    },
+    {
+      "at": "2026-04",
+      "by": "BCG",
+      "text": "Leaders should prioritize mature capabilities (visual perception, dexterous manipulation) and architect for upgradeability; software-defined approaches can cut setup and reengineering costs by up to 50%.",
+      "url": "https://web-assets.bcg.com/pdf-src/prod-live/how-physical-ai-is-reshaping-robotics-today.pdf",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "watch"
+    }
+  ],
+  "lens": {
+    "cio": "Start with vision-guided picking and gripper automation in logistics.",
+    "ciso": "Connected robots extend the attack surface into warehouses; cover them in OT security.",
+    "cto": "Buy robots for the task, not the body shape; humanoids stay rare until 2028.",
+    "eng": "Pilot vision-guided automation where tasks are repetitive and well defined."
+  },
+  "line": "Robot 'brains' improve fast, but dexterous hands still fail many hard tasks.",
+  "owners": [
+    "cto",
+    "cio"
+  ],
+  "rated": "2026-10-07",
+  "ring": "watch",
+  "scope": "Robots and machines driven by AI. Not lab science.",
+  "short": "Physical AI",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-07-30",
+      "name": "Google DeepMind",
+      "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+      "type": "lab",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/"
+    },
+    {
+      "date": "2026-04-14",
+      "name": "BCG",
+      "title": "How Physical AI Is Reshaping Robotics Today",
+      "type": "consultancy",
+      "url": "https://www.bcg.com/publications/2026/how-physical-ai-is-reshaping-robotics-today"
+    },
+    {
+      "date": "2026-01-21",
+      "name": "Gartner",
+      "title": "Fewer than 20 companies will scale humanoid robots by 2028",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-01-21-gartner-predicts-fewer-than-20-companies-will-scale-humanoid-robots-for-manufacturing-and-supply-chain-to-production-stage-by-2028"
+    }
+  ],
+  "stats": [
+    {
+      "l": "firms with humanoids by 2028",
+      "v": "<20"
+    },
+    {
+      "l": "gripper task success",
+      "v": "74–90%"
+    },
+    {
+      "l": "of robot cost is setup",
+      "v": "75%"
+    }
+  ],
+  "status": "active",
+  "title": "Physical AI",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "Gemini Robotics 2 runs whole humanoids; multi-finger success ranges 32–92%.",
+    "Three-quarters of a robot's lifetime cost is setup and re-engineering.",
+    "Fewer than 20 firms will run humanoids in production by 2028."
+  ]
+}

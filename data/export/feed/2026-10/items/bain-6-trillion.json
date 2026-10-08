@@ -1,0 +1,19 @@
+{
+  "at": "2026-09-29",
+  "kind": "report",
+  "points": [
+    "Nearly 150 GW of new compute by 2030 would cost $5 to $6.5 trillion",
+    "Local opposition blocked or delayed 75+ projects worth $130bn in Q1 2026",
+    "Hardware stocks grew 24% a year since 2020; software grew 6%"
+  ],
+  "read": "Press release and article",
+  "seen": "2026-09-29T12:00:00Z",
+  "src": {
+    "name": "Bain & Company",
+    "type": "consultancy",
+    "url": "https://www.bain.com/about/media-center/press-releases/2026/global-ai-market-could-hit-$6-trillion-annually-by-2031-through-unlocking-value-and-innovation--bain--cos-7th-global-technology-report/"
+  },
+  "t": "ai-compute",
+  "take": "Today's uses could bring $1.2 to $1.8 trillion. The rest has to come from new categories such as robotics.",
+  "title": "Bain: AI needs $6 trillion a year in revenue by 2031"
+}

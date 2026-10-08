@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-16",
+  "kind": "podcast",
+  "seen": "2026-09-16T12:00:00Z",
+  "src": {
+    "name": "Latent Space",
+    "type": "podcast",
+    "url": "https://www.latent.space/p/aiuc"
+  },
+  "t": "agent-security",
+  "take": "Lloyd's prices agent risk against the AIUC-1 standard. The guest's argument: standards have to come before insurance.",
+  "title": "Latent Space: insurers start underwriting AI agents"
+}

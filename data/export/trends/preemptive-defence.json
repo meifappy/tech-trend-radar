@@ -1,0 +1,122 @@
+{
+  "analysts": [
+    {
+      "as": "Preemptive cybersecurity",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "AI-driven SOC solutions destabilize operational norms",
+      "by": "Gartner",
+      "list": "Top Cybersecurity Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-02-05-gartner-identifies-the-top-cybersecurity-trends-for-2026"
+    },
+    {
+      "as": "The AI dilemma",
+      "by": "Deloitte",
+      "list": "Tech Trends 2026",
+      "url": "https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends.html"
+    }
+  ],
+  "area": "sec",
+  "expert": [
+    {
+      "at": "2025-09-18",
+      "by": "Gartner",
+      "text": "By 2030, preemptive cybersecurity solutions will account for 50% of IT security spending, up from less than 5% in 2024.",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-09-18-gartner-says-that-in-the-age-of-genai-preemptive-capabilities-not-detection-and-response-are-the-future-of-cybersecurity",
+      "verbatim": false
+    },
+    {
+      "at": "2025-04-23",
+      "by": "Verizon 2025 DBIR",
+      "text": "Vulnerability exploitation caused 20% of breaches; only 54% of edge-device vulnerabilities were fully fixed, taking a median 32 days.",
+      "url": "https://www.infosecurity-magazine.com/news/verizon-dbir-jump-vulnerability/",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "act"
+    }
+  ],
+  "lens": {
+    "cio": "Agree maintenance rules that allow 24-hour emergency patching of edge and identity systems.",
+    "ciso": "Rank fixes by exposure and active exploitation, and give edge devices a 24-hour patch path.",
+    "cto": "Plan for far more patches; AI has made finding software flaws cheap and fast.",
+    "eng": "Automate patch testing and rollout so critical fixes ship within a day."
+  },
+  "line": "AI now finds and weaponises software flaws within hours. Defence has to move first.",
+  "owners": [
+    "ciso"
+  ],
+  "rated": "2026-10-07",
+  "ring": "act",
+  "scope": "Patching and defence at AI speed, for all systems. Not attacks on AI itself.",
+  "short": "Preemptive security",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-10-06",
+      "name": "Microsoft",
+      "title": "CISO perspectives on managing vulnerability risks in the age of AI",
+      "type": "platform",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/06/ciso-perspectives-on-managing-vulnerability-risks-in-the-age-of-ai/"
+    },
+    {
+      "date": "2026-10-07",
+      "name": "Microsoft",
+      "title": "3 lessons from frontier AI vulnerability research",
+      "type": "platform",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/10/07/3-lessons-from-frontier-ai-vulnerability-research/"
+    },
+    {
+      "date": "2026-05-01",
+      "name": "UK NCSC",
+      "title": "Preparing for a 'vulnerability patch wave'",
+      "type": "public",
+      "url": "https://www.ncsc.gov.uk/blogs/prepare-for-vulnerability-patch-wave"
+    },
+    {
+      "date": "2026-10-06",
+      "name": "Anthropic",
+      "title": "Expanding the Cyber Verification Program",
+      "type": "platform",
+      "url": "https://www.anthropic.com/news/cyber-verification-program"
+    },
+    {
+      "date": "2026-09-29",
+      "name": "Anthropic",
+      "title": "GLM-5.3 and the spread of advanced cyber capabilities",
+      "type": "lab",
+      "url": "https://anthropic.com/research/glm-5-3-and-the-spread-of-advanced-cyber-capabilities"
+    }
+  ],
+  "stats": [
+    {
+      "l": "Microsoft fixes in Sept 2026",
+      "v": "~1,000"
+    },
+    {
+      "l": "flaw to working attack",
+      "v": "<24 h"
+    },
+    {
+      "l": "flaws found via Glasswing",
+      "v": "129,000"
+    }
+  ],
+  "status": "active",
+  "title": "Preemptive cybersecurity",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 3,
+  "why": [
+    "Microsoft shipped close to 1,000 fixes in September, a record.",
+    "Flaws now become working attacks in under a day.",
+    "Exploit-writing AI is spreading to open models anyone can download."
+  ]
+}

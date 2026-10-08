@@ -1,0 +1,13 @@
+{
+  "at": "2026-05-20",
+  "kind": "report",
+  "seen": "2026-05-20T12:00:00Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-05-20-gartner-says-the-market-for-enterprise-ai-coding-agents-is-entering-a-new-phase-of-expansion-and-competitive-realignment"
+  },
+  "t": "ai-engineering",
+  "take": "By 2027, over 65% of teams using agentic coding will move control and validation to automated platforms.",
+  "title": "Gartner: coding agents make the IDE optional"
+}

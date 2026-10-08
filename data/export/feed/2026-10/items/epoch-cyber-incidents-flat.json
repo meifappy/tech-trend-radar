@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-07",
+  "kind": "report",
+  "points": [
+    "About 1,020 adults per wave; self-reported, with overlapping 12-month windows",
+    "Does not measure attacks on companies"
+  ],
+  "read": "Full data insight",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "Epoch AI",
+    "type": "lab",
+    "url": "https://epoch.ai/data-insights/cyber-incidents-flat-since-fable-5"
+  },
+  "t": "preemptive-defence",
+  "take": "Two Ipsos polls found 46% of US adults hit in June and 45% in September. More AI-found flaws have not yet meant more victims.",
+  "title": "Epoch AI: US cyber incidents flat since cyber-capable models launched"
+}

@@ -1,0 +1,141 @@
+{
+  "analysts": [
+    {
+      "as": "AI supercomputing platforms",
+      "by": "Gartner",
+      "list": "Top Strategic Technology Trends 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2026"
+    },
+    {
+      "as": "AI infrastructure and model architectures",
+      "by": "McKinsey",
+      "list": "Technology Trends Outlook 2026",
+      "url": "https://www.mckinsey.com/capabilities/tech-and-ai/our-takeaways/the-top-trends-in-tech"
+    },
+    {
+      "as": "The AI infrastructure reckoning",
+      "by": "Deloitte",
+      "list": "Tech Trends 2026",
+      "url": "https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends.html"
+    },
+    {
+      "as": "AI supercomputing",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Hyperscale AI data centers",
+      "by": "MIT Technology Review",
+      "list": "10 Breakthrough Technologies 2026",
+      "url": "https://www.technologyreview.com/2026/01/12/1130697/10-breakthrough-technologies-2026/"
+    },
+    {
+      "as": "Energy-efficient computing",
+      "by": "Gartner",
+      "list": "Top Trends in Infrastructure & Operations 2026",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-12-11-gartner-identifies-the-top-trends-impacting-infrastructure-and-operations-for-2026"
+    }
+  ],
+  "area": "cloud",
+  "expert": [
+    {
+      "at": "2025-04",
+      "by": "IEA",
+      "text": "Data centre electricity use is set to more than double to about 945 TWh by 2030, with AI the main driver.",
+      "url": "https://www.iea.org/reports/energy-and-ai/executive-summary",
+      "verbatim": false
+    },
+    {
+      "at": "2026-06",
+      "by": "Gartner",
+      "text": "AI capacity is now constrained by power availability",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-06-10-gartner-says-data-center-electricity-demand-to-grow-26-percent-in-2026",
+      "verbatim": true
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "watch"
+    }
+  ],
+  "lens": {
+    "cio": "Budget for higher memory and GPU prices in cloud renewals.",
+    "ciso": "Include capacity and region availability in your resilience planning.",
+    "cto": "Secure GPU capacity commitments in your regions; supply stays tight into 2027.",
+    "eng": "Design for efficiency: smaller models, batching and caching cut compute needs."
+  },
+  "line": "Chips, memory and electricity limit how fast AI capacity can grow. Cloud prices feel it.",
+  "owners": [
+    "cto",
+    "cio"
+  ],
+  "rated": "2026-10-07",
+  "ring": "watch",
+  "scope": "Chips, memory and power for today's AI. Not new kinds of computing.",
+  "short": "AI supercomputing",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-06-10",
+      "name": "Gartner",
+      "title": "Data center electricity consumption to grow 26% in 2026",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-06-10-gartner-says-data-center-electricity-demand-to-grow-26-percent-in-2026"
+    },
+    {
+      "date": "2026-09-16",
+      "name": "Gartner",
+      "title": "Worldwide AI spending to grow 49.5% in 2026",
+      "type": "consultancy",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-16-gartner-forecasts-worldwide-ai-spending-to-grow-49-point-5-percent-in-2026"
+    },
+    {
+      "date": "2026-09-29",
+      "name": "Bain & Company",
+      "title": "AI data center boom: can we build it if they come?",
+      "type": "consultancy",
+      "url": "https://www.bain.com/insights/ai-data-center-boom-can-we-build-it-if-they-come-technology-report-2026/"
+    },
+    {
+      "date": "2026",
+      "name": "IEA",
+      "title": "Key questions on energy and AI",
+      "type": "public",
+      "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai/executive-summary"
+    },
+    {
+      "date": "2026-03-13",
+      "name": "Dwarkesh Podcast",
+      "title": "Dylan Patel on the bottlenecks to scaling AI compute",
+      "type": "podcast",
+      "url": "https://www.dwarkesh.com/p/dylan-patel"
+    }
+  ],
+  "stats": [
+    {
+      "l": "data-centre power in 2026",
+      "v": "565 TWh"
+    },
+    {
+      "l": "AI infrastructure spend",
+      "v": "$1.48tn"
+    },
+    {
+      "l": "new compute by 2030",
+      "v": "~150 GW"
+    }
+  ],
+  "status": "active",
+  "title": "AI supercomputing & energy",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "Data-centre power use rises 26% this year to 565 TWh.",
+    "AI infrastructure spending reaches $1.48 trillion in 2026.",
+    "Local opposition blocked or delayed 75+ projects worth $130bn."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "at": "2026-05-01",
+  "kind": "advisory",
+  "seen": "2026-05-01T12:00:00Z",
+  "src": {
+    "name": "UK NCSC",
+    "type": "public",
+    "url": "https://www.ncsc.gov.uk/blogs/prepare-for-vulnerability-patch-wave"
+  },
+  "t": "preemptive-defence",
+  "take": "Shrink what faces the internet first, turn on automatic updates, and replace what cannot be patched.",
+  "title": "UK NCSC: prepare for a patch wave"
+}

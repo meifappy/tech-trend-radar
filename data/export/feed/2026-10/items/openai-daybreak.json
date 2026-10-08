@@ -1,0 +1,13 @@
+{
+  "at": "2026-09-03",
+  "kind": "announcement",
+  "seen": "2026-09-03T12:00:00Z",
+  "src": {
+    "name": "OpenAI",
+    "type": "platform",
+    "url": "https://openai.com/index/daybreak-for-frontline-defenders/"
+  },
+  "t": "preemptive-defence",
+  "take": "Daybreak gives water utilities, grid operators and small defenders AI for finding, checking and fixing flaws.",
+  "title": "OpenAI commits $1bn of subsidised cyber-defence access"
+}

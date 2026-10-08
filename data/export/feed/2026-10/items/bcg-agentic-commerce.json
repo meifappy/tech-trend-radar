@@ -1,0 +1,19 @@
+{
+  "at": "2025-09",
+  "kind": "report",
+  "points": [
+    "Refunds, price and product familiarity decide whether people hand over control",
+    "Merchants risk the biggest loss of control over the customer",
+    "Partnering with card issuers and AI platforms is one way to stay visible"
+  ],
+  "read": "Report PDF",
+  "seen": "2025-09-01T12:00:00Z",
+  "src": {
+    "name": "BCG",
+    "type": "consultancy",
+    "url": "https://media-publications.bcg.com/Agentic-Commerce.pdf"
+  },
+  "t": "agentic-commerce",
+  "take": "81% expect to use AI when shopping and 42% would hand an agent full control for at least one category. Trust is the barrier.",
+  "title": "BCG: four in ten shoppers would let an agent buy"
+}

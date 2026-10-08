@@ -1,0 +1,20 @@
+{
+  "at": "2026-09-25",
+  "kind": "report",
+  "points": [
+    "DDoS made up 51.3% of recorded incidents",
+    "Phishing drove 77.8% of social-engineering activity",
+    "Supply-chain and cloud attacks caused the largest incidents"
+  ],
+  "read": "Report PDF, summary and chapter 1",
+  "seen": "2026-09-25T12:00:00Z",
+  "src": {
+    "name": "ENISA",
+    "type": "public",
+    "url": "https://www.enisa.europa.eu/sites/default/files/2026-09/ENISA%20Threat%20Landscape%202026_Final.pdf"
+  },
+  "t": "preemptive-defence",
+  "t2": "provenance",
+  "take": "Of 8,257 incidents in 2025, public administration took 32%. Six in ten break-ins with a known entry point used a software flaw.",
+  "title": "ENISA: six in ten known break-ins used a software flaw"
+}

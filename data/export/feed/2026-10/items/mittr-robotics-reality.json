@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-08",
+  "kind": "report",
+  "points": [
+    "About 15,000 humanoids shipped in 2025, nearly 90% from Chinese firms",
+    "Deployed humanoids mostly move bins and totes in trials"
+  ],
+  "read": "Full article",
+  "seen": "2026-10-08T16:55:00Z",
+  "src": {
+    "name": "MIT Technology Review",
+    "type": "press",
+    "url": "https://www.technologyreview.com/2026/10/08/1145923/ai-breakthroughs-in-robotics-wont-change-your-life-any-time-soon/"
+  },
+  "t": "physical-ai",
+  "take": "New robot models still often fail outside their training data. One Agility Robotics founder expects about ten years before robots do useful work in homes.",
+  "title": "MIT Technology Review: robot AI progress is real but slow"
+}

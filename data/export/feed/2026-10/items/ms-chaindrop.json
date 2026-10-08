@@ -1,0 +1,13 @@
+{
+  "at": "2026-08-04",
+  "kind": "advisory",
+  "seen": "2026-08-04T12:00:00Z",
+  "src": {
+    "name": "Microsoft",
+    "type": "platform",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/08/04/chaindrop-supply-chain-compromise-anatomy-self-propagating-worm/"
+  },
+  "t": "provenance",
+  "take": "One stolen npm token let it republish every package a maintainer owned. More than 400 packages were hit.",
+  "title": "Microsoft dissects the ChainDrop worm"
+}

@@ -1,0 +1,104 @@
+{
+  "analysts": [
+    {
+      "as": "Agentic commerce",
+      "by": "Forrester",
+      "list": "Top 10 Emerging Technologies 2026",
+      "url": "https://www.forrester.com/press-newsroom/forresters-top-10-emerging-technologies-for-2026/"
+    },
+    {
+      "as": "Machine customers",
+      "by": "Gartner",
+      "list": "Hype Cycle for Emerging Technologies 2025",
+      "url": "https://www.gartner.com/en/newsroom/press-releases/2025-09-10-gartner-unveils-top-emerging-technologies-to-support-autonomous-business"
+    }
+  ],
+  "area": "ai",
+  "caveat": "Early days: live volumes are small, and consumer trust in refunds and prices is the main barrier.",
+  "expert": [
+    {
+      "at": "2025-10",
+      "by": "Gartner",
+      "text": "90% of B2B buying will be intermediated by AI agents by 2028, raising demand for programmable financial infrastructure.",
+      "url": "https://gartner.com/en/newsroom/press-releases/2025-10-21-gartner-unveils-top-predictions-for-it-organizations-and-users-in-2026-and-beyond",
+      "verbatim": false
+    }
+  ],
+  "history": [
+    {
+      "at": "2026-10-08T06:00:00Z",
+      "note": "Placed when the radar moved to stable megatrends",
+      "ring": "prepare"
+    }
+  ],
+  "lens": {
+    "cio": "Decide with commercial teams whether to pilot one agent checkout channel in the next year.",
+    "ciso": "Plan fraud and liability checks for purchases that agents make on a customer's behalf.",
+    "cto": "Expose product, price and offer data through machine-readable feeds and APIs that shopping agents can use.",
+    "eng": "Clean up product feeds and test checkout flows against the new agent commerce protocols."
+  },
+  "line": "AI agents begin to shop and pay for consumers. Card networks and Google are laying the rails.",
+  "owners": [
+    "cio",
+    "cto"
+  ],
+  "rated": "2026-10-07",
+  "ring": "prepare",
+  "scope": "Agents buying for consumers, and the payment rails. Not internal agents.",
+  "short": "Agentic commerce",
+  "since": "2026-10-08T06:00:00Z",
+  "sources": [
+    {
+      "date": "2026-07-02",
+      "name": "Visa",
+      "title": "Visa and banks across Europe reach the next phase of agentic commerce",
+      "type": "platform",
+      "url": "https://www.visa.co.uk/about-visa/newsroom/press-releases.3457328.html"
+    },
+    {
+      "date": "2026-05-20",
+      "name": "Google",
+      "title": "New Universal Commerce Protocol features for retailers",
+      "type": "platform",
+      "url": "https://blog.google/products-and-platforms/products/shopping/shopping-updates-google-marketing-live"
+    },
+    {
+      "date": "2026-03-02",
+      "name": "Mastercard",
+      "title": "Santander and Mastercard complete Europe's first live AI-agent payment",
+      "type": "platform",
+      "url": "https://www.mastercard.com/news/europe/en/newsroom/press-releases/en/2026/santander-and-mastercard-complete-europe-s-first-live-end-to-end-payment-executed-by-an-ai-agent"
+    },
+    {
+      "date": "2025-09",
+      "name": "BCG",
+      "title": "Agentic Commerce: Shopping and Payments Re-(AI)magined",
+      "type": "consultancy",
+      "url": "https://media-publications.bcg.com/Agentic-Commerce.pdf"
+    }
+  ],
+  "stats": [
+    {
+      "l": "EU banks in Visa's live test",
+      "v": "31"
+    },
+    {
+      "l": "would let an agent buy",
+      "v": "42%"
+    },
+    {
+      "l": "expect AI help to shop",
+      "v": "81%"
+    }
+  ],
+  "status": "active",
+  "title": "Agentic commerce",
+  "updated": "2026-10-08",
+  "validUntil": "2027-01-15",
+  "weight": 2,
+  "why": [
+    "Visa ran live agent purchases in Europe with 31 banks in July.",
+    "Google's commerce protocol lets agents check out at Walmart, Target and others.",
+    "42% of consumers would let an agent buy for them in some category."
+  ]
+}

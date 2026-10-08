@@ -1,0 +1,13 @@
+{
+  "at": "2026-03-13",
+  "kind": "podcast",
+  "seen": "2026-03-13T12:00:00Z",
+  "src": {
+    "name": "Dwarkesh Podcast",
+    "type": "podcast",
+    "url": "https://www.dwarkesh.com/p/dylan-patel"
+  },
+  "t": "ai-compute",
+  "take": "Analyst Dylan Patel says new fabs take two to three years and memory stays tight until late 2027 or 2028.",
+  "title": "Dwarkesh Podcast: chips and memory, not power, cap AI"
+}

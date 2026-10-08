@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-28",
+  "kind": "announcement",
+  "seen": "2026-07-28T12:00:00Z",
+  "src": {
+    "name": "GitHub",
+    "type": "platform",
+    "url": "https://github.blog/security/supply-chain-security/disrupting-supply-chain-attacks-on-npm-and-github-actions/"
+  },
+  "t": "provenance",
+  "take": "npm 12 turns install scripts off by default, and Dependabot waits three days before proposing a new version.",
+  "title": "GitHub lists its defences against npm worms"
+}

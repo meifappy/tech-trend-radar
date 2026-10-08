@@ -1,0 +1,13 @@
+{
+  "at": "2026-07-27",
+  "kind": "rule",
+  "seen": "2026-07-27T12:00:00Z",
+  "src": {
+    "name": "European Commission",
+    "type": "public",
+    "url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force"
+  },
+  "t": "ai-governance",
+  "take": "High-risk duties move to December 2027 and August 2028. A ban on AI-made non-consensual intimate images is added.",
+  "title": "EU AI Omnibus moves high-risk duties to late 2027"
+}
