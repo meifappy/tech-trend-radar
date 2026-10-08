@@ -14,12 +14,19 @@ function dockList() {
   return vary(fresh).concat(vary(rest.slice(0, 12))).slice(0, Math.max(8, fresh.length));
 }
 const dockRows = () => PHONE ? clamp(Math.floor((RD.stage.clientHeight - RD.W - 165) / 48), 0, 4) : 0;
-function setCue(id) { if (RD.cue === id) return; RD.cue = id; for (const n of RD.nodes.values()) n.el.classList.toggle('cue', n.id === id); fxRings(); }
+// The cue marks the trend of the story in view (news bar or feed); its name is shown even when names are thinned out.
+function setCue(id) {
+  if (RD.cue === id) return;
+  RD.cue = id;
+  for (const n of RD.nodes.values()) n.el.classList.toggle('cue', n.id === id);
+  RD.sig = '';
+  if (!RD.raf) paintRadar(); else fxRings();
+}
 // The dock moves on to the next story every 12 seconds while motion is on; hovering or focusing it holds the story.
 const AP = { ms: 12000, t: 0, hold: false };
 function apArm() {
   clearTimeout(AP.t);
-  const el = $('#dock'), run = !WIDE && moving() && !AP.hold && cur().page === 'home' && !B.on && dockList().length > 1;
+  const el = $('#dock'), run = !WIDE && !PHONE && moving() && !AP.hold && cur().page === 'home' && !B.on && dockList().length > 1;
   el.classList.toggle('auto', run);
   if (run) AP.t = setTimeout(() => { if (RD.hot || RD.raf) { renderDock('quiet'); return; } dockGo(1, 'auto'); }, AP.ms);
 }
@@ -27,10 +34,10 @@ function dockGo(d, mode) { const l = dockList(); if (!l.length) return; dockI = 
 function renderDock(mode) {
   const el = $('#dock');
   el.setAttribute('aria-live', mode === 'fwd' || mode === 'back' ? 'polite' : 'off');
-  if (AP.busy) return;
-  if (!S.ok.trends || !S.ok.news || !S.ok.me) { el.replaceChildren(h('p', { class: 'dk-meta', text: S.problem || 'Loading…' })); return; }
+  if (AP.busy || PHONE || WIDE) return;
+  if (!S.ok.trends || !S.ok.news || !S.ok.me) { put(el, h('p', { class: 'dk-meta', text: S.problem || 'Loading…' })); return; }
   const list = dockList(), fresh = list.filter(n => n._new).length;
-  if (!list.length) { el.replaceChildren(h('p', { class: 'dk-meta', text: 'No news yet. The radar scans every 12 hours.' })); return; }
+  if (!list.length) { put(el, h('p', { class: 'dk-meta', text: 'No news yet. The radar scans every 12 hours.' })); return; }
   const at = RD.dockId ? list.findIndex(x => x.id === RD.dockId) : -1;
   dockI = at >= 0 ? at : clamp(dockI, 0, list.length - 1);
   const n = list[dockI], t = S.byId.get(n.t);
@@ -55,7 +62,7 @@ function renderDock(mode) {
   el.classList.toggle('stack', k > 0);
   const fa = document.activeElement, keep = fa && el.contains(fa) ? fa.getAttribute('aria-label') || '' : null;
   AP.busy = true;
-  el.replaceChildren(body, h('div', { class: 'dk-ctl' },
+  put(el, body, h('div', { class: 'dk-ctl' },
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Previous news', disabled: list.length < 2, onclick: () => dockGo(-1) }, ic('i-back')),
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Next news', disabled: list.length < 2, onclick: () => dockGo(1) }, ic('i-chev')),
     h('button', { class: 'primary', type: 'button', 'aria-label': 'Play the news briefing', onclick: () => briefStart() }, ic('i-play'))), ...kids);

@@ -22,17 +22,21 @@ function afterNav() {
   if (B.on && c.page !== 'brief') briefStop(true);
   S.sel = c.page === 'trend' ? c.arg : null;
   if (c.page === 'home' && P.q.value) { P.q.value = ''; S.q = ''; }
-  const open = c.page !== 'home' || WIDE;
+  // Wide screens and phones always show the panel: a news column on desktop, the news feed sheet on phones.
+  const open = c.page !== 'home' || WIDE || PHONE;
   const wasIn = P.el.contains(document.activeElement);
   $('#app').classList.toggle('open', open);
   $('#app').classList.toggle('wide', WIDE);
+  $('#app').classList.toggle('phone', PHONE);
   P.el.toggleAttribute('inert', !open);
-  $('#dock').inert = WIDE || (PHONE && c.page !== 'home');
+  $('#dock').inert = WIDE || PHONE;
   if (wasIn && !open) { const n = S.sel && RD.nodes.get(S.sel); const f = P.from && P.from.isConnected ? P.from : n ? n.el : $('#t-news'); f.focus({ preventScroll: true }); }
   renderPanel(true);
   paintRadar();
   syncHash();
-  if (RD.dockDone) { setCue(c.page === 'home' ? RD.dockT : null); apArm(); } else renderDock();
+  if (PHONE) setCue(c.page === 'home' ? FEED.cue : null);
+  else if (WIDE) setCue(null); // wide screens have no news bar, so nothing to cue
+  else if (RD.dockDone) { setCue(c.page === 'home' ? RD.dockT : null); apArm(); } else renderDock();
   if (PHONE && open) sheetTo(DET[c.page] || 'mid');
   if (c.page === 'search') setTimeout(() => P.q.focus(), 60);
   if (c.page === 'trend') scheduleMark(c.arg);
@@ -63,10 +67,10 @@ function renderPanel(anim) {
     case 'list': kids = pageList(); break;
     case 'search': kids = pageSearch(); break;
     case 'brief': kids = pageBrief(); break;
-    default: kids = WIDE ? pageHome() : [];
+    default: kids = WIDE ? pageHome() : PHONE ? pageFeed() : [];
   }
   renderHead(c);
-  body.replaceChildren(...kids.filter(Boolean));
+  put(body, kids);
   if (open) $$('details[data-k]', body).forEach(d => { if (open.has(d.dataset.k)) d.open = true; });
   if (keep) body.scrollTop = keep; else if (anim && P.scrolled) body.scrollTop = 0;
   P.scrolled = false;
@@ -84,7 +88,7 @@ function renderHead(c) {
     h('span', { class: 'ht' + (c.page === 'trend' ? ' collapse' : ''), text: title })
   ];
   kids.push(h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Close', onclick: () => (c.page === 'brief' ? briefStop() : nav('home')) }, ic('i-close')));
-  P.head.replaceChildren(...kids);
+  put(P.head, ...kids);
 }
 function section(title, aside, ...content) {
   return h('section', { class: 'sec' }, h('h2', null, h('span', { text: title }), aside ? h('span', { text: aside }) : null), content);

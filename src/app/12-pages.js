@@ -66,7 +66,7 @@ function loadMonth(m) {
   if (S.months[m] || !S.db || S.loading === m) return;
   S.loading = m;
   S.db.collection('feed/' + m + '/items').limit(1000).get().then(snap => {
-    S.loading = null; S.months[m] = snap.docs.map(asNews); setNews(); refresh(); if (cur().page === 'news') renderPanel(false);
+    S.loading = null; S.months[m] = snap.docs.map(asNews); setNews(); refresh(); if (cur().page === 'news' || cur().page === 'home') renderPanel(false);
   }, () => { S.loading = null; toast('Could not load ' + monthName(m) + '. Try again.'); renderPanel(false); });
 }
 const monthName = m => F.month.format(new Date(ts(m)));

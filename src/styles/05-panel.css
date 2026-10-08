@@ -97,3 +97,24 @@ q.qt { quotes: "“" "”"; }
 .brief-row .primary { width: 40px; height: 40px; }
 .brief-row b { display: block; font-weight: 600; }
 .brief-row small { display: block; font-size: var(--fs-foot); color: var(--t3); }
+
+/* Phone feed: one card per story; the publisher mark on the left, the headline links to the source (↗). */
+.feed { display: flex; flex-direction: column; }
+.feed-h { margin: 18px 0 2px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
+.feed-h:first-child { margin-top: 0; }
+.fc { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); scroll-margin-top: 8px; content-visibility: auto; contain-intrinsic-size: auto 150px; }
+.feed-h + .fc { border-top: 0; }
+.mark { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: var(--fill-1); color: var(--t2); font: 700 13px/1 var(--round); letter-spacing: -.01em; object-fit: cover; }
+.fc-b { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.fc-k { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.fc-k .link.sm { gap: 6px; }
+.fc-k .tdot { width: 7px; height: 7px; }
+.fc-t { display: block; margin: 0; font-size: var(--fs-lead); line-height: 1.32; font-weight: 600; letter-spacing: -.01em; color: var(--t1); text-decoration: none; text-wrap: pretty; }
+a.fc-t:active span { text-decoration: underline; }
+.fc-t .ic { width: 14px; height: 14px; margin-left: 4px; vertical-align: -1px; color: var(--t3); }
+.fc-p { margin: 0; font-size: var(--fs-body); line-height: 1.45; color: var(--t2); text-wrap: pretty; }
+.fc-m { margin: 0; font-size: var(--fs-cap); color: var(--t3); }
+.feed-more { padding: 18px 0 8px; display: flex; flex-direction: column; gap: 10px; }
+.feed-more .skel { display: block; height: 14px; border-radius: 7px; background: linear-gradient(100deg, rgb(255 255 255 / .05) 30%, rgb(255 255 255 / .12) 50%, rgb(255 255 255 / .05) 70%) 0 0 / 220% 100%; animation: shim 1.4s linear infinite; }
+.feed-end { text-align: center; padding: 18px 0; }
+@keyframes shim { to { background-position: -220% 0; } }

@@ -29,7 +29,10 @@ function sheetTo(name, px) {
     const v = (y - d.y) / Math.max(1, performance.now() - d.t), startDet = SH.det, moved = d.moved;
     d = null;
     if (!moved) { sheetTo(tap ? (startDet === 'full' ? 'mid' : 'full') : startDet); return; }
-    if (SH.h < detPx('peek') - 70 || (startDet === 'peek' && v > .55)) { SH.det = 'mid'; nav('home'); return; }
+    if (SH.h < detPx('peek') - 70 || (startDet === 'peek' && v > .55)) {
+      if (cur().page === 'home') { sheetTo('peek'); return; } // the feed sheet never closes, it rests at peek
+      SH.det = 'mid'; nav('home'); return;
+    }
     let best = NAMES.reduce((a, b) => (Math.abs(detPx(b) - SH.h) < Math.abs(detPx(a) - SH.h) ? b : a));
     if (Math.abs(v) > .55) best = NAMES[clamp(NAMES.indexOf(startDet) + (v < 0 ? 1 : -1), 0, 2)];
     sheetTo(best);

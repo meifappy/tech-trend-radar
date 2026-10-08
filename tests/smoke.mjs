@@ -33,7 +33,7 @@ for (const [name, viewport, mobile] of [['desktop', { width: 1440, height: 900 }
     dots: document.querySelectorAll('.blip').length,
     labels: document.querySelectorAll('.lbl:not(.off)').length,
     overflow: document.documentElement.scrollWidth - innerWidth,
-    news: document.querySelectorAll('.ni, .dk-body').length
+    news: document.querySelectorAll('.ni, .dk-body, .fc').length
   }));
   if (r.overflow > 0) problems.push(name + ': horizontal overflow ' + r.overflow + 'px');
   if (!r.news) problems.push(name + ': no news shown');

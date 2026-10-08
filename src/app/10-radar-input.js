@@ -5,7 +5,7 @@ function tipShow(n) {
   if (PHONE || !n || !n.t) return;
   const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id);
   tip.className = 'tip c-' + t.ring;
-  tip.replaceChildren(
+  put(tip, 
     h('span', { class: 'k' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,

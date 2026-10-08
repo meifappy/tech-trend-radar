@@ -23,7 +23,7 @@ function sweepSync() {
   if (moving() && RD.booted) { if (!MO.timer) sweepOnce(); }
   else { clearTimeout(MO.timer); MO.timer = 0; RD.sweep.getAnimations().forEach(x => x.cancel()); }
   const b = $('#t-motion');
-  if (b) { b.setAttribute('aria-label', MO.on ? 'Pause motion' : 'Play motion'); b.replaceChildren(ic(MO.on ? 'i-mpause' : 'i-mplay')); }
+  if (b) { b.setAttribute('aria-label', MO.on ? 'Pause motion' : 'Play motion'); put(b, ic(MO.on ? 'i-mpause' : 'i-mplay')); }
 }
 function setMotion(on) {
   MO.on = on;

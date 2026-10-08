@@ -374,6 +374,27 @@ q.qt { quotes: "“" "”"; }
 .brief-row b { display: block; font-weight: 600; }
 .brief-row small { display: block; font-size: var(--fs-foot); color: var(--t3); }
 
+/* Phone feed: one card per story; the publisher mark on the left, the headline links to the source (↗). */
+.feed { display: flex; flex-direction: column; }
+.feed-h { margin: 18px 0 2px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
+.feed-h:first-child { margin-top: 0; }
+.fc { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); scroll-margin-top: 8px; content-visibility: auto; contain-intrinsic-size: auto 150px; }
+.feed-h + .fc { border-top: 0; }
+.mark { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: var(--fill-1); color: var(--t2); font: 700 13px/1 var(--round); letter-spacing: -.01em; object-fit: cover; }
+.fc-b { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.fc-k { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.fc-k .link.sm { gap: 6px; }
+.fc-k .tdot { width: 7px; height: 7px; }
+.fc-t { display: block; margin: 0; font-size: var(--fs-lead); line-height: 1.32; font-weight: 600; letter-spacing: -.01em; color: var(--t1); text-decoration: none; text-wrap: pretty; }
+a.fc-t:active span { text-decoration: underline; }
+.fc-t .ic { width: 14px; height: 14px; margin-left: 4px; vertical-align: -1px; color: var(--t3); }
+.fc-p { margin: 0; font-size: var(--fs-body); line-height: 1.45; color: var(--t2); text-wrap: pretty; }
+.fc-m { margin: 0; font-size: var(--fs-cap); color: var(--t3); }
+.feed-more { padding: 18px 0 8px; display: flex; flex-direction: column; gap: 10px; }
+.feed-more .skel { display: block; height: 14px; border-radius: 7px; background: linear-gradient(100deg, rgb(255 255 255 / .05) 30%, rgb(255 255 255 / .12) 50%, rgb(255 255 255 / .05) 70%) 0 0 / 220% 100%; animation: shim 1.4s linear infinite; }
+.feed-end { text-align: center; padding: 18px 0; }
+@keyframes shim { to { background-position: -220% 0; } }
+
 /* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
 .dock { position: absolute; z-index: 4; left: 50%; bottom: 22px; width: min(640px, calc(100% - 32px)); translate: -50% 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
   transition: opacity .3s var(--ease), translate .45s var(--spring), transform .4s var(--spring); }
@@ -450,7 +471,7 @@ q.qt { quotes: "“" "”"; }
   .rl { display: none; } /* too crowded at phone size; the trend page names the ring */
   .zoomui, .tip { display: none; }
 
-  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0;
+  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: #161619;
     transform: translateY(calc(100% - var(--sh, 320px))); transition: transform .5s var(--spring), visibility .5s; }
   .app:not(.open) .panel { opacity: 1; transform: translateY(100%); }
   .panel.drag { transition: none; }
@@ -461,10 +482,7 @@ q.qt { quotes: "“" "”"; }
   .p-body { padding: 2px 18px calc(var(--shpad, 0px) + 28px); gap: 24px; }
   .bslide { min-height: 0; }
 
-  .dock { bottom: max(12px, env(safe-area-inset-bottom)); width: calc(100% - 20px); }
-  .app.open .dock { width: calc(100% - 20px); opacity: 0; translate: -50% 24px; pointer-events: none; }
-  .dk-title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-  .dk-ctl .iconbtn { width: 32px; }
+  .dock { display: none; } /* phones read the news in the feed sheet instead */
   .toast { bottom: auto; top: 66px; transform: translateY(-14px); }
 }
 
@@ -614,6 +632,8 @@ function sv(tag, attrs, ...kids) {
   for (const c of kids.flat()) if (c != null) el.append(c.nodeType ? c : document.createTextNode(str(c)));
   return el;
 }
+// Replace an element's children, skipping null and false (replaceChildren would print them as text).
+const put = (el, ...kids) => el.replaceChildren(...kids.flat(3).filter(k => k != null && k !== false));
 const ic = (name, cls) => sv('svg', { class: 'ic' + (cls ? ' ' + cls : ''), viewBox: '0 0 24 24', 'aria-hidden': 'true' }, sv('use', { href: '#' + name }));
 function safeUrl(u) { try { const x = new URL(str(u)); return /^https?:$/.test(x.protocol) ? x.href : null; } catch (e) { return null; } }
 const ls = {
@@ -1057,11 +1077,12 @@ function placeLabels() {
   const W = RD.W, occ = PHONE ? [] : RD.rlBoxes.slice(), [cx] = scr(0, 0);
   const vis = [], dots = [];
   const hide = n => { n.lbl.classList.add('off'); if (n.l2) n.l2.style.display = 'none'; n.lox = null; };
-  // Weighting: at overview, weight 2 and 3 trends and any trend with news are named; weight 1 names appear when you zoom in.
+  // Weighting: at overview only the high-impact trends are named (on desktop also mid-impact ones with news);
+  // every name appears once you zoom in, and the selected or cued trend is always named.
   for (const n of RD.nodes.values()) {
     const inView = n.sx > 0 && n.sx < W && n.sy > 0 && n.sy < W;
     if (inView) dots.push(n);
-    if (inView && (weightOf(n.t) > 1 || D.newBy.get(n.id) || D.moved.has(n.id) || RD.cam.k >= 1.4 || n.id === S.sel || n.id === B.focus)) vis.push(n);
+    if (inView && (named(n) || RD.cam.k >= 1.4 || n.id === S.sel || n.id === B.focus || n.id === RD.cue)) vis.push(n);
     else hide(n);
   }
   for (const n of dots) {
@@ -1129,6 +1150,7 @@ function placeLabels() {
   }
   for (const tr of RD.trails.values()) { tr.el.setAttribute('x2', tr.n.sx.toFixed(1)); tr.el.setAttribute('y2', tr.n.sy.toFixed(1)); }
 }
+const named = n => { const w = weightOf(n.t); return w === 3 || (!PHONE && w === 2 && (D.newBy.get(n.id) || D.moved.has(n.id))); };
 // A label may not cover any dot: the obstacle is the dot plus its selection ring, sized by weight.
 const dotBox = n => { const r = D.newBy.get(n.id) ? 13 : WEIGHT_R[weightOf(n.t)] + 4; return { x: n.sx - r, y: n.sy - r, w: 2 * r, h: 2 * r, own: n.id }; };
 const NUDGE = [[0, -12], [12, 0], [0, 12], [-12, 0], [10, -10], [10, 10], [-10, 10], [-10, -10], [0, -20], [20, 0], [0, 20], [-20, 0], [16, -16], [16, 16], [-16, 16], [-16, -16], [0, -28], [28, 0], [0, 28], [-28, 0]];
@@ -1244,7 +1266,7 @@ function sweepSync() {
   if (moving() && RD.booted) { if (!MO.timer) sweepOnce(); }
   else { clearTimeout(MO.timer); MO.timer = 0; RD.sweep.getAnimations().forEach(x => x.cancel()); }
   const b = $('#t-motion');
-  if (b) { b.setAttribute('aria-label', MO.on ? 'Pause motion' : 'Play motion'); b.replaceChildren(ic(MO.on ? 'i-mpause' : 'i-mplay')); }
+  if (b) { b.setAttribute('aria-label', MO.on ? 'Pause motion' : 'Play motion'); put(b, ic(MO.on ? 'i-mpause' : 'i-mplay')); }
 }
 function setMotion(on) {
   MO.on = on;
@@ -1286,7 +1308,7 @@ function tipShow(n) {
   if (PHONE || !n || !n.t) return;
   const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id);
   tip.className = 'tip c-' + t.ring;
-  tip.replaceChildren(
+  put(tip, 
     h('span', { class: 'k' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
@@ -1442,17 +1464,21 @@ function afterNav() {
   if (B.on && c.page !== 'brief') briefStop(true);
   S.sel = c.page === 'trend' ? c.arg : null;
   if (c.page === 'home' && P.q.value) { P.q.value = ''; S.q = ''; }
-  const open = c.page !== 'home' || WIDE;
+  // Wide screens and phones always show the panel: a news column on desktop, the news feed sheet on phones.
+  const open = c.page !== 'home' || WIDE || PHONE;
   const wasIn = P.el.contains(document.activeElement);
   $('#app').classList.toggle('open', open);
   $('#app').classList.toggle('wide', WIDE);
+  $('#app').classList.toggle('phone', PHONE);
   P.el.toggleAttribute('inert', !open);
-  $('#dock').inert = WIDE || (PHONE && c.page !== 'home');
+  $('#dock').inert = WIDE || PHONE;
   if (wasIn && !open) { const n = S.sel && RD.nodes.get(S.sel); const f = P.from && P.from.isConnected ? P.from : n ? n.el : $('#t-news'); f.focus({ preventScroll: true }); }
   renderPanel(true);
   paintRadar();
   syncHash();
-  if (RD.dockDone) { setCue(c.page === 'home' ? RD.dockT : null); apArm(); } else renderDock();
+  if (PHONE) setCue(c.page === 'home' ? FEED.cue : null);
+  else if (WIDE) setCue(null); // wide screens have no news bar, so nothing to cue
+  else if (RD.dockDone) { setCue(c.page === 'home' ? RD.dockT : null); apArm(); } else renderDock();
   if (PHONE && open) sheetTo(DET[c.page] || 'mid');
   if (c.page === 'search') setTimeout(() => P.q.focus(), 60);
   if (c.page === 'trend') scheduleMark(c.arg);
@@ -1483,10 +1509,10 @@ function renderPanel(anim) {
     case 'list': kids = pageList(); break;
     case 'search': kids = pageSearch(); break;
     case 'brief': kids = pageBrief(); break;
-    default: kids = WIDE ? pageHome() : [];
+    default: kids = WIDE ? pageHome() : PHONE ? pageFeed() : [];
   }
   renderHead(c);
-  body.replaceChildren(...kids.filter(Boolean));
+  put(body, kids);
   if (open) $$('details[data-k]', body).forEach(d => { if (open.has(d.dataset.k)) d.open = true; });
   if (keep) body.scrollTop = keep; else if (anim && P.scrolled) body.scrollTop = 0;
   P.scrolled = false;
@@ -1504,7 +1530,7 @@ function renderHead(c) {
     h('span', { class: 'ht' + (c.page === 'trend' ? ' collapse' : ''), text: title })
   ];
   kids.push(h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Close', onclick: () => (c.page === 'brief' ? briefStop() : nav('home')) }, ic('i-close')));
-  P.head.replaceChildren(...kids);
+  put(P.head, ...kids);
 }
 function section(title, aside, ...content) {
   return h('section', { class: 'sec' }, h('h2', null, h('span', { text: title }), aside ? h('span', { text: aside }) : null), content);
@@ -1595,7 +1621,7 @@ function loadMonth(m) {
   if (S.months[m] || !S.db || S.loading === m) return;
   S.loading = m;
   S.db.collection('feed/' + m + '/items').limit(1000).get().then(snap => {
-    S.loading = null; S.months[m] = snap.docs.map(asNews); setNews(); refresh(); if (cur().page === 'news') renderPanel(false);
+    S.loading = null; S.months[m] = snap.docs.map(asNews); setNews(); refresh(); if (cur().page === 'news' || cur().page === 'home') renderPanel(false);
   }, () => { S.loading = null; toast('Could not load ' + monthName(m) + '. Try again.'); renderPanel(false); });
 }
 const monthName = m => F.month.format(new Date(ts(m)));
@@ -1674,6 +1700,90 @@ function pageAbout() {
   out.push(section('Keyboard', null, h('ul', { class: 'keys' },
     [['⌘K or /', 'Search'], ['L', 'All trends as a list'], ['N', 'News'], ['B', 'News briefing'], ['P', 'Pause or play motion'], ['1 to 4', 'Zoom into an area'], ['+ and −', 'Zoom in or out (or scroll, pinch, double-click)'], ['0', 'Show the whole radar'], ['Arrow keys', 'Move between dots, news or trends'], ['Esc', 'Back']].map(([k, l]) => [h('kbd', { text: k }), h('span', { text: l })]))));
   return out;
+}
+
+// ---- 12b-feed.js
+/* Phone home: an endless feed of story cards under the radar. New stories first (hot ones on top), then everything
+   recent, then older months from the archive as you keep scrolling. The card at the top of the view lights up its
+   trend on the radar, so the radar stays the entry point while you read. */
+const FEED = { n: 12, cue: null, obs: null, more: null };
+
+function feedList() {
+  const ok = S.news.filter(n => S.byId.has(n.t) && !n.minor);
+  const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
+  return hotFirst(ok.filter(n => n._new)).concat(ok.filter(n => !n._new));
+}
+const olderMonth = () => (S.meta && Array.isArray(S.meta.months) ? S.meta.months : []).filter(m => /^\d{4}-\d{2}$/.test(m) && !S.months[m]).sort().reverse()[0];
+
+// A source mark: the story's own image when the scan stored one, otherwise a quiet monogram of the publisher.
+const MARKS = { 'Google DeepMind': 'GDM', 'Google Cloud': 'G', Microsoft: 'MS', McKinsey: 'McK', OpenAI: 'OAI', NVIDIA: 'NV', Anthropic: 'A', 'European Commission': 'EU', 'Stanford HAI': 'HAI', 'MIT Technology Review': 'TR', 'Harvard Business Review': 'HBR', 'Doppelgänger Tech Talk': 'DG' };
+function monogram(name) {
+  name = str(name).replace(/\s*\(.*?\)\s*/g, ' ').trim();
+  if (MARKS[name]) return MARKS[name];
+  const first = name.split(/[\s,:/]+/)[0] || '?';
+  if (/^[A-Z0-9]{2,4}$/.test(first)) return first;
+  return first.charAt(0).toUpperCase();
+}
+function mark(n) {
+  const mono = h('span', { class: 'mark', 'aria-hidden': 'true', text: monogram(n.src.name) });
+  const u = safeUrl(n.img);
+  if (!u) return mono;
+  const img = h('img', { class: 'mark', src: u, alt: '', loading: 'lazy', decoding: 'async', referrerpolicy: 'no-referrer' });
+  img.addEventListener('error', () => img.replaceWith(mono), { once: true });
+  return img;
+}
+
+function feedCard(n) {
+  const t = S.byId.get(n.t), u = safeUrl(n.src.url);
+  const seen = () => { if (n._new) markNews([n]); };
+  return h('article', { class: 'fc c-' + t.ring + (n._new ? ' new' : ''), 'data-t': t.id },
+    mark(n),
+    h('div', { class: 'fc-b' },
+      h('p', { class: 'fc-k' },
+        n._new ? h('span', { class: 'pillnew', text: 'New' }) : null, hotPill(n),
+        h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot' }), t.short || t.title)),
+      u ? h('a', { class: 'fc-t', href: u, target: '_blank', rel: 'noopener noreferrer', onclick: seen }, h('span', { text: n.title }), ic('i-out'))
+        : h('p', { class: 'fc-t', text: n.title }),
+      n.take ? h('p', { class: 'fc-p', text: n.take }) : null,
+      h('p', { class: 'fc-m', text: [str(n.src.name), when(n.at)].filter(Boolean).join(', ') })));
+}
+
+function pageFeed() {
+  const list = feedList(), shown = list.slice(0, FEED.n), fresh = list.filter(n => n._new).length;
+  const cards = [];
+  shown.forEach((n, i) => {
+    if (i === 0) cards.push(h('h2', { class: 'feed-h', text: fresh ? plural(fresh, 'new story').replace('storys', 'stories') + ' for you' : 'Latest' }));
+    if (fresh && i === fresh) cards.push(h('h2', { class: 'feed-h', text: 'Earlier' }));
+    cards.push(feedCard(n));
+  });
+  const end = shown.length < list.length || olderMonth()
+    ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }))
+    : h('p', { class: 'muted feed-end', text: list.length ? 'That is everything in the archive.' : S.ok.news ? 'No news yet. The radar scans every 12 hours.' : 'Loading…' });
+  requestAnimationFrame(feedObserve);
+  return [
+    h('button', { class: 'brief-row', type: 'button', onclick: () => briefStart() },
+      h('span', { class: 'primary', 'aria-hidden': 'true' }, ic('i-play')),
+      h('span', null, h('b', { text: 'Play the news briefing' }), h('small', { text: 'One minute, trend by trend' }))),
+    h('div', { class: 'feed' }, cards), end];
+}
+
+// Grow the feed when its end comes into view, and cue the radar on the card nearest the top.
+function feedObserve() {
+  if (FEED.obs) FEED.obs.disconnect();
+  if (FEED.more) FEED.more.disconnect();
+  if (!PHONE || cur().page !== 'home' || typeof IntersectionObserver !== 'function') return;
+  FEED.obs = new IntersectionObserver(entries => {
+    for (const e of entries) if (e.isIntersecting && e.target.dataset.t && FEED.cue !== e.target.dataset.t) { FEED.cue = e.target.dataset.t; setCue(FEED.cue); }
+  }, { root: P.body, rootMargin: '0px 0px -65% 0px' });
+  $$('.fc', P.body).forEach(c => FEED.obs.observe(c));
+  const more = $('#feed-more', P.body);
+  if (!more) return;
+  FEED.more = new IntersectionObserver(entries => {
+    if (!entries.some(e => e.isIntersecting)) return;
+    FEED.more.disconnect();
+    if (FEED.n < feedList().length) { FEED.n += 12; renderPanel(false); } else { const m = olderMonth(); if (m) loadMonth(m); }
+  }, { root: P.body, rootMargin: '400px 0px' });
+  FEED.more.observe(more);
 }
 
 // ---- 13-briefing.js
@@ -1782,12 +1892,19 @@ function dockList() {
   return vary(fresh).concat(vary(rest.slice(0, 12))).slice(0, Math.max(8, fresh.length));
 }
 const dockRows = () => PHONE ? clamp(Math.floor((RD.stage.clientHeight - RD.W - 165) / 48), 0, 4) : 0;
-function setCue(id) { if (RD.cue === id) return; RD.cue = id; for (const n of RD.nodes.values()) n.el.classList.toggle('cue', n.id === id); fxRings(); }
+// The cue marks the trend of the story in view (news bar or feed); its name is shown even when names are thinned out.
+function setCue(id) {
+  if (RD.cue === id) return;
+  RD.cue = id;
+  for (const n of RD.nodes.values()) n.el.classList.toggle('cue', n.id === id);
+  RD.sig = '';
+  if (!RD.raf) paintRadar(); else fxRings();
+}
 // The dock moves on to the next story every 12 seconds while motion is on; hovering or focusing it holds the story.
 const AP = { ms: 12000, t: 0, hold: false };
 function apArm() {
   clearTimeout(AP.t);
-  const el = $('#dock'), run = !WIDE && moving() && !AP.hold && cur().page === 'home' && !B.on && dockList().length > 1;
+  const el = $('#dock'), run = !WIDE && !PHONE && moving() && !AP.hold && cur().page === 'home' && !B.on && dockList().length > 1;
   el.classList.toggle('auto', run);
   if (run) AP.t = setTimeout(() => { if (RD.hot || RD.raf) { renderDock('quiet'); return; } dockGo(1, 'auto'); }, AP.ms);
 }
@@ -1795,10 +1912,10 @@ function dockGo(d, mode) { const l = dockList(); if (!l.length) return; dockI = 
 function renderDock(mode) {
   const el = $('#dock');
   el.setAttribute('aria-live', mode === 'fwd' || mode === 'back' ? 'polite' : 'off');
-  if (AP.busy) return;
-  if (!S.ok.trends || !S.ok.news || !S.ok.me) { el.replaceChildren(h('p', { class: 'dk-meta', text: S.problem || 'Loading…' })); return; }
+  if (AP.busy || PHONE || WIDE) return;
+  if (!S.ok.trends || !S.ok.news || !S.ok.me) { put(el, h('p', { class: 'dk-meta', text: S.problem || 'Loading…' })); return; }
   const list = dockList(), fresh = list.filter(n => n._new).length;
-  if (!list.length) { el.replaceChildren(h('p', { class: 'dk-meta', text: 'No news yet. The radar scans every 12 hours.' })); return; }
+  if (!list.length) { put(el, h('p', { class: 'dk-meta', text: 'No news yet. The radar scans every 12 hours.' })); return; }
   const at = RD.dockId ? list.findIndex(x => x.id === RD.dockId) : -1;
   dockI = at >= 0 ? at : clamp(dockI, 0, list.length - 1);
   const n = list[dockI], t = S.byId.get(n.t);
@@ -1823,7 +1940,7 @@ function renderDock(mode) {
   el.classList.toggle('stack', k > 0);
   const fa = document.activeElement, keep = fa && el.contains(fa) ? fa.getAttribute('aria-label') || '' : null;
   AP.busy = true;
-  el.replaceChildren(body, h('div', { class: 'dk-ctl' },
+  put(el, body, h('div', { class: 'dk-ctl' },
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Previous news', disabled: list.length < 2, onclick: () => dockGo(-1) }, ic('i-back')),
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Next news', disabled: list.length < 2, onclick: () => dockGo(1) }, ic('i-chev')),
     h('button', { class: 'primary', type: 'button', 'aria-label': 'Play the news briefing', onclick: () => briefStart() }, ic('i-play'))), ...kids);
@@ -1908,7 +2025,10 @@ function sheetTo(name, px) {
     const v = (y - d.y) / Math.max(1, performance.now() - d.t), startDet = SH.det, moved = d.moved;
     d = null;
     if (!moved) { sheetTo(tap ? (startDet === 'full' ? 'mid' : 'full') : startDet); return; }
-    if (SH.h < detPx('peek') - 70 || (startDet === 'peek' && v > .55)) { SH.det = 'mid'; nav('home'); return; }
+    if (SH.h < detPx('peek') - 70 || (startDet === 'peek' && v > .55)) {
+      if (cur().page === 'home') { sheetTo('peek'); return; } // the feed sheet never closes, it rests at peek
+      SH.det = 'mid'; nav('home'); return;
+    }
     let best = NAMES.reduce((a, b) => (Math.abs(detPx(b) - SH.h) < Math.abs(detPx(a) - SH.h) ? b : a));
     if (Math.abs(v) > .55) best = NAMES[clamp(NAMES.indexOf(startDet) + (v < 0 ? 1 : -1), 0, 2)];
     sheetTo(best);

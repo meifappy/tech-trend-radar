@@ -24,6 +24,8 @@ function sv(tag, attrs, ...kids) {
   for (const c of kids.flat()) if (c != null) el.append(c.nodeType ? c : document.createTextNode(str(c)));
   return el;
 }
+// Replace an element's children, skipping null and false (replaceChildren would print them as text).
+const put = (el, ...kids) => el.replaceChildren(...kids.flat(3).filter(k => k != null && k !== false));
 const ic = (name, cls) => sv('svg', { class: 'ic' + (cls ? ' ' + cls : ''), viewBox: '0 0 24 24', 'aria-hidden': 'true' }, sv('use', { href: '#' + name }));
 function safeUrl(u) { try { const x = new URL(str(u)); return /^https?:$/.test(x.protocol) ? x.href : null; } catch (e) { return null; } }
 const ls = {

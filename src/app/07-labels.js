@@ -60,11 +60,12 @@ function placeLabels() {
   const W = RD.W, occ = PHONE ? [] : RD.rlBoxes.slice(), [cx] = scr(0, 0);
   const vis = [], dots = [];
   const hide = n => { n.lbl.classList.add('off'); if (n.l2) n.l2.style.display = 'none'; n.lox = null; };
-  // Weighting: at overview, weight 2 and 3 trends and any trend with news are named; weight 1 names appear when you zoom in.
+  // Weighting: at overview only the high-impact trends are named (on desktop also mid-impact ones with news);
+  // every name appears once you zoom in, and the selected or cued trend is always named.
   for (const n of RD.nodes.values()) {
     const inView = n.sx > 0 && n.sx < W && n.sy > 0 && n.sy < W;
     if (inView) dots.push(n);
-    if (inView && (weightOf(n.t) > 1 || D.newBy.get(n.id) || D.moved.has(n.id) || RD.cam.k >= 1.4 || n.id === S.sel || n.id === B.focus)) vis.push(n);
+    if (inView && (named(n) || RD.cam.k >= 1.4 || n.id === S.sel || n.id === B.focus || n.id === RD.cue)) vis.push(n);
     else hide(n);
   }
   for (const n of dots) {
@@ -132,6 +133,7 @@ function placeLabels() {
   }
   for (const tr of RD.trails.values()) { tr.el.setAttribute('x2', tr.n.sx.toFixed(1)); tr.el.setAttribute('y2', tr.n.sy.toFixed(1)); }
 }
+const named = n => { const w = weightOf(n.t); return w === 3 || (!PHONE && w === 2 && (D.newBy.get(n.id) || D.moved.has(n.id))); };
 // A label may not cover any dot: the obstacle is the dot plus its selection ring, sized by weight.
 const dotBox = n => { const r = D.newBy.get(n.id) ? 13 : WEIGHT_R[weightOf(n.t)] + 4; return { x: n.sx - r, y: n.sy - r, w: 2 * r, h: 2 * r, own: n.id }; };
 const NUDGE = [[0, -12], [12, 0], [0, 12], [-12, 0], [10, -10], [10, 10], [-10, 10], [-10, -10], [0, -20], [20, 0], [0, 20], [-20, 0], [16, -16], [16, 16], [-16, 16], [-16, -16], [0, -28], [28, 0], [0, 28], [-28, 0]];
