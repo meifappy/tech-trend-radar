@@ -1,0 +1,74 @@
+/* App frame: backdrop, top bar, stage (radar area), floating zoom control, side panel. Desktop first. */
+.app { position: fixed; inset: 0; isolation: isolate; overflow: hidden; }
+.aurora { position: absolute; inset: 0; z-index: -1; overflow: hidden; contain: strict; background: radial-gradient(120% 80% at 65% 10%, #18181d 0%, var(--bg) 58%); }
+
+/* top bar */
+.topbar { position: absolute; z-index: 12; inset: 0 0 auto; height: var(--bar); padding: 0 16px 0 22px; display: flex; align-items: center; justify-content: space-between; pointer-events: none; contain: layout style; }
+.topbar > * { pointer-events: auto; }
+.brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.logo { width: 22px; height: 22px; flex: none; }
+.logo .slice { fill: var(--orange); }
+.brand b { display: block; font-size: var(--fs-body); font-weight: 600; letter-spacing: -.01em; white-space: nowrap; }
+.brand small { display: block; font-size: var(--fs-cap); color: var(--t3); white-space: nowrap; }
+.tools { display: flex; gap: 2px; }
+.tool { position: relative; width: 40px; height: 40px; display: grid; place-items: center; border: 0; border-radius: 50%; background: none; color: var(--t2); cursor: pointer; transition: background .2s, color .2s; }
+.tool:hover { background: var(--fill-1); color: var(--t1); }
+.tool[aria-label="Play motion"] { color: var(--t3); }
+.tcount { position: absolute; top: 3px; right: 0; min-width: 17px; height: 17px; padding: 0 4px; border-radius: 9px; background: var(--orange); color: var(--orange-ink); font: 700 11px/17px var(--round); text-align: center; }
+
+/* stage: the radar is centred in the space the panel leaves free */
+.stage { position: absolute; inset: 56px 0 0 0; overflow: hidden; }
+.rbox { position: absolute; left: 50%; top: calc(50% - 55px); width: var(--rs, 600px); height: var(--rs, 600px); translate: -50% -50%; touch-action: none; transition: transform .4s var(--spring), opacity .3s var(--ease); }
+.app.wide .rbox { top: calc(50% - 12px); }
+.app.open .rbox, .app.open .dock { transform: translateX(calc((var(--side) + var(--gap) * 2) / -2)); }
+.rbox.zoomed { cursor: grab; }
+.rbox.zoomed.moving { cursor: grabbing; }
+
+/* Zoom: one glass capsule, plus over minus, divided by a hairline. Bottom left of the stage, clear of the panel and the news bar. */
+.zoomui { position: absolute; z-index: 5; left: 20px; bottom: 24px; display: flex; flex-direction: column; width: 40px; border-radius: 20px; overflow: hidden; background: var(--glass); border: 1px solid var(--line); -webkit-backdrop-filter: blur(20px) saturate(160%); backdrop-filter: blur(20px) saturate(160%); }
+.zbtn { width: 40px; height: 40px; display: grid; place-items: center; border: 0; background: none; color: var(--t1); cursor: pointer; transition: background .15s, color .15s; }
+.zbtn + .zbtn { border-top: 1px solid var(--line); }
+.zbtn:hover { background: var(--fill-1); }
+.zbtn:active { background: var(--fill-2); }
+.zbtn:disabled { color: var(--t3); opacity: .45; cursor: default; background: none; }
+.zbtn .ic { width: 16px; height: 16px; stroke-width: 2; }
+
+/* side panel (right); permanent on wide screens, on demand otherwise; a bottom sheet on phones (see responsive) */
+.panel {
+  position: absolute; z-index: 10; right: var(--gap); top: 70px; bottom: var(--gap); width: var(--side);
+  display: flex; flex-direction: column; overflow: hidden; border-radius: 28px; timeline-scope: --pb; contain: layout style;
+  background: var(--panel); border: 1px solid rgb(255 255 255 / .07);
+  transition: opacity .3s var(--ease), transform .45s var(--spring), visibility .3s;
+}
+.app:not(.open) .panel { opacity: 0; visibility: hidden; transform: translateX(28px); pointer-events: none; }
+.grab { display: none; }
+.p-top { flex: none; display: none; padding: 16px 18px 12px; }
+.panel[data-page="search"] .p-top { display: block; }
+.search { display: flex; align-items: center; gap: 9px; height: 42px; padding: 0 12px; border-radius: 12px; background: var(--fill-1); border: 1px solid transparent; color: var(--t3); transition: border-color .2s, background .2s; }
+.search:focus-within { border-color: rgb(255 255 255 / .35); background: rgb(0 0 0 / .4); }
+.search input { flex: 1; min-width: 0; height: 100%; background: none; border: 0; outline: 0; font-size: var(--fs-body); color: var(--t1); }
+.search input::placeholder { color: var(--t3); }
+.search input::-webkit-search-cancel-button { display: none; }
+.p-head { flex: none; display: flex; align-items: center; gap: 6px; min-height: 52px; padding: 10px 12px 6px; }
+.p-head .ht { flex: 1; min-width: 0; font-weight: 600; font-size: var(--fs-body); text-align: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.p-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 4px 22px 32px; display: flex; flex-direction: column; gap: 28px; scroll-timeline: --pb y; scrollbar-width: thin; scrollbar-color: rgb(255 255 255 / .2) transparent; contain: content; }
+.p-body > * { flex-shrink: 0; }
+.p-body.enter > :first-child, .p-body.enter > :nth-child(2) { animation: rise .24s var(--ease) both; }
+.p-body.enter > :nth-child(2) { animation-delay: .03s; }
+.p-body.enter > :nth-child(n+3) { animation: fadein .24s var(--ease) .05s both; }
+@supports (animation-timeline: scroll()) {
+  .p-head .ht.collapse { animation: ht-in linear both; animation-timeline: --pb; animation-range: 50px 110px; }
+  @keyframes ht-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+}
+
+/* tooltip and toast */
+.tip { position: fixed; z-index: 30; left: 0; top: 0; max-width: 280px; padding: 10px 14px; border-radius: 14px; display: flex; flex-direction: column; align-items: flex-start; gap: 3px; pointer-events: none; opacity: 0; transition: opacity .18s; contain: layout style;
+  background: var(--glass-strong); border: 1px solid var(--line); -webkit-backdrop-filter: blur(26px) saturate(170%); backdrop-filter: blur(26px) saturate(170%); }
+.tip.on { opacity: 1; }
+.tip .k { display: flex; align-items: center; gap: 7px; font-size: var(--fs-cap); color: var(--t3); }
+.tip .k i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.tip b { font-size: var(--fs-body); font-weight: 600; letter-spacing: -.01em; }
+.tip .tmove { font-size: var(--fs-foot); color: var(--t2); }
+.tip .pillnew { margin-top: 3px; }
+.toast { position: fixed; z-index: 40; left: 50%; bottom: 28px; max-width: calc(100% - 32px); padding: 11px 18px; border-radius: 999px; translate: -50% 0; transform: translateY(14px); opacity: 0; pointer-events: none; background: rgb(255 255 255 / .94); color: var(--ink); font-size: var(--fs-sub); font-weight: 600; transition: opacity .25s, transform .4s var(--spring); contain: layout style; }
+.toast.on { opacity: 1; transform: none; }

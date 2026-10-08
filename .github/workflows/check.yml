@@ -1,0 +1,20 @@
+# Checks every push: the built page matches src/, the script parses, and the site renders with its data.
+name: check
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/build.mjs --check
+      # Playwright is installed only here, so Cloudflare's deploy never downloads it.
+      - run: npm install --no-save --no-audit --no-fund playwright@1
+      - run: npx playwright install --with-deps chromium
+      - run: node tests/smoke.mjs

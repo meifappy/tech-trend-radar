@@ -1,0 +1,72 @@
+/* The radar: rings, area buttons, dots, labels, motion overlay. SVG text uses a dark halo so it reads on any ring. */
+.rbox > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; will-change: transform; }
+.rbox.zoomed > svg, .rbox.zoomed > .fx { overflow: hidden; }
+.sweep { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; will-change: transform; background: conic-gradient(from 0deg, rgb(255 255 255 / 0) 0deg 280deg, rgb(255 255 255 / .04) 320deg, rgb(255 255 255 / .2) 359deg, rgb(255 255 255 / 0) 360deg); }
+.rbox.zoomed .sweep { display: none; }
+
+/* area buttons in the four corners */
+.quad { position: absolute; z-index: 2; display: flex; flex-direction: column; padding: 6px 8px; border: 0; border-radius: 10px; background: none; color: var(--t2); font-size: var(--fs-foot); font-weight: 600; cursor: pointer; transition: background .2s, color .2s, opacity .3s; }
+.quad:hover { background: var(--fill-1); color: var(--t1); }
+.q-ai { left: -8px; top: -8px; }
+.q-sec { right: -8px; top: -8px; text-align: right; }
+.q-cloud { left: -8px; bottom: -8px; }
+.q-sci { right: -8px; bottom: -8px; text-align: right; }
+.rbox.zoomed .quad { opacity: 0; pointer-events: none; }
+.allbtn { position: absolute; z-index: 3; left: 50%; top: -6px; translate: -50% 0; }
+
+/* rings and axes */
+/* Rings read as stepped tints (brightest at the centre) with a clear hairline, so the four zones are visible at a glance. */
+.band { stroke: rgb(255 255 255 / .16); stroke-width: 1; }
+.b-act { fill: rgb(255 255 255 / .06); stroke: rgb(255 255 255 / .3); }
+.b-prepare { fill: rgb(255 255 255 / .035); }
+.b-watch { fill: rgb(255 255 255 / .018); }
+.b-horizon { fill: rgb(255 255 255 / .008); }
+.axis { stroke: rgb(255 255 255 / .07); stroke-width: 1; }
+.rl { font: 600 11.5px var(--font); fill: rgb(235 235 245 / .55); letter-spacing: .02em; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; transition: fill .3s, opacity .3s; }
+.rl.on { fill: #fff; }
+.rbox.tiny .rl { display: none; }
+.rbox[data-ring]:not([data-ring=""]) .rl:not(.on) { opacity: .35; }
+
+/* dots: size = business impact (weight 1 to 3); fill = ring grey; orange = news you have not opened */
+.blip { cursor: pointer; outline: none; transition: opacity .35s; }
+.blip .hit { fill: transparent; }
+.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; }
+.blip.has-new .dot { fill: var(--orange); }
+.rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
+.blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
+.blip.has-new .ring { opacity: .55; stroke: var(--orange); stroke-width: 1.5; }
+.blip.sel .ring, .blip:focus-visible .ring { opacity: 1; stroke: #fff; stroke-width: 2; }
+.blip.cue .ring { opacity: 0; }
+.blip .pop { transform-box: fill-box; transform-origin: center; transition: transform .4s var(--spring); }
+.blip:hover .pop, .blip.hot .pop, .blip.sel .pop, .blip:focus-visible .pop { transform: scale(1.25); }
+/* movement chevron: rating changed in the last 90 days; points to the centre when it became more urgent */
+.arr { fill: none; stroke: var(--t1); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.blip.dim, .lbl.dim { opacity: .18; }
+.rbox.hovering .blip:not(.hot):not(.sel), .rbox.hovering .lbl:not(.hot):not(.sel), .rbox.hovering .lbl2 { opacity: .4; }
+.trail { fill: none; stroke: rgb(255 255 255 / .5); stroke-width: 1.5; stroke-dasharray: 2 5; stroke-linecap: round; }
+
+/* labels */
+.lbl, .lbl2 { paint-order: stroke; stroke: var(--halo); stroke-width: 4px; stroke-linejoin: round; pointer-events: none; transition: opacity .3s; }
+.lbl { font: 500 13px var(--font); fill: rgb(245 245 247 / .9); }
+.lbl.w3 { font-weight: 600; }
+.lbl.new { fill: #fff; font-weight: 600; }
+.lbl.sel, .lbl.hot { fill: #fff; font-weight: 700; }
+.lbl2 { font: 400 11px var(--font); fill: rgb(235 235 245 / .62); }
+.lbl.off, .rbox.nolabels .lbl, .rbox.nolabels .lbl2 { opacity: 0 !important; }
+.ld { stroke: rgb(255 255 255 / .35); stroke-width: 1; }
+.rbox.moving .ld, .rbox.nolabels .ld { display: none; }
+.rbox.briefing .lbl:not(.sel), .rbox.briefing .lbl2, .rbox.briefing .ld { opacity: 0 !important; }
+
+/* motion overlay (HTML, so endless animations stay on the compositor) */
+.fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; will-change: transform; }
+.pg, .fxr { position: absolute; left: 0; top: 0; border-radius: 50%; pointer-events: none; }
+.pg { width: 16px; height: 16px; margin: -8px 0 0 -8px; border: 2px solid #fff; opacity: 0; }
+.fxr { width: 27px; height: 27px; margin: -13.5px 0 0 -13.5px; opacity: 0; transition: opacity .3s; }
+.fxr.on { opacity: 1; }
+.fx-cue { border: 2px dashed rgb(255 255 255 / .85); }
+.fx-sel { border: 2px solid rgb(255 255 255 / .55); }
+.fx-sel.on { animation: selpulse .9s ease-out 2; }
+.app.still .fxr { animation-play-state: paused; }
+.app.still .fx-sel { animation: none; opacity: 0; }
+@keyframes selpulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+.rbox.briefing .allbtn { display: none; }

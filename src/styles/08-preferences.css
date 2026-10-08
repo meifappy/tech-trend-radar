@@ -1,0 +1,17 @@
+/* User preferences: reduced transparency, higher contrast, reduced motion, Windows high contrast. */
+@media (prefers-reduced-transparency: reduce) {
+  .panel, .tip, .dock, .zoomui { background: #1a1a1e; -webkit-backdrop-filter: none; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  :root { --t2: rgb(236 240 255 / .92); --t3: rgb(236 240 255 / .8); --line: rgb(255 255 255 / .3); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
+}
+@media (forced-colors: active) {
+  .blip .dot { fill: CanvasText; stroke: Canvas; }
+  .blip.has-new .dot, .blip.c-act .dot { fill: Highlight; }
+  .sweep, .aurora { display: none; }
+  .zoomui, .tool, .iconbtn { border: 1px solid ButtonText; }
+  :focus-visible { outline: 2px solid Highlight; }
+}

@@ -1,4 +1,6 @@
-node_modules/
-.wrangler/
 *.tmp
 .DS_Store
+.wrangler/
+__pycache__/
+dist/
+node_modules/

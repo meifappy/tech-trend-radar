@@ -1,0 +1,57 @@
+/* Design tokens. Every colour, size and curve used by the app is defined here.
+   Colour rule: greys carry structure, white marks what you can act on, orange means only "new for you". */
+:root {
+  color-scheme: dark;
+  interpolate-size: allow-keywords;
+
+  /* surfaces */
+  --bg: #0b0b0d;
+  --panel: rgb(22 22 25 / .95);
+  --glass: rgb(36 36 40 / .62);
+  --glass-strong: rgb(24 24 28 / .86);
+  --fill-1: rgb(255 255 255 / .06);   /* resting fill of controls and rows */
+  --fill-2: rgb(255 255 255 / .12);   /* hover fill */
+  --line: rgb(255 255 255 / .1);
+  --line-2: rgb(255 255 255 / .18);
+  --halo: rgb(11 11 13 / .88);        /* text halo on the radar */
+
+  /* text */
+  --t1: #f5f5f7;                      /* primary, and every clickable label */
+  --t2: rgb(235 235 245 / .74);       /* reading text */
+  --t3: rgb(235 235 245 / .58);       /* meta: sources, dates, section titles */
+  --ink: #111113;                     /* text on light fills */
+
+  /* the one accent */
+  --orange: #ff9f0a;
+  --orange-ink: #1a1000;
+
+  /* rings: urgency is carried by position, so the rings are greys from bright (act) to dim (horizon) */
+  --act: #f5f5f7;
+  --prepare: #c7c7cc;
+  --watch: #a1a1a8;
+  --horizon: #7c7c84;
+
+  /* type scale (Apple text styles, desktop sizes) */
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Segoe UI", Roboto, system-ui, sans-serif;
+  --round: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif;
+  --fs-display: 26px;  /* trend title */
+  --fs-title: 20px;    /* briefing story, archive month */
+  --fs-lead: 17px;     /* trend summary, briefing text */
+  --fs-body: 15px;     /* headlines, rows, buttons */
+  --fs-sub: 14px;      /* reading text under a headline */
+  --fs-foot: 13px;     /* section titles, meta */
+  --fs-cap: 12px;      /* pills, captions */
+
+  /* motion */
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --spring: cubic-bezier(.34, 1.36, .64, 1);
+
+  /* layout */
+  --side: 388px;       /* panel width */
+  --gap: 16px;         /* outer margin of floating surfaces */
+  --bar: 64px;         /* top bar height */
+}
+.c-act { --c: var(--act); }
+.c-prepare { --c: var(--prepare); }
+.c-watch { --c: var(--watch); }
+.c-horizon { --c: var(--horizon); }

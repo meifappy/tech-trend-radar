@@ -1,0 +1,58 @@
+/* Base elements and the shared control set: icon button, primary button, text button, link, pill. */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; overflow: hidden; background: var(--bg); color: var(--t1); font: var(--fs-body)/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+button { -webkit-tap-highlight-color: transparent; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+[hidden] { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; border: 0; }
+.skip { position: absolute; z-index: 60; left: 12px; top: 10px; padding: 10px 16px; border-radius: 12px; background: #fff; color: var(--ink); font-weight: 600; text-decoration: none; transform: translateY(-160%); transition: transform .2s; }
+.skip:focus { transform: none; }
+.ic { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t3); border: 1px solid var(--line-2); border-radius: 6px; padding: 1px 6px; }
+
+/* Icon button: 36px circle, for navigation and secondary actions. */
+.iconbtn { width: 36px; height: 36px; flex: none; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--fill-1); color: var(--t2); cursor: pointer; transition: background .2s, color .2s, transform .15s; }
+.iconbtn:hover { background: var(--fill-2); color: var(--t1); }
+.iconbtn:active { transform: scale(.92); }
+.iconbtn:disabled { opacity: .35; cursor: default; pointer-events: none; }
+
+/* Primary: the single white circle that starts the briefing. */
+.primary { width: 48px; height: 48px; flex: none; display: grid; place-items: center; border: 0; border-radius: 50%; background: var(--t1); color: var(--ink); cursor: pointer; transition: transform .15s, background .2s; }
+.primary:hover { background: #fff; }
+.primary:active { transform: scale(.94); }
+.primary .ic { width: 19px; height: 19px; fill: currentColor; stroke: none; }
+.primary .ic use[href="#i-play"] { transform: translateX(1px); }
+
+/* Text button (capsule). */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 40px; padding: 0 18px; border: 0; border-radius: 999px; background: var(--fill-1); color: var(--t1); font-weight: 600; white-space: nowrap; cursor: pointer; transition: transform .18s var(--ease), background .2s; }
+.btn:hover { background: var(--fill-2); }
+.btn:active { transform: scale(.96); }
+
+/* Links. Anything you can click is white and semibold and carries a glyph: › opens inside the radar, ↗ opens the source. */
+.link { display: inline-flex; align-items: center; gap: 4px; align-self: flex-start; min-height: 32px; padding: 0; border: 0; background: none; color: var(--t1); font-size: var(--fs-body); font-weight: 600; text-decoration: none; cursor: pointer; }
+.link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.link .ic { width: 16px; height: 16px; color: var(--t3); }
+.out { display: inline-flex; align-items: baseline; gap: 4px; color: var(--t1); font-weight: 600; text-decoration: none; }
+.out:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.out .ic { width: 13px; height: 13px; align-self: center; color: var(--t3); }
+/* Trend chip inside news meta: a small filled capsule so it reads as a button, not as text. */
+.link.sm { min-height: 22px; padding: 0 8px; border-radius: 6px; background: var(--fill-1); font-size: var(--fs-cap); }
+.link.sm:hover { background: var(--fill-2); text-decoration: none; }
+
+/* Pills: orange = new for you, white = hot (must read or listen), grey = moved. */
+.pillnew, .pillmove { flex: none; height: 20px; padding: 0 7px; border-radius: 10px; font: 700 var(--fs-cap)/20px var(--round); white-space: nowrap; }
+.pillnew { background: var(--orange); color: var(--orange-ink); }
+.pillhot { display: inline-block; flex: none; height: 18px; padding: 0 7px; border-radius: 9px; background: var(--t1); color: var(--ink); font: 700 11px/18px var(--round); white-space: nowrap; vertical-align: 1px; }
+.ni-b > .pillhot { display: block; width: fit-content; margin: 0 0 6px; }
+.dk-kick .pillhot, .bsrc .pillhot { margin-right: 6px; }
+.pillmove { background: var(--fill-2); color: var(--t1); }
+.chev { width: 16px; height: 16px; color: var(--t3); }
+.muted { margin: 0; color: var(--t3); font-size: var(--fs-sub); }
+.note { margin: 8px 0 0; color: var(--t3); font-size: var(--fs-foot); line-height: 1.42; }
+.fine { margin: 8px 0 0; color: var(--t3); font-size: var(--fs-cap); }
+
+@keyframes fadein { from { opacity: 0; } }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } }

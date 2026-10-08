@@ -1,0 +1,12 @@
+{
+  "name": "tech-trend-radar",
+  "private": true,
+  "type": "module",
+  "description": "A radar of technology megatrends with news every 12 hours. One self-contained page, no runtime dependencies.",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node tests/smoke.mjs",
+    "serve": "python3 -m http.server -d public 8000"
+  }
+}

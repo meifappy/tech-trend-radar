@@ -1,0 +1,53 @@
+/* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
+.dock { position: absolute; z-index: 4; left: 50%; bottom: 22px; width: min(640px, calc(100% - 32px)); translate: -50% 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
+  transition: opacity .3s var(--ease), translate .45s var(--spring), transform .4s var(--spring); }
+.app.open .dock { width: min(640px, calc(100% - var(--side) - var(--gap) * 2 - 32px)); }
+.app.wide .dock { display: none; }
+.dock > .dk-meta { padding: 14px; }
+.dk-body { position: relative; overflow: hidden; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 9px 12px; border: 0; border-radius: 16px; background: none; text-align: left; cursor: pointer; touch-action: pan-y; user-select: none; -webkit-user-select: none; transition: background .2s; }
+.dk-body:hover { background: rgb(255 255 255 / .05); }
+.dk-kick { display: flex; align-items: center; gap: 7px; font-size: var(--fs-cap); color: var(--t3); }
+.dk-kick i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.dk-kick.isnew { color: var(--t1); }
+.dk-kick.isnew i { background: var(--orange); }
+.dk-title { font-size: var(--fs-body); font-weight: 600; line-height: 1.3; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dk-meta { margin: 0; font-size: var(--fs-cap); color: var(--t3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dk-ctl { display: flex; align-items: center; gap: 2px; }
+.dk-ctl .iconbtn { background: none; }
+.dk-ctl .primary { margin-left: 6px; }
+.dock.stack .dk-ctl .iconbtn { display: none; }
+.dk-prog { position: absolute; left: 12px; right: 12px; bottom: 3px; height: 2px; border-radius: 1px; background: rgb(255 255 255 / .07); opacity: 0; transition: opacity .3s; }
+.dk-prog::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: rgb(255 255 255 / .38); transform-origin: left; transform: scaleX(0); }
+.dock.auto .dk-prog { opacity: 1; }
+.dock.auto .dk-prog::after { animation: dkprog 12s linear forwards; }
+.dock.hold .dk-prog::after { animation-play-state: paused; }
+@keyframes dkprog { to { transform: scaleX(1); } }
+/* on tall phones: the next stories listed under the current one */
+.dk-next { grid-column: 1 / -1; display: flex; flex-direction: column; margin: 2px 4px; padding-top: 4px; border-top: 1px solid rgb(255 255 255 / .07); }
+.dk-row { display: grid; grid-template-columns: 7px minmax(0, 1fr) auto; align-items: center; gap: 10px; min-height: 46px; padding: 0 8px; border: 0; border-radius: 12px; background: none; color: var(--t1); text-align: left; cursor: pointer; }
+.dk-row:active { background: var(--fill-1); }
+.dk-row i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.dk-rt { font-size: var(--fs-sub); font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dk-rm { font-size: var(--fs-cap); color: var(--t3); }
+
+/* News briefing: progress segments, one stop per trend, transport controls. */
+.panel[data-page="brief"] .p-body { touch-action: pan-y; }
+.bseg { display: flex; gap: 4px; }
+.bseg button { flex: 1; height: 16px; padding: 6px 0; border: 0; background: none; cursor: pointer; }
+.bseg span { display: block; height: 4px; border-radius: 2px; background: rgb(255 255 255 / .18); overflow: hidden; }
+.bseg i { display: block; height: 100%; background: #fff; transform-origin: 0 50%; transform: scaleX(0); }
+.bseg .sd i { transform: none; }
+.bslide { min-height: 210px; display: flex; flex-direction: column; gap: 8px; user-select: none; -webkit-user-select: none; }
+.bscope { margin: 0; font-size: var(--fs-cap); color: var(--t3); }
+.bkick { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; min-height: 28px; padding: 0; border: 0; background: none; color: var(--t1); font-size: var(--fs-body); font-weight: 600; text-align: left; cursor: pointer; }
+.bkick i { width: 8px; height: 8px; flex: none; border-radius: 50%; background: var(--c); }
+.bkick small { font-size: var(--fs-cap); font-weight: 400; color: var(--t3); }
+.bkick:hover { text-decoration: underline; text-underline-offset: 3px; }
+.bitem { margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line); }
+.bitem:first-of-type { margin-top: 4px; padding-top: 0; border-top: 0; }
+.btitle { margin: 0; font-size: var(--fs-title); line-height: 1.25; font-weight: 700; letter-spacing: -.015em; text-wrap: balance; }
+.btitle a { color: inherit; text-decoration: none; }
+.btitle a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.btext { margin: 6px 0 0; font-size: var(--fs-lead); line-height: 1.45; color: var(--t2); text-wrap: pretty; }
+.bsrc { margin: 6px 0 0; font-size: var(--fs-foot); color: var(--t3); }
+.bctl { display: flex; align-items: center; justify-content: center; gap: 14px; }

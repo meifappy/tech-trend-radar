@@ -1,0 +1,99 @@
+/* Panel content. Hierarchy: grey section title (13) > white headline (15, semibold) > grey reading text (14) > meta (12).
+   Clickable items are always white semibold with › or ↗; everything grey is information only. */
+.sec { display: flex; flex-direction: column; gap: 10px; }
+.sec > h2 { margin: 0; display: flex; align-items: baseline; justify-content: space-between; gap: 10px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
+.sec > h2 span + span { font-weight: 400; }
+.rh { display: inline-flex; align-items: center; gap: 8px; color: var(--t1); }
+.rh i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+
+/* trend header */
+.thead { display: flex; flex-direction: column; gap: 8px; }
+.kicker { margin: 0; display: flex; align-items: center; gap: 8px; font-size: var(--fs-foot); color: var(--t3); }
+.kicker i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.title { margin: 0; font-size: var(--fs-display); line-height: 1.15; font-weight: 700; letter-spacing: -.022em; text-wrap: balance; outline: none; }
+.lead { margin: 0; font-size: var(--fs-lead); line-height: 1.45; color: var(--t2); text-wrap: pretty; }
+.moved { margin: 4px 0 0; display: flex; gap: 8px; align-items: flex-start; padding: 10px 12px; border-radius: 12px; background: var(--fill-1); font-size: var(--fs-sub); color: var(--t1); }
+.moved .ic { margin-top: 1px; }
+
+/* rows (trend lists, months) */
+.rows { display: flex; flex-direction: column; margin: 0 -10px; }
+.trow { width: 100%; display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 9px 10px; border: 0; border-radius: 12px; background: none; text-align: left; cursor: pointer; transition: background .15s; content-visibility: auto; contain-intrinsic-size: auto 56px; }
+.trow:hover { background: var(--fill-1); }
+.arch-row { grid-template-columns: minmax(0, 1fr) auto; }
+.tdot { width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
+.tt { min-width: 0; }
+.tt b { display: block; font-weight: 600; letter-spacing: -.005em; }
+.tt small { display: block; font-size: var(--fs-foot); color: var(--t3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* news items: orange dot = new for you; the headline is the link to the source (↗) */
+.news { display: flex; flex-direction: column; }
+.ni { position: relative; display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); content-visibility: auto; contain-intrinsic-size: auto 80px; }
+.ni:first-child { border-top: 0; padding-top: 2px; }
+.nd { width: 7px; height: 7px; margin-top: 8px; border-radius: 50%; background: var(--orange); transition: transform .2s, opacity .2s; }
+.ni:not(.new) .nd { transform: scale(0); opacity: 0; }
+.ni-b { min-width: 0; }
+.ni-l { display: inline; font-size: var(--fs-body); font-weight: 600; line-height: 1.35; color: var(--t1); text-decoration: none; }
+a.ni-l:hover span { text-decoration: underline; text-underline-offset: 3px; }
+.ni-l .ic { width: 13px; height: 13px; margin-left: 4px; vertical-align: -1px; color: var(--t3); }
+.ni-b p { margin: 4px 0 0; font-size: var(--fs-sub); line-height: 1.45; color: var(--t2); }
+.ni-b small { margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: var(--fs-cap); color: var(--t3); }
+.day { margin: 0 0 4px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
+
+/* What experts say: the statement in reading text, the source as a link under it */
+.quotes { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+.quotes li { padding-left: 14px; border-left: 2px solid var(--line-2); }
+.qt { display: block; margin: 0; font-size: var(--fs-body); line-height: 1.45; color: var(--t1); }
+q.qt { quotes: "“" "”"; }
+.qby { margin: 4px 0 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; font-size: var(--fs-foot); color: var(--t3); }
+.qby .out { font-size: var(--fs-foot); }
+
+.bul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-sub); line-height: 1.45; color: var(--t2); }
+.refs, .slist, .scans, .changes, .rings { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px; font-size: var(--fs-sub); }
+.slist small, .scans time { display: block; margin-top: 1px; font-size: var(--fs-cap); color: var(--t3); }
+.scans { color: var(--t2); }
+
+/* collapsible source groups (About) */
+.fold { border-top: 1px solid var(--line); }
+.fold summary { display: flex; align-items: center; gap: 8px; padding: 12px 0; list-style: none; font-weight: 600; cursor: pointer; }
+.fold summary::-webkit-details-marker { display: none; }
+.fold summary small { font-size: var(--fs-foot); font-weight: 400; color: var(--t3); }
+.fold summary .chev { margin-left: auto; transition: transform .25s var(--ease); }
+.fold[open] summary .chev { transform: rotate(90deg); }
+.fold::details-content { block-size: 0; overflow: clip; transition: block-size .35s var(--ease), content-visibility .35s allow-discrete; }
+.fold[open]::details-content { block-size: auto; }
+.fold-in { padding: 0 0 14px; }
+
+/* segmented control (News: For you, Recent, Archive) */
+.seg2 { display: grid; grid-template-columns: repeat(3, 1fr); padding: 3px; border-radius: 10px; background: rgb(0 0 0 / .3); }
+.seg2 button { height: 32px; display: flex; align-items: center; justify-content: center; gap: 6px; border: 0; border-radius: 8px; background: none; color: var(--t2); font-size: var(--fs-sub); font-weight: 600; cursor: pointer; transition: background .25s var(--ease), color .2s; }
+.seg2 button[aria-selected="true"] { background: rgb(255 255 255 / .16); color: var(--t1); }
+.seg2 small { font: 700 var(--fs-cap) var(--round); opacity: .7; }
+.caught { display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 30px 0 10px; text-align: center; color: var(--t2); }
+.caught .ic { width: 44px; height: 44px; stroke-width: 1.6; }
+.caught .ic use { stroke-dasharray: 60; animation: draw .8s var(--ease) both; }
+.caught p { margin: 0; font-size: var(--fs-lead); font-weight: 600; color: var(--t1); }
+.caught .link { align-self: center; }
+@keyframes draw { from { stroke-dashoffset: 60; } }
+
+/* archive */
+.arch-h { margin: 0; font-size: var(--fs-title); font-weight: 700; letter-spacing: -.01em; }
+.changes li { display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 2px 10px; }
+.changes time { grid-row: span 2; padding-top: 2px; font-size: var(--fs-cap); color: var(--t3); }
+.changes .link { min-height: 0; }
+.changes span { color: var(--t2); }
+
+/* about */
+.rings li { display: grid; grid-template-columns: 12px 80px minmax(0, 1fr); gap: 10px; align-items: baseline; }
+.rings i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); align-self: center; }
+.rings span { color: var(--t2); }
+.basis { display: flex; flex-wrap: wrap; gap: 6px; }
+.basis span { padding: 4px 10px; border-radius: 8px; background: var(--fill-1); font-size: var(--fs-cap); color: var(--t2); }
+.keys { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; align-items: center; font-size: var(--fs-sub); color: var(--t2); }
+.keys kbd { justify-self: start; }
+
+/* home (wide screens): briefing entry */
+.brief-row { width: 100%; display: flex; align-items: center; gap: 14px; padding: 12px; border: 0; border-radius: 16px; background: var(--fill-1); text-align: left; cursor: pointer; transition: background .2s; }
+.brief-row:hover { background: var(--fill-2); }
+.brief-row .primary { width: 40px; height: 40px; }
+.brief-row b { display: block; font-weight: 600; }
+.brief-row small { display: block; font-size: var(--fs-foot); color: var(--t3); }
