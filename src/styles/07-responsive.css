@@ -20,7 +20,7 @@
   .rl { display: none; } /* too crowded at phone size; the trend page names the ring */
   .zoomui, .tip { display: none; }
 
-  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: #161619;
+  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: var(--panel-solid);
     transform: translateY(calc(100% - var(--sh, 320px))); transition: transform .5s var(--spring), visibility .5s; }
   .app:not(.open) .panel { opacity: 1; transform: translateY(100%); }
   .panel.drag { transition: none; }
@@ -30,6 +30,8 @@
   .p-head { min-height: 44px; padding-top: 2px; touch-action: none; }
   .p-body { padding: 2px 18px calc(var(--shpad, 0px) + 28px); gap: 24px; }
   .bslide { min-height: 0; }
+  .fc-t { font-size: 17px; }
+  .chips { margin: 0 -18px; padding: 8px 18px; }
 
   .dock { display: none; } /* phones read the news in the feed sheet instead */
   .toast { bottom: auto; top: 66px; transform: translateY(-14px); }

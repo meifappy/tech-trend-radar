@@ -59,6 +59,7 @@ async function start() {
   buildBands();
   layoutAll();
   afterNav();
+  histSync(false);
   paintChrome();
   let use = await getUse(8);
   if (!use) {

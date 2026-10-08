@@ -49,10 +49,11 @@ function maybeReveal() {
     knownNew = new Set(S.news.filter(n => n._new).map(n => n.id));
     paintRadar();
     setTimeout(() => { animateMoves(); sweepSync(); }, RM ? 0 : 650);
+    autoArm();
     return;
   }
-  const fresh = S.news.filter(n => n._new && !knownNew.has(n.id));
-  if (!fresh.length) return;
-  fresh.forEach(n => knownNew.add(n.id));
-  toast(plural(fresh.length, 'new update') + ' just arrived');
+  const arrived = S.news.filter(n => n._new && !knownNew.has(n.id));
+  if (!arrived.length) return;
+  arrived.forEach(n => knownNew.add(n.id));
+  toast(plural(arrived.length, 'new update') + ' just arrived');
 }

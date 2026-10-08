@@ -33,7 +33,8 @@ const ls = {
   set(k, v) { try { localStorage.setItem('ttr3.' + k, JSON.stringify(v)); return true; } catch (e) { return false; } }
 };
 const mqRM = matchMedia('(prefers-reduced-motion: reduce)'), mqPhone = matchMedia('(max-width: 899px) and (min-height: 500px), (max-width: 559px)');
-const mqWide = matchMedia('(min-width: 1100px) and (min-height: 600px)');
+// Wide: laptops and desktops get the permanent news column beside the radar.
+const mqWide = matchMedia('(min-width: 960px) and (min-height: 560px)');
 let RM = mqRM.matches, PHONE = mqPhone.matches, WIDE = mqWide.matches && !PHONE;
 const onMq = (mq, fn) => (mq.addEventListener ? mq.addEventListener('change', fn) : mq.addListener(fn));
 onMq(mqRM, e => { RM = e.matches; });

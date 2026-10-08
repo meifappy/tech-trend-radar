@@ -18,6 +18,7 @@
   /* surfaces */
   --bg: #0b0b0d;
   --panel: rgb(22 22 25 / .95);
+  --panel-solid: #161619;
   --glass: rgb(36 36 40 / .62);
   --glass-strong: rgb(24 24 28 / .86);
   --fill-1: rgb(255 255 255 / .06);   /* resting fill of controls and rows */
@@ -115,7 +116,6 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .pillnew, .pillmove { flex: none; height: 20px; padding: 0 7px; border-radius: 10px; font: 700 var(--fs-cap)/20px var(--round); white-space: nowrap; }
 .pillnew { background: var(--orange); color: var(--orange-ink); }
 .pillhot { display: inline-block; flex: none; height: 18px; padding: 0 7px; border-radius: 9px; background: var(--t1); color: var(--ink); font: 700 11px/18px var(--round); white-space: nowrap; vertical-align: 1px; }
-.ni-b > .pillhot { display: block; width: fit-content; margin: 0 0 6px; }
 .dk-kick .pillhot, .bsrc .pillhot { margin-right: 6px; }
 .pillmove { background: var(--fill-2); color: var(--t1); }
 .chev { width: 16px; height: 16px; color: var(--t3); }
@@ -301,18 +301,6 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .tt b { display: block; font-weight: 600; letter-spacing: -.005em; }
 .tt small { display: block; font-size: var(--fs-foot); color: var(--t3); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 
-/* news items: orange dot = new for you; the headline is the link to the source (↗) */
-.news { display: flex; flex-direction: column; }
-.ni { position: relative; display: grid; grid-template-columns: 8px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--line); content-visibility: auto; contain-intrinsic-size: auto 80px; }
-.ni:first-child { border-top: 0; padding-top: 2px; }
-.nd { width: 7px; height: 7px; margin-top: 8px; border-radius: 50%; background: var(--orange); transition: transform .2s, opacity .2s; }
-.ni:not(.new) .nd { transform: scale(0); opacity: 0; }
-.ni-b { min-width: 0; }
-.ni-l { display: inline; font-size: var(--fs-body); font-weight: 600; line-height: 1.35; color: var(--t1); text-decoration: none; }
-a.ni-l:hover span { text-decoration: underline; text-underline-offset: 3px; }
-.ni-l .ic { width: 13px; height: 13px; margin-left: 4px; vertical-align: -1px; color: var(--t3); }
-.ni-b p { margin: 4px 0 0; font-size: var(--fs-sub); line-height: 1.45; color: var(--t2); }
-.ni-b small { margin-top: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; font-size: var(--fs-cap); color: var(--t3); }
 .day { margin: 0 0 4px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
 
 /* What experts say: the statement in reading text, the source as a link under it */
@@ -367,33 +355,57 @@ q.qt { quotes: "“" "”"; }
 .keys { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: auto 1fr; gap: 8px 14px; align-items: center; font-size: var(--fs-sub); color: var(--t2); }
 .keys kbd { justify-self: start; }
 
-/* home (wide screens): briefing entry */
-.brief-row { width: 100%; display: flex; align-items: center; gap: 14px; padding: 12px; border: 0; border-radius: 16px; background: var(--fill-1); text-align: left; cursor: pointer; transition: background .2s; }
-.brief-row:hover { background: var(--fill-2); }
-.brief-row .primary { width: 40px; height: 40px; }
-.brief-row b { display: block; font-weight: 600; }
-.brief-row small { display: block; font-size: var(--fs-foot); color: var(--t3); }
 
-/* Phone feed: one card per story; the publisher mark on the left, the headline links to the source (↗). */
+/* The news feed (phones and laptops). Card: publisher mark | labels, headline (tap to open), summary, source and date.
+   An open card shows key points and two ways on: the source (white button) or more on the trend. */
+.chips { position: sticky; top: -4px; z-index: 2; display: flex; gap: 6px; overflow-x: auto; margin: 0 -22px; padding: 8px 22px; background: linear-gradient(var(--panel-solid) 80%, transparent); scrollbar-width: none; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 16px; background: var(--fill-1); color: var(--t2); font-size: var(--fs-sub); font-weight: 600; cursor: pointer; transition: background .2s, color .2s; }
+.chip:hover { background: var(--fill-2); color: var(--t1); }
+.chip[aria-pressed="true"] { background: var(--t1); color: var(--ink); }
+.chip-play { display: inline-flex; align-items: center; gap: 6px; padding: 0 14px 0 10px; background: var(--fill-2); color: var(--t1); }
+.chip-play .ic { width: 14px; height: 14px; fill: currentColor; stroke: none; }
 .feed { display: flex; flex-direction: column; }
-.feed-h { margin: 18px 0 2px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
-.feed-h:first-child { margin-top: 0; }
-.fc { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); scroll-margin-top: 8px; content-visibility: auto; contain-intrinsic-size: auto 150px; }
-.feed-h + .fc { border-top: 0; }
+.feed-h { margin: 0 0 2px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
+.feed-left { font-weight: 400; font-variant-numeric: tabular-nums; }
+.uptodate { margin: 6px 0; padding: 14px 0; display: flex; align-items: center; gap: 10px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); color: var(--t2); font-size: var(--fs-sub); }
+.uptodate .ic { width: 18px; height: 18px; color: var(--t1); }
+.uptodate + .fc { border-top: 0; }
+.fc { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-top: 1px solid var(--line); scroll-margin-top: 48px; content-visibility: auto; contain-intrinsic-size: auto 140px; }
+.feed-h + .fc, .feed > .fc:first-child { border-top: 0; }
 .mark { width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center; background: var(--fill-1); color: var(--t2); font: 700 13px/1 var(--round); letter-spacing: -.01em; object-fit: cover; }
 .fc-b { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
 .fc-k { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.fc-k:empty { display: none; }
 .fc-k .link.sm { gap: 6px; }
 .fc-k .tdot { width: 7px; height: 7px; }
-.fc-t { display: block; margin: 0; font-size: var(--fs-lead); line-height: 1.32; font-weight: 600; letter-spacing: -.01em; color: var(--t1); text-decoration: none; text-wrap: pretty; }
-a.fc-t:active span { text-decoration: underline; }
-.fc-t .ic { width: 14px; height: 14px; margin-left: 4px; vertical-align: -1px; color: var(--t3); }
-.fc-p { margin: 0; font-size: var(--fs-body); line-height: 1.45; color: var(--t2); text-wrap: pretty; }
+.fc-t { display: block; width: 100%; margin: 0; padding: 0; border: 0; background: none; text-align: left; font-size: 16px; line-height: 1.32; font-weight: 600; letter-spacing: -.01em; color: var(--t1); text-wrap: pretty; cursor: pointer; }
+.fc-t:hover { text-decoration: underline; text-underline-offset: 3px; text-decoration-color: var(--t3); }
+.fc-p { margin: 0; font-size: var(--fs-sub); line-height: 1.45; color: var(--t2); text-wrap: pretty; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.fc.open .fc-p { display: block; -webkit-line-clamp: unset; }
 .fc-m { margin: 0; font-size: var(--fs-cap); color: var(--t3); }
+.fc-x { display: flex; flex-direction: column; gap: 12px; padding-top: 4px; animation: rise .22s var(--ease) both; }
+.pts { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: var(--fs-sub); line-height: 1.45; color: var(--t1); }
+.fc-a { display: flex; flex-wrap: wrap; gap: 8px; }
+.fc-a .btn { height: 36px; padding: 0 14px; font-size: var(--fs-sub); max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.fc-a .btn .ic { width: 15px; height: 15px; }
+.btn-w { background: var(--t1); color: var(--ink); text-decoration: none; }
+.btn-w:hover { background: #fff; }
 .feed-more { padding: 18px 0 8px; display: flex; flex-direction: column; gap: 10px; }
-.feed-more .skel { display: block; height: 14px; border-radius: 7px; background: linear-gradient(100deg, rgb(255 255 255 / .05) 30%, rgb(255 255 255 / .12) 50%, rgb(255 255 255 / .05) 70%) 0 0 / 220% 100%; animation: shim 1.4s linear infinite; }
+/* Static placeholder: an endless shimmer would repaint every frame while the end of the feed is far away. */
+.skel { display: block; height: 14px; border-radius: 7px; background: var(--fill-1); }
+.skel.short { width: 60%; }
 .feed-end { text-align: center; padding: 18px 0; }
-@keyframes shim { to { background-position: -220% 0; } }
+
+/* Trend pages end with the way on: the next trend. */
+.next-trend { width: 100%; display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-template-areas: "s c" "b c" "t c" "p c"; gap: 2px 12px; align-items: center; padding: 14px 16px; border: 0; border-radius: 16px; background: var(--fill-1); color: var(--t1); text-align: left; cursor: pointer; transition: background .2s; }
+.next-trend:hover { background: var(--fill-2); }
+.next-trend small { grid-area: s; font-size: var(--fs-cap); color: var(--t3); }
+.next-trend b { grid-area: b; display: flex; align-items: center; gap: 8px; font-size: var(--fs-body); font-weight: 600; }
+.next-trend span { grid-area: t; font-size: var(--fs-foot); color: var(--t2); }
+.next-trend em { grid-area: p; justify-self: start; margin-top: 6px; font-style: normal; }
+.next-trend .chev { grid-area: c; }
+.panel[data-page="trend"] .p-body { touch-action: pan-y; }
 
 /* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
 .dock { position: absolute; z-index: 4; left: 50%; bottom: 22px; width: min(640px, calc(100% - 32px)); translate: -50% 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
@@ -471,7 +483,7 @@ a.fc-t:active span { text-decoration: underline; }
   .rl { display: none; } /* too crowded at phone size; the trend page names the ring */
   .zoomui, .tip { display: none; }
 
-  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: #161619;
+  .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: var(--panel-solid);
     transform: translateY(calc(100% - var(--sh, 320px))); transition: transform .5s var(--spring), visibility .5s; }
   .app:not(.open) .panel { opacity: 1; transform: translateY(100%); }
   .panel.drag { transition: none; }
@@ -481,6 +493,8 @@ a.fc-t:active span { text-decoration: underline; }
   .p-head { min-height: 44px; padding-top: 2px; touch-action: none; }
   .p-body { padding: 2px 18px calc(var(--shpad, 0px) + 28px); gap: 24px; }
   .bslide { min-height: 0; }
+  .fc-t { font-size: 17px; }
+  .chips { margin: 0 -18px; padding: 8px 18px; }
 
   .dock { display: none; } /* phones read the news in the feed sheet instead */
   .toast { bottom: auto; top: 66px; transform: translateY(-14px); }
@@ -641,7 +655,8 @@ const ls = {
   set(k, v) { try { localStorage.setItem('ttr3.' + k, JSON.stringify(v)); return true; } catch (e) { return false; } }
 };
 const mqRM = matchMedia('(prefers-reduced-motion: reduce)'), mqPhone = matchMedia('(max-width: 899px) and (min-height: 500px), (max-width: 559px)');
-const mqWide = matchMedia('(min-width: 1100px) and (min-height: 600px)');
+// Wide: laptops and desktops get the permanent news column beside the radar.
+const mqWide = matchMedia('(min-width: 960px) and (min-height: 560px)');
 let RM = mqRM.matches, PHONE = mqPhone.matches, WIDE = mqWide.matches && !PHONE;
 const onMq = (mq, fn) => (mq.addEventListener ? mq.addEventListener('change', fn) : mq.addListener(fn));
 onMq(mqRM, e => { RM = e.matches; });
@@ -810,6 +825,12 @@ function derive() {
     if (h0) recent.set(t.id, { up: RO.indexOf(h0.ring) < RO.indexOf(h0.from), x: h0 });
   }
   D = { since: s, newBy: by, total, moved, recent };
+}
+// Seen while scrolling the feed: update counts and the radar, but leave the list as it is so nothing jumps.
+function markSeen(items) {
+  let ch = false;
+  for (const n of items) if (n._new && !Me.d.opened[n.id]) { Me.d.opened[n.id] = ts(n.seen) || ts(n.at) || Date.now(); ch = true; }
+  if (ch) { Me.save(); refresh(true); }
 }
 function markNews(items, force) {
   let ch = !!force;
@@ -1219,7 +1240,10 @@ function setQuad(q) {
   if (S.quad) camTo(AREAS[S.quad].cx * .9, AREAS[S.quad].cy * .9, PHONE ? 1.9 : 1.72);
   else camTo(0, 0, 1);
   $$('.quad').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.area === S.quad)));
-  if (cur().page === 'home') renderPanel(false);
+  // The feed follows the radar: zooming into an area filters the news to it.
+  if (AREAS[S.quad]) FEED.f = S.quad; else if (AREAS[FEED.f]) FEED.f = 'all';
+  FEED.n = 12;
+  if (cur().page === 'home') { P.body.scrollTop = 0; renderPanel(false); }
 }
 function setRing(r) {
   S.ring = S.ring === r ? null : r;
@@ -1292,12 +1316,13 @@ function maybeReveal() {
     knownNew = new Set(S.news.filter(n => n._new).map(n => n.id));
     paintRadar();
     setTimeout(() => { animateMoves(); sweepSync(); }, RM ? 0 : 650);
+    autoArm();
     return;
   }
-  const fresh = S.news.filter(n => n._new && !knownNew.has(n.id));
-  if (!fresh.length) return;
-  fresh.forEach(n => knownNew.add(n.id));
-  toast(plural(fresh.length, 'new update') + ' just arrived');
+  const arrived = S.news.filter(n => n._new && !knownNew.has(n.id));
+  if (!arrived.length) return;
+  arrived.forEach(n => knownNew.add(n.id));
+  toast(plural(arrived.length, 'new update') + ' just arrived');
 }
 
 // ---- 10-radar-input.js
@@ -1445,19 +1470,29 @@ const P = { el: $('#panel'), body: $('#p-body'), head: $('#p-head'), q: $('#q'),
 P.body.addEventListener('scroll', () => { P.scrolled = true; }, { passive: true });
 const cur = () => P.stack[P.stack.length - 1];
 const DET = { home: 'mid', trend: 'mid', news: 'full', about: 'full', search: 'full', brief: 'mid', list: 'full' };
+// Every page you open is a browser history entry, so Back (browser button, Android gesture, Esc) steps back
+// inside the radar instead of leaving it. Each entry remembers its scroll position.
 function nav(page, arg, mode) {
+  // Closing to the radar unwinds the history entries this visit added, so Back afterwards leaves cleanly.
+  if (page === 'home' && P.stack.length > 1 && histDepth() === P.stack.length) { try { history.go(1 - P.stack.length); return; } catch (e) { /* fall through */ } }
   const top = cur();
+  top.y = P.body.scrollTop;
   if (top.page === 'home' && page !== 'home') P.from = document.activeElement;
-  if (page === 'home') P.stack = [{ page: 'home' }];
+  let push = false;
+  if (page === 'home') P.stack = [P.stack[0].page === 'home' ? P.stack[0] : { page: 'home' }];
   else if (mode === 'replace' || (top.page === page && page !== 'trend')) P.stack[P.stack.length - 1] = { page, arg };
-  else if (!(top.page === page && top.arg === arg)) P.stack.push({ page, arg });
+  else if (!(top.page === page && top.arg === arg)) { P.stack.push({ page, arg }); push = true; }
   if (P.stack.length > 12) P.stack.splice(1, P.stack.length - 12);
   afterNav();
+  histSync(push);
 }
 function back() {
   if (cur().page === 'brief') { briefStop(); return; }
-  if (P.stack.length > 1) P.stack.pop();
+  if (P.stack.length < 2) return;
+  if (histDepth() === P.stack.length) { try { history.back(); return; } catch (e) { /* fall through */ } }
+  P.stack.pop();
   afterNav();
+  histSync(false);
 }
 function afterNav() {
   const c = cur();
@@ -1475,7 +1510,6 @@ function afterNav() {
   if (wasIn && !open) { const n = S.sel && RD.nodes.get(S.sel); const f = P.from && P.from.isConnected ? P.from : n ? n.el : $('#t-news'); f.focus({ preventScroll: true }); }
   renderPanel(true);
   paintRadar();
-  syncHash();
   if (PHONE) setCue(c.page === 'home' ? FEED.cue : null);
   else if (WIDE) setCue(null); // wide screens have no news bar, so nothing to cue
   else if (RD.dockDone) { setCue(c.page === 'home' ? RD.dockT : null); apArm(); } else renderDock();
@@ -1509,12 +1543,13 @@ function renderPanel(anim) {
     case 'list': kids = pageList(); break;
     case 'search': kids = pageSearch(); break;
     case 'brief': kids = pageBrief(); break;
-    default: kids = WIDE ? pageHome() : PHONE ? pageFeed() : [];
+    default: kids = WIDE || PHONE ? pageFeed() : [];
   }
   renderHead(c);
   put(body, kids);
+  if (anim && c.y) { body.scrollTop = c.y; P.scrolled = false; requestAnimationFrame(() => { body.scrollTop = c.y; }); }
   if (open) $$('details[data-k]', body).forEach(d => { if (open.has(d.dataset.k)) d.open = true; });
-  if (keep) body.scrollTop = keep; else if (anim && P.scrolled) body.scrollTop = 0;
+  if (keep) body.scrollTop = keep; else if (anim && P.scrolled && !c.y) body.scrollTop = 0;
   P.scrolled = false;
   // Restart the entrance animation without forcing a synchronous layout.
   body.classList.remove('enter');
@@ -1554,7 +1589,7 @@ function fold(k, title, count, ...content) {
 
 // ---- 12-pages.js
 /* Panel pages. Each returns a list of nodes; renderPanel() swaps them in. */
-// One reading flow, news first: title, latest news, what experts say, why it matters, sources, scope.
+// One reading flow, news first: title, latest news, what experts say, why it matters, sources, scope, next trend.
 function pageTrend(id) {
   const t = S.byId.get(id);
   if (!t) return [h('p', { class: 'muted', text: S.ok.trends ? 'This trend is no longer on the radar.' : 'Loading…' })];
@@ -1565,7 +1600,7 @@ function pageTrend(id) {
     h('p', { class: 'lead', text: t.line }),
     mv ? h('p', { class: 'moved' }, ic(RO.indexOf(mv.ring) < RO.indexOf(mv.from) ? 'i-in' : 'i-outward'), h('span', { text: 'Moved from ' + RINGS[mv.from].label + ' to ' + RINGS[t.ring].label + ', ' + when(mv.at) + '. ' + str(mv.note) })) : null)];
   out.push(section('Latest news', nNew ? nNew + ' new' : items.length ? String(items.length) : '',
-    items.length ? h('div', { class: 'news' }, (all ? items : items.slice(0, 4)).map(n => newsItem(n, false))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
+    items.length ? h('div', { class: 'feed' }, (all ? items : items.slice(0, 4)).map(n => feedCard(n, { chip: false }))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
     items.length > 4 && !all ? h('button', { class: 'link', type: 'button', onclick: () => { S.open.add('all:' + id); renderPanel(false); } }, 'Show all ' + items.length, ic('i-down')) : null));
   const ex = expertOf(t);
   if (ex.length) out.push(section('What experts say', null, h('ul', { class: 'quotes' }, ex.map(x => h('li', null,
@@ -1577,37 +1612,17 @@ function pageTrend(id) {
   const src = Array.isArray(t.sources) ? t.sources.filter(x => x && safeUrl(x.url)) : [];
   const refs = an.map(x => ({ url: x.url, text: x.by + ': ' + str(x.list) })).concat(src.map(x => ({ url: x.url, text: x.title || x.name }))).slice(0, 6);
   if (refs.length) out.push(section('Sources', null, h('ul', { class: 'refs' }, refs.map(r => h('li', null, linkOut(r.url, r.text))))));
-  out.push(h('p', { class: 'note' }, (t.scope ? 'Covers: ' + str(t.scope) + ' ' : '') + 'The rating is reviewed every quarter' + (validTo(t) ? ' and holds until ' + validTo(t) : '') + '. News is added every 12 hours.'));
+  out.push(h('p', { class: 'note' }, (t.scope ? 'Covers: ' + str(t.scope) + ' ' : '') + (validTo(t) ? 'Rating valid until ' + validTo(t) + '.' : '')));
+  const nx = S.trends.length > 1 ? nextTrend(t) : null;
+  if (nx) out.push(h('button', { class: 'next-trend c-' + nx.t.ring, type: 'button', onclick: () => openTrend(nx.t.id) },
+    h('small', { text: nx.news ? 'Next trend with news' : 'Next trend' }),
+    h('b', null, h('i', { class: 'tdot' }), nx.t.title),
+    h('span', { text: nx.t.line }),
+    D.newBy.get(nx.t.id) ? h('em', { class: 'pillnew', text: D.newBy.get(nx.t.id) + ' new' }) : null, ic('i-chev', 'chev')));
   return out;
 }
 
-function newsItem(n, showTrend) {
-  const t = S.byId.get(n.t), u = safeUrl(n.src.url);
-  const seen = () => { if (n._new) markNews([n]); };
-  const head = u ? h('a', { class: 'ni-l', href: u, target: '_blank', rel: 'noopener noreferrer', onclick: seen }, h('span', { text: n.title }), ic('i-out')) : h('span', { class: 'ni-l', text: n.title });
-  return h('article', { class: 'ni c-' + (t ? t.ring : 'watch') + (n._new ? ' new' : ''), 'data-id': n.id, onpointerenter: e => t && e.pointerType !== 'touch' && hover(t.id, 'panel'), onpointerleave: () => hover(null) },
-    h('i', { class: 'nd', title: 'New for you' }),
-    h('div', { class: 'ni-b' }, hotPill(n), head,
-      n.take ? h('p', { text: n.take }) : null,
-      h('small', null, [str(n.src.name), when(n.at)].filter(Boolean).join(', '),
-        showTrend && t ? h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, t.short || t.title) : null)));
-}
 
-function pageHome() {
-  const out = [];
-  const list = S.news.filter(n => S.byId.has(n.t) && !n.minor);
-  out.push(h('button', { class: 'brief-row', type: 'button', onclick: () => briefStart() },
-    h('span', { class: 'primary', 'aria-hidden': 'true' }, ic('i-play')),
-    h('span', null, h('b', { text: 'Play the news briefing' }), h('small', { text: D.total ? plural(D.total, 'story') .replace('storys', 'stories') + ' new for you' : 'The latest stories, trend by trend' }))));
-  if (!list.length) { out.push(h('p', { class: 'muted', text: S.ok.news ? 'No news yet. The radar scans every 12 hours.' : 'Loading…' })); return out; }
-  // Hot stories lead each group; otherwise newest first.
-  const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
-  const fresh = hotFirst(list.filter(n => n._new)), rest = hotFirst(list.filter(n => !n._new).slice(0, Math.max(0, 12 - fresh.length)));
-  if (fresh.length) out.push(section('New for you', String(fresh.length), h('div', { class: 'news' }, fresh.slice(0, 20).map(n => newsItem(n, true)))));
-  if (rest.length) out.push(section(fresh.length ? 'Earlier' : 'Latest', null, h('div', { class: 'news' }, rest.map(n => newsItem(n, true)))));
-  out.push(h('button', { class: 'link', type: 'button', onclick: () => nav('news') }, 'All news and archive', ic('i-chev')));
-  return out;
-}
 function pageList() {
   const out = [h('p', { class: 'muted', style: 'margin:0', text: 'The same ' + S.trends.length + ' trends as the radar, from act now to horizon.' })];
   for (const r of RO) {
@@ -1632,7 +1647,7 @@ function pageNews() {
   const byDay = list => {
     const groups = new Map();
     for (const n of list) { const b = bucket(n.at); if (!groups.has(b)) groups.set(b, []); groups.get(b).push(n); }
-    return [...groups].map(([b, items]) => h('div', null, h('h3', { class: 'day', text: b }), h('div', { class: 'news' }, items.map(n => newsItem(n, true)))));
+    return [...groups].map(([b, items]) => h('div', null, h('h3', { class: 'day', text: b }), h('div', { class: 'feed' }, items.map(n => feedCard(n)))));
   };
   if (S.newsTab === 'arch') return out.concat(pageArchive(byDay));
   const list = S.newsTab === 'you' ? S.news.filter(n => n._new) : S.news.filter(n => S.byId.has(n.t)).slice(0, 60);
@@ -1677,7 +1692,7 @@ function pageSearch() {
   const so = S.sources.filter(s => hit(s.name, s.focus)).slice(0, 6);
   const out = [];
   if (tr.length) out.push(section('Trends', String(tr.length), h('div', { class: 'rows' }, tr.map(t => trendRow(t, t.line)))));
-  if (nw.length) out.push(section('News', String(nw.length), h('div', { class: 'news' }, nw.map(n => newsItem(n, true)))));
+  if (nw.length) out.push(section('News', String(nw.length), h('div', { class: 'feed' }, nw.map(n => feedCard(n)))));
   if (so.length) out.push(section('Sources', String(so.length), h('ul', { class: 'slist' }, so.map(s => h('li', null, linkOut(s.url, s.name), h('small', { text: s.focus }))))));
   if (!tr.length && !nw.length && !so.length) out.push(h('p', { class: 'muted', text: 'Nothing matches “' + raw + '”.' }));
   return out;
@@ -1703,26 +1718,44 @@ function pageAbout() {
 }
 
 // ---- 12b-feed.js
-/* Phone home: an endless feed of story cards under the radar. New stories first (hot ones on top), then everything
-   recent, then older months from the archive as you keep scrolling. The card at the top of the view lights up its
-   trend on the radar, so the radar stays the entry point while you read. */
-const FEED = { n: 12, cue: null, obs: null, more: null };
+/* The news feed (phones and laptops): one card per story, endless, beside or under the radar.
+   Order: stories that were new when this visit started (hot ones first), a calm "up to date" divider, then older
+   stories, then earlier months from the archive as you keep scrolling. The order and the New labels stay put for
+   the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
+   radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
+const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
+const FILTERS = [['all', 'All'], ['hot', 'Hot'], ['pod', 'Podcasts'], ['ai', 'AI'], ['sec', 'Security'], ['cloud', 'Data'], ['sci', 'Frontier']];
+const stories = n => n + (n === 1 ? ' story' : ' stories');
+// New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
+const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
 
 function feedList() {
-  const ok = S.news.filter(n => S.byId.has(n.t) && !n.minor);
+  const f = FEED.f;
+  const ok = S.news.filter(n => {
+    const t = S.byId.get(n.t);
+    return t && !n.minor && (f === 'all' || (f === 'hot' ? isHot(n) : f === 'pod' ? n.kind === 'podcast' : t.area === f));
+  });
   const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
-  return hotFirst(ok.filter(n => n._new)).concat(ok.filter(n => !n._new));
+  return hotFirst(ok.filter(fresh)).concat(ok.filter(n => !fresh(n)));
 }
 const olderMonth = () => (S.meta && Array.isArray(S.meta.months) ? S.meta.months : []).filter(m => /^\d{4}-\d{2}$/.test(m) && !S.months[m]).sort().reverse()[0];
 
-// A source mark: the story's own image when the scan stored one, otherwise a quiet monogram of the publisher.
+// Filter chips and the radar's area buttons are one control: choosing an area zooms the radar and filters the feed.
+function setFilter(f) {
+  if (AREAS[f]) { setQuad(f); return; }
+  FEED.f = f;
+  FEED.n = 12;
+  if (S.quad) setQuad(null);
+  else { P.body.scrollTop = 0; renderPanel(false); }
+}
+
+// A source mark: the story's own preview image when the scan stored one, otherwise a quiet monogram.
 const MARKS = { 'Google DeepMind': 'GDM', 'Google Cloud': 'G', Microsoft: 'MS', McKinsey: 'McK', OpenAI: 'OAI', NVIDIA: 'NV', Anthropic: 'A', 'European Commission': 'EU', 'Stanford HAI': 'HAI', 'MIT Technology Review': 'TR', 'Harvard Business Review': 'HBR', 'Doppelgänger Tech Talk': 'DG' };
 function monogram(name) {
   name = str(name).replace(/\s*\(.*?\)\s*/g, ' ').trim();
   if (MARKS[name]) return MARKS[name];
   const first = name.split(/[\s,:/]+/)[0] || '?';
-  if (/^[A-Z0-9]{2,4}$/.test(first)) return first;
-  return first.charAt(0).toUpperCase();
+  return /^[A-Z0-9]{2,4}$/.test(first) ? first : first.charAt(0).toUpperCase();
 }
 function mark(n) {
   const mono = h('span', { class: 'mark', 'aria-hidden': 'true', text: monogram(n.src.name) });
@@ -1733,49 +1766,94 @@ function mark(n) {
   return img;
 }
 
-function feedCard(n) {
-  const t = S.byId.get(n.t), u = safeUrl(n.src.url);
-  const seen = () => { if (n._new) markNews([n]); };
-  return h('article', { class: 'fc c-' + t.ring + (n._new ? ' new' : ''), 'data-t': t.id },
+function feedCard(n, opts) {
+  const t = S.byId.get(n.t) || S.byId.get(n.t2);
+  if (!t) return null;
+  const isNew = fresh(n), chip = !(opts && opts.chip === false);
+  const card = h('article', { class: 'fc c-' + t.ring + (isNew ? ' new' : ''), 'data-id': n.id, 'data-t': t.id,
+    onpointerenter: e => e.pointerType !== 'touch' && hover(t.id, 'panel'), onpointerleave: () => hover(null) },
     mark(n),
     h('div', { class: 'fc-b' },
       h('p', { class: 'fc-k' },
-        n._new ? h('span', { class: 'pillnew', text: 'New' }) : null, hotPill(n),
-        h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot' }), t.short || t.title)),
-      u ? h('a', { class: 'fc-t', href: u, target: '_blank', rel: 'noopener noreferrer', onclick: seen }, h('span', { text: n.title }), ic('i-out'))
-        : h('p', { class: 'fc-t', text: n.title }),
+        isNew ? h('span', { class: 'pillnew', text: 'New' }) : null, hotPill(n),
+        chip ? h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot' }), t.short || t.title) : null),
+      h('button', { class: 'fc-t', type: 'button', 'aria-expanded': 'false', onclick: () => toggleCard(card, n) }, n.title),
       n.take ? h('p', { class: 'fc-p', text: n.take }) : null,
       h('p', { class: 'fc-m', text: [str(n.src.name), when(n.at)].filter(Boolean).join(', ') })));
+  return card;
+}
+// Quick view: key points and the two ways on (the source, or more on the trend) without leaving the feed.
+function toggleCard(card, n) {
+  const opening = !card.classList.contains('open');
+  if (FEED.openEl && FEED.openEl !== card) closeCard(FEED.openEl);
+  if (!opening) { closeCard(card); return; }
+  const t = S.byId.get(n.t) || S.byId.get(n.t2), u = safeUrl(n.src.url), more = (S.byT.get(t.id) || []).filter(x => x.id !== n.id).length;
+  const src = str(n.src.name).replace(/\s*\(.*?\)\s*/g, ' ').trim();
+  const pts = Array.isArray(n.points) ? n.points.filter(Boolean).slice(0, 3) : [];
+  card.classList.add('open');
+  $('.fc-t', card).setAttribute('aria-expanded', 'true');
+  $('.fc-b', card).append(h('div', { class: 'fc-x' },
+    pts.length ? h('ul', { class: 'pts' }, pts.map(p => h('li', { text: p }))) : null,
+    h('div', { class: 'fc-a' },
+      u ? h('a', { class: 'btn btn-w', href: u, target: '_blank', rel: 'noopener noreferrer' }, src && src.length <= 18 ? 'Read at ' + src : 'Read the source', ic('i-out')) : null,
+      h('button', { class: 'btn', type: 'button', onclick: () => openTrend(t.id) }, more ? stories(more) + ' more on ' + (t.short || t.title) : (t.short || t.title), ic('i-chev')))));
+  FEED.openEl = card;
+  markSeen([n]);
+}
+function closeCard(card) {
+  card.classList.remove('open');
+  const x = $('.fc-x', card);
+  if (x) x.remove();
+  $('.fc-t', card).setAttribute('aria-expanded', 'false');
+  if (FEED.openEl === card) FEED.openEl = null;
 }
 
+function feedLeft() { return feedList().filter(n => fresh(n) && n._new).length; }
+function feedCount() { const el = $('.feed-left', P.body); if (el) el.textContent = feedLeft() ? feedLeft() + ' unread' : 'All read'; }
+
 function pageFeed() {
-  const list = feedList(), shown = list.slice(0, FEED.n), fresh = list.filter(n => n._new).length;
+  const list = feedList(), shown = list.slice(0, FEED.n), nFresh = list.filter(fresh).length;
+  const out = [];
+  // One row: play the one-minute briefing, then the filters. Keeps the first story above the fold on phones.
+  out.push(h('div', { class: 'chips', role: 'toolbar', 'aria-label': 'Briefing and news filters' },
+    h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
+    FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l))));
   const cards = [];
   shown.forEach((n, i) => {
-    if (i === 0) cards.push(h('h2', { class: 'feed-h', text: fresh ? plural(fresh, 'new story').replace('storys', 'stories') + ' for you' : 'Latest' }));
-    if (fresh && i === fresh) cards.push(h('h2', { class: 'feed-h', text: 'Earlier' }));
+    if (i === 0) cards.push(nFresh
+      ? h('h2', { class: 'feed-h' }, h('span', { text: 'New for you' }), h('span', { class: 'feed-left', 'aria-live': 'polite', text: feedLeft() ? feedLeft() + ' unread' : 'All read' }))
+      : h('h2', { class: 'feed-h' }, h('span', { text: 'Latest' })));
+    if (nFresh && i === nFresh) cards.push(h('div', { class: 'uptodate' }, ic('i-check'), h('span', { text: 'You are up to date' })));
     cards.push(feedCard(n));
   });
   const end = shown.length < list.length || olderMonth()
-    ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }))
-    : h('p', { class: 'muted feed-end', text: list.length ? 'That is everything in the archive.' : S.ok.news ? 'No news yet. The radar scans every 12 hours.' : 'Loading…' });
+    ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
+    : h('p', { class: 'muted feed-end', text: list.length ? 'That is everything in the archive.' : S.ok.news ? 'No stories match this filter.' : 'Loading…' });
+  out.push(h('div', { class: 'feed' }, cards), end);
   requestAnimationFrame(feedObserve);
-  return [
-    h('button', { class: 'brief-row', type: 'button', onclick: () => briefStart() },
-      h('span', { class: 'primary', 'aria-hidden': 'true' }, ic('i-play')),
-      h('span', null, h('b', { text: 'Play the news briefing' }), h('small', { text: 'One minute, trend by trend' }))),
-    h('div', { class: 'feed' }, cards), end];
+  return out;
 }
 
-// Grow the feed when its end comes into view, and cue the radar on the card nearest the top.
+// Observers: grow the feed near its end, cue the radar on the story at the top, and count a new story as seen
+// once at least 60% of it has been on screen for 1.5 seconds.
 function feedObserve() {
-  if (FEED.obs) FEED.obs.disconnect();
-  if (FEED.more) FEED.more.disconnect();
-  if (!PHONE || cur().page !== 'home' || typeof IntersectionObserver !== 'function') return;
+  [FEED.obs, FEED.more, FEED.dwell].forEach(o => o && o.disconnect());
+  FEED.timers.forEach(clearTimeout);
+  FEED.timers.clear();
+  if (!(PHONE || WIDE) || cur().page !== 'home' || typeof IntersectionObserver !== 'function') return;
+  const byId = new Map(S.news.map(n => [n.id, n]));
   FEED.obs = new IntersectionObserver(entries => {
-    for (const e of entries) if (e.isIntersecting && e.target.dataset.t && FEED.cue !== e.target.dataset.t) { FEED.cue = e.target.dataset.t; setCue(FEED.cue); }
-  }, { root: P.body, rootMargin: '0px 0px -65% 0px' });
-  $$('.fc', P.body).forEach(c => FEED.obs.observe(c));
+    for (const e of entries) if (e.isIntersecting && FEED.cue !== e.target.dataset.t) { FEED.cue = e.target.dataset.t; if (!B.on) setCue(FEED.cue); }
+  }, { root: P.body, rootMargin: '0px 0px -50% 0px' });
+  FEED.dwell = new IntersectionObserver(entries => {
+    for (const e of entries) {
+      const id = e.target.dataset.id;
+      if (e.isIntersecting && e.intersectionRatio >= .6) {
+        if (!FEED.timers.has(id)) FEED.timers.set(id, setTimeout(() => { FEED.timers.delete(id); const n = byId.get(id); if (n && n._new) markSeen([n]); }, 1500));
+      } else if (FEED.timers.has(id)) { clearTimeout(FEED.timers.get(id)); FEED.timers.delete(id); }
+    }
+  }, { root: P.body, threshold: [0, .6] });
+  $$('.fc', P.body).forEach(c => { FEED.obs.observe(c); if (c.classList.contains('new')) FEED.dwell.observe(c); });
   const more = $('#feed-more', P.body);
   if (!more) return;
   FEED.more = new IntersectionObserver(entries => {
@@ -1784,6 +1862,25 @@ function feedObserve() {
     if (FEED.n < feedList().length) { FEED.n += 12; renderPanel(false); } else { const m = olderMonth(); if (m) loadMonth(m); }
   }, { root: P.body, rootMargin: '400px 0px' });
   FEED.more.observe(more);
+}
+
+// Keyboard: j and k move story by story, Enter opens the quick view (the focused headline is a button).
+function feedStep(d) {
+  const cards = $$('.fc', P.body);
+  if (!cards.length) return;
+  const at = document.activeElement && document.activeElement.closest && document.activeElement.closest('.fc');
+  let i = at ? cards.indexOf(at) : -1;
+  if (i < 0) { const top = P.body.getBoundingClientRect().top; i = cards.findIndex(c => c.getBoundingClientRect().bottom > top + 8) - (d > 0 ? 1 : 0); }
+  const next = cards[clamp(i + d, 0, cards.length - 1)];
+  $('.fc-t', next).focus({ preventScroll: true });
+  next.scrollIntoView({ block: 'start', behavior: RM ? 'auto' : 'smooth' });
+}
+
+// The next trend to read: the next one in radar order with unread news, else simply the next one.
+function nextTrend(t) {
+  const L = S.trends, i = L.indexOf(t);
+  for (let k = 1; k < L.length; k++) { const c = L[(i + k) % L.length]; if (D.newBy.get(c.id)) return { t: c, news: true }; }
+  return { t: L[(i + 1) % L.length], news: false };
 }
 
 // ---- 13-briefing.js
@@ -1818,6 +1915,7 @@ function briefStart() {
 function briefStop(quiet) {
   if (!B.on) return;
   B.on = false;
+  B.auto = false;
   B.playing = false;
   if (B.anim) B.anim.cancel();
   B.anim = null;
@@ -1829,7 +1927,7 @@ function briefStop(quiet) {
 }
 function showSlide(i) {
   if (!B.on) return;
-  if (i >= B.slides.length) { briefStop(); toast('Briefing done'); return; }
+  if (i >= B.slides.length) { briefStop(); toast('Briefing done. The feed continues where you left off.'); return; }
   if (!B.slides.length) { briefStop(); return; }
   B.i = clamp(i, 0, B.slides.length - 1);
   const s = B.slides[B.i], n = s.t && RD.nodes.get(s.t.id);
@@ -1860,7 +1958,7 @@ function pageBrief() {
   if (!B.on || !s) return [h('p', { class: 'muted', text: 'The briefing has ended.' })];
   const segs = h('div', { class: 'bseg' }, B.slides.map((x, i) => h('button', { type: 'button', class: i < B.i ? 'sd' : i === B.i ? 'sc' : '', 'aria-label': (x.t.short || x.t.title) + ', stop ' + (i + 1) + ' of ' + B.slides.length, onclick: () => showSlide(i) }, h('span', null, h('i')))));
   const slide = h('div', { class: 'bslide c-' + s.t.ring },
-    h('p', { class: 'bscope', text: 'Stop ' + (B.i + 1) + ' of ' + B.slides.length + ', news ' + B.scope }),
+    h('p', { class: 'bscope', text: (B.auto ? 'Auto-play. ' : '') + 'Stop ' + (B.i + 1) + ' of ' + B.slides.length + ', news ' + B.scope }),
     h('button', { class: 'bkick', type: 'button', onclick: () => openTrend(s.t.id) }, h('i'), s.t.title, h('small', { text: RINGS[s.t.ring].label })),
     s.items.map(n => { const u = safeUrl(n.src.url); return h('article', { class: 'bitem' },
       h('h2', { class: 'btitle' }, u ? h('a', { href: u, target: '_blank', rel: 'noopener noreferrer' }, n.title) : n.title),
@@ -1874,6 +1972,24 @@ function pageBrief() {
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Next stop', onclick: () => showSlide(B.i + 1) }, ic('i-chev')));
   return [segs, slide, ctl];
 }
+
+// Laptops: if a visitor has not touched anything 10 seconds after the radar appears, the briefing starts by itself
+// (once per visit). Any click, key, scroll or touch before that cancels it for the visit. It never starts with
+// reduced motion or when motion is paused, and it can be paused or closed like any briefing (WCAG 2.2.2).
+const AUTO = { t: 0, off: false };
+function autoArm() {
+  clearTimeout(AUTO.t);
+  if (AUTO.off || !WIDE || RM || !MO.on) return;
+  AUTO.t = setTimeout(() => {
+    if (AUTO.off || document.hidden || B.on || cur().page !== 'home' || !WIDE) return;
+    AUTO.off = true;
+    briefStart();
+    if (B.on) { B.auto = true; renderPanel(false); }
+  }, 10000);
+}
+const autoCancel = () => { if (!AUTO.off) { AUTO.off = true; clearTimeout(AUTO.t); } };
+['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, autoCancel, { capture: true, passive: true }));
+P.body.addEventListener('scroll', () => { if (P.scrolled) autoCancel(); }, { passive: true });
 
 // ---- 14-dock.js
 /* The floating news bar on the radar (hidden on wide screens), its autoplay and swipe gestures. */
@@ -1986,6 +2102,8 @@ function swipe(el, target, fn) {
 }
 swipe($('#dock'), '.dk-body', d => dockGo(d));
 swipe(P.body, '.bslide', d => { if (B.on && cur().page === 'brief') showSlide(B.i + d); });
+// Trend pages: swipe sideways to the neighbouring trend, like flipping stories.
+swipe(P.body, '.thead', d => { if (cur().page === 'trend') step(d); });
 $('#t-search').addEventListener('click', () => focusSearch());
 $('#t-news').addEventListener('click', () => nav('news'));
 $('#t-info').addEventListener('click', () => nav('about'));
@@ -2079,13 +2197,23 @@ function paintChrome() {
 }
 let toastT = 0;
 function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), 2600); }
-let hashT = 0;
-function syncHash() { clearTimeout(hashT); hashT = setTimeout(syncHashNow, 250); }
-function syncHashNow() {
-  const c = cur(), want = c.page === 'trend' ? '#t-' + c.arg : /^(news|about|list)$/.test(c.page) ? '#' + c.page : '';
-  if ((location.hash || '') === want) return;
-  try { history.replaceState(null, '', want || location.pathname + location.search); } catch (e) { /* hash sync is optional */ }
+// History: state.ttr is the depth of the panel stack for that entry. Runs inside iframes and sandboxes too;
+// if the History API is unavailable, navigation simply stays inside the page.
+const hashFor = c => (c.page === 'trend' ? '#t-' + c.arg : /^(news|about|list)$/.test(c.page) ? '#' + c.page : '');
+const histDepth = () => { try { return (history.state && history.state.ttr) || 0; } catch (e) { return 0; } };
+let popping = false;
+function histSync(push) {
+  const url = hashFor(cur()) || location.pathname + location.search;
+  try { history[push ? 'pushState' : 'replaceState']({ ttr: P.stack.length }, '', url); } catch (e) { /* optional */ }
 }
+addEventListener('popstate', e => {
+  const d = e.state && e.state.ttr;
+  popping = true;
+  setTimeout(() => { popping = false; }, 0);
+  if (!d) { wanted = readHash(); if (wanted) useWanted(); else if (P.stack.length > 1) { P.stack.length = 1; afterNav(); } return; }
+  if (d < P.stack.length) { P.stack.length = d; afterNav(); return; }
+  if (d > P.stack.length) { const w = readHash(); if (w && (w.page !== 'trend' || S.byId.has(w.arg))) { P.stack.push(w); afterNav(); } }
+});
 function readHash() {
   let x = '';
   try { x = decodeURIComponent((location.hash || '').slice(1)); } catch (e) { x = ''; }
@@ -2099,7 +2227,7 @@ function useWanted() {
   wanted = null;
   if (w.page === 'trend') { if (S.byId.has(w.arg)) openTrend(w.arg, false); } else nav(w.page);
 }
-addEventListener('hashchange', () => { wanted = readHash(); useWanted(); });
+addEventListener('hashchange', () => { if (popping) return; wanted = readHash(); useWanted(); });
 
 function focusSearch() { nav('search'); P.q.select(); }
 P.q.addEventListener('input', () => {
@@ -2109,7 +2237,7 @@ P.q.addEventListener('input', () => {
 });
 P.q.addEventListener('focus', () => { if (PHONE) sheetTo('full'); });
 P.q.addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.preventDefault(); const first = $('.trow, .ni-l', P.body); if (first) first.focus(); }
+  if (e.key === 'Enter') { e.preventDefault(); const first = $('.trow, .fc-t', P.body); if (first) first.focus(); }
 });
 document.addEventListener('keydown', e => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '');
@@ -2134,6 +2262,7 @@ document.addEventListener('keydown', e => {
   if (cur().page === 'trend' && !onBlip && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1); return; }
   if (cur().page === 'home' && !onBlip && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { e.preventDefault(); const l = dockList(); if (l.length) dockGo(e.key === 'ArrowRight' ? 1 : -1); return; }
   if (e.key === '/') { e.preventDefault(); focusSearch(); }
+  else if ((e.key === 'j' || e.key === 'k') && cur().page === 'home' && (PHONE || WIDE)) { e.preventDefault(); feedStep(e.key === 'j' ? 1 : -1); }
   else if (e.key === 'b') briefStart();
   else if (e.key === 'n') nav('news');
   else if (e.key === 'l') nav('list');
@@ -2159,8 +2288,10 @@ function refresh(soft) {
     paintRadar();
     paintChrome();
     renderDock('quiet');
-    const pg = cur().page;
-    if (pg === 'home' || (hard && pg !== 'brief')) renderPanel(false);
+    const pg = cur().page, feed = pg === 'home' && (PHONE || WIDE);
+    // The feed is only rebuilt for new data; reading (soft refresh) just updates its unread count.
+    if (feed) { if (hard) renderPanel(false); else feedCount(); }
+    else if (pg === 'home' || (hard && pg !== 'brief')) renderPanel(false);
   });
 }
 function layoutAll() {
@@ -2244,6 +2375,7 @@ async function start() {
   buildBands();
   layoutAll();
   afterNav();
+  histSync(false);
   paintChrome();
   let use = await getUse(8);
   if (!use) {

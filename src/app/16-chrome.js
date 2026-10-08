@@ -7,13 +7,23 @@ function paintChrome() {
 }
 let toastT = 0;
 function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), 2600); }
-let hashT = 0;
-function syncHash() { clearTimeout(hashT); hashT = setTimeout(syncHashNow, 250); }
-function syncHashNow() {
-  const c = cur(), want = c.page === 'trend' ? '#t-' + c.arg : /^(news|about|list)$/.test(c.page) ? '#' + c.page : '';
-  if ((location.hash || '') === want) return;
-  try { history.replaceState(null, '', want || location.pathname + location.search); } catch (e) { /* hash sync is optional */ }
+// History: state.ttr is the depth of the panel stack for that entry. Runs inside iframes and sandboxes too;
+// if the History API is unavailable, navigation simply stays inside the page.
+const hashFor = c => (c.page === 'trend' ? '#t-' + c.arg : /^(news|about|list)$/.test(c.page) ? '#' + c.page : '');
+const histDepth = () => { try { return (history.state && history.state.ttr) || 0; } catch (e) { return 0; } };
+let popping = false;
+function histSync(push) {
+  const url = hashFor(cur()) || location.pathname + location.search;
+  try { history[push ? 'pushState' : 'replaceState']({ ttr: P.stack.length }, '', url); } catch (e) { /* optional */ }
 }
+addEventListener('popstate', e => {
+  const d = e.state && e.state.ttr;
+  popping = true;
+  setTimeout(() => { popping = false; }, 0);
+  if (!d) { wanted = readHash(); if (wanted) useWanted(); else if (P.stack.length > 1) { P.stack.length = 1; afterNav(); } return; }
+  if (d < P.stack.length) { P.stack.length = d; afterNav(); return; }
+  if (d > P.stack.length) { const w = readHash(); if (w && (w.page !== 'trend' || S.byId.has(w.arg))) { P.stack.push(w); afterNav(); } }
+});
 function readHash() {
   let x = '';
   try { x = decodeURIComponent((location.hash || '').slice(1)); } catch (e) { x = ''; }
@@ -27,7 +37,7 @@ function useWanted() {
   wanted = null;
   if (w.page === 'trend') { if (S.byId.has(w.arg)) openTrend(w.arg, false); } else nav(w.page);
 }
-addEventListener('hashchange', () => { wanted = readHash(); useWanted(); });
+addEventListener('hashchange', () => { if (popping) return; wanted = readHash(); useWanted(); });
 
 function focusSearch() { nav('search'); P.q.select(); }
 P.q.addEventListener('input', () => {
@@ -37,7 +47,7 @@ P.q.addEventListener('input', () => {
 });
 P.q.addEventListener('focus', () => { if (PHONE) sheetTo('full'); });
 P.q.addEventListener('keydown', e => {
-  if (e.key === 'Enter') { e.preventDefault(); const first = $('.trow, .ni-l', P.body); if (first) first.focus(); }
+  if (e.key === 'Enter') { e.preventDefault(); const first = $('.trow, .fc-t', P.body); if (first) first.focus(); }
 });
 document.addEventListener('keydown', e => {
   const typing = /^(INPUT|TEXTAREA|SELECT)$/.test((e.target && e.target.tagName) || '');
@@ -62,6 +72,7 @@ document.addEventListener('keydown', e => {
   if (cur().page === 'trend' && !onBlip && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { e.preventDefault(); step(e.key === 'ArrowRight' ? 1 : -1); return; }
   if (cur().page === 'home' && !onBlip && (e.key === 'ArrowRight' || e.key === 'ArrowLeft')) { e.preventDefault(); const l = dockList(); if (l.length) dockGo(e.key === 'ArrowRight' ? 1 : -1); return; }
   if (e.key === '/') { e.preventDefault(); focusSearch(); }
+  else if ((e.key === 'j' || e.key === 'k') && cur().page === 'home' && (PHONE || WIDE)) { e.preventDefault(); feedStep(e.key === 'j' ? 1 : -1); }
   else if (e.key === 'b') briefStart();
   else if (e.key === 'n') nav('news');
   else if (e.key === 'l') nav('list');

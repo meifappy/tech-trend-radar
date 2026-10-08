@@ -46,7 +46,6 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .pillnew, .pillmove { flex: none; height: 20px; padding: 0 7px; border-radius: 10px; font: 700 var(--fs-cap)/20px var(--round); white-space: nowrap; }
 .pillnew { background: var(--orange); color: var(--orange-ink); }
 .pillhot { display: inline-block; flex: none; height: 18px; padding: 0 7px; border-radius: 9px; background: var(--t1); color: var(--ink); font: 700 11px/18px var(--round); white-space: nowrap; vertical-align: 1px; }
-.ni-b > .pillhot { display: block; width: fit-content; margin: 0 0 6px; }
 .dk-kick .pillhot, .bsrc .pillhot { margin-right: 6px; }
 .pillmove { background: var(--fill-2); color: var(--t1); }
 .chev { width: 16px; height: 16px; color: var(--t3); }

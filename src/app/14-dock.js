@@ -108,6 +108,8 @@ function swipe(el, target, fn) {
 }
 swipe($('#dock'), '.dk-body', d => dockGo(d));
 swipe(P.body, '.bslide', d => { if (B.on && cur().page === 'brief') showSlide(B.i + d); });
+// Trend pages: swipe sideways to the neighbouring trend, like flipping stories.
+swipe(P.body, '.thead', d => { if (cur().page === 'trend') step(d); });
 $('#t-search').addEventListener('click', () => focusSearch());
 $('#t-news').addEventListener('click', () => nav('news'));
 $('#t-info').addEventListener('click', () => nav('about'));

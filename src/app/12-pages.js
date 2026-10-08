@@ -1,5 +1,5 @@
 /* Panel pages. Each returns a list of nodes; renderPanel() swaps them in. */
-// One reading flow, news first: title, latest news, what experts say, why it matters, sources, scope.
+// One reading flow, news first: title, latest news, what experts say, why it matters, sources, scope, next trend.
 function pageTrend(id) {
   const t = S.byId.get(id);
   if (!t) return [h('p', { class: 'muted', text: S.ok.trends ? 'This trend is no longer on the radar.' : 'Loading…' })];
@@ -10,7 +10,7 @@ function pageTrend(id) {
     h('p', { class: 'lead', text: t.line }),
     mv ? h('p', { class: 'moved' }, ic(RO.indexOf(mv.ring) < RO.indexOf(mv.from) ? 'i-in' : 'i-outward'), h('span', { text: 'Moved from ' + RINGS[mv.from].label + ' to ' + RINGS[t.ring].label + ', ' + when(mv.at) + '. ' + str(mv.note) })) : null)];
   out.push(section('Latest news', nNew ? nNew + ' new' : items.length ? String(items.length) : '',
-    items.length ? h('div', { class: 'news' }, (all ? items : items.slice(0, 4)).map(n => newsItem(n, false))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
+    items.length ? h('div', { class: 'feed' }, (all ? items : items.slice(0, 4)).map(n => feedCard(n, { chip: false }))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
     items.length > 4 && !all ? h('button', { class: 'link', type: 'button', onclick: () => { S.open.add('all:' + id); renderPanel(false); } }, 'Show all ' + items.length, ic('i-down')) : null));
   const ex = expertOf(t);
   if (ex.length) out.push(section('What experts say', null, h('ul', { class: 'quotes' }, ex.map(x => h('li', null,
@@ -22,37 +22,17 @@ function pageTrend(id) {
   const src = Array.isArray(t.sources) ? t.sources.filter(x => x && safeUrl(x.url)) : [];
   const refs = an.map(x => ({ url: x.url, text: x.by + ': ' + str(x.list) })).concat(src.map(x => ({ url: x.url, text: x.title || x.name }))).slice(0, 6);
   if (refs.length) out.push(section('Sources', null, h('ul', { class: 'refs' }, refs.map(r => h('li', null, linkOut(r.url, r.text))))));
-  out.push(h('p', { class: 'note' }, (t.scope ? 'Covers: ' + str(t.scope) + ' ' : '') + 'The rating is reviewed every quarter' + (validTo(t) ? ' and holds until ' + validTo(t) : '') + '. News is added every 12 hours.'));
+  out.push(h('p', { class: 'note' }, (t.scope ? 'Covers: ' + str(t.scope) + ' ' : '') + (validTo(t) ? 'Rating valid until ' + validTo(t) + '.' : '')));
+  const nx = S.trends.length > 1 ? nextTrend(t) : null;
+  if (nx) out.push(h('button', { class: 'next-trend c-' + nx.t.ring, type: 'button', onclick: () => openTrend(nx.t.id) },
+    h('small', { text: nx.news ? 'Next trend with news' : 'Next trend' }),
+    h('b', null, h('i', { class: 'tdot' }), nx.t.title),
+    h('span', { text: nx.t.line }),
+    D.newBy.get(nx.t.id) ? h('em', { class: 'pillnew', text: D.newBy.get(nx.t.id) + ' new' }) : null, ic('i-chev', 'chev')));
   return out;
 }
 
-function newsItem(n, showTrend) {
-  const t = S.byId.get(n.t), u = safeUrl(n.src.url);
-  const seen = () => { if (n._new) markNews([n]); };
-  const head = u ? h('a', { class: 'ni-l', href: u, target: '_blank', rel: 'noopener noreferrer', onclick: seen }, h('span', { text: n.title }), ic('i-out')) : h('span', { class: 'ni-l', text: n.title });
-  return h('article', { class: 'ni c-' + (t ? t.ring : 'watch') + (n._new ? ' new' : ''), 'data-id': n.id, onpointerenter: e => t && e.pointerType !== 'touch' && hover(t.id, 'panel'), onpointerleave: () => hover(null) },
-    h('i', { class: 'nd', title: 'New for you' }),
-    h('div', { class: 'ni-b' }, hotPill(n), head,
-      n.take ? h('p', { text: n.take }) : null,
-      h('small', null, [str(n.src.name), when(n.at)].filter(Boolean).join(', '),
-        showTrend && t ? h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, t.short || t.title) : null)));
-}
 
-function pageHome() {
-  const out = [];
-  const list = S.news.filter(n => S.byId.has(n.t) && !n.minor);
-  out.push(h('button', { class: 'brief-row', type: 'button', onclick: () => briefStart() },
-    h('span', { class: 'primary', 'aria-hidden': 'true' }, ic('i-play')),
-    h('span', null, h('b', { text: 'Play the news briefing' }), h('small', { text: D.total ? plural(D.total, 'story') .replace('storys', 'stories') + ' new for you' : 'The latest stories, trend by trend' }))));
-  if (!list.length) { out.push(h('p', { class: 'muted', text: S.ok.news ? 'No news yet. The radar scans every 12 hours.' : 'Loading…' })); return out; }
-  // Hot stories lead each group; otherwise newest first.
-  const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
-  const fresh = hotFirst(list.filter(n => n._new)), rest = hotFirst(list.filter(n => !n._new).slice(0, Math.max(0, 12 - fresh.length)));
-  if (fresh.length) out.push(section('New for you', String(fresh.length), h('div', { class: 'news' }, fresh.slice(0, 20).map(n => newsItem(n, true)))));
-  if (rest.length) out.push(section(fresh.length ? 'Earlier' : 'Latest', null, h('div', { class: 'news' }, rest.map(n => newsItem(n, true)))));
-  out.push(h('button', { class: 'link', type: 'button', onclick: () => nav('news') }, 'All news and archive', ic('i-chev')));
-  return out;
-}
 function pageList() {
   const out = [h('p', { class: 'muted', style: 'margin:0', text: 'The same ' + S.trends.length + ' trends as the radar, from act now to horizon.' })];
   for (const r of RO) {
@@ -77,7 +57,7 @@ function pageNews() {
   const byDay = list => {
     const groups = new Map();
     for (const n of list) { const b = bucket(n.at); if (!groups.has(b)) groups.set(b, []); groups.get(b).push(n); }
-    return [...groups].map(([b, items]) => h('div', null, h('h3', { class: 'day', text: b }), h('div', { class: 'news' }, items.map(n => newsItem(n, true)))));
+    return [...groups].map(([b, items]) => h('div', null, h('h3', { class: 'day', text: b }), h('div', { class: 'feed' }, items.map(n => feedCard(n)))));
   };
   if (S.newsTab === 'arch') return out.concat(pageArchive(byDay));
   const list = S.newsTab === 'you' ? S.news.filter(n => n._new) : S.news.filter(n => S.byId.has(n.t)).slice(0, 60);
@@ -122,7 +102,7 @@ function pageSearch() {
   const so = S.sources.filter(s => hit(s.name, s.focus)).slice(0, 6);
   const out = [];
   if (tr.length) out.push(section('Trends', String(tr.length), h('div', { class: 'rows' }, tr.map(t => trendRow(t, t.line)))));
-  if (nw.length) out.push(section('News', String(nw.length), h('div', { class: 'news' }, nw.map(n => newsItem(n, true)))));
+  if (nw.length) out.push(section('News', String(nw.length), h('div', { class: 'feed' }, nw.map(n => feedCard(n)))));
   if (so.length) out.push(section('Sources', String(so.length), h('ul', { class: 'slist' }, so.map(s => h('li', null, linkOut(s.url, s.name), h('small', { text: s.focus }))))));
   if (!tr.length && !nw.length && !so.length) out.push(h('p', { class: 'muted', text: 'Nothing matches “' + raw + '”.' }));
   return out;

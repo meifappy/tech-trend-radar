@@ -7,6 +7,7 @@
   /* surfaces */
   --bg: #0b0b0d;
   --panel: rgb(22 22 25 / .95);
+  --panel-solid: #161619;
   --glass: rgb(36 36 40 / .62);
   --glass-strong: rgb(24 24 28 / .86);
   --fill-1: rgb(255 255 255 / .06);   /* resting fill of controls and rows */

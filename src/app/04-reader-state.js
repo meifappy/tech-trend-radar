@@ -82,6 +82,12 @@ function derive() {
   }
   D = { since: s, newBy: by, total, moved, recent };
 }
+// Seen while scrolling the feed: update counts and the radar, but leave the list as it is so nothing jumps.
+function markSeen(items) {
+  let ch = false;
+  for (const n of items) if (n._new && !Me.d.opened[n.id]) { Me.d.opened[n.id] = ts(n.seen) || ts(n.at) || Date.now(); ch = true; }
+  if (ch) { Me.save(); refresh(true); }
+}
 function markNews(items, force) {
   let ch = !!force;
   for (const n of items) if (!Me.d.opened[n.id]) { Me.d.opened[n.id] = ts(n.seen) || ts(n.at) || Date.now(); ch = true; }

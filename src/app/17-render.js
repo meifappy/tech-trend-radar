@@ -11,8 +11,10 @@ function refresh(soft) {
     paintRadar();
     paintChrome();
     renderDock('quiet');
-    const pg = cur().page;
-    if (pg === 'home' || (hard && pg !== 'brief')) renderPanel(false);
+    const pg = cur().page, feed = pg === 'home' && (PHONE || WIDE);
+    // The feed is only rebuilt for new data; reading (soft refresh) just updates its unread count.
+    if (feed) { if (hard) renderPanel(false); else feedCount(); }
+    else if (pg === 'home' || (hard && pg !== 'brief')) renderPanel(false);
   });
 }
 function layoutAll() {

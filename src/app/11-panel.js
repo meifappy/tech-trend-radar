@@ -3,19 +3,29 @@ const P = { el: $('#panel'), body: $('#p-body'), head: $('#p-head'), q: $('#q'),
 P.body.addEventListener('scroll', () => { P.scrolled = true; }, { passive: true });
 const cur = () => P.stack[P.stack.length - 1];
 const DET = { home: 'mid', trend: 'mid', news: 'full', about: 'full', search: 'full', brief: 'mid', list: 'full' };
+// Every page you open is a browser history entry, so Back (browser button, Android gesture, Esc) steps back
+// inside the radar instead of leaving it. Each entry remembers its scroll position.
 function nav(page, arg, mode) {
+  // Closing to the radar unwinds the history entries this visit added, so Back afterwards leaves cleanly.
+  if (page === 'home' && P.stack.length > 1 && histDepth() === P.stack.length) { try { history.go(1 - P.stack.length); return; } catch (e) { /* fall through */ } }
   const top = cur();
+  top.y = P.body.scrollTop;
   if (top.page === 'home' && page !== 'home') P.from = document.activeElement;
-  if (page === 'home') P.stack = [{ page: 'home' }];
+  let push = false;
+  if (page === 'home') P.stack = [P.stack[0].page === 'home' ? P.stack[0] : { page: 'home' }];
   else if (mode === 'replace' || (top.page === page && page !== 'trend')) P.stack[P.stack.length - 1] = { page, arg };
-  else if (!(top.page === page && top.arg === arg)) P.stack.push({ page, arg });
+  else if (!(top.page === page && top.arg === arg)) { P.stack.push({ page, arg }); push = true; }
   if (P.stack.length > 12) P.stack.splice(1, P.stack.length - 12);
   afterNav();
+  histSync(push);
 }
 function back() {
   if (cur().page === 'brief') { briefStop(); return; }
-  if (P.stack.length > 1) P.stack.pop();
+  if (P.stack.length < 2) return;
+  if (histDepth() === P.stack.length) { try { history.back(); return; } catch (e) { /* fall through */ } }
+  P.stack.pop();
   afterNav();
+  histSync(false);
 }
 function afterNav() {
   const c = cur();
@@ -33,7 +43,6 @@ function afterNav() {
   if (wasIn && !open) { const n = S.sel && RD.nodes.get(S.sel); const f = P.from && P.from.isConnected ? P.from : n ? n.el : $('#t-news'); f.focus({ preventScroll: true }); }
   renderPanel(true);
   paintRadar();
-  syncHash();
   if (PHONE) setCue(c.page === 'home' ? FEED.cue : null);
   else if (WIDE) setCue(null); // wide screens have no news bar, so nothing to cue
   else if (RD.dockDone) { setCue(c.page === 'home' ? RD.dockT : null); apArm(); } else renderDock();
@@ -67,12 +76,13 @@ function renderPanel(anim) {
     case 'list': kids = pageList(); break;
     case 'search': kids = pageSearch(); break;
     case 'brief': kids = pageBrief(); break;
-    default: kids = WIDE ? pageHome() : PHONE ? pageFeed() : [];
+    default: kids = WIDE || PHONE ? pageFeed() : [];
   }
   renderHead(c);
   put(body, kids);
+  if (anim && c.y) { body.scrollTop = c.y; P.scrolled = false; requestAnimationFrame(() => { body.scrollTop = c.y; }); }
   if (open) $$('details[data-k]', body).forEach(d => { if (open.has(d.dataset.k)) d.open = true; });
-  if (keep) body.scrollTop = keep; else if (anim && P.scrolled) body.scrollTop = 0;
+  if (keep) body.scrollTop = keep; else if (anim && P.scrolled && !c.y) body.scrollTop = 0;
   P.scrolled = false;
   // Restart the entrance animation without forcing a synchronous layout.
   body.classList.remove('enter');

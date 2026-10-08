@@ -29,6 +29,7 @@ function briefStart() {
 function briefStop(quiet) {
   if (!B.on) return;
   B.on = false;
+  B.auto = false;
   B.playing = false;
   if (B.anim) B.anim.cancel();
   B.anim = null;
@@ -40,7 +41,7 @@ function briefStop(quiet) {
 }
 function showSlide(i) {
   if (!B.on) return;
-  if (i >= B.slides.length) { briefStop(); toast('Briefing done'); return; }
+  if (i >= B.slides.length) { briefStop(); toast('Briefing done. The feed continues where you left off.'); return; }
   if (!B.slides.length) { briefStop(); return; }
   B.i = clamp(i, 0, B.slides.length - 1);
   const s = B.slides[B.i], n = s.t && RD.nodes.get(s.t.id);
@@ -71,7 +72,7 @@ function pageBrief() {
   if (!B.on || !s) return [h('p', { class: 'muted', text: 'The briefing has ended.' })];
   const segs = h('div', { class: 'bseg' }, B.slides.map((x, i) => h('button', { type: 'button', class: i < B.i ? 'sd' : i === B.i ? 'sc' : '', 'aria-label': (x.t.short || x.t.title) + ', stop ' + (i + 1) + ' of ' + B.slides.length, onclick: () => showSlide(i) }, h('span', null, h('i')))));
   const slide = h('div', { class: 'bslide c-' + s.t.ring },
-    h('p', { class: 'bscope', text: 'Stop ' + (B.i + 1) + ' of ' + B.slides.length + ', news ' + B.scope }),
+    h('p', { class: 'bscope', text: (B.auto ? 'Auto-play. ' : '') + 'Stop ' + (B.i + 1) + ' of ' + B.slides.length + ', news ' + B.scope }),
     h('button', { class: 'bkick', type: 'button', onclick: () => openTrend(s.t.id) }, h('i'), s.t.title, h('small', { text: RINGS[s.t.ring].label })),
     s.items.map(n => { const u = safeUrl(n.src.url); return h('article', { class: 'bitem' },
       h('h2', { class: 'btitle' }, u ? h('a', { href: u, target: '_blank', rel: 'noopener noreferrer' }, n.title) : n.title),
@@ -85,3 +86,21 @@ function pageBrief() {
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Next stop', onclick: () => showSlide(B.i + 1) }, ic('i-chev')));
   return [segs, slide, ctl];
 }
+
+// Laptops: if a visitor has not touched anything 10 seconds after the radar appears, the briefing starts by itself
+// (once per visit). Any click, key, scroll or touch before that cancels it for the visit. It never starts with
+// reduced motion or when motion is paused, and it can be paused or closed like any briefing (WCAG 2.2.2).
+const AUTO = { t: 0, off: false };
+function autoArm() {
+  clearTimeout(AUTO.t);
+  if (AUTO.off || !WIDE || RM || !MO.on) return;
+  AUTO.t = setTimeout(() => {
+    if (AUTO.off || document.hidden || B.on || cur().page !== 'home' || !WIDE) return;
+    AUTO.off = true;
+    briefStart();
+    if (B.on) { B.auto = true; renderPanel(false); }
+  }, 10000);
+}
+const autoCancel = () => { if (!AUTO.off) { AUTO.off = true; clearTimeout(AUTO.t); } };
+['pointerdown', 'keydown', 'wheel', 'touchstart'].forEach(ev => addEventListener(ev, autoCancel, { capture: true, passive: true }));
+P.body.addEventListener('scroll', () => { if (P.scrolled) autoCancel(); }, { passive: true });
