@@ -1,0 +1,11 @@
+{
+  "focus": "Vulnerability advisories, NIS2 and CRA news",
+  "lang": "de",
+  "name": "Allianz für Cybersicherheit / CERT-Bund",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "public",
+  "url": "https://www.allianz-fuer-cybersicherheit.de/",
+  "watch": "https://www.allianz-fuer-cybersicherheit.de/"
+}

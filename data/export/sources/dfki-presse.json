@@ -1,0 +1,11 @@
+{
+  "focus": "German AI research center press releases",
+  "lang": "de",
+  "name": "DFKI Pressemitteilungen",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "lab",
+  "url": "https://www.dfki.de/",
+  "watch": "https://www.dfki.de/web/news-media/presse/pressemitteilungen"
+}

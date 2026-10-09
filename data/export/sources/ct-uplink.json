@@ -1,0 +1,11 @@
+{
+  "focus": "Weekly c't tech talk on hardware, AI, software",
+  "lang": "de",
+  "name": "c't uplink Podcast",
+  "on": true,
+  "paywall": false,
+  "tier": 3,
+  "type": "podcast",
+  "url": "https://www.heise.de/thema/ct-uplink",
+  "watch": "https://www.podcast.de/podcast/617845/ct-uplink-hd-video"
+}

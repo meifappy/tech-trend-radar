@@ -1,0 +1,11 @@
+{
+  "focus": "Product security, post-quantum crypto, confidential computing",
+  "lang": "de",
+  "name": "Fraunhofer AISEC",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "lab",
+  "url": "https://www.aisec.fraunhofer.de/",
+  "watch": "https://www.aisec.fraunhofer.de/de/das-institut/publikationen.html"
+}

@@ -1,0 +1,11 @@
+{
+  "focus": "Stanford CS and AI course lectures",
+  "lang": "en",
+  "name": "Stanford Online",
+  "on": true,
+  "paywall": false,
+  "tier": 3,
+  "type": "video",
+  "url": "https://www.youtube.com/@stanfordonline",
+  "watch": "https://www.youtube.com/feeds/videos.xml?channel_id=UCBa5G_ESCn8Yd4vw5U-gIcg"
+}

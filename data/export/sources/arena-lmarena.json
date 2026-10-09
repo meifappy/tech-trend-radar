@@ -1,0 +1,11 @@
+{
+  "focus": "Crowdsourced LLM preference leaderboards",
+  "lang": "en",
+  "name": "Arena (LMArena)",
+  "on": true,
+  "paywall": false,
+  "tier": 2,
+  "type": "platform",
+  "url": "https://arena.ai/",
+  "watch": "https://arena.ai/"
+}

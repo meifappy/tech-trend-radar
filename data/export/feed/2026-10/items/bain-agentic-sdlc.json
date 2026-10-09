@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-29",
+  "img": "https://www.bain.com/contentassets/197a68f333f748fcac24cd09aded8060/45575-sdlcredesign-1440x810.jpg",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "About 21% more tasks completed, review time up about 91%",
+    "Median productivity gain today 20%, against 39% expected in one to two years",
+    "Survey of 293 senior technology leaders, April 2026"
+  ],
+  "read": "Full article",
+  "score": 57,
+  "seen": "2026-10-08T21:36:00Z",
+  "src": {
+    "name": "Bain & Company",
+    "type": "consultancy",
+    "url": "https://www.bain.com/insights/the-missing-architecture-for-agentic-software-development-technology-report-2026/"
+  },
+  "t": "ai-engineering",
+  "take": "Developers finish more tasks, but review time nearly doubles. Budget for review capacity and automated quality checks before buying more coding agents.",
+  "title": "Bain: AI coding shifts the bottleneck to code review",
+  "via": "watch"
+}

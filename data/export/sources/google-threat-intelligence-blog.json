@@ -1,0 +1,11 @@
+{
+  "focus": "Threat research, AI misuse, active exploitation",
+  "lang": "en",
+  "name": "Google Threat Intelligence / Mandiant Blog",
+  "on": true,
+  "paywall": false,
+  "tier": 2,
+  "type": "consultancy",
+  "url": "https://cloud.google.com/blog/topics/threat-intelligence",
+  "watch": "https://feeds.feedburner.com/threatintelligence/pvexyqv7v0v"
+}

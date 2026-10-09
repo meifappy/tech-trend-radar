@@ -1,0 +1,11 @@
+{
+  "focus": "Microsoft Build and developer keynotes",
+  "lang": "en",
+  "name": "Microsoft Developer (Build/Ignite)",
+  "on": true,
+  "paywall": false,
+  "tier": 3,
+  "type": "video",
+  "url": "https://www.youtube.com/@MicrosoftDeveloper",
+  "watch": "https://www.youtube.com/feeds/videos.xml?channel_id=UCsMica-v34Irf9KVTh6xx-g"
+}

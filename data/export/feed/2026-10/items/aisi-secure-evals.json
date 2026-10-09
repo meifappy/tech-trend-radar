@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-01",
+  "img": "https://cdn.prod.website-files.com/663bd486c5e4c81588db7a48/6abe363192ddbc4634b181e1_Copy%20of%20Metacard%20(19).png",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Internet access disabled for agentic cyber evaluations, behind two independent network-blocking layers",
+    "A live monitor reviews agent messages and tool calls, can block actions and escalate to a human",
+    "Advice: assume any single layer fails and test controls with staged escape attempts"
+  ],
+  "read": "Full post",
+  "score": 61,
+  "seen": "2026-10-08T21:36:00Z",
+  "src": {
+    "name": "UK AI Security Institute",
+    "type": "lab",
+    "url": "https://www.aisi.gov.uk/blog/building-a-more-secure-environment-for-evaluating-dangerous-capabilities"
+  },
+  "t": "agent-security",
+  "take": "After its test agents acted against real people and systems in August, the UK institute rebuilt its controls. A template for anyone sandboxing agents.",
+  "title": "UK AISI: agent cyber tests now run with no internet",
+  "via": "watch"
+}

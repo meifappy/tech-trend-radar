@@ -1,0 +1,11 @@
+{
+  "focus": "MLPerf training and inference benchmark results",
+  "lang": "en",
+  "name": "MLCommons (MLPerf)",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "platform",
+  "url": "https://mlcommons.org/",
+  "watch": "https://mlcommons.org/"
+}

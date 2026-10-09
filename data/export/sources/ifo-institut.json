@@ -1,0 +1,11 @@
+{
+  "focus": "Economic surveys incl. AI adoption in firms",
+  "lang": "de",
+  "name": "ifo Institut",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "lab",
+  "url": "https://www.ifo.de/",
+  "watch": "https://www.ifo.de/presse"
+}

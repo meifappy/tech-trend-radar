@@ -1,0 +1,11 @@
+{
+  "focus": "AI policy data, incidents monitor, publications",
+  "lang": "en",
+  "name": "OECD.AI Policy Observatory",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "public",
+  "url": "https://oecd.ai/en/",
+  "watch": "https://oecd.ai/en/ai-publications"
+}

@@ -1,0 +1,11 @@
+{
+  "focus": "Federal data protection and AI oversight statements",
+  "lang": "de",
+  "name": "BfDI Datenschutzbeauftragter des Bundes",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "public",
+  "url": "https://www.bfdi.bund.de/",
+  "watch": "https://www.bfdi.bund.de/DE/Home/home_node.html"
+}

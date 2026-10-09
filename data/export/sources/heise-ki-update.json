@@ -1,0 +1,11 @@
+{
+  "focus": "Daily AI news podcast, kompakt and deep-dive",
+  "lang": "de",
+  "name": "heise KI-Update Podcast",
+  "on": true,
+  "paywall": false,
+  "tier": 3,
+  "type": "podcast",
+  "url": "https://www.heise.de/thema/KI-Update",
+  "watch": "https://www.heise.de/thema/KI-Update"
+}

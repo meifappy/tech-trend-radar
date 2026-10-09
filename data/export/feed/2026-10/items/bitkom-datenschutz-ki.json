@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-25",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "50% say data protection hinders AI use in their company; 78% say reviews of AI projects are getting more laborious",
+    "42% have avoided non-EU products over data-protection concerns",
+    "Representative phone survey of 605 companies with 20+ staff, mid-2026; Bitkom lobbies for GDPR reform"
+  ],
+  "read": "Full press release",
+  "score": 68,
+  "seen": "2026-10-08T21:36:00Z",
+  "src": {
+    "name": "Bitkom Research",
+    "type": "consultancy",
+    "url": "https://bitkom-research.de/news/wirtschaft-will-entlastung-beim-datenschutz"
+  },
+  "t": "ai-ready-data",
+  "t2": "ai-governance",
+  "take": "Access to usable data, not models, is the brake: half of German companies say data protection slows their AI, and reviews are getting heavier.",
+  "title": "Bitkom: data protection hinders AI at half of German firms",
+  "via": "market"
+}

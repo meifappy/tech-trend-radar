@@ -1,0 +1,11 @@
+{
+  "focus": "Supercomputer rankings, exascale and HPC trends",
+  "lang": "en",
+  "name": "TOP500",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "platform",
+  "url": "https://www.top500.org/",
+  "watch": "https://www.top500.org/news/"
+}

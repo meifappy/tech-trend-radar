@@ -1,0 +1,11 @@
+{
+  "focus": "Computer technology magazine, tests and security",
+  "lang": "de",
+  "name": "heise c't Magazin",
+  "on": true,
+  "paywall": true,
+  "tier": 3,
+  "type": "journal",
+  "url": "https://www.heise.de/ct",
+  "watch": "https://www.heise.de/select/ct"
+}

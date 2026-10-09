@@ -1,0 +1,11 @@
+{
+  "focus": "SAP business AI, cloud, customer news",
+  "lang": "de",
+  "name": "SAP News Center Deutschland",
+  "on": true,
+  "paywall": false,
+  "tier": 2,
+  "type": "platform",
+  "url": "https://news.sap.com/germany/",
+  "watch": "https://news.sap.com/germany/"
+}

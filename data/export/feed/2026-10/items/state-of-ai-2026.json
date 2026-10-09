@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-08",
+  "img": "https://www.stateof.ai/assets/state-of-ai-2026-cover.png",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Cost of a fixed benchmark score fell about 47% a quarter since 2023 (Epoch AI estimate)",
+    "OpenAI and Anthropic combined run rate about $105bn by late summer, from about $30bn in January",
+    "Four US hyperscalers guide to about $733bn of 2026 capital spending"
+  ],
+  "read": "Report home page summary; full PDF not read",
+  "score": 59,
+  "seen": "2026-10-08T21:36:00Z",
+  "src": {
+    "name": "Air Street Capital",
+    "type": "consultancy",
+    "url": "https://www.stateof.ai/"
+  },
+  "t": "ai-value",
+  "t2": "ai-compute",
+  "take": "The annual Air Street report puts numbers on AI economics: prices for a given capability collapse while lab revenue and hyperscaler spending surge.",
+  "title": "State of AI Report 2026: capability cost falls 13-fold a year",
+  "via": "watch"
+}

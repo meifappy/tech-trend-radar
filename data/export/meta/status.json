@@ -10,12 +10,13 @@
     "Thoughtworks Technology Radar Vol. 34"
   ],
   "cadence": "News every 12 hours. Ratings reviewed every quarter.",
-  "lastScan": "2026-10-08T17:32:00Z",
+  "lastScan": "2026-10-08T21:36:00Z",
   "lastTaxonomyReview": "2026-10-08",
   "lastTrendReview": "2026-10-08T06:00:00Z",
   "months": [
     "2026-10"
   ],
   "nextTaxonomyReview": "After Gartner's 2027 trends on 20 October 2026",
+  "sweep": 38,
   "trendCount": 23
 }

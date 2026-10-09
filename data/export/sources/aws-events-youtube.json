@@ -1,0 +1,11 @@
+{
+  "focus": "re:Invent keynotes and AWS event sessions",
+  "lang": "en",
+  "name": "AWS Events (re:Invent keynotes)",
+  "on": true,
+  "paywall": false,
+  "tier": 3,
+  "type": "video",
+  "url": "https://www.youtube.com/@AWSEventsChannel",
+  "watch": "https://www.youtube.com/feeds/videos.xml?channel_id=UCdoadna9HFHsxXWhafhNvKw"
+}

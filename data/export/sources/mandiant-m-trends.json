@@ -1,0 +1,11 @@
+{
+  "focus": "Incident-response findings: dwell time, attacker tactics",
+  "lang": "en",
+  "name": "Mandiant M-Trends",
+  "on": true,
+  "paywall": false,
+  "tier": 2,
+  "type": "consultancy",
+  "url": "https://cloud.google.com/security/resources/m-trends",
+  "watch": "https://cloud.google.com/security/resources/m-trends"
+}

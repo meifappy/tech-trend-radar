@@ -4,7 +4,7 @@
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Hot'], ['pod', 'Podcasts'], ['ai', 'AI'], ['sec', 'Security'], ['cloud', 'Data'], ['sci', 'Frontier']];
+const FILTERS = [['all', 'All'], ['hot', 'Hot'], ['pod', 'Audio & video'], ['ai', 'AI'], ['sec', 'Security'], ['cloud', 'Data'], ['sci', 'Frontier']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
@@ -13,7 +13,7 @@ function feedList() {
   const f = FEED.f;
   const ok = S.news.filter(n => {
     const t = S.byId.get(n.t);
-    return t && !n.minor && (f === 'all' || (f === 'hot' ? isHot(n) : f === 'pod' ? n.kind === 'podcast' : t.area === f));
+    return t && !n.minor && (f === 'all' || (f === 'hot' ? isHot(n) : f === 'pod' ? (n.kind === 'podcast' || n.kind === 'video') : t.area === f));
   });
   const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
   return hotFirst(ok.filter(fresh)).concat(ok.filter(n => !fresh(n)));
@@ -59,7 +59,7 @@ function feedCard(n, opts) {
         chip ? h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot' }), t.short || t.title) : null),
       h('button', { class: 'fc-t', type: 'button', 'aria-expanded': 'false', onclick: () => toggleCard(card, n) }, n.title),
       n.take ? h('p', { class: 'fc-p', text: n.take }) : null,
-      h('p', { class: 'fc-m', text: [str(n.src.name), when(n.at)].filter(Boolean).join(', ') })));
+      h('p', { class: 'fc-m', text: [str(n.src.name), when(n.at), n.lang === 'de' ? 'in German' : ''].filter(Boolean).join(', ') })));
   return card;
 }
 // Quick view: key points and the two ways on (the source, or more on the trend) without leaving the feed.

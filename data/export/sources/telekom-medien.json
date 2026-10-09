@@ -1,0 +1,11 @@
+{
+  "focus": "Telekom/T-Systems AI, cloud, network, security news",
+  "lang": "de",
+  "name": "Deutsche Telekom Medieninformationen",
+  "on": true,
+  "paywall": false,
+  "tier": 2,
+  "type": "platform",
+  "url": "https://www.telekom.com/de/medien",
+  "watch": "https://www.telekom.com/de/medien/medieninformationen"
+}

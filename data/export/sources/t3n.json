@@ -1,0 +1,11 @@
+{
+  "focus": "Digital business, AI and startup news",
+  "lang": "de",
+  "name": "t3n",
+  "on": true,
+  "paywall": false,
+  "tier": 3,
+  "type": "media",
+  "url": "https://t3n.de/",
+  "watch": "https://t3n.de/rss.xml"
+}

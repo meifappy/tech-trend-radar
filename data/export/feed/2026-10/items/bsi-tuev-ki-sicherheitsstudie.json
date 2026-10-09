@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-07",
+  "img": "https://www.bsi.bund.de/SharedDocs/Bilder/DE/BSI/Presse/Pressemeldungen/261007_KI-Sicherheitsstudie-2026.jpg",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "17% report AI-related attacks or fraud attempts in 12 months (4% confirmed, 11% suspected, 2% both)",
+    "Of those affected: 90% saw convincing phishing, 40% automated attack scripts, 11% deepfakes",
+    "29% of AI-using firms have none of the listed safeguards; only 40% log or monitor AI use"
+  ],
+  "read": "Full press release; study PDF not read",
+  "score": 80,
+  "seen": "2026-10-08T21:36:00Z",
+  "src": {
+    "name": "BSI",
+    "type": "public",
+    "url": "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/261007_KI-Sicherheitsstudie_TUEV_BSI.html"
+  },
+  "t": "preemptive-defence",
+  "t2": "agent-security",
+  "take": "A survey of more than 500 German companies finds AI-related attacks already common while response plans lag. A benchmark for your own incident playbooks.",
+  "title": "BSI and TÜV: only 11% of firms have AI incident procedures",
+  "via": "watch"
+}

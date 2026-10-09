@@ -1,0 +1,11 @@
+{
+  "focus": "Professional IT, admin, security and architecture magazine",
+  "lang": "de",
+  "name": "heise iX Magazin",
+  "on": true,
+  "paywall": true,
+  "tier": 3,
+  "type": "journal",
+  "url": "https://www.heise.de/select/ix",
+  "watch": "https://www.heise.de/select/ix"
+}

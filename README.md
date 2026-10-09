@@ -14,6 +14,7 @@ scripts/build_data.py     turns data/export/ into public/radar-data.json and pub
 data/export/              raw database export pushed by the scheduled scan (JSON only)
 tests/smoke.mjs           opens the built site at desktop and phone size and fails on errors
 docs/UX-REQUIREMENTS.md   user-flow audit, functional and non-functional requirements
+docs/SOURCING.md          how each scan discovers, verifies, scores and selects stories
 public/                   what Cloudflare serves: index.html, radar-data.json, archive/, _headers
 wrangler.jsonc            Cloudflare config (serves ./public)
 ```

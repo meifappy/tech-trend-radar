@@ -1,0 +1,11 @@
+{
+  "focus": "Annual IT security situation report, published each November",
+  "lang": "de",
+  "name": "BSI Lagebericht IT-Sicherheit",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "public",
+  "url": "https://medien.bsi.bund.de/lagebericht/de/index.html",
+  "watch": "https://www.bsi.bund.de/DE/Service-Navi/Publikationen/Lagebericht/lagebericht_node.html"
+}

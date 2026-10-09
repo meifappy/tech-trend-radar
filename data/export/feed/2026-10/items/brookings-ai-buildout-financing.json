@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08",
+  "img": "https://www.brookings.edu/wp-content/uploads/2026/10/FinancingAIBuildout_harhar38_shutterstock_2806389921.jpg?quality=50",
+  "kind": "podcast",
+  "lang": "en",
+  "points": [
+    "About 3.6% of US GDP a year, against roughly 2.2% at the railroad-era peak",
+    "About $1.4 trillion of debt issued so far, roughly half from banks",
+    "Figures are from a conference paper discussed in the episode, not yet journal-reviewed"
+  ],
+  "read": "Full transcript; underlying paper not read",
+  "score": 59,
+  "seen": "2026-10-08T21:36:00Z",
+  "src": {
+    "name": "Brookings",
+    "type": "lab",
+    "url": "https://www.brookings.edu/articles/the-10-trillion-question-financing-the-ai-buildout/"
+  },
+  "t": "ai-compute",
+  "take": "A Columbia economist estimates the AI buildout at $10.3 trillion by 2032, increasingly debt-funded off balance sheet. That is supplier risk for anyone signing long compute contracts.",
+  "title": "Brookings podcast: who pays for a $10 trillion AI buildout",
+  "via": "audio"
+}

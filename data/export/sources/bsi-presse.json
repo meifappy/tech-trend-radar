@@ -1,0 +1,11 @@
+{
+  "focus": "Federal cybersecurity agency press releases and warnings",
+  "lang": "de",
+  "name": "BSI Presse",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "public",
+  "url": "https://www.bsi.bund.de/",
+  "watch": "https://www.bsi.bund.de/DE/Service-Navi/Presse/presse_node.html"
+}

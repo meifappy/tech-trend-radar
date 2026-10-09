@@ -1,0 +1,11 @@
+{
+  "focus": "Internet traffic, DDoS, adoption and outage data",
+  "lang": "en",
+  "name": "Cloudflare Radar Reports",
+  "on": true,
+  "paywall": false,
+  "tier": 1,
+  "type": "platform",
+  "url": "https://radar.cloudflare.com/",
+  "watch": "https://radar.cloudflare.com/reports"
+}
