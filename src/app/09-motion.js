@@ -3,7 +3,8 @@
    A quick beam (2.4 s) sweeps the radar on arrival and then every 20 seconds; only dots with news you have not
    opened, or that changed ring, ping as it passes. Everything runs on the compositor (transform and opacity only).
    The viewer can pause it (WCAG 2.2.2); it starts paused when the system asks for reduced motion. */
-const MO = { on: ls.get('motion', null) == null ? !RM : !!ls.get('motion', true), T: 2400, GAP: 20000, timer: 0 };
+// The beam is on by default (also with reduced motion: it is slow, subtle and one tap pauses it).
+const MO = { on: ls.get('motion', null) == null ? true : !!ls.get('motion', true), T: 2400, GAP: 20000, timer: 0 };
 const moving = () => MO.on && !document.hidden;
 function sweepOnce() {
   clearTimeout(MO.timer);

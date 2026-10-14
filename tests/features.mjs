@@ -160,7 +160,7 @@ for (const dpr of [1.25, 1.5]) {
   page.on('pageerror', e => problems.push('tour: ' + e.message));
   await page.goto(url);
   await page.waitForSelector('.tour-offer', { timeout: 8000 }).catch(() => problems.push('tour: not offered on the first visit'));
-  await page.locator('.tour-offer .btn').click();
+  await page.locator('.tour-go').click();
   await page.waitForTimeout(500);
   const first = await page.locator('.tour-tip').textContent();
   await page.waitForTimeout(2400);

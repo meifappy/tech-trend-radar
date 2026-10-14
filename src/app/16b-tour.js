@@ -15,9 +15,10 @@ function tourOffer() {
   ls.set('tour', 'offered');
   autoCancel();
   const card = h('div', { class: 'tour-offer', role: 'dialog', 'aria-label': 'Quick tour' },
-    h('p', null, h('b', { text: 'New here?' }), h('span', { text: 'A 15-second tour shows you around.' })),
-    h('button', { class: 'btn btn-w', type: 'button', onclick: () => { card.remove(); tourStart(); } }, 'Show me'),
-    h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'No thanks', onclick: () => card.remove() }, ic('i-close')));
+    h('span', { class: 'tour-ico', 'aria-hidden': 'true' }, ic('i-play')),
+    h('p', null, h('b', { text: 'New here?' }), h('span', { text: 'See how it works in 15 seconds.' })),
+    h('button', { class: 'tour-go', type: 'button', onclick: () => { card.remove(); tourStart(); } }, 'Start tour'),
+    h('button', { class: 'tour-no', type: 'button', 'aria-label': 'No thanks', onclick: () => card.remove() }, ic('i-close')));
   document.body.append(card);
 }
 function tourStart() {
@@ -46,7 +47,7 @@ function tourNext() {
   do TOUR.i++; while (TOUR.i < TOUR.steps.length && !tourTarget(TOUR.steps[TOUR.i]));
   if (TOUR.i >= TOUR.steps.length) { tourEnd(); toast('That is it. Enjoy the radar.'); return; }
   const [spot, tip, bar] = TOUR.el.children;
-  tip.textContent = TOUR.steps[TOUR.i].text;
+  put(tip, h('small', { text: (TOUR.i + 1) + ' of ' + TOUR.steps.length }), h('span', { text: TOUR.steps[TOUR.i].text }));
   [...bar.children].forEach((x, i) => x.classList.toggle('on', i <= TOUR.i));
   tourPlace();
   TOUR.t = setTimeout(tourNext, 2300);
