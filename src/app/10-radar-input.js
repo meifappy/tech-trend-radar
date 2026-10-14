@@ -65,7 +65,6 @@ const local = e => { const r = RD.box.getBoundingClientRect(); return [e.clientX
 const WZ = { k: 1, x: 0, y: 0, raf: 0 };
 function wheelZoom(px, py, f) {
   WZ.k = clamp((WZ.raf ? WZ.k : RD.cam.k) * f, 1, KMAX); WZ.x = px; WZ.y = py;
-  if (CALM) { zoomAt(px, py, WZ.k / RD.cam.k); return; }
   if (WZ.raf) return;
   const step = () => {
     const k = RD.cam.k, d = WZ.k - k, done = Math.abs(d) < .003;

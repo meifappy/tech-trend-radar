@@ -106,7 +106,7 @@ for (const dpr of [1.25, 1.5]) {
   await page.screenshot({ path: process.env.SHOT_DIR ? join(process.env.SHOT_DIR, 'features-' + dpr + '.png') : '/dev/null' }).catch(() => {});
   await ctx.close();
 }
-// Calm mode (Windows "Animation effects" off reports reduced motion): views cut with a fade instead of flying, and
+// Calm mode (Windows "Animation effects" off reports reduced motion): the camera still glides, shorter, and
 // the play button brings motion back.
 {
   const ctx = await browser.newContext({ viewport: { width: 1366, height: 768 }, reducedMotion: 'reduce' });
@@ -115,9 +115,16 @@ for (const dpr of [1.25, 1.5]) {
   await page.goto(url);
   await page.waitForFunction(() => document.querySelectorAll('.blip').length > 0);
   check(await page.evaluate(() => document.documentElement.classList.contains('calm')), 'calm: class not set');
+  // Reduced motion still glides (no hard cut): mid-flight the outer ring is between its start and end size.
+  const rr = () => page.evaluate(() => +document.querySelector('#g-bands circle').getAttribute('r'));
+  const a0 = await rr();
   await page.locator('.quad.q-sec').click();
-  await page.waitForTimeout(60);
-  check(await page.locator('#rbox.zoomed').count() === 1, 'calm: zoom did not cut straight to the area');
+  await page.waitForTimeout(150);
+  const aMid = await rr();
+  await page.waitForTimeout(700);
+  const a1 = await rr();
+  check(aMid > a0 * 1.02 && aMid < a1 * .98, 'calm: zoom jumped instead of gliding ' + [a0, aMid, a1].map(Math.round));
+  check(await page.locator('#rbox.zoomed').count() === 1, 'calm: zoom did not reach the area');
   await page.locator('#t-motion').click();
   check(!(await page.evaluate(() => document.documentElement.classList.contains('calm'))), 'calm: play button did not turn motion on');
   await ctx.close();

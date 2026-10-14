@@ -48,7 +48,7 @@ function showSlide(i) {
   B.i = clamp(i, 0, B.slides.length - 1);
   const s = B.slides[B.i], n = s.t && RD.nodes.get(s.t.id);
   B.focus = s.t ? s.t.id : null;
-  if (n) camTo(n.wx * .72, n.wy * .72, PHONE ? 1.55 : 1.6, 500); else camTo(0, 0, 1, 500);
+  if (n) camTo(n.wx * .72, n.wy * .72, PHONE ? 1.55 : 1.6); else camTo(0, 0, 1);
   paintRadar();
   if (cur().page === 'brief') { renderPanel(false); P.body.scrollTop = 0; }
   const fill = $('.bseg .sc i', P.body);

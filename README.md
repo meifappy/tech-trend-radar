@@ -62,8 +62,8 @@ everything: a follow-up job about 25 minutes after each scan exports it with Art
 ## Motion
 
 Camera flights, the radar beam and pop-ins follow the system's reduced-motion setting (on Windows, "Animation
-effects"). With reduced motion the radar fades between views instead of flying; the play button at the top turns
-full motion on for that browser. Scrolling zooms around the pointer as on web maps (a mouse notch glides one step,
+effects"). With reduced motion the beam and pop-ins stay still but the camera still glides between views (shorter), so
+nothing jumps; the play button at the top turns full motion on for that browser. Scrolling zooms around the pointer as on web maps (a mouse notch glides one step,
 touchpad scrolling and pinching zoom in proportion), a sideways swipe or a drag pans.
 
 Trend ratings hold for a quarter (`validUntil` on each trend); news changes every run. How stories and trends

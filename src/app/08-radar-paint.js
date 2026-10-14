@@ -28,25 +28,19 @@ function camTo(x, y, k, ms) {
   cancelAnimationFrame(RD.raf); RD.raf = 0;
   cancelAnimationFrame(WZ.raf); WZ.raf = 0;
   clearTimeout(RD.settleT); RD.drag = false;
-  // Calm: cut to the new view behind a short fade instead of flying there.
-  if (CALM) {
-    RD.cam = { x, y, k };
-    RD.box.classList.remove('moving');
-    RD.box.classList.toggle('zoomed', k > 1.01);
-    hover(null);
-    RD.sig = ''; place(); placeLabels(); zoomUi();
-    RD.svg.animate([{ opacity: .15 }, { opacity: 1 }], { duration: 220, easing: 'ease-out' });
-    return;
-  }
-  ms = ms == null ? 700 : ms;
   const a = Object.assign({}, RD.cam), t0 = performance.now();
+  // Flights take longer the further they go, so a long jump across the radar never feels like a cut. With reduced
+  // motion (Windows: Animation effects off) the camera still glides, only shorter: views never jump.
+  const far = Math.hypot(x - a.x, y - a.y) + Math.abs(Math.log(k / a.k));
+  ms = ms == null ? clamp(520 + far * 520, 560, 1150) : ms;
+  if (CALM) ms = Math.min(ms, 480);
   RD.box.classList.add('moving');
   // Clip to the radar from the start of a flight into an area, so nothing slides out of the box and pops away.
   if (k > 1.01) RD.box.classList.add('zoomed');
   hover(null);
   const step = now => {
     const p = ms ? Math.min(1, (now - t0) / ms) : 1, e = easeIO(p);
-    RD.cam = { x: a.x + (x - a.x) * e, y: a.y + (y - a.y) * e, k: a.k + (k - a.k) * e };
+    RD.cam = { x: a.x + (x - a.x) * e, y: a.y + (y - a.y) * e, k: a.k * Math.pow(k / a.k, e) }; // zoom in log space: an even glide
     place();
     if (p < 1) { RD.raf = requestAnimationFrame(step); return; }
     RD.raf = 0;
@@ -87,9 +81,8 @@ function boot() {
   if (RD.booted) return;
   RD.booted = true;
   if (CALM) {
-    // Calm: the dots fade in instead of popping, and the reader learns once how to get motion back.
+    // Calm: the dots fade in instead of popping.
     RD.gN.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
-    if (!ls.get('calmHint', false)) { ls.set('calmHint', true); setTimeout(() => toast('Reduced motion is on for this device. Press play at the top for motion.', 6000), 1200); }
     return;
   }
   for (const n of RD.nodes.values()) {
