@@ -94,6 +94,15 @@ for (const dpr of [1.25, 1.5]) {
   await page.waitForTimeout(300);
   const terms = await page.evaluate(() => [...document.querySelectorAll('.term')].map(t => t.textContent));
   check(terms.length >= 3 && terms.length <= 12 && terms.includes('dora'), tag + 'prose focus terms ' + terms);
+  // The focus is a lens over every filter: All and Top stay filtered, and it can be switched off.
+  await page.locator('.chip', { hasText: 'All' }).first().click();
+  await page.waitForTimeout(300);
+  check(await page.locator('.focus-s').count() === 1, tag + 'focus lens not shown on All');
+  await page.locator('.chip-focus').click();
+  await page.waitForTimeout(300);
+  check(await page.locator('.focus-s').count() === 0 && (await page.locator('.blip.dim').count()) === 0, tag + 'focus did not switch off');
+  await page.locator('.chip-focus').click();
+  await page.waitForTimeout(300);
   console.log(tag, 'top', hot.length, 'hot', hots.length, 'focus', JSON.stringify(f), 'prose', terms.join(', '));
   await page.locator('.chip', { hasText: 'All' }).click();
 

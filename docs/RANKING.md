@@ -45,6 +45,10 @@ reduced to acronyms and longer words that appear in the radar's own trends or st
 than a sixth of them (like "AI"). A few business words expand to the words sources use (bank → banking, financial,
 DORA; manufacturing → industrial, factory; Mittelstand → SME; and so on).
 
+My focus is a lens, not one more filter: while it is on, All, Top, Audio, the news bar, the briefing, the unread
+count and the orange dots show only stories in focus. A story is in focus when its own words match (title, take, key
+points, source) or when it belongs to one of the lit-up trends.
+
 Each story scores per term: title 3, take or key points 2, source name 1, plus 1 when its trend's definition
 matches. Each trend scores 4 per term in its definition plus its stories' own matches; trends with at least a third
 of the best trend score light up on the radar, the rest dim. Terms with no match are shown struck through.

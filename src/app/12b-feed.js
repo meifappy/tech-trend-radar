@@ -4,21 +4,20 @@
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['pod', 'Audio']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
 
 function feedList() {
-  const f = FEED.f, base = S.news.filter(n => S.byId.has(n.t) && !n.minor);
-  // Top: the last 30 days ranked by heat. My focus: ranked by match with the reader's own context.
+  // My focus is a lens over every filter. Top: the last 30 days ranked by heat.
+  const f = FEED.f === 'hot' || FEED.f === 'pod' ? FEED.f : 'all', base = S.news.filter(n => S.byId.has(n.t) && !n.minor && inFocus(n));
   if (f === 'hot') { const cut = Date.now() - 30 * DAY; return base.filter(n => dayOf(n) >= cut).sort((a, b) => heatOf(b) - heatOf(a) || dayOf(b) - dayOf(a)); }
-  if (f === 'focus') return focusList(base);
-  const ok = base.filter(n => f === 'all' || (f === 'pod' ? (n.kind === 'podcast' || n.kind === 'video') : S.byId.get(n.t).area === f));
+  const ok = base.filter(n => f === 'all' || n.kind === 'podcast' || n.kind === 'video');
   const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
   return hotFirst(ok.filter(fresh)).concat(ok.filter(n => !fresh(n)));
 }
-const ranked = () => FEED.f === 'hot' || FEED.f === 'focus';
+const ranked = () => FEED.f === 'hot';
 const olderMonth = () => (S.meta && Array.isArray(S.meta.months) ? S.meta.months : []).filter(m => /^\d{4}-\d{2}$/.test(m) && !S.months[m]).sort().reverse()[0];
 
 // Filter chips and the radar's area buttons are one control: choosing an area zooms the radar and filters the feed.
@@ -100,20 +99,22 @@ function pageFeed() {
   // One row: play the one-minute briefing, then the filters. Keeps the first story above the fold on phones.
   out.push(h('div', { class: 'chips', role: 'toolbar', 'aria-label': 'Briefing and news filters' },
     h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
-    // Beside the radar the four area chips would repeat its corner buttons, so only the chosen area shows (tap to clear).
-    FILTERS.filter(([k]) => !(WIDE && AREAS[k]) || FEED.f === k).map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(WIDE && AREAS[k] ? 'all' : k) }, l, WIDE && AREAS[k] ? ic('i-close') : null))));
-  if (FEED.f === 'focus') out.push(focusBox());
+    FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l)),
+    // My focus is not one more filter but a lens over all of them, so it sits apart and shows when it is on.
+    h('button', { class: 'chip chip-focus', type: 'button', 'aria-pressed': String(focusActive()), 'aria-expanded': String(FOCUS.edit), onclick: focusToggle }, FOCUS.terms.length ? 'My focus' : '+ My focus')));
+  const fb = focusBox();
+  if (fb) out.push(fb);
   const cards = [];
   shown.forEach((n, i) => {
     if (i === 0) cards.push(nFresh
       ? h('h2', { class: 'feed-h' }, h('span', { text: 'New for you' }), h('span', { class: 'feed-left', 'aria-live': 'polite', text: feedLeft() ? feedLeft() + ' unread' : 'All read' }))
-      : h('h2', { class: 'feed-h' }, h('span', { text: FEED.f === 'hot' ? 'Top stories, last 30 days' : FEED.f === 'focus' ? 'Matches for your focus' : 'Latest' })));
+      : h('h2', { class: 'feed-h' }, h('span', { text: FEED.f === 'hot' ? 'Top stories, last 30 days' : focusActive() ? 'Latest for your focus' : 'Latest' })));
     if (nFresh && i === nFresh) cards.push(h('div', { class: 'uptodate' }, ic('i-check'), h('span', { text: 'You are up to date' })));
     cards.push(feedCard(n));
   });
-  const end = shown.length < list.length || (FEED.f !== 'hot' && !(FEED.f === 'focus' && !FOCUS.terms.length) && olderMonth())
+  const end = shown.length < list.length || (FEED.f !== 'hot' && olderMonth())
     ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
-    : h('p', { class: 'muted feed-end', text: list.length ? (FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.') : !S.ok.news ? 'Loading…' : FEED.f === 'focus' ? (FOCUS.terms.length ? 'No stories match your focus yet. Try broader terms.' : '') : 'No stories match this filter.' });
+    : h('p', { class: 'muted feed-end', text: list.length ? (FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.') : !S.ok.news ? 'Loading…' : focusActive() ? 'No stories match your focus here yet. Try broader terms, or turn My focus off.' : 'No stories match this filter.' });
   out.push(h('div', { class: 'feed' }, cards), end);
   requestAnimationFrame(feedObserve);
   return out;

@@ -11,7 +11,7 @@ function sweepOnce() {
   if (!RD.raf) {
     RD.sweep.animate([{ transform: 'rotate(0deg)', opacity: 0 }, { opacity: .7, offset: .08 }, { opacity: .7, offset: .85 }, { transform: 'rotate(360deg)', opacity: 0 }], { duration: MO.T, easing: 'linear' });
     for (const n of RD.nodes.values()) {
-      if (!((D.arrived && D.arrived.has(n.id)) || D.moved.has(n.id))) continue;
+      if (n.el.classList.contains('dim') || !((D.arrived && D.arrived.has(n.id)) || D.moved.has(n.id))) continue;
       n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }],
         { duration: 900, delay: (((n.deg + 90) % 360) + 360) % 360 / 360 * MO.T, easing: 'cubic-bezier(.1,.6,.3,1)' });
     }

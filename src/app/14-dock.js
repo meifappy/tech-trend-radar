@@ -9,7 +9,7 @@ function vary(list) {
   return out;
 }
 function dockList() {
-  const ok = S.news.filter(n => S.byId.has(n.t) && !n.minor);
+  const ok = S.news.filter(n => S.byId.has(n.t) && !n.minor && inFocus(n));
   const fresh = ok.filter(n => n._new), rest = ok.filter(n => !n._new);
   return vary(fresh).concat(vary(rest.slice(0, 12))).slice(0, Math.max(8, fresh.length));
 }

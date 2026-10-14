@@ -1,7 +1,8 @@
-/* My focus: the reader's own context (industry, systems, rules, priorities) filters and ranks the feed and lights up
-   the matching trends on the radar. Terms are typed as a short list, or a strategy text is pasted and reduced to the
+/* My focus: the reader's own context (industry, systems, rules, priorities) is a lens over the whole radar. While it
+   is on, the feed (All, Top, Audio), the news bar, the briefing, the unread count and the orange dots show only
+   matching stories, and the trends they belong to light up on the radar. Terms are typed as a short list, or a strategy text is pasted and reduced to the
    words the radar's sources actually use. Kept in this browser only; nothing is sent anywhere. */
-const FOCUS = { terms: [], edit: false, rx: [], trends: new Set(), tlist: [], score: new Map(), hits: new Map(), tterms: new Set(), news: null };
+const FOCUS = { terms: [], on: true, edit: false, rx: [], trends: new Set(), tlist: [], score: new Map(), hits: new Map(), tterms: new Set(), news: null };
 const STOP = new Set(('about above after again against also among and any are because been before being below between both but can could does ' +
   'doing down during each every few for from further had has have having here how into its itself just more most must need needs not now off ' +
   'once only other our ours out over own same should since some such than that the their them then there these they this those through too ' +
@@ -43,7 +44,7 @@ function focusParse(text) {
 function focusSync() {
   FOCUS.news = S.news; FOCUS.tr = S.trends;
   FOCUS.rx = FOCUS.terms.map(t => ({ t, re: termRx(t) }));
-  FOCUS.trends = new Set(); FOCUS.tlist = []; FOCUS.score = new Map(); FOCUS.hits = new Map(); FOCUS.tterms = new Set();
+  FOCUS.trends = new Set(); FOCUS.tlist = []; FOCUS.own = new Set(); FOCUS.score = new Map(); FOCUS.hits = new Map(); FOCUS.tterms = new Set();
   if (!FOCUS.rx.length) return;
   const tHit = new Map(), tsc = new Map(), bump = (k, v) => tsc.set(k, (tsc.get(k) || 0) + v);
   for (const t of S.trends) {
@@ -61,47 +62,67 @@ function focusSync() {
       if (own) for (const k of tkeys(n)) if (S.byId.has(k)) bump(k, own);
     }
     if (s) FOCUS.score.set(n.id, s);
+    if (s && own3(n)) FOCUS.own.add(n.id);
   }
   const top = Math.max(0, ...tsc.values()), min = Math.max(3, top / 3);
   FOCUS.tlist = S.trends.filter(t => (tsc.get(t.id) || 0) >= min).sort((a, b) => tsc.get(b.id) - tsc.get(a.id));
   FOCUS.trends = new Set(FOCUS.tlist.map(t => t.id));
+  // A story is in focus when its own words match (title, summary, key points, source), or when it belongs to one of
+  // the clearly relevant trends: so the context counts, but a loose match on a trend definition alone does not.
+  for (const id of [...FOCUS.score.keys()]) {
+    const n = S.news.find(x => x.id === id);
+    if (!FOCUS.own.has(id) && !tkeys(n).some(k => FOCUS.trends.has(k))) FOCUS.score.delete(id);
+  }
 }
-function focusLoad() { const v = ls.get('focus', []); FOCUS.terms = Array.isArray(v) ? v.filter(x => typeof x === 'string').map(x => x.slice(0, 40)).slice(0, 12) : []; }
+const own3 = n => FOCUS.rx.some(x => x.re.test(str(n.title) + ' ' + str(n.take) + ' ' + pts(n) + ' ' + str(n.src.name)));
+function focusLoad() { const v = ls.get('focus', []); FOCUS.terms = Array.isArray(v) ? v.filter(x => typeof x === 'string').map(x => x.slice(0, 40)).slice(0, 12) : []; FOCUS.on = ls.get('focusOn', true) !== false; }
 function focusSet(terms) {
   FOCUS.terms = terms;
   FOCUS.edit = false;
-  ls.set('focus', terms);
-  focusSync();
-  paintRadar();
-  P.body.scrollTop = 0;
-  renderPanel(false);
+  if (terms.length) FOCUS.on = true;
+  ls.set('focus', terms); ls.set('focusOn', FOCUS.on);
+  focusApply();
 }
-// Stories that match, strongest match first, then by heat.
-function focusList(base) {
-  focusFresh();
-  return base.filter(n => FOCUS.score.has(n.id)).sort((a, b) => FOCUS.score.get(b.id) - FOCUS.score.get(a.id) || heatOf(b) - heatOf(a) || dayOf(b) - dayOf(a));
+function focusToggle() {
+  if (!FOCUS.terms.length) { FOCUS.edit = !FOCUS.edit; renderPanel(false); return; }
+  FOCUS.on = !FOCUS.on; FOCUS.edit = false;
+  ls.set('focusOn', FOCUS.on);
+  focusApply();
+  toast(FOCUS.on ? 'Focus on' : 'Focus off: showing everything');
+}
+// Everything follows the lens: the reading state, the radar, the news bar and the feed.
+function focusApply() {
+  focusSync();
+  if (knownNew) { derive(); knownNew = new Set(S.news.filter(n => n._new).map(n => n.id)); }
+  FEED.n = 12;
+  P.body.scrollTop = 0;
+  refresh();
 }
 const focusFresh = () => { if (FOCUS.news !== S.news || FOCUS.tr !== S.trends) focusSync(); };
-const focusDim = id => FEED.f === 'focus' && FOCUS.terms.length > 0 && (focusFresh(), !FOCUS.trends.has(id));
+const focusActive = () => FOCUS.on && FOCUS.terms.length > 0;
+const inFocus = n => !focusActive() || (focusFresh(), FOCUS.score.has(n.id));
+const focusDim = id => focusActive() && (focusFresh(), !FOCUS.trends.has(id) && !(S.byT.get(id) || []).some(n => FOCUS.own.has(n.id)));
 
 function focusBox() {
   const terms = FOCUS.terms;
-  if (FOCUS.edit || !terms.length) {
+  if (FOCUS.edit) {
     const ta = h('textarea', { class: 'focus-in', rows: 3, 'aria-label': 'Your focus', placeholder: 'Industry, systems, rules, priorities. For example: bank, SAP, NIS2, sovereign cloud. Or paste a short strategy text.' });
     ta.value = terms.join(', ');
     if (FOCUS.edit) requestAnimationFrame(() => ta.focus());
     return h('form', { class: 'focus', onsubmit: e => { e.preventDefault(); focusSet(focusParse(ta.value)); } }, ta,
       h('div', { class: 'focus-a' },
         h('button', { class: 'btn btn-w', type: 'submit' }, 'Apply'),
-        terms.length ? h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel') : null,
+        h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel'),
         h('small', { text: 'Saved in this browser only' })));
   }
-  const tr = FOCUS.tlist;
+  if (!FOCUS.on) return null;
+  const tr = FOCUS.tlist, n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
   return h('div', { class: 'focus' },
+    h('p', { class: 'focus-s' }, h('b', { text: 'Only stories for your focus' }), h('span', { text: stories(n) + ' of ' + S.news.filter(x => !x.minor).length })),
     h('div', { class: 'terms' },
       terms.map(x => h('button', { class: 'term' + (FOCUS.hits.get(x) || FOCUS.tterms.has(x) ? '' : ' none'), type: 'button', 'aria-label': 'Remove ' + x, title: FOCUS.hits.get(x) ? stories(FOCUS.hits.get(x)) + ' match' : 'No match yet', onclick: () => focusSet(terms.filter(y => y !== x)) }, h('span', { text: x }), ic('i-close'))),
       h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.edit = true; renderPanel(false); } }, 'Edit')),
     tr.length ? h('p', { class: 'focus-t' }, h('span', { text: 'Most relevant ' + (tr.length === 1 ? 'trend' : 'trends') + ':' }),
-      tr.slice(0, 8).map(t => h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot c-' + t.ring }), t.short || t.title))) : null);
+      tr.slice(0, 6).map(t => h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot c-' + t.ring }), t.short || t.title))) : null);
 }
 focusLoad();

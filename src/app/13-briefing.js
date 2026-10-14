@@ -3,9 +3,10 @@ const B = { on: false, slides: [], i: 0, playing: false, focus: null, anim: null
 // One stop per trend that has news, in radar order (act first, then clockwise by area), so the camera travels the radar.
 function buildSlides() {
   const fresh = S.news.filter(n => n._new && S.byId.has(n.t));
+  const all = S.news.filter(n => S.byId.has(n.t) && !n.minor && inFocus(n));
   const week = Date.now() - 7 * DAY;
-  const pool = fresh.length ? fresh : S.news.filter(n => S.byId.has(n.t) && (ts(n.seen) || ts(n.at)) >= week);
-  const use = pool.length ? pool : S.news.filter(n => S.byId.has(n.t)).slice(0, 8);
+  const pool = fresh.length ? fresh : all.filter(n => (ts(n.seen) || ts(n.at)) >= week);
+  const use = pool.length ? pool : all.slice(0, 8);
   const by = new Map();
   for (const n of use) { if (!by.has(n.t)) by.set(n.t, []); by.get(n.t).push(n); }
   const order = S.trends.filter(t => by.has(t.id)).sort((a, b) => RO.indexOf(a.ring) - RO.indexOf(b.ring) || AO.indexOf(a.area) - AO.indexOf(b.area));

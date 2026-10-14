@@ -66,7 +66,7 @@ function derive() {
   let total = 0;
   for (const n of S.news) {
     const t = ts(n.seen) || ts(n.at);
-    n._new = S.ok.me && !n.minor && t > s && !Me.d.opened[n.id] && tkeys(n).some(k => S.byId.has(k));
+    n._new = S.ok.me && !n.minor && t > s && !Me.d.opened[n.id] && tkeys(n).some(k => S.byId.has(k)) && inFocus(n);
     if (n._new) { total++; for (const k of tkeys(n)) if (S.byId.has(k)) by.set(k, (by.get(k) || 0) + 1); }
   }
   const moved = new Map();
