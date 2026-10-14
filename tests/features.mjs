@@ -79,28 +79,39 @@ for (const dpr of [1.25, 1.5]) {
   check(new Set(hots.map(x => x.t)).size === hots.length, tag + 'two hot stories on one trend');
   check(!hots.length || hot[0].hot, tag + 'Top does not start with a hot story');
 
-  // My focus: type terms, stories match, non-matching trends dim on the radar.
+  // My focus: add topics one by one (Enter), with suggestions; non-matching trends dim on the radar.
   await page.locator('.chip-focus').click();
-  await page.locator('.focus-in').fill('NIS2, bank, quantum');
-  await page.locator('.focus button[type=submit]').click();
+  check(await page.locator('.sug').count() > 3, tag + 'no focus suggestions');
+  for (const t of ['NIS2', 'bank', 'quantum']) { await page.locator('.focus-add').fill(t); await page.locator('.focus-add').press('Enter'); await page.waitForTimeout(250); }
+  await page.locator('.focus-h .btn', { hasText: 'Done' }).click();
   await page.waitForTimeout(300);
   const f = await page.evaluate(() => ({ cards: document.querySelectorAll('.fc').length, terms: document.querySelectorAll('.term').length, dim: document.querySelectorAll('.blip.dim').length, all: document.querySelectorAll('.blip').length }));
   check(f.terms === 3 && f.cards > 0, tag + 'focus did not match ' + JSON.stringify(f));
   check(f.dim > 0 && f.dim < f.all, tag + 'focus did not highlight trends ' + JSON.stringify(f));
-  // Pasted prose is reduced to terms.
+  // A suggestion adds a topic in one tap; pasted prose is reduced to topics.
   await page.locator('.focus .link', { hasText: 'Edit' }).click();
+  const before = await page.locator('.term').count();
+  await page.locator('.sug').first().click(); await page.waitForTimeout(250);
+  check(await page.locator('.term').count() === before + 1, tag + 'suggestion did not add a topic');
+  await page.locator('.focus .link', { hasText: 'Paste a strategy text instead' }).click();
   await page.locator('.focus-in').fill('We are a mid-sized German insurer moving claims processing to sovereign cloud while meeting DORA and NIS2 duties and piloting AI agents.');
   await page.locator('.focus button[type=submit]').click();
   await page.waitForTimeout(300);
   const terms = await page.evaluate(() => [...document.querySelectorAll('.term')].map(t => t.textContent));
-  check(terms.length >= 3 && terms.length <= 12 && terms.includes('dora'), tag + 'prose focus terms ' + terms);
+  check(terms.includes('sovereign cloud') && terms.length <= 12, tag + 'prose focus terms ' + terms);
+  await page.locator('.focus-h .btn', { hasText: 'Done' }).click();
+  await page.waitForTimeout(200);
+  // An empty filter under focus offers a way out instead of a blank list.
+  await page.locator('.chip', { hasText: 'Audio' }).click();
+  await page.waitForTimeout(300);
+  if (!(await page.locator('.fc').count())) check(await page.locator('.feed-empty .btn').count() >= 2, tag + 'empty focus result has no way out');
   // The focus is a lens over every filter: All and Top stay filtered, and it can be switched off.
   await page.locator('.chip', { hasText: 'All' }).first().click();
   await page.waitForTimeout(300);
-  check(await page.locator('.focus-s').count() === 1, tag + 'focus lens not shown on All');
+  check(await page.locator('.focus:not(.edit)').count() === 1, tag + 'focus lens not shown on All');
   await page.locator('.chip-focus').click();
   await page.waitForTimeout(300);
-  check(await page.locator('.focus-s').count() === 0 && (await page.locator('.blip.dim').count()) === 0, tag + 'focus did not switch off');
+  check(await page.locator('.focus:not(.edit)').count() === 0 && (await page.locator('.blip.dim').count()) === 0, tag + 'focus did not switch off');
   await page.locator('.chip-focus').click();
   await page.waitForTimeout(300);
   console.log(tag, 'top', hot.length, 'hot', hots.length, 'focus', JSON.stringify(f), 'prose', terms.join(', '));

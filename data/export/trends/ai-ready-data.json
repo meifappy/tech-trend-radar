@@ -30,7 +30,7 @@
   "rated": "2026-10-08",
   "ring": "act",
   "scope": "Quality, ownership and access of the data AI uses. Not models or platforms.",
-  "short": "Data readiness",
+  "short": "AI-ready data",
   "since": "2026-10-08",
   "sources": [
     {
@@ -41,7 +41,7 @@
     }
   ],
   "status": "active",
-  "title": "Data readiness",
+  "title": "AI-ready data",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 3,

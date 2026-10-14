@@ -104,7 +104,7 @@
   "weight": 2,
   "why": [
     "Teams with a good internal platform ship more often with fewer incidents.",
-    "Ingress NGINX, used in about half of Kubernetes setups, gets no security fixes since March.",
+    "Ingress NGINX, used in about half of Kubernetes setups, has had no security fixes since March.",
     "Kubernetes 1.37 schedules whole AI jobs as one unit."
   ]
 }

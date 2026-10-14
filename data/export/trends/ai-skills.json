@@ -30,7 +30,7 @@
   "rated": "2026-10-08",
   "ring": "prepare",
   "scope": "Skills, roles and change management for AI. Not the tools themselves.",
-  "short": "Skills",
+  "short": "AI skills",
   "since": "2026-10-08",
   "sources": [
     {
@@ -41,7 +41,7 @@
     }
   ],
   "status": "active",
-  "title": "Skills & workforce",
+  "title": "AI skills & workforce",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 2,

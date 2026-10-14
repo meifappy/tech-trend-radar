@@ -75,7 +75,7 @@
   "rated": "2026-10-07",
   "ring": "act",
   "scope": "How software gets built with AI. Not the platform it runs on.",
-  "short": "AI-native dev",
+  "short": "AI-native development",
   "since": "2026-10-08T06:00:00Z",
   "sources": [
     {
@@ -122,7 +122,7 @@
     }
   ],
   "status": "active",
-  "title": "AI-native development",
+  "title": "AI-native development platforms",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 3,

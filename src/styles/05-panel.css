@@ -174,3 +174,25 @@ q.qt { quotes: "“" "”"; }
 .chip-focus[aria-pressed="true"] { border-style: solid; border-color: transparent; }
 .focus-s { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-sub); }
 .focus-s span { color: var(--t3); font-size: var(--fs-foot); font-variant-numeric: tabular-nums; }
+
+/* Focus editor: topics as chips with an inline input, live suggestions with story counts. */
+.focus-h { margin: 0; display: flex; align-items: center; gap: 10px; font-size: var(--fs-sub); }
+.focus-h b { font-size: var(--fs-body); }
+.focus-h span { flex: 1; color: var(--t3); font-size: var(--fs-foot); font-variant-numeric: tabular-nums; }
+.focus-h .btn.sm { height: 30px; padding: 0 14px; font-size: var(--fs-foot); margin-left: auto; }
+.focus.edit { background: var(--fill-2); }
+.focus-add { flex: 1 1 140px; min-width: 120px; height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: 16px; background: rgb(0 0 0 / .28); color: var(--t1); font: var(--fs-sub) var(--font); }
+.focus-add:focus { outline: 0; border-color: rgb(255 255 255 / .45); }
+.focus-add::placeholder { color: var(--t3); }
+.sugg-h { margin: 2px 0 -4px; font-size: var(--fs-cap); font-weight: 600; color: var(--t3); }
+.sugg { display: flex; flex-wrap: wrap; gap: 6px; }
+.sug { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px 0 12px; border: 1px solid var(--line); border-radius: 15px; background: none; color: var(--t1); font-size: var(--fs-foot); font-weight: 600; cursor: pointer; transition: background .15s; }
+.sug:hover { background: var(--fill-2); }
+.sug::before { content: "+"; color: var(--t3); font-weight: 400; }
+.sug small { color: var(--t3); font-weight: 400; font-variant-numeric: tabular-nums; }
+.focus-f { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.focus-f small { margin-left: auto; font-size: var(--fs-cap); color: var(--t3); }
+.feed-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 0; }
+.feed-empty p { margin: 0; color: var(--t2); font-size: var(--fs-sub); }
+.feed-empty div { display: flex; gap: 8px; flex-wrap: wrap; }
+.feed-empty .btn { height: 34px; padding: 0 14px; font-size: var(--fs-sub); }

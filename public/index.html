@@ -453,6 +453,28 @@ q.qt { quotes: "“" "”"; }
 .focus-s { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-sub); }
 .focus-s span { color: var(--t3); font-size: var(--fs-foot); font-variant-numeric: tabular-nums; }
 
+/* Focus editor: topics as chips with an inline input, live suggestions with story counts. */
+.focus-h { margin: 0; display: flex; align-items: center; gap: 10px; font-size: var(--fs-sub); }
+.focus-h b { font-size: var(--fs-body); }
+.focus-h span { flex: 1; color: var(--t3); font-size: var(--fs-foot); font-variant-numeric: tabular-nums; }
+.focus-h .btn.sm { height: 30px; padding: 0 14px; font-size: var(--fs-foot); margin-left: auto; }
+.focus.edit { background: var(--fill-2); }
+.focus-add { flex: 1 1 140px; min-width: 120px; height: 32px; padding: 0 10px; border: 1px solid var(--line); border-radius: 16px; background: rgb(0 0 0 / .28); color: var(--t1); font: var(--fs-sub) var(--font); }
+.focus-add:focus { outline: 0; border-color: rgb(255 255 255 / .45); }
+.focus-add::placeholder { color: var(--t3); }
+.sugg-h { margin: 2px 0 -4px; font-size: var(--fs-cap); font-weight: 600; color: var(--t3); }
+.sugg { display: flex; flex-wrap: wrap; gap: 6px; }
+.sug { display: inline-flex; align-items: center; gap: 6px; height: 30px; padding: 0 10px 0 12px; border: 1px solid var(--line); border-radius: 15px; background: none; color: var(--t1); font-size: var(--fs-foot); font-weight: 600; cursor: pointer; transition: background .15s; }
+.sug:hover { background: var(--fill-2); }
+.sug::before { content: "+"; color: var(--t3); font-weight: 400; }
+.sug small { color: var(--t3); font-weight: 400; font-variant-numeric: tabular-nums; }
+.focus-f { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.focus-f small { margin-left: auto; font-size: var(--fs-cap); color: var(--t3); }
+.feed-empty { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 18px 0; }
+.feed-empty p { margin: 0; color: var(--t2); font-size: var(--fs-sub); }
+.feed-empty div { display: flex; gap: 8px; flex-wrap: wrap; }
+.feed-empty .btn { height: 34px; padding: 0 14px; font-size: var(--fs-sub); }
+
 /* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
 .dock { position: absolute; z-index: 4; left: 0; right: 0; margin-inline: auto; bottom: 22px; width: min(640px, calc(100% - 32px)); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
   transition: opacity .3s var(--ease), translate .45s var(--spring), transform .4s var(--spring); }
@@ -1374,6 +1396,7 @@ function paintRadar() {
     const dim = (S.ring && t.ring !== S.ring) || (B.on && B.focus && B.focus !== n.id) || (!B.on && focusDim(n.id));
     n.el.classList.toggle('dim', !!dim);
     n.lbl.classList.toggle('dim', !!dim);
+    n.ping.style.visibility = dim ? 'hidden' : '';
     const al = (t.title + '. ' + RINGS[t.ring].label + '.' + (c ? ' ' + plural(c, 'new update') + '.' : '') + (mv ? ' Moved from ' + RINGS[mv.from].label + '.' : ''));
     if (n.al !== al) { n.al = al; n.el.setAttribute('aria-label', al); }
   }
@@ -2071,14 +2094,26 @@ function pageFeed() {
     if (nFresh && i === nFresh) cards.push(h('div', { class: 'uptodate' }, ic('i-check'), h('span', { text: 'You are up to date' })));
     cards.push(feedCard(n));
   });
-  const end = shown.length < list.length || (FEED.f !== 'hot' && olderMonth())
-    ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
-    : h('p', { class: 'muted feed-end', text: list.length ? (FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.') : !S.ok.news ? 'Loading…' : focusActive() ? 'No stories match your focus here yet. Try broader terms, or turn My focus off.' : 'No stories match this filter.' });
+  const more = shown.length < list.length || (FEED.f !== 'hot' && olderMonth());
+  const end = more ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
+    : list.length ? h('p', { class: 'muted feed-end', text: FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.' })
+    : !S.ok.news ? h('p', { class: 'muted feed-end', text: 'Loading\u2026' })
+    : feedEmpty();
   out.push(h('div', { class: 'feed' }, cards), end);
   requestAnimationFrame(feedObserve);
   return out;
 }
 
+// Nothing to show: say why in one line and offer the way out, never a dead end.
+function feedEmpty() {
+  const what = FEED.f === 'hot' ? 'in the top stories of the last 30 days' : FEED.f === 'pod' ? 'in audio and video' : 'yet';
+  const btn = (t, fn, w) => h('button', { class: 'btn' + (w ? ' btn-w' : ''), type: 'button', onclick: fn }, t);
+  if (focusActive()) return h('div', { class: 'feed-empty' }, h('p', { text: 'Nothing for your focus ' + what + '.' }), h('div', null,
+    FEED.f !== 'all' ? btn('All stories for my focus', () => setFilter('all'), true) : null,
+    btn('Edit focus', () => { FOCUS.edit = true; renderPanel(false); }, FEED.f === 'all'),
+    btn('Show everything', focusToggle)));
+  return h('div', { class: 'feed-empty' }, h('p', { text: 'No stories ' + what + '.' }), FEED.f !== 'all' ? h('div', null, btn('Show all stories', () => setFilter('all'), true)) : null);
+}
 // Observers: grow the feed near its end and cue the radar on the story at the top.
 function feedObserve() {
   [FEED.obs, FEED.more, FEED.dwell].forEach(o => o && o.disconnect());
@@ -2216,15 +2251,15 @@ function focusSync() {
 const own3 = n => FOCUS.rx.some(x => x.re.test(str(n.title) + ' ' + str(n.take))) ||
   (tkeys(n).some(k => FOCUS.trends.has(k)) && FOCUS.rx.some(x => x.re.test(pts(n) + ' ' + str(n.src.name))));
 function focusLoad() { const v = ls.get('focus', []); FOCUS.terms = Array.isArray(v) ? v.filter(x => typeof x === 'string').map(x => x.slice(0, 40)).slice(0, 12) : []; FOCUS.on = ls.get('focusOn', true) !== false; }
-function focusSet(terms) {
+function focusSet(terms, keepOpen) {
   FOCUS.terms = terms;
-  FOCUS.edit = false;
+  FOCUS.edit = !!keepOpen;
   if (terms.length) FOCUS.on = true;
   ls.set('focus', terms); ls.set('focusOn', FOCUS.on);
   focusApply();
 }
 function focusToggle() {
-  if (!FOCUS.terms.length) { FOCUS.edit = !FOCUS.edit; renderPanel(false); return; }
+  if (!FOCUS.terms.length || FOCUS.edit) { FOCUS.edit = !FOCUS.edit; FOCUS.prose = false; renderPanel(false); return; }
   FOCUS.on = !FOCUS.on; FOCUS.edit = false;
   ls.set('focusOn', FOCUS.on);
   focusApply();
@@ -2243,27 +2278,78 @@ const focusActive = () => FOCUS.on && FOCUS.terms.length > 0;
 const inFocus = n => !focusActive() || (focusFresh(), FOCUS.score.has(n.id));
 const focusDim = id => focusActive() && (focusFresh(), !FOCUS.trends.has(id) && !(S.byT.get(id) || []).some(n => FOCUS.own.has(n.id)));
 
-function focusBox() {
-  const terms = FOCUS.terms;
-  if (FOCUS.edit) {
-    const ta = h('textarea', { class: 'focus-in', rows: 3, 'aria-label': 'Your focus', placeholder: 'Industry, systems, rules, priorities. For example: bank, SAP, NIS2, sovereign cloud. Or paste a short strategy text.' });
-    ta.value = terms.join(', ');
-    if (FOCUS.edit) requestAnimationFrame(() => ta.focus());
-    return h('form', { class: 'focus', onsubmit: e => { e.preventDefault(); focusSet(focusParse(ta.value)); } }, ta,
-      h('div', { class: 'focus-a' },
-        h('button', { class: 'btn btn-w', type: 'submit' }, 'Apply'),
-        h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel'),
-        h('small', { text: 'Saved in this browser only' })));
+// Suggestions come from the radar's own vocabulary (trend names, acronyms in the stories, common topics), each with
+// the number of stories it would show, so a tap always finds something.
+const SUGGEST = ['sovereign cloud', 'post-quantum', 'deepfake', 'ransomware', 'Kubernetes', 'SAP', 'AI Act', 'Cyber Resilience Act', 'agents',
+  'humanoid', 'data centre', 'open source', 'supply chain', 'insurance', 'banking', 'healthcare', 'Germany', 'semiconductors', 'robotics', 'identity'];
+function focusSuggest(prefix) {
+  if (FOCUS.candNews !== S.news || FOCUS.candTr !== S.trends) {
+    const docs = S.news.filter(n => !n.minor && S.byId.has(n.t)).map(n => str(n.title) + ' ' + str(n.take)), pool = new Map();
+    const add = w => { const k = w.toLowerCase(); if (!pool.has(k)) pool.set(k, w); };
+    S.trends.forEach(t => add(t.short || t.title));
+    for (const d of docs) for (const m of d.matchAll(/\b[A-Z][A-Z0-9]{1,5}\b/g)) if (!['AI', 'US', 'UK', 'CEO', 'API', 'IT', 'Q1', 'Q2', 'Q3', 'Q4'].includes(m[0])) add(m[0]);
+    SUGGEST.forEach(add);
+    FOCUS.cand = [...pool.values()].map(w => { const re = termRx(w.toLowerCase()); return { w, n: docs.filter(d => re.test(d)).length }; })
+      .filter(x => x.n >= 1).sort((a, b) => b.n - a.n || a.w.localeCompare(b.w));
+    FOCUS.candNews = S.news; FOCUS.candTr = S.trends;
   }
+  const have = new Set(FOCUS.terms.map(t => t.toLowerCase())), p = str(prefix).trim().toLowerCase();
+  return FOCUS.cand.filter(x => !have.has(x.w.toLowerCase()) && (p ? x.w.toLowerCase().includes(p) : x.n >= 2)).slice(0, p ? 8 : 12);
+}
+// Adding or removing a topic applies at once and keeps the editor open, so the feed below updates as you go.
+function focusAdd(w) {
+  const add = Array.isArray(w) ? w : str(w).trim().split(/\s+/).length > 3 ? focusParse(w) : [str(w).trim()];
+  const have = new Set(FOCUS.terms.map(t => t.toLowerCase()));
+  const terms = FOCUS.terms.concat(add.filter(t => t && !have.has(t.toLowerCase()))).slice(0, 12);
+  focusSet(terms, true);
+}
+const focusRemove = w => focusSet(FOCUS.terms.filter(y => y !== w), FOCUS.edit);
+function termChip(x) {
+  const ok = FOCUS.hits.get(x) || FOCUS.tterms.has(x);
+  return h('button', { class: 'term' + (ok ? '' : ' none'), type: 'button', 'aria-label': 'Remove ' + x, title: ok ? stories(FOCUS.hits.get(x) || 0) + ' match' : 'No story mentions this yet', onclick: () => focusRemove(x) }, h('span', { text: x }), ic('i-close'));
+}
+function focusEditor() {
+  const terms = FOCUS.terms;
+  if (FOCUS.prose) {
+    const ta = h('textarea', { class: 'focus-in', rows: 4, 'aria-label': 'Your strategy text', placeholder: 'Paste a few sentences about your company, priorities or projects. The radar picks out the topics it covers.' });
+    requestAnimationFrame(() => ta.focus({ preventScroll: true }));
+    return h('form', { class: 'focus edit', onsubmit: e => { e.preventDefault(); FOCUS.prose = false; focusAdd(focusParse(ta.value)); } },
+      h('div', { class: 'focus-h' }, h('b', { text: 'Paste a strategy text' }), h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.prose = false; renderPanel(false); } }, 'Back')),
+      ta, h('div', { class: 'focus-a' }, h('button', { class: 'btn btn-w', type: 'submit' }, 'Find my topics'), h('small', { text: 'Stays in this browser' })));
+  }
+  const input = h('input', { class: 'focus-add', type: 'text', enterkeyhint: 'done', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Add a topic', placeholder: terms.length ? 'Add another topic' : 'Type a topic, company or rule' });
+  const head = h('p', { class: 'sugg-h' }), sug = h('div', { class: 'sugg' });
+  const fill = () => {
+    const list = focusSuggest(input.value), q = input.value.trim();
+    head.textContent = q ? (list.length ? 'Matching topics' : 'Press Enter to add “' + q + '”') : terms.length ? 'Add more' : 'Popular on the radar';
+    put(sug, list.map(x => h('button', { class: 'sug', type: 'button', onclick: () => focusAdd(x.w) }, h('span', { text: x.w }), h('small', { text: String(x.n) }))));
+  };
+  input.addEventListener('input', fill);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); const v = input.value.trim(); if (v) { FOCUS.typing = true; focusAdd(v); } }
+    else if (e.key === 'Backspace' && !input.value && terms.length) { FOCUS.typing = true; focusRemove(terms[terms.length - 1]); }
+    else if (e.key === 'Escape') { FOCUS.edit = false; renderPanel(false); }
+  });
+  fill();
+  if (FOCUS.typing || (!PHONE && !terms.length)) requestAnimationFrame(() => input.focus({ preventScroll: true }));
+  FOCUS.typing = false;
+  const n = terms.length ? S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length : 0;
+  return h('div', { class: 'focus edit' },
+    h('div', { class: 'focus-h' }, h('b', { text: 'Your focus' }), terms.length ? h('span', { text: stories(n) }) : null,
+      h('button', { class: 'btn btn-w sm', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Done')),
+    h('div', { class: 'terms' }, terms.map(termChip), input),
+    head, sug,
+    h('div', { class: 'focus-f' }, h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.prose = true; renderPanel(false); } }, 'Paste a strategy text instead'), h('small', { text: 'Stays in this browser' })));
+}
+function focusBox() {
+  if (FOCUS.edit) return focusEditor();
   if (!focusActive()) return null;
-  const tr = FOCUS.tlist, n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
+  const n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
   return h('div', { class: 'focus' },
-    h('p', { class: 'focus-s' }, h('b', { text: 'Only stories for your focus' }), h('span', { text: stories(n) + ' of ' + S.news.filter(x => !x.minor).length })),
-    h('div', { class: 'terms' },
-      terms.map(x => h('button', { class: 'term' + (FOCUS.hits.get(x) || FOCUS.tterms.has(x) ? '' : ' none'), type: 'button', 'aria-label': 'Remove ' + x, title: FOCUS.hits.get(x) ? stories(FOCUS.hits.get(x)) + ' match' : 'No match yet', onclick: () => focusSet(terms.filter(y => y !== x)) }, h('span', { text: x }), ic('i-close'))),
-      h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.edit = true; renderPanel(false); } }, 'Edit')),
-    tr.length ? h('p', { class: 'focus-t' }, h('span', { text: 'Most relevant ' + (tr.length === 1 ? 'trend' : 'trends') + ':' }),
-      tr.slice(0, 6).map(t => h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot c-' + t.ring }), t.short || t.title))) : null);
+    h('div', { class: 'focus-h' }, h('b', { text: 'Your focus' }), h('span', { text: stories(n) }),
+      h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.edit = true; renderPanel(false); } }, 'Edit'),
+      h('button', { class: 'link sm', type: 'button', onclick: focusToggle }, 'Off')),
+    h('div', { class: 'terms' }, FOCUS.terms.map(termChip)));
 }
 focusLoad();
 

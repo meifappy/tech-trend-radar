@@ -86,15 +86,15 @@ function focusSync() {
 const own3 = n => FOCUS.rx.some(x => x.re.test(str(n.title) + ' ' + str(n.take))) ||
   (tkeys(n).some(k => FOCUS.trends.has(k)) && FOCUS.rx.some(x => x.re.test(pts(n) + ' ' + str(n.src.name))));
 function focusLoad() { const v = ls.get('focus', []); FOCUS.terms = Array.isArray(v) ? v.filter(x => typeof x === 'string').map(x => x.slice(0, 40)).slice(0, 12) : []; FOCUS.on = ls.get('focusOn', true) !== false; }
-function focusSet(terms) {
+function focusSet(terms, keepOpen) {
   FOCUS.terms = terms;
-  FOCUS.edit = false;
+  FOCUS.edit = !!keepOpen;
   if (terms.length) FOCUS.on = true;
   ls.set('focus', terms); ls.set('focusOn', FOCUS.on);
   focusApply();
 }
 function focusToggle() {
-  if (!FOCUS.terms.length) { FOCUS.edit = !FOCUS.edit; renderPanel(false); return; }
+  if (!FOCUS.terms.length || FOCUS.edit) { FOCUS.edit = !FOCUS.edit; FOCUS.prose = false; renderPanel(false); return; }
   FOCUS.on = !FOCUS.on; FOCUS.edit = false;
   ls.set('focusOn', FOCUS.on);
   focusApply();
@@ -113,26 +113,77 @@ const focusActive = () => FOCUS.on && FOCUS.terms.length > 0;
 const inFocus = n => !focusActive() || (focusFresh(), FOCUS.score.has(n.id));
 const focusDim = id => focusActive() && (focusFresh(), !FOCUS.trends.has(id) && !(S.byT.get(id) || []).some(n => FOCUS.own.has(n.id)));
 
-function focusBox() {
-  const terms = FOCUS.terms;
-  if (FOCUS.edit) {
-    const ta = h('textarea', { class: 'focus-in', rows: 3, 'aria-label': 'Your focus', placeholder: 'Industry, systems, rules, priorities. For example: bank, SAP, NIS2, sovereign cloud. Or paste a short strategy text.' });
-    ta.value = terms.join(', ');
-    if (FOCUS.edit) requestAnimationFrame(() => ta.focus());
-    return h('form', { class: 'focus', onsubmit: e => { e.preventDefault(); focusSet(focusParse(ta.value)); } }, ta,
-      h('div', { class: 'focus-a' },
-        h('button', { class: 'btn btn-w', type: 'submit' }, 'Apply'),
-        h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel'),
-        h('small', { text: 'Saved in this browser only' })));
+// Suggestions come from the radar's own vocabulary (trend names, acronyms in the stories, common topics), each with
+// the number of stories it would show, so a tap always finds something.
+const SUGGEST = ['sovereign cloud', 'post-quantum', 'deepfake', 'ransomware', 'Kubernetes', 'SAP', 'AI Act', 'Cyber Resilience Act', 'agents',
+  'humanoid', 'data centre', 'open source', 'supply chain', 'insurance', 'banking', 'healthcare', 'Germany', 'semiconductors', 'robotics', 'identity'];
+function focusSuggest(prefix) {
+  if (FOCUS.candNews !== S.news || FOCUS.candTr !== S.trends) {
+    const docs = S.news.filter(n => !n.minor && S.byId.has(n.t)).map(n => str(n.title) + ' ' + str(n.take)), pool = new Map();
+    const add = w => { const k = w.toLowerCase(); if (!pool.has(k)) pool.set(k, w); };
+    S.trends.forEach(t => add(t.short || t.title));
+    for (const d of docs) for (const m of d.matchAll(/\b[A-Z][A-Z0-9]{1,5}\b/g)) if (!['AI', 'US', 'UK', 'CEO', 'API', 'IT', 'Q1', 'Q2', 'Q3', 'Q4'].includes(m[0])) add(m[0]);
+    SUGGEST.forEach(add);
+    FOCUS.cand = [...pool.values()].map(w => { const re = termRx(w.toLowerCase()); return { w, n: docs.filter(d => re.test(d)).length }; })
+      .filter(x => x.n >= 1).sort((a, b) => b.n - a.n || a.w.localeCompare(b.w));
+    FOCUS.candNews = S.news; FOCUS.candTr = S.trends;
   }
+  const have = new Set(FOCUS.terms.map(t => t.toLowerCase())), p = str(prefix).trim().toLowerCase();
+  return FOCUS.cand.filter(x => !have.has(x.w.toLowerCase()) && (p ? x.w.toLowerCase().includes(p) : x.n >= 2)).slice(0, p ? 8 : 12);
+}
+// Adding or removing a topic applies at once and keeps the editor open, so the feed below updates as you go.
+function focusAdd(w) {
+  const add = Array.isArray(w) ? w : str(w).trim().split(/\s+/).length > 3 ? focusParse(w) : [str(w).trim()];
+  const have = new Set(FOCUS.terms.map(t => t.toLowerCase()));
+  const terms = FOCUS.terms.concat(add.filter(t => t && !have.has(t.toLowerCase()))).slice(0, 12);
+  focusSet(terms, true);
+}
+const focusRemove = w => focusSet(FOCUS.terms.filter(y => y !== w), FOCUS.edit);
+function termChip(x) {
+  const ok = FOCUS.hits.get(x) || FOCUS.tterms.has(x);
+  return h('button', { class: 'term' + (ok ? '' : ' none'), type: 'button', 'aria-label': 'Remove ' + x, title: ok ? stories(FOCUS.hits.get(x) || 0) + ' match' : 'No story mentions this yet', onclick: () => focusRemove(x) }, h('span', { text: x }), ic('i-close'));
+}
+function focusEditor() {
+  const terms = FOCUS.terms;
+  if (FOCUS.prose) {
+    const ta = h('textarea', { class: 'focus-in', rows: 4, 'aria-label': 'Your strategy text', placeholder: 'Paste a few sentences about your company, priorities or projects. The radar picks out the topics it covers.' });
+    requestAnimationFrame(() => ta.focus({ preventScroll: true }));
+    return h('form', { class: 'focus edit', onsubmit: e => { e.preventDefault(); FOCUS.prose = false; focusAdd(focusParse(ta.value)); } },
+      h('div', { class: 'focus-h' }, h('b', { text: 'Paste a strategy text' }), h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.prose = false; renderPanel(false); } }, 'Back')),
+      ta, h('div', { class: 'focus-a' }, h('button', { class: 'btn btn-w', type: 'submit' }, 'Find my topics'), h('small', { text: 'Stays in this browser' })));
+  }
+  const input = h('input', { class: 'focus-add', type: 'text', enterkeyhint: 'done', autocomplete: 'off', spellcheck: 'false', 'aria-label': 'Add a topic', placeholder: terms.length ? 'Add another topic' : 'Type a topic, company or rule' });
+  const head = h('p', { class: 'sugg-h' }), sug = h('div', { class: 'sugg' });
+  const fill = () => {
+    const list = focusSuggest(input.value), q = input.value.trim();
+    head.textContent = q ? (list.length ? 'Matching topics' : 'Press Enter to add “' + q + '”') : terms.length ? 'Add more' : 'Popular on the radar';
+    put(sug, list.map(x => h('button', { class: 'sug', type: 'button', onclick: () => focusAdd(x.w) }, h('span', { text: x.w }), h('small', { text: String(x.n) }))));
+  };
+  input.addEventListener('input', fill);
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); const v = input.value.trim(); if (v) { FOCUS.typing = true; focusAdd(v); } }
+    else if (e.key === 'Backspace' && !input.value && terms.length) { FOCUS.typing = true; focusRemove(terms[terms.length - 1]); }
+    else if (e.key === 'Escape') { FOCUS.edit = false; renderPanel(false); }
+  });
+  fill();
+  if (FOCUS.typing || (!PHONE && !terms.length)) requestAnimationFrame(() => input.focus({ preventScroll: true }));
+  FOCUS.typing = false;
+  const n = terms.length ? S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length : 0;
+  return h('div', { class: 'focus edit' },
+    h('div', { class: 'focus-h' }, h('b', { text: 'Your focus' }), terms.length ? h('span', { text: stories(n) }) : null,
+      h('button', { class: 'btn btn-w sm', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Done')),
+    h('div', { class: 'terms' }, terms.map(termChip), input),
+    head, sug,
+    h('div', { class: 'focus-f' }, h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.prose = true; renderPanel(false); } }, 'Paste a strategy text instead'), h('small', { text: 'Stays in this browser' })));
+}
+function focusBox() {
+  if (FOCUS.edit) return focusEditor();
   if (!focusActive()) return null;
-  const tr = FOCUS.tlist, n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
+  const n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
   return h('div', { class: 'focus' },
-    h('p', { class: 'focus-s' }, h('b', { text: 'Only stories for your focus' }), h('span', { text: stories(n) + ' of ' + S.news.filter(x => !x.minor).length })),
-    h('div', { class: 'terms' },
-      terms.map(x => h('button', { class: 'term' + (FOCUS.hits.get(x) || FOCUS.tterms.has(x) ? '' : ' none'), type: 'button', 'aria-label': 'Remove ' + x, title: FOCUS.hits.get(x) ? stories(FOCUS.hits.get(x)) + ' match' : 'No match yet', onclick: () => focusSet(terms.filter(y => y !== x)) }, h('span', { text: x }), ic('i-close'))),
-      h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.edit = true; renderPanel(false); } }, 'Edit')),
-    tr.length ? h('p', { class: 'focus-t' }, h('span', { text: 'Most relevant ' + (tr.length === 1 ? 'trend' : 'trends') + ':' }),
-      tr.slice(0, 6).map(t => h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot c-' + t.ring }), t.short || t.title))) : null);
+    h('div', { class: 'focus-h' }, h('b', { text: 'Your focus' }), h('span', { text: stories(n) }),
+      h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.edit = true; renderPanel(false); } }, 'Edit'),
+      h('button', { class: 'link sm', type: 'button', onclick: focusToggle }, 'Off')),
+    h('div', { class: 'terms' }, FOCUS.terms.map(termChip)));
 }
 focusLoad();

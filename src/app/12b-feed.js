@@ -112,14 +112,26 @@ function pageFeed() {
     if (nFresh && i === nFresh) cards.push(h('div', { class: 'uptodate' }, ic('i-check'), h('span', { text: 'You are up to date' })));
     cards.push(feedCard(n));
   });
-  const end = shown.length < list.length || (FEED.f !== 'hot' && olderMonth())
-    ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
-    : h('p', { class: 'muted feed-end', text: list.length ? (FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.') : !S.ok.news ? 'Loading…' : focusActive() ? 'No stories match your focus here yet. Try broader terms, or turn My focus off.' : 'No stories match this filter.' });
+  const more = shown.length < list.length || (FEED.f !== 'hot' && olderMonth());
+  const end = more ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
+    : list.length ? h('p', { class: 'muted feed-end', text: FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.' })
+    : !S.ok.news ? h('p', { class: 'muted feed-end', text: 'Loading\u2026' })
+    : feedEmpty();
   out.push(h('div', { class: 'feed' }, cards), end);
   requestAnimationFrame(feedObserve);
   return out;
 }
 
+// Nothing to show: say why in one line and offer the way out, never a dead end.
+function feedEmpty() {
+  const what = FEED.f === 'hot' ? 'in the top stories of the last 30 days' : FEED.f === 'pod' ? 'in audio and video' : 'yet';
+  const btn = (t, fn, w) => h('button', { class: 'btn' + (w ? ' btn-w' : ''), type: 'button', onclick: fn }, t);
+  if (focusActive()) return h('div', { class: 'feed-empty' }, h('p', { text: 'Nothing for your focus ' + what + '.' }), h('div', null,
+    FEED.f !== 'all' ? btn('All stories for my focus', () => setFilter('all'), true) : null,
+    btn('Edit focus', () => { FOCUS.edit = true; renderPanel(false); }, FEED.f === 'all'),
+    btn('Show everything', focusToggle)));
+  return h('div', { class: 'feed-empty' }, h('p', { text: 'No stories ' + what + '.' }), FEED.f !== 'all' ? h('div', null, btn('Show all stories', () => setFilter('all'), true)) : null);
+}
 // Observers: grow the feed near its end and cue the radar on the story at the top.
 function feedObserve() {
   [FEED.obs, FEED.more, FEED.dwell].forEach(o => o && o.disconnect());
