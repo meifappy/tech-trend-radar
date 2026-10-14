@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-13",
+  "img": "https://schwarz-cms.object.storage.eu01.onstackit.cloud/schwarz/images/_aliases/16_9_md_8_def/3/5/5/5/1915553-1-ger-DE/d1a3bc3be2b1-News-Zendis.jpg",
+  "kind": "announcement",
+  "lang": "de",
+  "points": [
+    "First 'Approved Sovereign Service Provider' in ZenDiS's openDesk partner programme",
+    "Hosting on STACKIT's BSI C5-attested cloud",
+    "Parallel d.velop postbox link for sending documents to citizens' mailboxes"
+  ],
+  "read": "3 min",
+  "score": 63,
+  "seen": "2026-10-14T12:34:09Z",
+  "src": {
+    "name": "STACKIT (Schwarz Digits)",
+    "type": "platform",
+    "url": "https://stackit.com/en/news/stackit-strengthens-the-sovereign-it-ecosystem-of-public-administration"
+  },
+  "t": "sovereign-cloud",
+  "take": "German public bodies get a C5-attested, German-run option for the openDesk Microsoft 365 alternative; the vendor claims a broad rollout, not yet measured.",
+  "title": "STACKIT becomes first approved sovereign host for openDesk",
+  "via": "search"
+}

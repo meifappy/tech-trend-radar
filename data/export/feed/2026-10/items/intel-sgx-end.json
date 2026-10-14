@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-09",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Diamond Rapids, the next Xeon generation, will be the last to include SGX",
+    "Support and security updates for SGX platforms continue into the early 2030s",
+    "Intel keeps investing in TDX Connect (trusted I/O), post-quantum cryptography and better attestation"
+  ],
+  "read": "3 min",
+  "score": 76,
+  "seen": "2026-10-14T12:34:09Z",
+  "src": {
+    "name": "Intel Newsroom",
+    "type": "platform",
+    "url": "https://www.intel.com/content/www/us/en/newsroom/opinion/confidential-computing-growing-momentum-sharpened-focus.html"
+  },
+  "t": "confidential-computing",
+  "take": "Anyone running SGX enclaves needs a migration plan to VM-level TDX; Intel will support existing SGX platforms only into the early 2030s.",
+  "title": "Intel: Diamond Rapids is the last Xeon with SGX enclaves",
+  "via": "search"
+}

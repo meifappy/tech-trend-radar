@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-14T12:34:09Z",
+  "news": 3,
+  "note": "About 14 candidates found, 3 kept (search 2, watch 1; 1 German, 2 English): Intel ends SGX after Diamond Rapids (first confidential-computing story in 14 days, verified at Intel's newsroom post), NIST IR 8587 on token theft (identity-security), STACKIT as first approved openDesk host (sovereign-cloud). Dropped: Bitkom Cloud Report and Thales/Google sovereign cloud (June/May, too old), Dun & Bradstreet data-readiness survey (July), Synergy $5tn cloud forecast (not verified), SAP autonomous enterprise (repeat), heise KI-Update 671 (show notes without facts). Shortfalls: only one German source and no podcast/video passed; ai-engineering, ai-ready-data, platform-engineering and novel-computing still have no story in 14 days. BSI press list empty, ENISA has nothing since 30 Sep, netzpolitik feed blocked by robots; MLCommons gigafactory follow-up still open. Quarterly review falls due from 15 Oct, although ratings were set on 8 Oct.",
+  "push": "failed",
+  "pushError": "git clone: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403. No GitHub file tool and no add_repo tool in this session.",
+  "trendsChanged": []
+}
