@@ -59,6 +59,12 @@ session) followed by `git push`. If all are refused (the scan note then says `pu
 everything: a follow-up job about 25 minutes after each scan exports it with ArtifactData, runs
 `scripts/sync_export.py` and pushes, and the same Action publishes it.
 
+## First visit
+
+A small card offers an optional 15-second tour (`src/app/16b-tour.js`): six spotlights with an arrow and one line
+each, moving on by itself; tap for the next step, Skip or Esc to end. It is offered once and can be replayed from How it
+works.
+
 ## Motion
 
 Camera flights, the radar beam and pop-ins follow the system's reduced-motion setting (on Windows, "Animation

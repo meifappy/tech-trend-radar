@@ -101,7 +101,7 @@ function pageFeed() {
     h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
     FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l)),
     // My focus is not one more filter but a lens over all of them, so it sits apart and shows when it is on.
-    h('button', { class: 'chip chip-focus', type: 'button', 'aria-pressed': String(focusActive()), 'aria-expanded': String(FOCUS.edit), onclick: focusToggle }, FOCUS.terms.length ? 'My focus' : '+ My focus')));
+    h('button', { class: 'chip chip-focus', type: 'button', 'aria-pressed': String(focusActive()), 'aria-expanded': String(FOCUS.edit), 'aria-label': FOCUS.terms.length ? 'My focus: ' + (focusActive() ? 'on' : 'off') : 'Add my focus', onclick: focusToggle }, FOCUS.terms.length ? 'Focus' : '+ Focus')));
   const fb = focusBox();
   if (fb) out.push(fb);
   const cards = [];

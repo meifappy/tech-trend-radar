@@ -80,7 +80,7 @@ for (const dpr of [1.25, 1.5]) {
   check(!hots.length || hot[0].hot, tag + 'Top does not start with a hot story');
 
   // My focus: type terms, stories match, non-matching trends dim on the radar.
-  await page.locator('.chip', { hasText: 'My focus' }).click();
+  await page.locator('.chip-focus').click();
   await page.locator('.focus-in').fill('NIS2, bank, quantum');
   await page.locator('.focus button[type=submit]').click();
   await page.waitForTimeout(300);
@@ -151,6 +151,24 @@ for (const dpr of [1.25, 1.5]) {
   await page.waitForFunction(() => document.querySelectorAll('.blip').length > 0);
   await page.waitForTimeout(100);
   check(await page.evaluate(() => document.getElementById('g-bands').getAnimations().length === 0), 'boot: rings animate again when the data arrives');
+  await ctx.close();
+}
+// First visit: the optional tour is offered, walks through its steps by itself in about 15 s and can be skipped.
+{
+  const ctx = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  const page = await ctx.newPage();
+  page.on('pageerror', e => problems.push('tour: ' + e.message));
+  await page.goto(url);
+  await page.waitForSelector('.tour-offer', { timeout: 8000 }).catch(() => problems.push('tour: not offered on the first visit'));
+  await page.locator('.tour-offer .btn').click();
+  await page.waitForTimeout(500);
+  const first = await page.locator('.tour-tip').textContent();
+  await page.waitForTimeout(2400);
+  check(first && (await page.locator('.tour-tip').textContent()) !== first, 'tour: did not move on by itself');
+  await page.locator('.tour-x').click();
+  check(await page.locator('.tour').count() === 0, 'tour: Skip did not end it');
+  await page.reload(); await page.waitForTimeout(3500);
+  check(await page.locator('.tour-offer').count() === 0, 'tour: offered again on the second visit');
   await ctx.close();
 }
 await browser.close();

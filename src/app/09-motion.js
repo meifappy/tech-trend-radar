@@ -52,6 +52,7 @@ function maybeReveal() {
     paintRadar();
     setTimeout(() => { animateMoves(); sweepSync(); }, CALM ? 0 : 650);
     autoArm();
+    setTimeout(tourOffer, CALM ? 600 : 1800);
     return;
   }
   const arrived = S.news.filter(n => n._new && !knownNew.has(n.id));
