@@ -58,20 +58,35 @@ function zoomAt(px, py, f) {
   camSet({ k: k2, x: wx - (px - RD.W / 2) / k2p, y: wy - (py - RD.W / 2) / k2p });
 }
 const local = e => { const r = RD.box.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
-// Wheel: a pinch (ctrl + wheel) or a mouse wheel zooms; two-finger scrolling on a touchpad pans the zoomed radar
-// (Edge and Chrome on Windows report touchpad scrolls as small, fractional or sideways pixel deltas).
+// Wheel, as on web maps: scrolling zooms around the pointer, a sideways swipe pans the zoomed radar, a drag pans.
+// Every wheel event moves a zoom target and the camera eases towards it, so a mouse notch (100 px, or a fractional
+// 66.7 px at 150 % Windows scaling) glides one step and touchpad scrolling or pinching (ctrl + wheel) zooms smoothly
+// in proportion. No guessing whether the device is a mouse or a touchpad.
+const WZ = { k: 1, x: 0, y: 0, raf: 0 };
+function wheelZoom(px, py, f) {
+  WZ.k = clamp((WZ.raf ? WZ.k : RD.cam.k) * f, 1, KMAX); WZ.x = px; WZ.y = py;
+  if (CALM) { zoomAt(px, py, WZ.k / RD.cam.k); return; }
+  if (WZ.raf) return;
+  const step = () => {
+    const k = RD.cam.k, d = WZ.k - k, done = Math.abs(d) < .003;
+    zoomAt(WZ.x, WZ.y, (done ? WZ.k : k + d * .3) / k);
+    WZ.raf = done ? 0 : requestAnimationFrame(step);
+  };
+  WZ.raf = requestAnimationFrame(step);
+}
 RD.box.addEventListener('wheel', e => {
   if (e.target.closest('.zoomui')) return;
   e.preventDefault();
-  const pad = !e.ctrlKey && e.deltaMode === 0 && (e.deltaX !== 0 || Math.abs(e.deltaY) < 50 || e.deltaY % 1 !== 0);
-  if (pad) {
+  const px = e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? 300 : 1, dx = e.deltaX * px, dy = e.deltaY * px;
+  if (!e.ctrlKey && Math.abs(dx) > Math.abs(dy)) {
     if (RD.cam.k <= 1.01) return;
+    cancelAnimationFrame(WZ.raf); WZ.raf = 0;
     const kk = RD.cam.k * RD.R0;
-    camSet({ k: RD.cam.k, x: RD.cam.x + e.deltaX / kk, y: RD.cam.y + e.deltaY / kk });
+    camSet({ k: RD.cam.k, x: RD.cam.x + dx / kk, y: RD.cam.y });
     return;
   }
-  const [x, y] = local(e), dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
-  zoomAt(x, y, Math.exp(-clamp(dy, -120, 120) * (e.ctrlKey ? .01 : .0018)));
+  const [x, y] = local(e);
+  wheelZoom(x, y, Math.exp(-clamp(dy, -150, 150) * (e.ctrlKey ? .01 : .0026)));
 }, { passive: false });
 (() => {
   const pts = new Map();

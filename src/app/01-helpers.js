@@ -37,4 +37,10 @@ const mqRM = matchMedia('(prefers-reduced-motion: reduce)'), mqPhone = matchMedi
 const mqWide = matchMedia('(min-width: 960px) and (min-height: 560px)');
 let RM = mqRM.matches, PHONE = mqPhone.matches, WIDE = mqWide.matches && !PHONE;
 const onMq = (mq, fn) => (mq.addEventListener ? mq.addEventListener('change', fn) : mq.addListener(fn));
-onMq(mqRM, e => { RM = e.matches; });
+// Calm: no spatial motion (camera flights, slides, pop-ins), only short fades. It follows the system's reduced-motion
+// setting (Windows reports it whenever "Animation effects" is off, common on managed laptops) unless the reader has
+// turned motion on with the play button.
+let CALM = RM && ls.get('motion', null) !== true;
+const calmSync = () => document.documentElement.classList.toggle('calm', CALM);
+onMq(mqRM, e => { RM = e.matches; CALM = RM && ls.get('motion', null) !== true; calmSync(); });
+calmSync();

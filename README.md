@@ -11,6 +11,7 @@ src/styles/*.css          styles, in cascade order: tokens, base, layout, radar,
 src/app/*.js              app code, in load order (helpers → data → radar → panel → start); one closure, no globals
 scripts/build.mjs         joins src/ into public/index.html (static site) and dist/artifact.html (Claude artifact)
 scripts/merge_inbox.py    merges the scan deltas in data/inbox/ into data/export/ (validated JSON only)
+scripts/sync_export.py    copies a fresh full database export into data/export/ (fallback when a scan cannot push)
 scripts/build_data.py     turns data/export/ into public/radar-data.json and public/archive/<YYYY-MM>.json
 data/inbox/               one small delta file per scan run, pushed by the scheduled scan
 data/export/              the full database as JSON (merged deltas, or a full export)
@@ -53,8 +54,17 @@ what it owns.
    ever deleted: older months live in the archive.
 4. Cloudflare redeploys on every push to `main` within a minute or two. No build command is needed.
 
-If a scan cannot push (the scan note then says `push: failed`), the database still has everything: export it
-with ArtifactData into `data/export/` and push, and the same Action publishes it.
+The scan tries, in order: a GitHub file tool, plain `git push`, and `add_repo` (attaching this repository to its
+session) followed by `git push`. If all are refused (the scan note then says `push: failed`), the database still has
+everything: a follow-up job about 25 minutes after each scan exports it with ArtifactData, runs
+`scripts/sync_export.py` and pushes, and the same Action publishes it.
+
+## Motion
+
+Camera flights, the radar beam and pop-ins follow the system's reduced-motion setting (on Windows, "Animation
+effects"). With reduced motion the radar fades between views instead of flying; the play button at the top turns
+full motion on for that browser. Scrolling zooms around the pointer as on web maps (a mouse notch glides one step,
+touchpad scrolling and pinching zoom in proportion), a sideways swipe or a drag pans.
 
 Trend ratings hold for a quarter (`validUntil` on each trend); news changes every run. How stories and trends
 are ranked is in `docs/RANKING.md`.

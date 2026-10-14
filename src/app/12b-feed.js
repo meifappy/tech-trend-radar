@@ -157,7 +157,7 @@ function feedStep(d) {
   if (i < 0) { const top = P.body.getBoundingClientRect().top; i = cards.findIndex(c => c.getBoundingClientRect().bottom > top + 8) - (d > 0 ? 1 : 0); }
   const next = cards[clamp(i + d, 0, cards.length - 1)];
   $('.fc-t', next).focus({ preventScroll: true });
-  next.scrollIntoView({ block: 'start', behavior: RM ? 'auto' : 'smooth' });
+  next.scrollIntoView({ block: 'start', behavior: CALM ? 'auto' : 'smooth' });
 }
 
 // The next trend to read: the next one in radar order with unread news, else simply the next one.

@@ -25,11 +25,24 @@ function paintRadar() {
 }
 const easeIO = p => (p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
 function camTo(x, y, k, ms) {
-  ms = RM ? 0 : ms == null ? 700 : ms;
-  cancelAnimationFrame(RD.raf);
+  cancelAnimationFrame(RD.raf); RD.raf = 0;
+  cancelAnimationFrame(WZ.raf); WZ.raf = 0;
   clearTimeout(RD.settleT); RD.drag = false;
+  // Calm: cut to the new view behind a short fade instead of flying there.
+  if (CALM) {
+    RD.cam = { x, y, k };
+    RD.box.classList.remove('moving');
+    RD.box.classList.toggle('zoomed', k > 1.01);
+    hover(null);
+    RD.sig = ''; place(); placeLabels(); zoomUi();
+    RD.svg.animate([{ opacity: .15 }, { opacity: 1 }], { duration: 220, easing: 'ease-out' });
+    return;
+  }
+  ms = ms == null ? 700 : ms;
   const a = Object.assign({}, RD.cam), t0 = performance.now();
   RD.box.classList.add('moving');
+  // Clip to the radar from the start of a flight into an area, so nothing slides out of the box and pops away.
+  if (k > 1.01) RD.box.classList.add('zoomed');
   hover(null);
   const step = now => {
     const p = ms ? Math.min(1, (now - t0) / ms) : 1, e = easeIO(p);
@@ -61,15 +74,27 @@ function setRing(r) {
   paintChrome();
   if (cur().page === 'home') renderPanel(false);
 }
+// The rings draw themselves as soon as the page opens, so nothing flashes while the data is still loading.
+function bandsIn() {
+  if (CALM || RD.bandsIn || !RD.W) return;
+  RD.bandsIn = true;
+  const [cx, cy] = scr(0, 0);
+  RD.gB.style.transformOrigin = cx + 'px ' + cy + 'px';
+  RD.gB.animate([{ opacity: 0, transform: 'scale(.86) rotate(-12deg)' }, { opacity: 1, transform: 'none' }], { duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
+}
+// The dots pop in from the centre outwards once the trends have loaded; labels and rings follow.
 function boot() {
   if (RD.booted) return;
   RD.booted = true;
-  if (RM) return;
-  const [cx, cy] = scr(0, 0);
-  RD.gB.style.transformOrigin = cx + 'px ' + cy + 'px';
-  RD.gB.animate([{ opacity: 0, transform: 'scale(.86) rotate(-12deg)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.2,.8,.2,1)' });
-  for (const n of RD.nodes.values()) {
-    n.pop.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 380, delay: 120 + n.wr * 380, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards' });
+  if (CALM) {
+    // Calm: the dots fade in instead of popping, and the reader learns once how to get motion back.
+    RD.gN.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+    if (!ls.get('calmHint', false)) { ls.set('calmHint', true); setTimeout(() => toast('Reduced motion is on for this device. Press play at the top for motion.', 6000), 1200); }
+    return;
   }
-  RD.gL.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 500, fill: 'backwards' });
+  for (const n of RD.nodes.values()) {
+    n.pop.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 380, delay: 80 + n.wr * 380, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards' });
+  }
+  RD.gL.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 480, fill: 'backwards' });
+  RD.fx.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 520, fill: 'backwards' });
 }

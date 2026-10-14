@@ -52,12 +52,12 @@ function showSlide(i) {
   const fill = $('.bseg .sc i', P.body);
   if (B.anim) B.anim.cancel();
   B.animDone = false;
-  B.anim = fill ? fill.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: RM ? s.dur * 1.4 : s.dur, fill: 'forwards' }) : null;
+  B.anim = fill ? fill.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: CALM ? s.dur * 1.4 : s.dur, fill: 'forwards' }) : null;
   if (B.anim) B.anim.onfinish = () => { B.animDone = true; advance(); };
   if (!B.playing && B.anim) B.anim.pause();
   clearTimeout(B.markT);
   if (s.items) B.markT = setTimeout(() => markNews(s.items.filter(x => x._new)), 1500);
-  if (n && !RM && MO.on) setTimeout(() => n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.1,.6,.3,1)' }), 700);
+  if (n && !CALM && MO.on) setTimeout(() => n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.1,.6,.3,1)' }), 700);
 }
 function advance() { if (B.on && B.playing && B.animDone) showSlide(B.i + 1); }
 function togglePlay() {
@@ -79,7 +79,7 @@ function pageBrief() {
       n.take ? h('p', { class: 'btext', text: n.take }) : null,
       h('p', { class: 'bsrc' }, hotPill(n), [str(n.src.name), when(n.at)].filter(Boolean).join(', '))); }),
     s.more > 0 ? h('button', { class: 'link', type: 'button', onclick: () => openTrend(s.t.id) }, plural(s.more, 'more update'), ic('i-chev')) : null);
-  if (!RM) slide.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  if (!CALM) slide.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
   const ctl = h('div', { class: 'bctl' },
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Previous stop', onclick: () => showSlide(B.i - 1), disabled: B.i === 0 }, ic('i-back')),
     h('button', { class: 'primary', type: 'button', 'aria-label': B.playing ? 'Pause the news briefing' : 'Play the news briefing', onclick: togglePlay }, ic(B.playing ? 'i-pause' : 'i-play')),
@@ -93,7 +93,7 @@ function pageBrief() {
 const AUTO = { t: 0, off: false };
 function autoArm() {
   clearTimeout(AUTO.t);
-  if (AUTO.off || !WIDE || RM || !MO.on) return;
+  if (AUTO.off || !WIDE || CALM || !MO.on) return;
   AUTO.t = setTimeout(() => {
     if (AUTO.off || document.hidden || B.on || cur().page !== 'home' || !WIDE) return;
     AUTO.off = true;

@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 // Feature test of the built site in standalone mode, at Windows-style fractional scaling (Edge at 125 % and 150 %):
-// crisp radar placement, wheel zoom (mouse) versus pan (touchpad), drag without a stray click, Top ranking,
+// crisp radar placement, map-style wheel zoom (eased mouse notches, proportional touchpad), sideways pan, drag
+// without a stray click, calm mode (reduced motion) cutting instead of flying, Top ranking,
 // Hot scarcity, My focus, and momentum on the trend page. Same setup as tests/smoke.mjs.
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
@@ -34,16 +35,31 @@ for (const dpr of [1.25, 1.5]) {
 
   const box = await page.locator('#rbox').boundingBox(), cx = box.x + box.width / 2, cy = box.y + box.height / 2;
   const k = () => page.evaluate(() => getComputedStyle(document.getElementById('rbox')).getPropertyValue('--k') || document.getElementById('rbox').className);
-  // Touchpad scroll at full view must not zoom (Edge sends small fractional deltas).
+  // Wheel as on web maps. The outer ring's radius tells the zoom level.
+  const ring = () => page.evaluate(() => +document.querySelector('#g-bands circle').getAttribute('r'));
   await page.mouse.move(cx, cy);
-  const before = await page.evaluate(() => document.querySelector('#g-bands circle').getAttribute('r'));
-  await page.mouse.wheel(0, 12.5);
-  await page.waitForTimeout(400);
-  check(await page.evaluate(() => document.querySelector('#g-bands circle').getAttribute('r')) === before, tag + 'touchpad scroll zoomed the radar');
-  // A mouse wheel notch zooms in.
-  await page.mouse.wheel(0, -120);
-  await page.waitForTimeout(700);
+  const r0 = await ring();
+  // A touchpad scroll (small pixel deltas) zooms a little, in proportion.
+  await page.mouse.wheel(0, -12.5);
+  await page.waitForTimeout(250);
+  const r1 = await ring();
+  check(r1 > r0 * 1.02 && r1 < r0 * 1.15, tag + 'touchpad zoom not proportional ' + (r1 / r0).toFixed(3));
+  await page.keyboard.press('0'); await page.waitForTimeout(900);
+  // A mouse notch zooms one eased step (x1.3 at 100 %), also when deltaY is fractional (66.7 px at 150 % scaling).
+  const want = Math.exp(100 / dpr * .0026);
+  await page.mouse.wheel(0, -100);
+  await page.waitForTimeout(40);
+  const rMid = await ring();
+  await page.waitForTimeout(600);
+  const r2 = await ring();
+  check(Math.abs(r2 / r0 - want) < .03, tag + 'mouse notch zoom ' + (r2 / r0).toFixed(3) + ' want ' + want.toFixed(3));
+  check(rMid > r0 && rMid < r2, tag + 'mouse zoom is not eased');
   check(await page.locator('#rbox.zoomed').count() === 1, tag + 'mouse wheel did not zoom');
+  // A sideways swipe pans the zoomed radar.
+  const cx0 = await page.evaluate(() => +document.querySelector('#g-bands circle').getAttribute('cx'));
+  await page.mouse.wheel(40, 0);
+  await page.waitForTimeout(250);
+  check(await page.evaluate(() => +document.querySelector('#g-bands circle').getAttribute('cx')) < cx0, tag + 'sideways swipe did not pan');
   // Drag to pan, then release over a dot: no trend may open.
   const page0 = await page.evaluate(() => document.getElementById('panel').dataset.page);
   await page.mouse.move(cx, cy); await page.mouse.down();
@@ -88,6 +104,35 @@ for (const dpr of [1.25, 1.5]) {
   // Area labels.
   check((await page.locator('.quad').allTextContents()).join('|') === 'Business & AI|Risk & regulation|Platforms & data|Emerging tech', tag + 'area labels');
   await page.screenshot({ path: process.env.SHOT_DIR ? join(process.env.SHOT_DIR, 'features-' + dpr + '.png') : '/dev/null' }).catch(() => {});
+  await ctx.close();
+}
+// Calm mode (Windows "Animation effects" off reports reduced motion): views cut with a fade instead of flying, and
+// the play button brings motion back.
+{
+  const ctx = await browser.newContext({ viewport: { width: 1366, height: 768 }, reducedMotion: 'reduce' });
+  const page = await ctx.newPage();
+  page.on('pageerror', e => problems.push('calm: ' + e.message));
+  await page.goto(url);
+  await page.waitForFunction(() => document.querySelectorAll('.blip').length > 0);
+  check(await page.evaluate(() => document.documentElement.classList.contains('calm')), 'calm: class not set');
+  await page.locator('.quad.q-sec').click();
+  await page.waitForTimeout(60);
+  check(await page.locator('#rbox.zoomed').count() === 1, 'calm: zoom did not cut straight to the area');
+  await page.locator('#t-motion').click();
+  check(!(await page.evaluate(() => document.documentElement.classList.contains('calm'))), 'calm: play button did not turn motion on');
+  await ctx.close();
+}
+// The rings draw in at once on load, before the data arrives (no flash of empty rings).
+{
+  const ctx = await browser.newContext({ viewport: { width: 1366, height: 768 } });
+  const page = await ctx.newPage();
+  await page.route('**/radar-data.json', async r => { await new Promise(res => setTimeout(res, 800)); await r.continue(); });
+  await page.goto(url);
+  await page.waitForTimeout(150);
+  check(await page.evaluate(() => document.getElementById('g-bands').getAnimations().length === 1), 'boot: rings do not draw in on load');
+  await page.waitForFunction(() => document.querySelectorAll('.blip').length > 0);
+  await page.waitForTimeout(100);
+  check(await page.evaluate(() => document.getElementById('g-bands').getAnimations().length === 0), 'boot: rings animate again when the data arrives');
   await ctx.close();
 }
 await browser.close();

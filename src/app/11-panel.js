@@ -86,7 +86,7 @@ function renderPanel(anim) {
   P.scrolled = false;
   // Restart the entrance animation without forcing a synchronous layout.
   body.classList.remove('enter');
-  if (anim && !RM) requestAnimationFrame(() => body.classList.add('enter'));
+  if (anim && !CALM) requestAnimationFrame(() => body.classList.add('enter'));
 }
 function renderHead(c) {
   if (c.page === 'home') { P.head.hidden = true; return; }

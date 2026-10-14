@@ -28,13 +28,15 @@ function sweepSync() {
 function setMotion(on) {
   MO.on = on;
   ls.set('motion', on);
+  CALM = !on && RM;
+  calmSync();
   sweepSync();
   apArm();
   toast(on ? 'Motion on' : 'Motion paused');
 }
 document.addEventListener('visibilitychange', () => { sweepSync(); apArm(); });
 function animateMoves() {
-  if (RM) return;
+  if (CALM) return;
   for (const tr of RD.trails.values()) {
     const n = tr.n, [ox, oy] = scr(tr.ox, tr.oy);
     n.mv.animate([{ transform: 'translate(' + (ox - n.sx).toFixed(1) + 'px,' + (oy - n.sy).toFixed(1) + 'px)' }, { transform: 'translate(0px,0px)' }], { duration: 900, delay: 150, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'backwards' });
@@ -48,7 +50,7 @@ function maybeReveal() {
   if (!knownNew) {
     knownNew = new Set(S.news.filter(n => n._new).map(n => n.id));
     paintRadar();
-    setTimeout(() => { animateMoves(); sweepSync(); }, RM ? 0 : 650);
+    setTimeout(() => { animateMoves(); sweepSync(); }, CALM ? 0 : 650);
     autoArm();
     return;
   }

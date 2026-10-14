@@ -235,7 +235,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 /* dots: size = business impact (weight 1 to 3); fill = ring grey; orange = news you have not opened */
 .blip { cursor: pointer; outline: none; transition: opacity .35s; }
 .blip .hit { fill: transparent; }
-.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; }
+.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; transition: fill .45s var(--ease); }
 .blip.has-new .dot { fill: var(--orange); }
 .rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
 .blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
@@ -270,7 +270,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .fxr.on { opacity: 1; }
 .fx-cue { border: 2px dashed rgb(255 255 255 / .85); }
 .fx-sel { border: 2px solid rgb(255 255 255 / .55); }
-.fx-sel.on { animation: selpulse .9s ease-out 2; }
+.fx-sel.on { animation: selpulse .9s ease-out 2 both; }
 .app.still .fxr { animation-play-state: paused; }
 .app.still .fx-sel { animation: none; opacity: 0; }
 @keyframes selpulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
@@ -555,9 +555,8 @@ q.qt { quotes: "“" "”"; }
 @media (prefers-contrast: more) {
   :root { --t2: rgb(236 240 255 / .92); --t3: rgb(236 240 255 / .8); --line: rgb(255 255 255 / .3); }
 }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
-}
+/* Calm (set by script from prefers-reduced-motion, overridable with the play button): no movement, fades stay short. */
+.calm *, .calm *::before, .calm *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
 @media (forced-colors: active) {
   .blip .dot { fill: CanvasText; stroke: Canvas; }
   .blip.has-new .dot, .blip.c-act .dot { fill: Highlight; }
@@ -689,7 +688,13 @@ const mqRM = matchMedia('(prefers-reduced-motion: reduce)'), mqPhone = matchMedi
 const mqWide = matchMedia('(min-width: 960px) and (min-height: 560px)');
 let RM = mqRM.matches, PHONE = mqPhone.matches, WIDE = mqWide.matches && !PHONE;
 const onMq = (mq, fn) => (mq.addEventListener ? mq.addEventListener('change', fn) : mq.addListener(fn));
-onMq(mqRM, e => { RM = e.matches; });
+// Calm: no spatial motion (camera flights, slides, pop-ins), only short fades. It follows the system's reduced-motion
+// setting (Windows reports it whenever "Animation effects" is off, common on managed laptops) unless the reader has
+// turned motion on with the play button.
+let CALM = RM && ls.get('motion', null) !== true;
+const calmSync = () => document.documentElement.classList.toggle('calm', CALM);
+onMq(mqRM, e => { RM = e.matches; CALM = RM && ls.get('motion', null) !== true; calmSync(); });
+calmSync();
 
 // ---- 02-vocabulary.js
 /* The fixed vocabulary of the radar: areas (quadrants), rings, weights and expert statements. */
@@ -1333,11 +1338,24 @@ function paintRadar() {
 }
 const easeIO = p => (p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2);
 function camTo(x, y, k, ms) {
-  ms = RM ? 0 : ms == null ? 700 : ms;
-  cancelAnimationFrame(RD.raf);
+  cancelAnimationFrame(RD.raf); RD.raf = 0;
+  cancelAnimationFrame(WZ.raf); WZ.raf = 0;
   clearTimeout(RD.settleT); RD.drag = false;
+  // Calm: cut to the new view behind a short fade instead of flying there.
+  if (CALM) {
+    RD.cam = { x, y, k };
+    RD.box.classList.remove('moving');
+    RD.box.classList.toggle('zoomed', k > 1.01);
+    hover(null);
+    RD.sig = ''; place(); placeLabels(); zoomUi();
+    RD.svg.animate([{ opacity: .15 }, { opacity: 1 }], { duration: 220, easing: 'ease-out' });
+    return;
+  }
+  ms = ms == null ? 700 : ms;
   const a = Object.assign({}, RD.cam), t0 = performance.now();
   RD.box.classList.add('moving');
+  // Clip to the radar from the start of a flight into an area, so nothing slides out of the box and pops away.
+  if (k > 1.01) RD.box.classList.add('zoomed');
   hover(null);
   const step = now => {
     const p = ms ? Math.min(1, (now - t0) / ms) : 1, e = easeIO(p);
@@ -1369,17 +1387,29 @@ function setRing(r) {
   paintChrome();
   if (cur().page === 'home') renderPanel(false);
 }
+// The rings draw themselves as soon as the page opens, so nothing flashes while the data is still loading.
+function bandsIn() {
+  if (CALM || RD.bandsIn || !RD.W) return;
+  RD.bandsIn = true;
+  const [cx, cy] = scr(0, 0);
+  RD.gB.style.transformOrigin = cx + 'px ' + cy + 'px';
+  RD.gB.animate([{ opacity: 0, transform: 'scale(.86) rotate(-12deg)' }, { opacity: 1, transform: 'none' }], { duration: 700, easing: 'cubic-bezier(.2,.8,.2,1)' });
+}
+// The dots pop in from the centre outwards once the trends have loaded; labels and rings follow.
 function boot() {
   if (RD.booted) return;
   RD.booted = true;
-  if (RM) return;
-  const [cx, cy] = scr(0, 0);
-  RD.gB.style.transformOrigin = cx + 'px ' + cy + 'px';
-  RD.gB.animate([{ opacity: 0, transform: 'scale(.86) rotate(-12deg)' }, { opacity: 1, transform: 'none' }], { duration: 600, easing: 'cubic-bezier(.2,.8,.2,1)' });
-  for (const n of RD.nodes.values()) {
-    n.pop.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 380, delay: 120 + n.wr * 380, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards' });
+  if (CALM) {
+    // Calm: the dots fade in instead of popping, and the reader learns once how to get motion back.
+    RD.gN.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300 });
+    if (!ls.get('calmHint', false)) { ls.set('calmHint', true); setTimeout(() => toast('Reduced motion is on for this device. Press play at the top for motion.', 6000), 1200); }
+    return;
   }
-  RD.gL.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 500, fill: 'backwards' });
+  for (const n of RD.nodes.values()) {
+    n.pop.animate([{ transform: 'scale(0)', opacity: 0 }, { transform: 'scale(1)', opacity: 1 }], { duration: 380, delay: 80 + n.wr * 380, easing: 'cubic-bezier(.34,1.56,.64,1)', fill: 'backwards' });
+  }
+  RD.gL.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 350, delay: 480, fill: 'backwards' });
+  RD.fx.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, delay: 520, fill: 'backwards' });
 }
 
 // ---- 09-motion.js
@@ -1413,13 +1443,15 @@ function sweepSync() {
 function setMotion(on) {
   MO.on = on;
   ls.set('motion', on);
+  CALM = !on && RM;
+  calmSync();
   sweepSync();
   apArm();
   toast(on ? 'Motion on' : 'Motion paused');
 }
 document.addEventListener('visibilitychange', () => { sweepSync(); apArm(); });
 function animateMoves() {
-  if (RM) return;
+  if (CALM) return;
   for (const tr of RD.trails.values()) {
     const n = tr.n, [ox, oy] = scr(tr.ox, tr.oy);
     n.mv.animate([{ transform: 'translate(' + (ox - n.sx).toFixed(1) + 'px,' + (oy - n.sy).toFixed(1) + 'px)' }, { transform: 'translate(0px,0px)' }], { duration: 900, delay: 150, easing: 'cubic-bezier(.65,0,.35,1)', fill: 'backwards' });
@@ -1433,7 +1465,7 @@ function maybeReveal() {
   if (!knownNew) {
     knownNew = new Set(S.news.filter(n => n._new).map(n => n.id));
     paintRadar();
-    setTimeout(() => { animateMoves(); sweepSync(); }, RM ? 0 : 650);
+    setTimeout(() => { animateMoves(); sweepSync(); }, CALM ? 0 : 650);
     autoArm();
     return;
   }
@@ -1504,20 +1536,35 @@ function zoomAt(px, py, f) {
   camSet({ k: k2, x: wx - (px - RD.W / 2) / k2p, y: wy - (py - RD.W / 2) / k2p });
 }
 const local = e => { const r = RD.box.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
-// Wheel: a pinch (ctrl + wheel) or a mouse wheel zooms; two-finger scrolling on a touchpad pans the zoomed radar
-// (Edge and Chrome on Windows report touchpad scrolls as small, fractional or sideways pixel deltas).
+// Wheel, as on web maps: scrolling zooms around the pointer, a sideways swipe pans the zoomed radar, a drag pans.
+// Every wheel event moves a zoom target and the camera eases towards it, so a mouse notch (100 px, or a fractional
+// 66.7 px at 150 % Windows scaling) glides one step and touchpad scrolling or pinching (ctrl + wheel) zooms smoothly
+// in proportion. No guessing whether the device is a mouse or a touchpad.
+const WZ = { k: 1, x: 0, y: 0, raf: 0 };
+function wheelZoom(px, py, f) {
+  WZ.k = clamp((WZ.raf ? WZ.k : RD.cam.k) * f, 1, KMAX); WZ.x = px; WZ.y = py;
+  if (CALM) { zoomAt(px, py, WZ.k / RD.cam.k); return; }
+  if (WZ.raf) return;
+  const step = () => {
+    const k = RD.cam.k, d = WZ.k - k, done = Math.abs(d) < .003;
+    zoomAt(WZ.x, WZ.y, (done ? WZ.k : k + d * .3) / k);
+    WZ.raf = done ? 0 : requestAnimationFrame(step);
+  };
+  WZ.raf = requestAnimationFrame(step);
+}
 RD.box.addEventListener('wheel', e => {
   if (e.target.closest('.zoomui')) return;
   e.preventDefault();
-  const pad = !e.ctrlKey && e.deltaMode === 0 && (e.deltaX !== 0 || Math.abs(e.deltaY) < 50 || e.deltaY % 1 !== 0);
-  if (pad) {
+  const px = e.deltaMode === 1 ? 33 : e.deltaMode === 2 ? 300 : 1, dx = e.deltaX * px, dy = e.deltaY * px;
+  if (!e.ctrlKey && Math.abs(dx) > Math.abs(dy)) {
     if (RD.cam.k <= 1.01) return;
+    cancelAnimationFrame(WZ.raf); WZ.raf = 0;
     const kk = RD.cam.k * RD.R0;
-    camSet({ k: RD.cam.k, x: RD.cam.x + e.deltaX / kk, y: RD.cam.y + e.deltaY / kk });
+    camSet({ k: RD.cam.k, x: RD.cam.x + dx / kk, y: RD.cam.y });
     return;
   }
-  const [x, y] = local(e), dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
-  zoomAt(x, y, Math.exp(-clamp(dy, -120, 120) * (e.ctrlKey ? .01 : .0018)));
+  const [x, y] = local(e);
+  wheelZoom(x, y, Math.exp(-clamp(dy, -150, 150) * (e.ctrlKey ? .01 : .0026)));
 }, { passive: false });
 (() => {
   const pts = new Map();
@@ -1685,7 +1732,7 @@ function renderPanel(anim) {
   P.scrolled = false;
   // Restart the entrance animation without forcing a synchronous layout.
   body.classList.remove('enter');
-  if (anim && !RM) requestAnimationFrame(() => body.classList.add('enter'));
+  if (anim && !CALM) requestAnimationFrame(() => body.classList.add('enter'));
 }
 function renderHead(c) {
   if (c.page === 'home') { P.head.hidden = true; return; }
@@ -1852,7 +1899,7 @@ function pageAbout() {
     h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
   out.push(section('My focus', null, h('p', { class: 'muted', text: 'Add your industry, systems, rules or priorities (or paste a short strategy text) under My focus in the news. Stories are ranked by how well they match and the radar highlights the trends they touch. Your focus is saved in this browser only.' })));
   out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. Opening a trend or a news item clears them. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
-  out.push(section('Motion', null, h('p', { class: 'muted', text: 'The pause button at the top stops the radar beam and the news bar from moving. It starts paused if your device asks for reduced motion.' })));
+  out.push(section('Motion', null, h('p', { class: 'muted', text: 'The pause button at the top stops the radar beam and the news bar from moving. If your device asks for reduced motion (on Windows: Animation effects off), the radar fades between views instead of flying; the play button turns full motion on.' })));
   if (basis.length) out.push(section('Built on the big trend reports', null, h('div', { class: 'basis' }, basis.map(b => h('span', { text: b }))), m.nextTaxonomyReview ? h('p', { class: 'fine', text: 'Next review of the megatrends: ' + str(m.nextTaxonomyReview).replace(/^After /, 'after ') + '.' }) : null));
   out.push(section('Sources', String(S.sources.length), STYPES.map(([k, l]) => {
     const list = S.sources.filter(s => s.type === k).sort((a, b) => str(a.name).localeCompare(str(b.name)));
@@ -2024,7 +2071,7 @@ function feedStep(d) {
   if (i < 0) { const top = P.body.getBoundingClientRect().top; i = cards.findIndex(c => c.getBoundingClientRect().bottom > top + 8) - (d > 0 ? 1 : 0); }
   const next = cards[clamp(i + d, 0, cards.length - 1)];
   $('.fc-t', next).focus({ preventScroll: true });
-  next.scrollIntoView({ block: 'start', behavior: RM ? 'auto' : 'smooth' });
+  next.scrollIntoView({ block: 'start', behavior: CALM ? 'auto' : 'smooth' });
 }
 
 // The next trend to read: the next one in radar order with unread news, else simply the next one.
@@ -2198,12 +2245,12 @@ function showSlide(i) {
   const fill = $('.bseg .sc i', P.body);
   if (B.anim) B.anim.cancel();
   B.animDone = false;
-  B.anim = fill ? fill.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: RM ? s.dur * 1.4 : s.dur, fill: 'forwards' }) : null;
+  B.anim = fill ? fill.animate([{ transform: 'scaleX(0)' }, { transform: 'scaleX(1)' }], { duration: CALM ? s.dur * 1.4 : s.dur, fill: 'forwards' }) : null;
   if (B.anim) B.anim.onfinish = () => { B.animDone = true; advance(); };
   if (!B.playing && B.anim) B.anim.pause();
   clearTimeout(B.markT);
   if (s.items) B.markT = setTimeout(() => markNews(s.items.filter(x => x._new)), 1500);
-  if (n && !RM && MO.on) setTimeout(() => n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.1,.6,.3,1)' }), 700);
+  if (n && !CALM && MO.on) setTimeout(() => n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.1,.6,.3,1)' }), 700);
 }
 function advance() { if (B.on && B.playing && B.animDone) showSlide(B.i + 1); }
 function togglePlay() {
@@ -2225,7 +2272,7 @@ function pageBrief() {
       n.take ? h('p', { class: 'btext', text: n.take }) : null,
       h('p', { class: 'bsrc' }, hotPill(n), [str(n.src.name), when(n.at)].filter(Boolean).join(', '))); }),
     s.more > 0 ? h('button', { class: 'link', type: 'button', onclick: () => openTrend(s.t.id) }, plural(s.more, 'more update'), ic('i-chev')) : null);
-  if (!RM) slide.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
+  if (!CALM) slide.animate([{ opacity: 0, transform: 'translateY(6px)' }, { opacity: 1, transform: 'none' }], { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
   const ctl = h('div', { class: 'bctl' },
     h('button', { class: 'iconbtn', type: 'button', 'aria-label': 'Previous stop', onclick: () => showSlide(B.i - 1), disabled: B.i === 0 }, ic('i-back')),
     h('button', { class: 'primary', type: 'button', 'aria-label': B.playing ? 'Pause the news briefing' : 'Play the news briefing', onclick: togglePlay }, ic(B.playing ? 'i-pause' : 'i-play')),
@@ -2239,7 +2286,7 @@ function pageBrief() {
 const AUTO = { t: 0, off: false };
 function autoArm() {
   clearTimeout(AUTO.t);
-  if (AUTO.off || !WIDE || RM || !MO.on) return;
+  if (AUTO.off || !WIDE || CALM || !MO.on) return;
   AUTO.t = setTimeout(() => {
     if (AUTO.off || document.hidden || B.on || cur().page !== 'home' || !WIDE) return;
     AUTO.off = true;
@@ -2322,7 +2369,7 @@ function renderDock(mode) {
     h('button', { class: 'primary', type: 'button', 'aria-label': 'Play the news briefing', onclick: () => briefStart() }, ic('i-play'))), ...kids);
   if (keep != null) { const f = keep ? $$('[aria-label]', el).find(x => x.getAttribute('aria-label') === keep) : body; (f || body).focus({ preventScroll: true }); }
   AP.busy = false;
-  if (!RM && mode !== 'quiet') {
+  if (!CALM && mode !== 'quiet') {
     const dx = mode === 'back' ? -14 : mode ? 14 : 0;
     const kf = [{ opacity: 0, transform: 'translate(' + dx + 'px,' + (dx ? 0 : 4) + 'px)' }, { opacity: 1, transform: 'none' }];
     body.animate(kf, { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
@@ -2456,7 +2503,7 @@ function paintChrome() {
   const tc = $('#t-count'); tc.hidden = !D.total; tc.textContent = D.total > 99 ? '99+' : String(D.total);
 }
 let toastT = 0;
-function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), 2600); }
+function toast(msg, ms) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), ms || 2600); }
 // History: state.ttr is the depth of the panel stack for that entry. Runs inside iframes and sandboxes too;
 // if the History API is unavailable, navigation simply stays inside the page.
 const hashFor = c => (c.page === 'trend' ? '#t-' + c.arg : /^(news|about|list)$/.test(c.page) ? '#' + c.page : '');
@@ -2634,6 +2681,7 @@ function connect(db, user) {
 async function start() {
   buildBands();
   layoutAll();
+  bandsIn();
   afterNav();
   histSync(false);
   paintChrome();

@@ -58,6 +58,7 @@ function connect(db, user) {
 async function start() {
   buildBands();
   layoutAll();
+  bandsIn();
   afterNav();
   histSync(false);
   paintChrome();

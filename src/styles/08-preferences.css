@@ -5,9 +5,8 @@
 @media (prefers-contrast: more) {
   :root { --t2: rgb(236 240 255 / .92); --t3: rgb(236 240 255 / .8); --line: rgb(255 255 255 / .3); }
 }
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
-}
+/* Calm (set by script from prefers-reduced-motion, overridable with the play button): no movement, fades stay short. */
+.calm *, .calm *::before, .calm *::after { animation-duration: .001s !important; animation-iteration-count: 1 !important; transition-duration: .001s !important; }
 @media (forced-colors: active) {
   .blip .dot { fill: CanvasText; stroke: Canvas; }
   .blip.has-new .dot, .blip.c-act .dot { fill: Highlight; }

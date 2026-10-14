@@ -30,7 +30,7 @@
 /* dots: size = business impact (weight 1 to 3); fill = ring grey; orange = news you have not opened */
 .blip { cursor: pointer; outline: none; transition: opacity .35s; }
 .blip .hit { fill: transparent; }
-.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; }
+.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; transition: fill .45s var(--ease); }
 .blip.has-new .dot { fill: var(--orange); }
 .rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
 .blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
@@ -65,7 +65,7 @@
 .fxr.on { opacity: 1; }
 .fx-cue { border: 2px dashed rgb(255 255 255 / .85); }
 .fx-sel { border: 2px solid rgb(255 255 255 / .55); }
-.fx-sel.on { animation: selpulse .9s ease-out 2; }
+.fx-sel.on { animation: selpulse .9s ease-out 2 both; }
 .app.still .fxr { animation-play-state: paused; }
 .app.still .fx-sel { animation: none; opacity: 0; }
 @keyframes selpulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }

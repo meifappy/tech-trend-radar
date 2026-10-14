@@ -6,7 +6,7 @@ function paintChrome() {
   const tc = $('#t-count'); tc.hidden = !D.total; tc.textContent = D.total > 99 ? '99+' : String(D.total);
 }
 let toastT = 0;
-function toast(msg) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), 2600); }
+function toast(msg, ms) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), ms || 2600); }
 // History: state.ttr is the depth of the panel stack for that entry. Runs inside iframes and sandboxes too;
 // if the History API is unavailable, navigation simply stays inside the page.
 const hashFor = c => (c.page === 'trend' ? '#t-' + c.arg : /^(news|about|list)$/.test(c.page) ? '#' + c.page : '');

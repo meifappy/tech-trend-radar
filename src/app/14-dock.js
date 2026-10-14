@@ -68,7 +68,7 @@ function renderDock(mode) {
     h('button', { class: 'primary', type: 'button', 'aria-label': 'Play the news briefing', onclick: () => briefStart() }, ic('i-play'))), ...kids);
   if (keep != null) { const f = keep ? $$('[aria-label]', el).find(x => x.getAttribute('aria-label') === keep) : body; (f || body).focus({ preventScroll: true }); }
   AP.busy = false;
-  if (!RM && mode !== 'quiet') {
+  if (!CALM && mode !== 'quiet') {
     const dx = mode === 'back' ? -14 : mode ? 14 : 0;
     const kf = [{ opacity: 0, transform: 'translate(' + dx + 'px,' + (dx ? 0 : 4) + 'px)' }, { opacity: 1, transform: 'none' }];
     body.animate(kf, { duration: 240, easing: 'cubic-bezier(.2,.8,.2,1)' });
