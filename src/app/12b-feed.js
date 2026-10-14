@@ -4,7 +4,7 @@
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
@@ -58,7 +58,7 @@ function feedCard(n, opts) {
     mark(n),
     h('div', { class: 'fc-b' },
       h('p', { class: 'fc-k' },
-        isNew ? h('span', { class: 'pillnew', text: 'New' }) : null, hotPill(n),
+        isNew ? h('span', { class: 'unread', role: 'img', 'aria-label': 'New' }) : null, hotPill(n),
         chip ? h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot' }), t.short || t.title) : null),
       h('button', { class: 'fc-t', type: 'button', 'aria-expanded': 'false', onclick: () => toggleCard(card, n) }, n.title),
       n.take ? h('p', { class: 'fc-p', text: n.take }) : null,

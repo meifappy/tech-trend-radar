@@ -3,7 +3,7 @@ function paintChrome() {
   const m = S.meta, txt = S.problem ? '' : m && m.lastScan ? 'Updated ' + ago(m.lastScan) : S.ok.trends ? '' : 'Loading…';
   $$('.upd').forEach(el => { el.textContent = txt; });
   $('#r-sum').textContent = S.trends.length ? RO.map(r => S.trends.filter(t => t.ring === r).length + ' ' + RINGS[r].label.toLowerCase()).join(', ') + '. ' + (D.total ? plural(D.total, 'update') + ' new for you.' : 'Nothing new for you.') : '';
-  const tc = $('#t-count'); tc.hidden = !D.total; tc.textContent = D.total > 99 ? '99+' : String(D.total);
+  const tc = $('#t-count'); tc.hidden = !D.total; tc.textContent = D.total > 9 ? '9+' : String(D.total); tc.setAttribute('aria-label', D.total + ' unread');
 }
 let toastT = 0;
 function toast(msg, ms) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), ms || 2600); }
@@ -78,7 +78,6 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'l') nav('list');
   else if (e.key === 'p') setMotion(!MO.on);
   else if (e.key === '?') nav('about');
-  else if ('1234'.includes(e.key) && e.key.length === 1) { const a = AO[+e.key - 1]; setQuad(S.quad === a ? null : a); }
   else if (e.key === '0') setQuad(null);
   else if (e.key === '+' || e.key === '=') zoomAt(RD.W / 2, RD.W / 2, 1.6);
   else if (e.key === '-') { if (RD.cam.k / 1.6 <= 1.05) setQuad(null); else zoomAt(RD.W / 2, RD.W / 2, 1 / 1.6); }

@@ -167,3 +167,6 @@ q.qt { quotes: "“" "”"; }
 .term.none { background: var(--fill-2); color: var(--t3); text-decoration: line-through; text-decoration-color: rgb(235 235 245 / .35); }
 .focus-t { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-foot); color: var(--t3); }
 .focus-t .tdot { width: 6px; height: 6px; border-radius: 50%; background: var(--c); margin-right: 2px; }
+
+/* Unread: one small orange dot before the story, as in Mail, instead of a pill shouting "New". */
+.unread { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-right: 2px; }

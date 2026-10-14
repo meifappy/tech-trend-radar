@@ -38,7 +38,7 @@ node tests/features.mjs
 ```
 
 Conventions: CSS values come from the tokens in `src/styles/01-tokens.css` (colours, the seven type sizes,
-motion curves). Grey means information, white semibold with › or ↗ means clickable, orange means new for you,
+motion curves). Grey means information, white semibold with › or ↗ means clickable, a small orange dot means unread (it stays until you open the story),
 a white "Hot read" or "Hot listen" label marks the few must-read items (docs/RANKING.md). Each JS file starts with a one-line summary of
 what it owns.
 

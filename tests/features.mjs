@@ -101,8 +101,8 @@ for (const dpr of [1.25, 1.5]) {
   await page.locator('.blip').first().click();
   await page.waitForTimeout(500);
   check(await page.locator('.mom .spark rect').count() === 8, tag + 'no momentum bars on the trend page');
-  // Area labels.
-  check((await page.locator('.quad').allTextContents()).join('|') === 'Business & AI|Risk & regulation|Platforms & data|Emerging tech', tag + 'area labels');
+  // No categories: no area buttons or area chips.
+  check(await page.locator('.quad').count() === 0 && !(await page.locator('.chip', { hasText: 'Risk' }).count()), tag + 'area categories still shown');
   await page.screenshot({ path: process.env.SHOT_DIR ? join(process.env.SHOT_DIR, 'features-' + dpr + '.png') : '/dev/null' }).catch(() => {});
   await ctx.close();
 }
@@ -117,14 +117,16 @@ for (const dpr of [1.25, 1.5]) {
   check(await page.evaluate(() => document.documentElement.classList.contains('calm')), 'calm: class not set');
   // Reduced motion still glides (no hard cut): mid-flight the outer ring is between its start and end size.
   const rr = () => page.evaluate(() => +document.querySelector('#g-bands circle').getAttribute('r'));
+  await page.locator('#z-in').click(); await page.locator('#z-in').click();
+  await page.waitForTimeout(400);
   const a0 = await rr();
-  await page.locator('.quad.q-sec').click();
+  await page.keyboard.press('0');
   await page.waitForTimeout(150);
   const aMid = await rr();
   await page.waitForTimeout(700);
   const a1 = await rr();
-  check(aMid > a0 * 1.02 && aMid < a1 * .98, 'calm: zoom jumped instead of gliding ' + [a0, aMid, a1].map(Math.round));
-  check(await page.locator('#rbox.zoomed').count() === 1, 'calm: zoom did not reach the area');
+  check(aMid < a0 * .98 && aMid > a1 * 1.02, 'calm: zoom out jumped instead of gliding ' + [a0, aMid, a1].map(Math.round));
+  check(await page.locator('#rbox.zoomed').count() === 0, 'calm: zoom out did not finish');
   await page.locator('#t-motion').click();
   check(!(await page.evaluate(() => document.documentElement.classList.contains('calm'))), 'calm: play button did not turn motion on');
   await ctx.close();

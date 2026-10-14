@@ -6,7 +6,7 @@ function tipShow(n) {
   const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id), m = SIG.mom.get(n.id);
   tip.className = 'tip c-' + t.ring;
   put(tip, 
-    h('span', { class: 'k' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
+    h('span', { class: 'k' }, h('i'), RINGS[t.ring].label),
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
     m && m.dir !== 'quiet' ? h('span', { class: 'tmom s-' + m.dir }, spark(m), MOM[m.dir] + ', ' + m.recent + ' in 4 weeks') : null,

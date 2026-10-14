@@ -226,7 +226,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .b-prepare { fill: rgb(255 255 255 / .035); }
 .b-watch { fill: rgb(255 255 255 / .018); }
 .b-horizon { fill: rgb(255 255 255 / .008); }
-.axis { stroke: rgb(255 255 255 / .07); stroke-width: 1; }
+.axis { display: none; }
 .rl { font: 600 11.5px var(--font); fill: rgb(235 235 245 / .55); letter-spacing: .02em; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; transition: fill .3s, opacity .3s; }
 .rl.on { fill: #fff; }
 .rbox.tiny .rl { display: none; }
@@ -239,7 +239,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .blip.has-new .dot { fill: var(--orange); }
 .rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
 .blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
-.blip.has-new .ring { opacity: .55; stroke: var(--orange); stroke-width: 1.5; }
+
 .blip.sel .ring, .blip:focus-visible .ring { opacity: 1; stroke: #fff; stroke-width: 2; }
 .blip.cue .ring { opacity: 0; }
 .blip .pop { transform-box: fill-box; transform-origin: center; transition: transform .4s var(--spring); }
@@ -446,6 +446,9 @@ q.qt { quotes: "“" "”"; }
 .focus-t { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-foot); color: var(--t3); }
 .focus-t .tdot { width: 6px; height: 6px; border-radius: 50%; background: var(--c); margin-right: 2px; }
 
+/* Unread: one small orange dot before the story, as in Mail, instead of a pill shouting "New". */
+.unread { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-right: 2px; }
+
 /* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
 .dock { position: absolute; z-index: 4; left: 0; right: 0; margin-inline: auto; bottom: 22px; width: min(640px, calc(100% - 32px)); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
   transition: opacity .3s var(--ease), translate .45s var(--spring), transform .4s var(--spring); }
@@ -629,10 +632,6 @@ q.qt { quotes: "“" "”"; }
       </svg>
       <div class="sweep" id="sweep" aria-hidden="true"></div>
       <div class="fx" id="fx" aria-hidden="true"><i class="fxr fx-sel" id="fx-sel"></i><i class="fxr fx-cue" id="fx-cue"></i></div>
-      <button class="quad q-ai" type="button" data-area="ai" aria-pressed="false">Business &amp; AI</button>
-      <button class="quad q-sec" type="button" data-area="sec" aria-pressed="false">Risk &amp; regulation</button>
-      <button class="quad q-cloud" type="button" data-area="cloud" aria-pressed="false">Platforms &amp; data</button>
-      <button class="quad q-sci" type="button" data-area="sci" aria-pressed="false">Emerging tech</button>
       <button class="btn allbtn" id="allbtn" type="button" hidden>Show whole radar</button>
     </div>
     <div class="zoomui" role="group" aria-label="Zoom">
@@ -873,7 +872,10 @@ function derive() {
     const h0 = (Array.isArray(t.history) ? t.history : []).filter(x => x && RINGS[x.from] && RINGS[x.ring] && x.from !== x.ring && ts(x.at) > cut).pop();
     if (h0) recent.set(t.id, { up: RO.indexOf(h0.ring) < RO.indexOf(h0.from), x: h0 });
   }
-  D = { since: s, newBy: by, total, moved, recent };
+  // Arrived since the previous visit: only these trends ping when the beam passes (the rest just stay orange).
+  const prev = ts(Me.d.prev), arrived = new Set();
+  for (const n of S.news) if (n._new && (ts(n.seen) || ts(n.at)) > prev) for (const k of tkeys(n)) arrived.add(k);
+  D = { since: s, newBy: by, total, moved, recent, arrived };
 }
 // Seen while scrolling the feed: update counts and the radar, but leave the list as it is so nothing jumps.
 function markSeen(items) {
@@ -1335,7 +1337,7 @@ function paintRadar() {
     const dim = (S.ring && t.ring !== S.ring) || (B.on && B.focus && B.focus !== n.id) || (!B.on && focusDim(n.id));
     n.el.classList.toggle('dim', !!dim);
     n.lbl.classList.toggle('dim', !!dim);
-    const al = (t.title + '. ' + RINGS[t.ring].label + ', ' + AREAS[t.area].label + '.' + (c ? ' ' + plural(c, 'new update') + '.' : '') + (mv ? ' Moved from ' + RINGS[mv.from].label + '.' : ''));
+    const al = (t.title + '. ' + RINGS[t.ring].label + '.' + (c ? ' ' + plural(c, 'new update') + '.' : '') + (mv ? ' Moved from ' + RINGS[mv.from].label + '.' : ''));
     if (n.al !== al) { n.al = al; n.el.setAttribute('aria-label', al); }
   }
   RD.box.dataset.ring = S.ring || '';
@@ -1431,7 +1433,7 @@ function sweepOnce() {
   if (!RD.raf) {
     RD.sweep.animate([{ transform: 'rotate(0deg)', opacity: 0 }, { opacity: .7, offset: .08 }, { opacity: .7, offset: .85 }, { transform: 'rotate(360deg)', opacity: 0 }], { duration: MO.T, easing: 'linear' });
     for (const n of RD.nodes.values()) {
-      if (!(D.newBy.get(n.id) || D.moved.has(n.id))) continue;
+      if (!((D.arrived && D.arrived.has(n.id)) || D.moved.has(n.id))) continue;
       n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }],
         { duration: 900, delay: (((n.deg + 90) % 360) + 360) % 360 / 360 * MO.T, easing: 'cubic-bezier(.1,.6,.3,1)' });
     }
@@ -1489,7 +1491,7 @@ function tipShow(n) {
   const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id), m = SIG.mom.get(n.id);
   tip.className = 'tip c-' + t.ring;
   put(tip, 
-    h('span', { class: 'k' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
+    h('span', { class: 'k' }, h('i'), RINGS[t.ring].label),
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
     m && m.dir !== 'quiet' ? h('span', { class: 'tmom s-' + m.dir }, spark(m), MOM[m.dir] + ', ' + m.recent + ' in 4 weeks') : null,
@@ -1778,7 +1780,7 @@ function pageTrend(id) {
   if (!t) return [h('p', { class: 'muted', text: S.ok.trends ? 'This trend is no longer on the radar.' : 'Loading…' })];
   const items = S.byT.get(id) || [], nNew = items.filter(n => n._new).length, mv = D.moved.get(id), all = S.open.has('all:' + id);
   const out = [h('header', { class: 'thead c-' + t.ring },
-    h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
+    h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ': ' + RINGS[t.ring].hint.toLowerCase()),
     h('h2', { class: 'title', id: 'p-title', tabindex: '-1', text: t.title }),
     h('p', { class: 'lead', text: t.line }),
     momRow(t.id),
@@ -1819,7 +1821,7 @@ function pageList() {
     h('div', { class: 'rows' }, up.slice(0, 5).map(t => { const m = SIG.mom.get(t.id); return trendRow(t, plural(m.recent, 'story').replace('storys', 'stories') + ' in 4 weeks, ' + m.before + ' in the 4 before'); }))));
   for (const r of RO) {
     const list = S.trends.filter(t => t.ring === r);
-    if (list.length) out.push(h('section', { class: 'sec c-' + r }, h('h2', null, h('span', { class: 'rh' }, h('i'), RINGS[r].label), h('span', { text: RINGS[r].hint })), h('div', { class: 'rows' }, list.map(t => trendRow(t, AREAS[t.area].label)))));
+    if (list.length) out.push(h('section', { class: 'sec c-' + r }, h('h2', null, h('span', { class: 'rh' }, h('i'), RINGS[r].label), h('span', { text: RINGS[r].hint })), h('div', { class: 'rows' }, list.map(t => trendRow(t, t.line)))));
   }
   return out;
 }
@@ -1896,8 +1898,7 @@ function pageAbout() {
   out.push(section('How long a rating holds', null, h('p', { class: 'muted', text: 'Each trend\u2019s ring is reviewed every quarter and stays valid until the date on the trend, so trends do not come and go with the news. A move between reviews needs two top-tier sources. News on each trend is added every 12 hours. The ' + S.trends.length + ' trends are defined so they do not overlap: each one says what it covers and what belongs elsewhere.' })));
   out.push(section('Movements', null, h('p', { class: 'muted', text: 'A small arrow next to a dot means its rating changed in the last 90 days: pointing to the centre, it became more urgent; pointing outward, less urgent. A dashed line shows a move since your last visit.' })));
   out.push(section('The rings', null, h('ul', { class: 'rings' }, RO.map(r => h('li', { class: 'c-' + r }, h('i'), h('b', { text: RINGS[r].label }), h('span', { text: RINGS[r].hint }))))));
-  out.push(section('The four areas', null, h('ul', { class: 'rings areas' }, AO.map(a => h('li', null, h('b', { text: AREAS[a].label }), h('span', { text: AREAS[a].hint })))),
-    h('p', { class: 'fine', text: 'Each trend sits in exactly one area, by the decision it asks for. AI runs through all four, so it is not an area of its own.' })));
+  out.push(section('No categories', null, h('p', { class: 'muted', text: 'The radar answers one question: how soon do you need to act? AI and most other trends cut across any set of categories, so there are none to learn. Related trends sit next to each other, and My focus filters by your own context.' })));
   out.push(section('Hot, Top and momentum', null,
     h('p', { class: 'muted', text: 'Every story gets a heat score from 0 to 100: the scan\u2019s quality score (decision relevance, evidence, novelty), up to 9 points when other publishers cover the same trend within a week, up to 9 for an act-now, high-impact trend, then faded by age. Hot marks at most six stories from the last 14 days with heat 75 or more, one per trend. Top lists the last 30 days by heat.' }),
     h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
@@ -1911,7 +1912,7 @@ function pageAbout() {
   })));
   if (S.scans.length) out.push(section('Recent scans', null, h('ol', { class: 'scans' }, S.scans.slice(0, 6).map(s => h('li', null, h('time', { text: ts(s.at) ? F.scan.format(new Date(ts(s.at))) : '' }), h('span', { text: s.note }))))));
   out.push(section('Keyboard', null, h('ul', { class: 'keys' },
-    [['⌘K or /', 'Search'], ['L', 'All trends as a list'], ['N', 'News'], ['B', 'News briefing'], ['P', 'Pause or play motion'], ['1 to 4', 'Zoom into an area'], ['+ and −', 'Zoom in or out (or scroll, pinch, double-click)'], ['0', 'Show the whole radar'], ['Arrow keys', 'Move between dots, news or trends'], ['Esc', 'Back']].map(([k, l]) => [h('kbd', { text: k }), h('span', { text: l })]))));
+    [['⌘K or /', 'Search'], ['L', 'All trends as a list'], ['N', 'News'], ['B', 'News briefing'], ['P', 'Pause or play motion'], ['+ and −', 'Zoom in or out (or scroll, pinch, double-click)'], ['0', 'Show the whole radar'], ['Arrow keys', 'Move between dots, news or trends'], ['Esc', 'Back']].map(([k, l]) => [h('kbd', { text: k }), h('span', { text: l })]))));
   return out;
 }
 
@@ -1922,7 +1923,7 @@ function pageAbout() {
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
@@ -1976,7 +1977,7 @@ function feedCard(n, opts) {
     mark(n),
     h('div', { class: 'fc-b' },
       h('p', { class: 'fc-k' },
-        isNew ? h('span', { class: 'pillnew', text: 'New' }) : null, hotPill(n),
+        isNew ? h('span', { class: 'unread', role: 'img', 'aria-label': 'New' }) : null, hotPill(n),
         chip ? h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot' }), t.short || t.title) : null),
       h('button', { class: 'fc-t', type: 'button', 'aria-expanded': 'false', onclick: () => toggleCard(card, n) }, n.title),
       n.take ? h('p', { class: 'fc-p', text: n.take }) : null,
@@ -2506,7 +2507,7 @@ function paintChrome() {
   const m = S.meta, txt = S.problem ? '' : m && m.lastScan ? 'Updated ' + ago(m.lastScan) : S.ok.trends ? '' : 'Loading…';
   $$('.upd').forEach(el => { el.textContent = txt; });
   $('#r-sum').textContent = S.trends.length ? RO.map(r => S.trends.filter(t => t.ring === r).length + ' ' + RINGS[r].label.toLowerCase()).join(', ') + '. ' + (D.total ? plural(D.total, 'update') + ' new for you.' : 'Nothing new for you.') : '';
-  const tc = $('#t-count'); tc.hidden = !D.total; tc.textContent = D.total > 99 ? '99+' : String(D.total);
+  const tc = $('#t-count'); tc.hidden = !D.total; tc.textContent = D.total > 9 ? '9+' : String(D.total); tc.setAttribute('aria-label', D.total + ' unread');
 }
 let toastT = 0;
 function toast(msg, ms) { const el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => el.classList.remove('on'), ms || 2600); }
@@ -2581,7 +2582,6 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'l') nav('list');
   else if (e.key === 'p') setMotion(!MO.on);
   else if (e.key === '?') nav('about');
-  else if ('1234'.includes(e.key) && e.key.length === 1) { const a = AO[+e.key - 1]; setQuad(S.quad === a ? null : a); }
   else if (e.key === '0') setQuad(null);
   else if (e.key === '+' || e.key === '=') zoomAt(RD.W / 2, RD.W / 2, 1.6);
   else if (e.key === '-') { if (RD.cam.k / 1.6 <= 1.05) setQuad(null); else zoomAt(RD.W / 2, RD.W / 2, 1 / 1.6); }

@@ -81,7 +81,10 @@ function derive() {
     const h0 = (Array.isArray(t.history) ? t.history : []).filter(x => x && RINGS[x.from] && RINGS[x.ring] && x.from !== x.ring && ts(x.at) > cut).pop();
     if (h0) recent.set(t.id, { up: RO.indexOf(h0.ring) < RO.indexOf(h0.from), x: h0 });
   }
-  D = { since: s, newBy: by, total, moved, recent };
+  // Arrived since the previous visit: only these trends ping when the beam passes (the rest just stay orange).
+  const prev = ts(Me.d.prev), arrived = new Set();
+  for (const n of S.news) if (n._new && (ts(n.seen) || ts(n.at)) > prev) for (const k of tkeys(n)) arrived.add(k);
+  D = { since: s, newBy: by, total, moved, recent, arrived };
 }
 // Seen while scrolling the feed: update counts and the radar, but leave the list as it is so nothing jumps.
 function markSeen(items) {

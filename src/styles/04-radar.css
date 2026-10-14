@@ -21,7 +21,7 @@
 .b-prepare { fill: rgb(255 255 255 / .035); }
 .b-watch { fill: rgb(255 255 255 / .018); }
 .b-horizon { fill: rgb(255 255 255 / .008); }
-.axis { stroke: rgb(255 255 255 / .07); stroke-width: 1; }
+.axis { display: none; }
 .rl { font: 600 11.5px var(--font); fill: rgb(235 235 245 / .55); letter-spacing: .02em; paint-order: stroke; stroke: var(--bg); stroke-width: 3px; stroke-linejoin: round; transition: fill .3s, opacity .3s; }
 .rl.on { fill: #fff; }
 .rbox.tiny .rl { display: none; }
@@ -34,7 +34,7 @@
 .blip.has-new .dot { fill: var(--orange); }
 .rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
 .blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
-.blip.has-new .ring { opacity: .55; stroke: var(--orange); stroke-width: 1.5; }
+
 .blip.sel .ring, .blip:focus-visible .ring { opacity: 1; stroke: #fff; stroke-width: 2; }
 .blip.cue .ring { opacity: 0; }
 .blip .pop { transform-box: fill-box; transform-origin: center; transition: transform .4s var(--spring); }

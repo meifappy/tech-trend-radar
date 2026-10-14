@@ -10,7 +10,7 @@ function paintRadar() {
     const dim = (S.ring && t.ring !== S.ring) || (B.on && B.focus && B.focus !== n.id) || (!B.on && focusDim(n.id));
     n.el.classList.toggle('dim', !!dim);
     n.lbl.classList.toggle('dim', !!dim);
-    const al = (t.title + '. ' + RINGS[t.ring].label + ', ' + AREAS[t.area].label + '.' + (c ? ' ' + plural(c, 'new update') + '.' : '') + (mv ? ' Moved from ' + RINGS[mv.from].label + '.' : ''));
+    const al = (t.title + '. ' + RINGS[t.ring].label + '.' + (c ? ' ' + plural(c, 'new update') + '.' : '') + (mv ? ' Moved from ' + RINGS[mv.from].label + '.' : ''));
     if (n.al !== al) { n.al = al; n.el.setAttribute('aria-label', al); }
   }
   RD.box.dataset.ring = S.ring || '';

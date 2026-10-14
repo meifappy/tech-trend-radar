@@ -5,7 +5,7 @@ function pageTrend(id) {
   if (!t) return [h('p', { class: 'muted', text: S.ok.trends ? 'This trend is no longer on the radar.' : 'Loading…' })];
   const items = S.byT.get(id) || [], nNew = items.filter(n => n._new).length, mv = D.moved.get(id), all = S.open.has('all:' + id);
   const out = [h('header', { class: 'thead c-' + t.ring },
-    h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
+    h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ': ' + RINGS[t.ring].hint.toLowerCase()),
     h('h2', { class: 'title', id: 'p-title', tabindex: '-1', text: t.title }),
     h('p', { class: 'lead', text: t.line }),
     momRow(t.id),
@@ -46,7 +46,7 @@ function pageList() {
     h('div', { class: 'rows' }, up.slice(0, 5).map(t => { const m = SIG.mom.get(t.id); return trendRow(t, plural(m.recent, 'story').replace('storys', 'stories') + ' in 4 weeks, ' + m.before + ' in the 4 before'); }))));
   for (const r of RO) {
     const list = S.trends.filter(t => t.ring === r);
-    if (list.length) out.push(h('section', { class: 'sec c-' + r }, h('h2', null, h('span', { class: 'rh' }, h('i'), RINGS[r].label), h('span', { text: RINGS[r].hint })), h('div', { class: 'rows' }, list.map(t => trendRow(t, AREAS[t.area].label)))));
+    if (list.length) out.push(h('section', { class: 'sec c-' + r }, h('h2', null, h('span', { class: 'rh' }, h('i'), RINGS[r].label), h('span', { text: RINGS[r].hint })), h('div', { class: 'rows' }, list.map(t => trendRow(t, t.line)))));
   }
   return out;
 }
@@ -123,8 +123,7 @@ function pageAbout() {
   out.push(section('How long a rating holds', null, h('p', { class: 'muted', text: 'Each trend\u2019s ring is reviewed every quarter and stays valid until the date on the trend, so trends do not come and go with the news. A move between reviews needs two top-tier sources. News on each trend is added every 12 hours. The ' + S.trends.length + ' trends are defined so they do not overlap: each one says what it covers and what belongs elsewhere.' })));
   out.push(section('Movements', null, h('p', { class: 'muted', text: 'A small arrow next to a dot means its rating changed in the last 90 days: pointing to the centre, it became more urgent; pointing outward, less urgent. A dashed line shows a move since your last visit.' })));
   out.push(section('The rings', null, h('ul', { class: 'rings' }, RO.map(r => h('li', { class: 'c-' + r }, h('i'), h('b', { text: RINGS[r].label }), h('span', { text: RINGS[r].hint }))))));
-  out.push(section('The four areas', null, h('ul', { class: 'rings areas' }, AO.map(a => h('li', null, h('b', { text: AREAS[a].label }), h('span', { text: AREAS[a].hint })))),
-    h('p', { class: 'fine', text: 'Each trend sits in exactly one area, by the decision it asks for. AI runs through all four, so it is not an area of its own.' })));
+  out.push(section('No categories', null, h('p', { class: 'muted', text: 'The radar answers one question: how soon do you need to act? AI and most other trends cut across any set of categories, so there are none to learn. Related trends sit next to each other, and My focus filters by your own context.' })));
   out.push(section('Hot, Top and momentum', null,
     h('p', { class: 'muted', text: 'Every story gets a heat score from 0 to 100: the scan\u2019s quality score (decision relevance, evidence, novelty), up to 9 points when other publishers cover the same trend within a week, up to 9 for an act-now, high-impact trend, then faded by age. Hot marks at most six stories from the last 14 days with heat 75 or more, one per trend. Top lists the last 30 days by heat.' }),
     h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
@@ -138,6 +137,6 @@ function pageAbout() {
   })));
   if (S.scans.length) out.push(section('Recent scans', null, h('ol', { class: 'scans' }, S.scans.slice(0, 6).map(s => h('li', null, h('time', { text: ts(s.at) ? F.scan.format(new Date(ts(s.at))) : '' }), h('span', { text: s.note }))))));
   out.push(section('Keyboard', null, h('ul', { class: 'keys' },
-    [['⌘K or /', 'Search'], ['L', 'All trends as a list'], ['N', 'News'], ['B', 'News briefing'], ['P', 'Pause or play motion'], ['1 to 4', 'Zoom into an area'], ['+ and −', 'Zoom in or out (or scroll, pinch, double-click)'], ['0', 'Show the whole radar'], ['Arrow keys', 'Move between dots, news or trends'], ['Esc', 'Back']].map(([k, l]) => [h('kbd', { text: k }), h('span', { text: l })]))));
+    [['⌘K or /', 'Search'], ['L', 'All trends as a list'], ['N', 'News'], ['B', 'News briefing'], ['P', 'Pause or play motion'], ['+ and −', 'Zoom in or out (or scroll, pinch, double-click)'], ['0', 'Show the whole radar'], ['Arrow keys', 'Move between dots, news or trends'], ['Esc', 'Back']].map(([k, l]) => [h('kbd', { text: k }), h('span', { text: l })]))));
   return out;
 }
