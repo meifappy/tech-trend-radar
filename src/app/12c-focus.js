@@ -7,19 +7,19 @@ const STOP = new Set(('about above after again against also among and any are be
   'doing down during each every few for from further had has have having here how into its itself just more most must need needs not now off ' +
   'once only other our ours out over own same should since some such than that the their them then there these they this those through too ' +
   'under until very was were what when where which while who why will with within without would your yours company business strategy focus ' +
-  'want looking plan plans year years next team teams goal goals make sure better new use using across based moving meeting piloting duties while being doing towards help helps').split(' '));
-// A few business contexts expand to the words the sources use for them.
+  'want looking claim claims plan plans year years next team teams goal goals make sure better new use using across based moving meeting piloting duties while being doing towards help helps').split(' '));
+// A few words expand to the exact terms sources use for the same thing (never to broader topics: "bank" must not
+// pull in every payments or finance story).
 const SYN = {
-  bank: ['banking', 'banks', 'financial', 'finance', 'dora', 'payments'], banking: ['bank', 'banks', 'financial', 'dora'], finance: ['financial', 'bank', 'dora'],
-  insurance: ['insurer', 'solvency'], versicherung: ['insurance', 'insurer'], health: ['healthcare', 'hospital', 'medical', 'clinical'],
-  pharma: ['drug', 'clinical', 'biotech', 'life sciences'], manufacturing: ['industrial', 'factory', 'factories', 'production', 'operational technology'],
-  automotive: ['vehicle', 'automaker', 'cars'], retail: ['commerce', 'shopping', 'consumer'], energy: ['grid', 'utilities', 'utility', 'power'],
-  government: ['public sector', 'administration', 'federal'], 'public sector': ['government', 'administration'], telecom: ['telco', 'network operator', '5g'],
-  logistics: ['supply chain', 'shipping'], mittelstand: ['sme', 'smes', 'mid-sized'], sme: ['mittelstand', 'mid-sized'], germany: ['german', 'bsi', 'bitkom'],
-  europe: ['eu', 'european'], eu: ['european', 'europe'], security: ['cyber', 'cybersecurity'], cyber: ['security', 'cybersecurity']
+  bank: ['banking'], banking: ['bank'], insurance: ['insurer'], insurer: ['insurance'], versicherung: ['insurance', 'insurer'],
+  health: ['healthcare'], healthcare: ['health care'], pharma: ['pharmaceutical'], manufacturing: ['manufacturer'], automotive: ['automaker', 'carmaker'],
+  telecom: ['telco', 'telecommunications'], mittelstand: ['sme', 'smes'], sme: ['mittelstand'], germany: ['german'], german: ['germany'],
+  europe: ['european', 'eu'], eu: ['european union'], 'public sector': ['government'], kubernetes: ['k8s'], 'post-quantum': ['pqc'], pqc: ['post-quantum']
 };
 const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-const termRx = t => new RegExp('(?:^|[^\\p{L}\\p{N}])(?:' + [t].concat(SYN[t] || []).map(w => esc(w) + (w.length <= 3 ? '(?![\\p{L}\\p{N}])' : '')).join('|') + ')', 'iu');
+// Whole words only, with common endings (bank, banks, banking; insurer, insurers): "cloud" no longer matches
+// "Cloudflare", and "bank" no longer matches "bankrupt".
+const termRx = t => new RegExp('(?:^|[^\\p{L}\\p{N}])(?:' + [t].concat(SYN[t] || []).map(w => esc(w) + (w.length <= 3 ? '' : "(?:s|es|ing|ed|er|ers|'s)?")).join('|') + ')(?![\\p{L}\\p{N}])', 'iu');
 const trendText = t => [t.title, t.short, t.line, t.scope].concat(Array.isArray(t.why) ? t.why : [t.why]).map(str).join(' ');
 const pts = n => (Array.isArray(n.points) ? n.points.join(' ') : '');
 
@@ -27,15 +27,24 @@ function focusParse(text) {
   const out = [];
   for (const part of str(text).split(/[,;\n]+/).map(s => s.trim()).filter(Boolean)) {
     if (part.split(/\s+/).length <= 3) { out.push(part.toLowerCase()); continue; }
-    // Prose: keep acronyms and the longer words that occur in the radar's trends or stories.
-    // Words that match a sixth of all stories (like "AI") say nothing about this reader, so they are left out.
+    // Prose: first two-word phrases the radar's own texts use ("sovereign cloud"), then acronyms (NIS2, DORA) and
+    // longer, specific words. A word that matches more than one text in twelve says nothing about this reader.
     const docs = S.trends.map(trendText).concat(S.news.map(n => n.title + ' ' + n.take));
-    for (const w of part.split(/[^\p{L}\p{N}&+-]+/u)) {
-      const lw = w.toLowerCase();
-      if (STOP.has(lw) || !(/^[A-Z][A-Z0-9&+-]{1,7}$/.test(w) || lw.length >= 4)) continue;
-      const re = termRx(lw), hits = docs.filter(d => re.test(d)).length;
-      if ((hits || /^[A-Z]/.test(w) && w === w.toUpperCase()) && hits <= docs.length / 6) out.push(lw);
+    const hits = t => { const re = termRx(t); return docs.filter(d => re.test(d)).length; };
+    const ws = part.split(/[^\p{L}\p{N}&+-]+/u).filter(Boolean), used = new Set();
+    for (let i = 0; i + 1 < ws.length; i++) {
+      const a = ws[i].toLowerCase(), b = ws[i + 1].toLowerCase(), bg = a + ' ' + b;
+      if (STOP.has(a) || STOP.has(b) || a.length < 3 || b.length < 3) continue;
+      if (hits(bg)) { out.push(bg); used.add(i); used.add(i + 1); }
     }
+    ws.forEach((w, i) => {
+      const lw = w.toLowerCase();
+      if (used.has(i) || STOP.has(lw)) return;
+      const acro = /^[A-Z][A-Z0-9&+-]{1,7}$/.test(w);
+      if (!acro && lw.length < 5) return;
+      const n = hits(lw);
+      if ((n || acro) && n <= docs.length / 12) out.push(lw);
+    });
   }
   return [...new Set(out)].filter(t => t.length >= 2).slice(0, 12);
 }
@@ -59,22 +68,23 @@ function focusSync() {
       const own = x.re.test(str(n.title)) ? 3 : x.re.test(str(n.take) + ' ' + pts(n)) ? 2 : x.re.test(str(n.src.name)) ? 1 : 0;
       const v = own + (tm.has(x.t) ? 1 : 0);
       if (v) { s += v; FOCUS.hits.set(x.t, (FOCUS.hits.get(x.t) || 0) + 1); }
-      if (own) for (const k of tkeys(n)) if (S.byId.has(k)) bump(k, own);
+      // Only a title or summary match makes a story's trend more relevant; a passing mention in the key points does not.
+      if (own && x.re.test(str(n.title) + ' ' + str(n.take))) for (const k of tkeys(n)) if (S.byId.has(k)) bump(k, own);
     }
     if (s) FOCUS.score.set(n.id, s);
-    if (s && own3(n)) FOCUS.own.add(n.id);
   }
   const top = Math.max(0, ...tsc.values()), min = Math.max(3, top / 3);
   FOCUS.tlist = S.trends.filter(t => (tsc.get(t.id) || 0) >= min).sort((a, b) => tsc.get(b.id) - tsc.get(a.id));
   FOCUS.trends = new Set(FOCUS.tlist.map(t => t.id));
-  // A story is in focus when its own words match (title, summary, key points, source), or when it belongs to one of
-  // the clearly relevant trends: so the context counts, but a loose match on a trend definition alone does not.
-  for (const id of [...FOCUS.score.keys()]) {
-    const n = S.news.find(x => x.id === id);
-    if (!FOCUS.own.has(id) && !tkeys(n).some(k => FOCUS.trends.has(k))) FOCUS.score.delete(id);
-  }
+  // A story is in focus only when its own words match: title, summary, key points or source. Belonging to a relevant
+  // trend raises its rank but never lets an unrelated story in.
+  for (const n of S.news) if (FOCUS.score.has(n.id) && own3(n)) FOCUS.own.add(n.id);
+  for (const id of [...FOCUS.score.keys()]) if (!FOCUS.own.has(id)) FOCUS.score.delete(id);
 }
-const own3 = n => FOCUS.rx.some(x => x.re.test(str(n.title) + ' ' + str(n.take) + ' ' + pts(n) + ' ' + str(n.src.name)));
+// In focus: the title or summary names a term; a mention only in the key points or the source name counts when the
+// story's trend is itself relevant (so a passing "post-quantum" in a photo-signing story does not pull it in).
+const own3 = n => FOCUS.rx.some(x => x.re.test(str(n.title) + ' ' + str(n.take))) ||
+  (tkeys(n).some(k => FOCUS.trends.has(k)) && FOCUS.rx.some(x => x.re.test(pts(n) + ' ' + str(n.src.name))));
 function focusLoad() { const v = ls.get('focus', []); FOCUS.terms = Array.isArray(v) ? v.filter(x => typeof x === 'string').map(x => x.slice(0, 40)).slice(0, 12) : []; FOCUS.on = ls.get('focusOn', true) !== false; }
 function focusSet(terms) {
   FOCUS.terms = terms;

@@ -46,10 +46,16 @@ than a sixth of them (like "AI"). A few business words expand to the words sourc
 DORA; manufacturing → industrial, factory; Mittelstand → SME; and so on).
 
 My focus is a lens, not one more filter: while it is on, All, Top, Audio, the news bar, the briefing, the unread
-count and the orange dots show only stories in focus. A story is in focus when its own words match (title, take, key
-points, source) or when it belongs to one of the lit-up trends.
+count and the orange dots show only stories in focus.
 
-Each story scores per term: title 3, take or key points 2, source name 1, plus 1 when its trend's definition
-matches. Each trend scores 4 per term in its definition plus its stories' own matches; trends with at least a third
-of the best trend score light up on the radar, the rest dim. Terms with no match are shown struck through.
+Matching is strict on purpose. Terms match whole words with common endings (bank, banks, banking), never parts of
+other words ("cloud" does not match "Cloudflare"). Synonyms are limited to exact equivalents (insurer and insurance,
+PQC and post-quantum), never broader topics. A story is in focus when its title or summary names a term; a mention
+only in its key points or source name counts when its trend is itself relevant. Pasted prose is reduced to the
+two-word phrases the radar's own texts use ("sovereign cloud"), acronyms (NIS2, DORA) and specific longer words;
+words that appear in more than one text in twelve are dropped as too general.
+
+Trends light up when their definition names a term (4 points per term) or their stories name it in a title or
+summary; trends with at least a third of the best score light up, the rest dim. Terms with no match are struck
+through.
 Focus terms are stored in the reader's browser only (never in the shared database).
