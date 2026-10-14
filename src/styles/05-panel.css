@@ -84,11 +84,20 @@ q.qt { quotes: "“" "”"; }
    An open card shows key points and two ways on: the source (white button) or more on the trend. */
 .chips { position: sticky; top: -4px; z-index: 2; display: flex; gap: 6px; overflow-x: auto; margin: 0 -22px; padding: 8px 22px; background: linear-gradient(var(--panel-solid) 80%, transparent); scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
+
 .chip { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 16px; background: var(--fill-1); color: var(--t2); font-size: var(--fs-sub); font-weight: 600; cursor: pointer; transition: background .2s, color .2s; }
 .chip:hover { background: var(--fill-2); color: var(--t1); }
 .chip[aria-pressed="true"] { background: var(--t1); color: var(--ink); }
+.chip .ic { width: 13px; height: 13px; margin: 0 -4px 0 4px; vertical-align: -2px; stroke-width: 2.2; }
 .chip-play { display: inline-flex; align-items: center; gap: 6px; padding: 0 14px 0 10px; background: var(--fill-2); color: var(--t1); }
 .chip-play .ic { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+/* With a mouse a sideways-scrolling row is a trap: every chip is visible, wrapped onto two lines if needed. */
+@media (hover: hover) and (pointer: fine) {
+  .chips { flex-wrap: wrap; overflow: visible; row-gap: 6px; }
+  .chips { gap: 5px; }
+  .chip { height: 30px; padding: 0 11px; font-size: var(--fs-foot); }
+  .chip-play { padding: 0 12px 0 9px; }
+}
 .feed { display: flex; flex-direction: column; }
 .feed-h { margin: 0 0 2px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
 .feed-left { font-weight: 400; font-variant-numeric: tabular-nums; }

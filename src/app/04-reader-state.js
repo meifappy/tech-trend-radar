@@ -119,7 +119,8 @@ function scheduleMark(id) {
   markT = setTimeout(() => {
     const c = cur();
     if (c.page !== 'trend' || c.arg !== id) return;
+    // Opening a trend acknowledges its rating move; its stories stay new until you open them.
     Me.d.seenT[id] = new Date().toISOString();
-    markNews((S.byT.get(id) || []).filter(n => n._new), true);
+    Me.save(); refresh(true);
   }, 1400);
 }

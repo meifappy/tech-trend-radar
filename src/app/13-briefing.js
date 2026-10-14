@@ -15,11 +15,13 @@ function buildSlides() {
     return { t, items, more: by.get(t.id).length - items.length, dur: 4200 + (items.length - 1) * 2600 };
   });
 }
-function briefStart() {
+// auto: started by itself after 10 s idle. Then nothing counts as read: only stories you chose to see do.
+function briefStart(auto) {
   if (!S.trends.length) return;
   const slides = buildSlides();
   if (!slides.length) { toast('No news to brief yet'); return; }
   B.slides = slides;
+  B.auto = !!auto;
   B.on = true;
   B.playing = true;
   if (S.quad) { S.quad = null; $('#allbtn').hidden = true; $$('.quad').forEach(b => b.setAttribute('aria-pressed', 'false')); }
@@ -56,7 +58,7 @@ function showSlide(i) {
   if (B.anim) B.anim.onfinish = () => { B.animDone = true; advance(); };
   if (!B.playing && B.anim) B.anim.pause();
   clearTimeout(B.markT);
-  if (s.items) B.markT = setTimeout(() => markNews(s.items.filter(x => x._new)), 1500);
+  if (s.items && !B.auto) B.markT = setTimeout(() => markNews(s.items.filter(x => x._new)), 2500);
   if (n && !CALM && MO.on) setTimeout(() => n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.1,.6,.3,1)' }), 700);
 }
 function advance() { if (B.on && B.playing && B.animDone) showSlide(B.i + 1); }
@@ -97,8 +99,8 @@ function autoArm() {
   AUTO.t = setTimeout(() => {
     if (AUTO.off || document.hidden || B.on || cur().page !== 'home' || !WIDE) return;
     AUTO.off = true;
-    briefStart();
-    if (B.on) { B.auto = true; renderPanel(false); }
+    briefStart(true);
+    if (B.on) renderPanel(false);
   }, 10000);
 }
 const autoCancel = () => { if (!AUTO.off) { AUTO.off = true; clearTimeout(AUTO.t); } };

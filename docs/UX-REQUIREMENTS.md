@@ -29,7 +29,7 @@ architect (one trend in depth, sources), tech analyst or investor (hot stories, 
 - FR4 Tapping a story opens it in place: full summary, key points, "Read at <source> ↗", "N stories more on <trend>". One open at a time. (A4)
 - FR5 Every trend page ends with "Next trend with news"; on phones a sideways swipe on the trend header and on laptops ← → move between trends. (A3)
 - FR6 One row of controls: Briefing, All, Hot, Podcasts, AI, Security, Data, Frontier. An area filter zooms the radar to that area, and tapping an area on the radar sets the filter. (A6)
-- FR7 A new story counts as seen after 60% of it was on screen for 1.5 s, or when opened. The header shows the unread count; the radar's orange dots clear as you read. (A7)
+- FR7 A new story stays new until it is opened (quick view, the news bar, or a briefing the reader started). Scrolling past it, opening its trend, or the automatic idle briefing does not count. The header shows the unread count; the radar's orange dots clear as you read. (A7)
 - FR8 The story at the top of the feed lights up its trend on the radar and shows its name; hovering a story highlights its dot. (A8)
 - FR9 Keyboard: j and k move story by story, Enter opens the story. (A9)
 - FR10 When the briefing ends, the feed is where you left it. (A10)

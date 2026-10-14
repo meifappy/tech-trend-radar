@@ -362,11 +362,20 @@ q.qt { quotes: "“" "”"; }
    An open card shows key points and two ways on: the source (white button) or more on the trend. */
 .chips { position: sticky; top: -4px; z-index: 2; display: flex; gap: 6px; overflow-x: auto; margin: 0 -22px; padding: 8px 22px; background: linear-gradient(var(--panel-solid) 80%, transparent); scrollbar-width: none; }
 .chips::-webkit-scrollbar { display: none; }
+
 .chip { flex: none; height: 32px; padding: 0 14px; border: 0; border-radius: 16px; background: var(--fill-1); color: var(--t2); font-size: var(--fs-sub); font-weight: 600; cursor: pointer; transition: background .2s, color .2s; }
 .chip:hover { background: var(--fill-2); color: var(--t1); }
 .chip[aria-pressed="true"] { background: var(--t1); color: var(--ink); }
+.chip .ic { width: 13px; height: 13px; margin: 0 -4px 0 4px; vertical-align: -2px; stroke-width: 2.2; }
 .chip-play { display: inline-flex; align-items: center; gap: 6px; padding: 0 14px 0 10px; background: var(--fill-2); color: var(--t1); }
 .chip-play .ic { width: 14px; height: 14px; fill: currentColor; stroke: none; }
+/* With a mouse a sideways-scrolling row is a trap: every chip is visible, wrapped onto two lines if needed. */
+@media (hover: hover) and (pointer: fine) {
+  .chips { flex-wrap: wrap; overflow: visible; row-gap: 6px; }
+  .chips { gap: 5px; }
+  .chip { height: 30px; padding: 0 11px; font-size: var(--fs-foot); }
+  .chip-play { padding: 0 12px 0 9px; }
+}
 .feed { display: flex; flex-direction: column; }
 .feed-h { margin: 0 0 2px; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-foot); font-weight: 600; color: var(--t3); }
 .feed-left { font-weight: 400; font-variant-numeric: tabular-nums; }
@@ -900,8 +909,9 @@ function scheduleMark(id) {
   markT = setTimeout(() => {
     const c = cur();
     if (c.page !== 'trend' || c.arg !== id) return;
+    // Opening a trend acknowledges its rating move; its stories stay new until you open them.
     Me.d.seenT[id] = new Date().toISOString();
-    markNews((S.byT.get(id) || []).filter(n => n._new), true);
+    Me.save(); refresh(true);
   }, 1400);
 }
 
@@ -1898,7 +1908,7 @@ function pageAbout() {
     h('p', { class: 'muted', text: 'Every story gets a heat score from 0 to 100: the scan\u2019s quality score (decision relevance, evidence, novelty), up to 9 points when other publishers cover the same trend within a week, up to 9 for an act-now, high-impact trend, then faded by age. Hot marks at most six stories from the last 14 days with heat 75 or more, one per trend. Top lists the last 30 days by heat.' }),
     h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
   out.push(section('My focus', null, h('p', { class: 'muted', text: 'Add your industry, systems, rules or priorities (or paste a short strategy text) under My focus in the news. Stories are ranked by how well they match and the radar highlights the trends they touch. Your focus is saved in this browser only.' })));
-  out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. Opening a trend or a news item clears them. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
+  out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. A story stays new until you open it (or play the briefing yourself); scrolling past it or the automatic briefing does not count. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
   out.push(section('Motion', null, h('p', { class: 'muted', text: 'The pause button at the top stops the radar beam and the news bar from moving. If your device asks for reduced motion (on Windows: Animation effects off), the radar fades between views instead of flying; the play button turns full motion on.' })));
   if (basis.length) out.push(section('Built on the big trend reports', null, h('div', { class: 'basis' }, basis.map(b => h('span', { text: b }))), m.nextTaxonomyReview ? h('p', { class: 'fine', text: 'Next review of the megatrends: ' + str(m.nextTaxonomyReview).replace(/^After /, 'after ') + '.' }) : null));
   out.push(section('Sources', String(S.sources.length), STYPES.map(([k, l]) => {
@@ -1918,7 +1928,7 @@ function pageAbout() {
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio & video'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
@@ -2014,7 +2024,8 @@ function pageFeed() {
   // One row: play the one-minute briefing, then the filters. Keeps the first story above the fold on phones.
   out.push(h('div', { class: 'chips', role: 'toolbar', 'aria-label': 'Briefing and news filters' },
     h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
-    FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l))));
+    // Beside the radar the four area chips would repeat its corner buttons, so only the chosen area shows (tap to clear).
+    FILTERS.filter(([k]) => !(WIDE && AREAS[k]) || FEED.f === k).map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(WIDE && AREAS[k] ? 'all' : k) }, l, WIDE && AREAS[k] ? ic('i-close') : null))));
   if (FEED.f === 'focus') out.push(focusBox());
   const cards = [];
   shown.forEach((n, i) => {
@@ -2032,8 +2043,7 @@ function pageFeed() {
   return out;
 }
 
-// Observers: grow the feed near its end, cue the radar on the story at the top, and count a new story as seen
-// once at least 60% of it has been on screen for 1.5 seconds.
+// Observers: grow the feed near its end and cue the radar on the story at the top.
 function feedObserve() {
   [FEED.obs, FEED.more, FEED.dwell].forEach(o => o && o.disconnect());
   FEED.timers.forEach(clearTimeout);
@@ -2043,15 +2053,8 @@ function feedObserve() {
   FEED.obs = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting && FEED.cue !== e.target.dataset.t) { FEED.cue = e.target.dataset.t; if (!B.on) setCue(FEED.cue); }
   }, { root: P.body, rootMargin: '0px 0px -50% 0px' });
-  FEED.dwell = new IntersectionObserver(entries => {
-    for (const e of entries) {
-      const id = e.target.dataset.id;
-      if (e.isIntersecting && e.intersectionRatio >= .6) {
-        if (!FEED.timers.has(id)) FEED.timers.set(id, setTimeout(() => { FEED.timers.delete(id); const n = byId.get(id); if (n && n._new) markSeen([n]); }, 1500));
-      } else if (FEED.timers.has(id)) { clearTimeout(FEED.timers.get(id)); FEED.timers.delete(id); }
-    }
-  }, { root: P.body, threshold: [0, .6] });
-  $$('.fc', P.body).forEach(c => { FEED.obs.observe(c); if (c.classList.contains('new')) FEED.dwell.observe(c); });
+  // Scrolling past a story does not count as reading it: only opening it does (toggleCard).
+  $$('.fc', P.body).forEach(c => FEED.obs.observe(c));
   const more = $('#feed-more', P.body);
   if (!more) return;
   FEED.more = new IntersectionObserver(entries => {
@@ -2080,6 +2083,13 @@ function nextTrend(t) {
   for (let k = 1; k < L.length; k++) { const c = L[(i + k) % L.length]; if (D.newBy.get(c.id)) return { t: c, news: true }; }
   return { t: L[(i + 1) % L.length], news: false };
 }
+// A mouse wheel over a chip row that still scrolls sideways (touch screens with a mouse attached) moves it sideways.
+P.body.addEventListener('wheel', e => {
+  const c = e.target.closest && e.target.closest('.chips');
+  if (!c || c.scrollWidth <= c.clientWidth + 1 || Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
+  e.preventDefault();
+  c.scrollLeft += e.deltaY;
+}, { passive: false });
 
 // ---- 12c-focus.js
 /* My focus: the reader's own context (industry, systems, rules, priorities) filters and ranks the feed and lights up
@@ -2208,11 +2218,13 @@ function buildSlides() {
     return { t, items, more: by.get(t.id).length - items.length, dur: 4200 + (items.length - 1) * 2600 };
   });
 }
-function briefStart() {
+// auto: started by itself after 10 s idle. Then nothing counts as read: only stories you chose to see do.
+function briefStart(auto) {
   if (!S.trends.length) return;
   const slides = buildSlides();
   if (!slides.length) { toast('No news to brief yet'); return; }
   B.slides = slides;
+  B.auto = !!auto;
   B.on = true;
   B.playing = true;
   if (S.quad) { S.quad = null; $('#allbtn').hidden = true; $$('.quad').forEach(b => b.setAttribute('aria-pressed', 'false')); }
@@ -2249,7 +2261,7 @@ function showSlide(i) {
   if (B.anim) B.anim.onfinish = () => { B.animDone = true; advance(); };
   if (!B.playing && B.anim) B.anim.pause();
   clearTimeout(B.markT);
-  if (s.items) B.markT = setTimeout(() => markNews(s.items.filter(x => x._new)), 1500);
+  if (s.items && !B.auto) B.markT = setTimeout(() => markNews(s.items.filter(x => x._new)), 2500);
   if (n && !CALM && MO.on) setTimeout(() => n.ping.animate([{ transform: 'scale(.6)', opacity: .9 }, { transform: 'scale(3.2)', opacity: 0 }], { duration: 900, easing: 'cubic-bezier(.1,.6,.3,1)' }), 700);
 }
 function advance() { if (B.on && B.playing && B.animDone) showSlide(B.i + 1); }
@@ -2290,8 +2302,8 @@ function autoArm() {
   AUTO.t = setTimeout(() => {
     if (AUTO.off || document.hidden || B.on || cur().page !== 'home' || !WIDE) return;
     AUTO.off = true;
-    briefStart();
-    if (B.on) { B.auto = true; renderPanel(false); }
+    briefStart(true);
+    if (B.on) renderPanel(false);
   }, 10000);
 }
 const autoCancel = () => { if (!AUTO.off) { AUTO.off = true; clearTimeout(AUTO.t); } };

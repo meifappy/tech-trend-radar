@@ -4,7 +4,7 @@
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio & video'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
@@ -100,7 +100,8 @@ function pageFeed() {
   // One row: play the one-minute briefing, then the filters. Keeps the first story above the fold on phones.
   out.push(h('div', { class: 'chips', role: 'toolbar', 'aria-label': 'Briefing and news filters' },
     h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
-    FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l))));
+    // Beside the radar the four area chips would repeat its corner buttons, so only the chosen area shows (tap to clear).
+    FILTERS.filter(([k]) => !(WIDE && AREAS[k]) || FEED.f === k).map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(WIDE && AREAS[k] ? 'all' : k) }, l, WIDE && AREAS[k] ? ic('i-close') : null))));
   if (FEED.f === 'focus') out.push(focusBox());
   const cards = [];
   shown.forEach((n, i) => {
@@ -118,8 +119,7 @@ function pageFeed() {
   return out;
 }
 
-// Observers: grow the feed near its end, cue the radar on the story at the top, and count a new story as seen
-// once at least 60% of it has been on screen for 1.5 seconds.
+// Observers: grow the feed near its end and cue the radar on the story at the top.
 function feedObserve() {
   [FEED.obs, FEED.more, FEED.dwell].forEach(o => o && o.disconnect());
   FEED.timers.forEach(clearTimeout);
@@ -129,15 +129,8 @@ function feedObserve() {
   FEED.obs = new IntersectionObserver(entries => {
     for (const e of entries) if (e.isIntersecting && FEED.cue !== e.target.dataset.t) { FEED.cue = e.target.dataset.t; if (!B.on) setCue(FEED.cue); }
   }, { root: P.body, rootMargin: '0px 0px -50% 0px' });
-  FEED.dwell = new IntersectionObserver(entries => {
-    for (const e of entries) {
-      const id = e.target.dataset.id;
-      if (e.isIntersecting && e.intersectionRatio >= .6) {
-        if (!FEED.timers.has(id)) FEED.timers.set(id, setTimeout(() => { FEED.timers.delete(id); const n = byId.get(id); if (n && n._new) markSeen([n]); }, 1500));
-      } else if (FEED.timers.has(id)) { clearTimeout(FEED.timers.get(id)); FEED.timers.delete(id); }
-    }
-  }, { root: P.body, threshold: [0, .6] });
-  $$('.fc', P.body).forEach(c => { FEED.obs.observe(c); if (c.classList.contains('new')) FEED.dwell.observe(c); });
+  // Scrolling past a story does not count as reading it: only opening it does (toggleCard).
+  $$('.fc', P.body).forEach(c => FEED.obs.observe(c));
   const more = $('#feed-more', P.body);
   if (!more) return;
   FEED.more = new IntersectionObserver(entries => {
@@ -166,3 +159,10 @@ function nextTrend(t) {
   for (let k = 1; k < L.length; k++) { const c = L[(i + k) % L.length]; if (D.newBy.get(c.id)) return { t: c, news: true }; }
   return { t: L[(i + 1) % L.length], news: false };
 }
+// A mouse wheel over a chip row that still scrolls sideways (touch screens with a mouse attached) moves it sideways.
+P.body.addEventListener('wheel', e => {
+  const c = e.target.closest && e.target.closest('.chips');
+  if (!c || c.scrollWidth <= c.clientWidth + 1 || Math.abs(e.deltaX) >= Math.abs(e.deltaY)) return;
+  e.preventDefault();
+  c.scrollLeft += e.deltaY;
+}, { passive: false });
