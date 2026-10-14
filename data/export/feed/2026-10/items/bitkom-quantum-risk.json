@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-12",
+  "img": "https://www.bitkom.org/sites/main/files/styles/facebook/public/2024-11/btw25-quantencomputing.jpeg?itok=p1TomlRQ",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "43% of firms with 100+ staff call quantum computing a major IT-security risk",
+    "Only 22% have analysed their cryptographic systems; 29% have implemented or planned a switch",
+    "Representative phone survey of 607 firms by Bitkom Research, fieldwork late 2025"
+  ],
+  "read": "Bitkom press release",
+  "score": 69,
+  "seen": "2026-10-13T12:37:32Z",
+  "src": {
+    "name": "Bitkom",
+    "type": "association",
+    "url": "https://www.bitkom.org/Presse/Presseinformation/Quantencomputing-Daten-heute-vor-Gefahren-schuetzen"
+  },
+  "t": "quantum-safe",
+  "take": "Most German firms see the quantum threat but few have mapped their cryptography. A ready benchmark for board talks on post-quantum migration.",
+  "title": "Bitkom: only 29% of German firms plan quantum-safe encryption",
+  "via": "market"
+}

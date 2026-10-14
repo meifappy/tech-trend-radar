@@ -1,9 +1,11 @@
 /* The fixed vocabulary of the radar: areas (quadrants), rings, weights and expert statements. */
 const AREAS = {
-  ai: { label: 'AI & agents', a0: 180, cx: -.5, cy: -.5 },
-  sec: { label: 'Security & trust', a0: 270, cx: .5, cy: -.5 },
-  cloud: { label: 'Data & platforms', a0: 90, cx: -.5, cy: .5 },
-  sci: { label: 'Frontier tech', a0: 0, cx: .5, cy: .5 }
+  // Four decision domains, mutually exclusive: what to adopt, what to protect and comply with, what to build on,
+  // and what to watch. AI runs through all four, so it is not an area of its own.
+  ai: { label: 'Business & AI', hint: 'Using technology to create value: agents, models, spend, skills', a0: 180, cx: -.5, cy: -.5 },
+  sec: { label: 'Risk & regulation', hint: 'Protecting the firm and meeting the rules: security, identity, AI and cyber law', a0: 270, cx: .5, cy: -.5 },
+  cloud: { label: 'Platforms & data', hint: 'What everything runs on: cloud, data, engineering, compute', a0: 90, cx: -.5, cy: .5 },
+  sci: { label: 'Emerging tech', hint: 'Not yet in production: frontier models, robots, quantum, new chips', a0: 0, cx: .5, cy: .5 }
 };
 const AO = ['ai', 'sec', 'cloud', 'sci'];
 const RINGS = {
@@ -18,10 +20,10 @@ const weightOf = t => (t && [1, 2, 3].includes(+t.weight) ? +t.weight : 2);
 const WEIGHT_R = { 1: 3.6, 2: 5.2, 3: 7.2 };
 // "What experts say": sourced statements only (verbatim quotes are marked and short), never generated advice.
 const expertOf = t => (Array.isArray(t && t.expert) ? t.expert.filter(x => x && x.by && x.text && safeUrl(x.url)).slice(0, 3) : []);
-// "Hot": a must-read or must-listen item, flagged by the scan (about one in eight stories). Older data used "big".
-const isHot = n => !!(n && (n.hot || n.big));
+// "Hot": the few must-read or must-listen stories right now, chosen by heat (see 05b-signals.js).
+const isHot = n => !!(n && SIG.hot.has(n.id));
 const hotLabel = n => (n.kind === 'podcast' ? 'Hot listen' : n.kind === 'video' ? 'Hot watch' : 'Hot read');
-const hotPill = n => (isHot(n) ? h('span', { class: 'pillhot', text: hotLabel(n) }) : null);
+const hotPill = n => (isHot(n) ? h('span', { class: 'pillhot', title: 'Why: ' + SIG.hot.get(n.id).join(', '), text: hotLabel(n) }) : null);
 const validTo = t => (ts(t && t.validUntil) ? fmtDay(ts(t.validUntil)) : '');
 const byReading = (a, b) => RO.indexOf(a.ring) - RO.indexOf(b.ring) || AO.indexOf(a.area) - AO.indexOf(b.area) || str(a.title).localeCompare(str(b.title));
 const tkeys = n => (n.t2 && n.t2 !== n.t ? [n.t, n.t2] : [n.t]);

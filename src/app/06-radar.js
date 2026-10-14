@@ -20,13 +20,22 @@ function size() {
   // Wide screens have no floating news bar under the radar, so the radar can use nearly the full height.
   const below = PHONE ? 0 : WIDE ? 40 : short ? 110 : 150;
   let rs = PHONE ? Math.min(innerWidth, Math.max(220, innerHeight - 250)) : Math.min(st.width - aside - (short ? 24 : 48), st.height - below, 1000);
-  rs = Math.max(240, Math.floor(rs));
+  rs = Math.max(240, Math.floor(rs / 2) * 2); // even, so the centred radar lands on whole pixels
   RD.stage.style.setProperty('--rs', rs + 'px');
   RD.W = rs;
   RD.room = PHONE ? 0 : Math.max(0, Math.min(140, (st.width - aside - rs) / 2 - 12));
   RD.R0 = rs / 2 - (PHONE ? 16 : 36);
   RD.svg.setAttribute('viewBox', '0 0 ' + rs + ' ' + rs);
   RD.box.classList.toggle('small', rs < 340);
+  snapBox();
+}
+// Snap the radar to whole device pixels: a half-pixel offset blurs text and icons on Windows (Edge, Chrome).
+function snapBox() {
+  const s = RD.box.style;
+  s.marginLeft = s.marginTop = '0px';
+  const b = RD.box.getBoundingClientRect(), dpr = devicePixelRatio || 1, snap = v => Math.round(v * dpr) / dpr - v;
+  s.marginLeft = snap(b.left).toFixed(3) + 'px';
+  s.marginTop = snap(b.top).toFixed(3) + 'px';
 }
 function worldLayout() {
   const cells = {}, pos = {};

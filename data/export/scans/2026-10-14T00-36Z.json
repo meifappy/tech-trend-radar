@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-14T00:36:15Z",
+  "news": 4,
+  "note": "About 18 candidates found, 4 kept (search 2, watch 2; 1 German, 3 English): Microsoft's record October patch release, joint advisory AA26-281A (first identity-security story, verified at the IC3 PDF), Harvard working paper on coding agents (first ai-engineering story in 14 days), TÜV agent-risk figures. Dropped below 55: Telekom AI investor-day numbers (51), SAP autonomous enterprise (54), Bitkom IT career changers (50), Omdia on Oktane agent identity (scope mismatch); still empty: sovereign-cloud, platform-engineering, confidential-computing, ai-ready-data, novel-computing. BSI, BMDS, CISA, Bundesnetzagentur pages blocked or unreachable; MLCommons item on MLPerf in the EU AI Gigafactories tender (13 Oct) could not be loaded, follow up; sweep slice 76-113 only partly read.",
+  "push": "failed",
+  "pushError": "Clone/commit/push step blocked before running by the session's permission check: \"Permission for this action was denied by the Claude Code auto mode classifier. Reason: [Data Exfiltration].\" Export written to /tmp/radar-export only (23 trends, 151 sources, 10 scans, meta, 116 feed items).",
+  "trendsChanged": []
+}

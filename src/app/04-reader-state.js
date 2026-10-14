@@ -61,6 +61,7 @@ const Me = {
 };
 function since() { const m = ts(Me.d.mark), now = Date.now(); return m ? Math.max(m, now - 21 * DAY) : now - 7 * DAY; }
 function derive() {
+  if (SIG.news !== S.news || SIG.trends !== S.trends) signals();
   const s = since(), by = new Map();
   let total = 0;
   for (const n of S.news) {

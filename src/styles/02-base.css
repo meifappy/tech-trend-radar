@@ -1,7 +1,7 @@
 /* Base elements and the shared control set: icon button, primary button, text button, link, pill. */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; overflow: hidden; background: var(--bg); color: var(--t1); font: var(--fs-body)/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+body { margin: 0; text-rendering: optimizeLegibility; overflow: hidden; background: var(--bg); color: var(--t1); font: var(--fs-body)/1.45 var(--font); -webkit-font-smoothing: antialiased; }
 button, input { font: inherit; color: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-06",
+  "img": "https://www.eco.de/wp-content/uploads/2026/10/pexels-igor-starkov-233202-776516-scaled.jpg",
+  "kind": "rule",
+  "lang": "de",
+  "points": [
+    "The bill would let authorities reroute or record traffic, change or delete data and intervene in DNS",
+    "eco wants a judge's approval beyond private systems and thresholds that rise with severity",
+    "Statement follows the Bundestag interior committee hearing on 5 October"
+  ],
+  "read": "eco press statement",
+  "score": 56,
+  "seen": "2026-10-13T12:37:32Z",
+  "src": {
+    "name": "eco Verband",
+    "type": "association",
+    "url": "https://www.eco.de/presse/eco-zur-anhoerung-zum-cybersicherheitsgesetz-staatliche-netzinterventionen-duerfen-nicht-zur-normalitaet-werden/"
+  },
+  "t": "cyber-rules",
+  "take": "Germany's draft cybersecurity law gives authorities active-defence powers that could hit uninvolved firms' systems. Operators and hosters should follow the revision.",
+  "title": "eco: German cyber bill lets authorities intervene in networks",
+  "via": "watch"
+}

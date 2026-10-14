@@ -10,6 +10,9 @@ function setNews() {
   for (const m in S.months) for (const n of S.months[m]) all.push(n);
   all.sort((a, b) => ts(b.at) - ts(a.at) || ts(b.seen) - ts(a.seen) || str(a.title).localeCompare(str(b.title)));
   S.news = all.filter(n => !n.dup);
+  SIG.extra = all.filter(n => n.dup && !n.minor);
+  SIG.dups = new Map();
+  for (const n of SIG.extra) SIG.dups.set(n.dup, (SIG.dups.get(n.dup) || 0) + 1);
   S.byT = new Map();
   for (const n of S.news) for (const k of tkeys(n)) { if (!S.byT.has(k)) S.byT.set(k, []); S.byT.get(k).push(n); }
 }

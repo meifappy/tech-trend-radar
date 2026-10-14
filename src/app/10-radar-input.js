@@ -3,12 +3,13 @@
 const tip = $('#tip');
 function tipShow(n) {
   if (PHONE || !n || !n.t) return;
-  const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id);
+  const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id), m = SIG.mom.get(n.id);
   tip.className = 'tip c-' + t.ring;
   put(tip, 
     h('span', { class: 'k' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
+    m && m.dir !== 'quiet' ? h('span', { class: 'tmom s-' + m.dir }, spark(m), MOM[m.dir] + ', ' + m.recent + ' in 4 weeks') : null,
     c ? h('span', { class: 'pillnew', text: c + ' new' }) : null);
   const r = RD.box.getBoundingClientRect(), x = r.left + n.sx, y = r.top + n.sy;
   tip.classList.add('on');
@@ -57,11 +58,20 @@ function zoomAt(px, py, f) {
   camSet({ k: k2, x: wx - (px - RD.W / 2) / k2p, y: wy - (py - RD.W / 2) / k2p });
 }
 const local = e => { const r = RD.box.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+// Wheel: a pinch (ctrl + wheel) or a mouse wheel zooms; two-finger scrolling on a touchpad pans the zoomed radar
+// (Edge and Chrome on Windows report touchpad scrolls as small, fractional or sideways pixel deltas).
 RD.box.addEventListener('wheel', e => {
   if (e.target.closest('.zoomui')) return;
   e.preventDefault();
-  const [x, y] = local(e);
-  zoomAt(x, y, Math.exp(-e.deltaY * (e.ctrlKey ? .01 : .0018)));
+  const pad = !e.ctrlKey && e.deltaMode === 0 && (e.deltaX !== 0 || Math.abs(e.deltaY) < 50 || e.deltaY % 1 !== 0);
+  if (pad) {
+    if (RD.cam.k <= 1.01) return;
+    const kk = RD.cam.k * RD.R0;
+    camSet({ k: RD.cam.k, x: RD.cam.x + e.deltaX / kk, y: RD.cam.y + e.deltaY / kk });
+    return;
+  }
+  const [x, y] = local(e), dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+  zoomAt(x, y, Math.exp(-clamp(dy, -120, 120) * (e.ctrlKey ? .01 : .0018)));
 }, { passive: false });
 (() => {
   const pts = new Map();
@@ -95,7 +105,7 @@ RD.box.addEventListener('wheel', e => {
   const end = e => {
     if (!pts.has(e.pointerId)) return;
     pts.delete(e.pointerId);
-    if (st && st.moved) { RD.dragged = true; setTimeout(() => { RD.dragged = false; }, 60); }
+    if (st && st.moved) { RD.dragged = true; setTimeout(() => { RD.dragged = false; }, 350); }
   };
   RD.box.addEventListener('pointerup', end);
   RD.box.addEventListener('pointercancel', end);
@@ -135,3 +145,7 @@ RD.gN.addEventListener('keydown', e => {
 });
 $$('.quad').forEach(b => b.addEventListener('click', () => setQuad(S.quad === b.dataset.area ? null : b.dataset.area)));
 $('#allbtn').addEventListener('click', () => setQuad(null));
+
+// A drag or pinch never ends as a click on a dot (Edge can deliver the click well after pointerup).
+RD.box.addEventListener('click', e => { if (RD.dragged) { e.stopPropagation(); e.preventDefault(); } }, true);
+RD.box.addEventListener('transitionend', e => { if (e.target === RD.box) snapBox(); });

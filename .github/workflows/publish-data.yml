@@ -1,11 +1,12 @@
-# Turns the raw database export in data/export/ (pushed by the scheduled scan) into the site's data files.
-# The scan only commits JSON; this job runs scripts/build_data.py and commits public/radar-data.json and
-# public/archive/. Cloudflare redeploys on that commit.
+# Publishes new scan results. The scheduled scan pushes one small delta file per run to data/inbox/ (or, as a
+# fallback, a full export to data/export/). This job merges the inbox into data/export/ (scripts/merge_inbox.py),
+# builds the site data (scripts/build_data.py) and commits data/export/, public/radar-data.json and
+# public/archive/. Cloudflare redeploys on that commit. Both scripts only read and write JSON.
 name: publish-data
 on:
   push:
     branches: [main]
-    paths: ['data/export/**', 'scripts/build_data.py']
+    paths: ['data/inbox/**', 'data/export/**', 'scripts/build_data.py', 'scripts/merge_inbox.py']
   workflow_dispatch:
 permissions:
   contents: write
@@ -21,13 +22,19 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - run: python3 -I scripts/build_data.py data/export public/radar-data.json
-      - name: Commit the site data if it changed
+      - name: Merge scan deltas from data/inbox
+        run: python3 -I scripts/merge_inbox.py data/inbox data/export
+      - name: Build the site data
+        run: python3 -I scripts/build_data.py data/export public/radar-data.json
+      - name: Commit if anything changed
         run: |
-          git add public/radar-data.json public/archive
+          git add -A data/inbox data/export public/radar-data.json public/archive
           if git diff --cached --quiet; then echo "No change"; exit 0; fi
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
           git commit -m "Site data from scan $(date -u +%Y-%m-%dT%H:%MZ)"
-          git pull --rebase origin main
-          git push origin HEAD:main
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1

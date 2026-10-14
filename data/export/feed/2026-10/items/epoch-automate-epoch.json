@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08",
+  "img": "https://epoch.ai/assets/images/posts/2026/can-ai-automate-epoch/t-can-ai-automate-epoch.png",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "11 tasks in five categories taken from Epoch's own work, six models tested",
+    "Claude Fable 5.1 and GPT-6 Astra roughly tied for the lead",
+    "Each task ran once per model, so scores are noisy"
+  ],
+  "read": "Epoch AI report page",
+  "score": 60,
+  "seen": "2026-10-13T12:37:32Z",
+  "src": {
+    "name": "Epoch AI",
+    "type": "lab",
+    "url": "https://epoch.ai/publications/can-ai-automate-epoch"
+  },
+  "t": "ai-capability",
+  "take": "Frontier models handle well-defined analysis reliably but fail at open-ended research. Temper plans to automate knowledge work end to end.",
+  "title": "Epoch AI: models cannot yet do a research team's open-ended work",
+  "via": "watch"
+}

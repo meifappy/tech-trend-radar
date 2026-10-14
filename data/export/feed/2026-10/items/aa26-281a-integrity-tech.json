@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08",
+  "kind": "advisory",
+  "lang": "en",
+  "points": [
+    "Co-sealed by FBI, CISA, NSA, UK NCSC and agencies from Australia, Canada, Japan, New Zealand and Spain (AA26-281A)",
+    "EBurst tool sprays passwords against ten Exchange/Office 365 interfaces; DCSync copies AD data",
+    "Mitigations: MFA for webmail, VPN and critical systems; monitor unexpected AD replication"
+  ],
+  "read": "Joint Cybersecurity Advisory AA26-281A (PDF), 8 October 2026",
+  "score": 76,
+  "seen": "2026-10-14T00:36:15Z",
+  "src": {
+    "name": "FBI, CISA, NSA, NCSC and partners",
+    "type": "public",
+    "url": "https://www.ic3.gov/CSA/2026/261008.pdf"
+  },
+  "t": "identity-security",
+  "t2": "preemptive-defence",
+  "take": "A joint advisory shows state-linked actors winning with credentials, not exotic exploits: password spraying on Exchange and Microsoft 365, then DCSync. Enforce MFA on webmail and VPN.",
+  "title": "Nine agencies: China-linked group sprays passwords and copies Active Directory",
+  "via": "watch"
+}

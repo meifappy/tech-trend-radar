@@ -51,7 +51,7 @@
   "rated": "2026-10-07",
   "ring": "watch",
   "scope": "What frontier models can reliably do. Not adoption.",
-  "short": "Frontier AI",
+  "short": "Model capabilities",
   "since": "2026-10-08T06:00:00Z",
   "sources": [
     {
@@ -91,7 +91,7 @@
     }
   ],
   "status": "active",
-  "title": "Frontier AI capabilities",
+  "title": "Model capabilities",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 2,

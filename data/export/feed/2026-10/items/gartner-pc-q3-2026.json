@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-12",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "55.4m PCs shipped in Q3 2026, down 22.4% year on year (preliminary)",
+    "Gartner says DRAM costs rose five times year on year in Q2 and vendors passed them on",
+    "Businesses shifted spend to workstations and AI PCs instead of broad rollouts"
+  ],
+  "read": "Gartner press release with shipment table",
+  "score": 66,
+  "seen": "2026-10-13T12:37:32Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-12-gartner-says-worldwide-pc-shipments-declined-22-point-4-percent-in-third-quarter-of-2026-as-component-cost-inflation-raised-asps"
+  },
+  "t": "ai-compute",
+  "take": "The memory squeeze now reaches client hardware: cheap PCs are scarce and prices up. Device refresh plans and budgets need repricing.",
+  "title": "Gartner: PC shipments fall 22% as memory costs jump fivefold",
+  "via": "market"
+}

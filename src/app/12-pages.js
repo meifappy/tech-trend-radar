@@ -8,6 +8,7 @@ function pageTrend(id) {
     h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
     h('h2', { class: 'title', id: 'p-title', tabindex: '-1', text: t.title }),
     h('p', { class: 'lead', text: t.line }),
+    momRow(t.id),
     mv ? h('p', { class: 'moved' }, ic(RO.indexOf(mv.ring) < RO.indexOf(mv.from) ? 'i-in' : 'i-outward'), h('span', { text: 'Moved from ' + RINGS[mv.from].label + ' to ' + RINGS[t.ring].label + ', ' + when(mv.at) + '. ' + str(mv.note) })) : null)];
   out.push(section('Latest news', nNew ? nNew + ' new' : items.length ? String(items.length) : '',
     items.length ? h('div', { class: 'feed' }, (all ? items : items.slice(0, 4)).map(n => feedCard(n, { chip: false }))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
@@ -33,8 +34,16 @@ function pageTrend(id) {
 }
 
 
+// Momentum: is the trend drawing more coverage than a month ago? Eight weekly bars and one word.
+function momRow(id) {
+  const m = SIG.mom.get(id);
+  return m ? h('p', { class: 'mom s-' + m.dir }, spark(m), h('span', { text: momText(m) + '.' })) : null;
+}
 function pageList() {
   const out = [h('p', { class: 'muted', style: 'margin:0', text: 'The same ' + S.trends.length + ' trends as the radar, from act now to horizon.' })];
+  const up = S.trends.filter(t => (SIG.mom.get(t.id) || {}).dir === 'rising').sort((a, b) => SIG.mom.get(b.id).recent - SIG.mom.get(a.id).recent);
+  if (up.length) out.push(h('section', { class: 'sec' }, h('h2', null, h('span', { text: 'Gaining momentum' }), h('span', { text: 'More stories than a month ago' })),
+    h('div', { class: 'rows' }, up.slice(0, 5).map(t => { const m = SIG.mom.get(t.id); return trendRow(t, plural(m.recent, 'story').replace('storys', 'stories') + ' in 4 weeks, ' + m.before + ' in the 4 before'); }))));
   for (const r of RO) {
     const list = S.trends.filter(t => t.ring === r);
     if (list.length) out.push(h('section', { class: 'sec c-' + r }, h('h2', null, h('span', { class: 'rh' }, h('i'), RINGS[r].label), h('span', { text: RINGS[r].hint })), h('div', { class: 'rows' }, list.map(t => trendRow(t, AREAS[t.area].label)))));
@@ -114,7 +123,13 @@ function pageAbout() {
   out.push(section('How long a rating holds', null, h('p', { class: 'muted', text: 'Each trend\u2019s ring is reviewed every quarter and stays valid until the date on the trend, so trends do not come and go with the news. A move between reviews needs two top-tier sources. News on each trend is added every 12 hours. The ' + S.trends.length + ' trends are defined so they do not overlap: each one says what it covers and what belongs elsewhere.' })));
   out.push(section('Movements', null, h('p', { class: 'muted', text: 'A small arrow next to a dot means its rating changed in the last 90 days: pointing to the centre, it became more urgent; pointing outward, less urgent. A dashed line shows a move since your last visit.' })));
   out.push(section('The rings', null, h('ul', { class: 'rings' }, RO.map(r => h('li', { class: 'c-' + r }, h('i'), h('b', { text: RINGS[r].label }), h('span', { text: RINGS[r].hint }))))));
-  out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. Opening a trend or a news item clears them. A white Hot read or Hot listen label marks the few stories each scan rates as must-read or must-listen. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
+  out.push(section('The four areas', null, h('ul', { class: 'rings areas' }, AO.map(a => h('li', null, h('b', { text: AREAS[a].label }), h('span', { text: AREAS[a].hint })))),
+    h('p', { class: 'fine', text: 'Each trend sits in exactly one area, by the decision it asks for. AI runs through all four, so it is not an area of its own.' })));
+  out.push(section('Hot, Top and momentum', null,
+    h('p', { class: 'muted', text: 'Every story gets a heat score from 0 to 100: the scan\u2019s quality score (decision relevance, evidence, novelty), up to 9 points when other publishers cover the same trend within a week, up to 9 for an act-now, high-impact trend, then faded by age. Hot marks at most six stories from the last 14 days with heat 75 or more, one per trend. Top lists the last 30 days by heat.' }),
+    h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
+  out.push(section('My focus', null, h('p', { class: 'muted', text: 'Add your industry, systems, rules or priorities (or paste a short strategy text) under My focus in the news. Stories are ranked by how well they match and the radar highlights the trends they touch. Your focus is saved in this browser only.' })));
+  out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. Opening a trend or a news item clears them. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
   out.push(section('Motion', null, h('p', { class: 'muted', text: 'The pause button at the top stops the radar beam and the news bar from moving. It starts paused if your device asks for reduced motion.' })));
   if (basis.length) out.push(section('Built on the big trend reports', null, h('div', { class: 'basis' }, basis.map(b => h('span', { text: b }))), m.nextTaxonomyReview ? h('p', { class: 'fine', text: 'Next review of the megatrends: ' + str(m.nextTaxonomyReview).replace(/^After /, 'after ') + '.' }) : null));
   out.push(section('Sources', String(S.sources.length), STYPES.map(([k, l]) => {

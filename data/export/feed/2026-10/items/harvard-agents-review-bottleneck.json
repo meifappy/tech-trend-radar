@@ -1,0 +1,22 @@
+{
+  "at": "2026-08-04",
+  "kind": "paper",
+  "lang": "en",
+  "points": [
+    "718 firms, about 726,000 workers, Jellyfish data from January 2021 to March 2026",
+    "Agents raise lines of code by about 30%, but resolved Jira issues show no significant change (gains above 12% ruled out)",
+    "Time from pull request to merge rises 3.45 days on a 7.03-day baseline, up 49%"
+  ],
+  "read": "Chen and Stratton, 'Artificial Intelligence in the Firm: Bottlenecks in Software Production', Harvard job-market paper (version 4 August 2026)",
+  "score": 78,
+  "seen": "2026-10-14T00:36:15Z",
+  "src": {
+    "name": "Harvard University (Chen and Stratton)",
+    "type": "lab",
+    "url": "https://fion.ac/jellyfish.pdf"
+  },
+  "t": "ai-engineering",
+  "take": "Large-sample evidence that agents speed up typing, not delivery: review becomes the bottleneck. Budget for review capacity and measure finished work, not lines of code. Working paper, not yet peer reviewed.",
+  "title": "Harvard study: coding agents add 30% more code, not more finished work",
+  "via": "search"
+}

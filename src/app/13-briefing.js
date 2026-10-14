@@ -11,7 +11,7 @@ function buildSlides() {
   const order = S.trends.filter(t => by.has(t.id)).sort((a, b) => RO.indexOf(a.ring) - RO.indexOf(b.ring) || AO.indexOf(a.area) - AO.indexOf(b.area));
   B.scope = fresh.length ? 'new for you' : pool.length ? 'from the last 7 days' : 'latest';
   return order.slice(0, 10).map(t => {
-    const items = by.get(t.id).slice().sort((a, b) => (isHot(b) ? 1 : 0) - (isHot(a) ? 1 : 0) || ts(b.at) - ts(a.at)).slice(0, 2);
+    const items = by.get(t.id).slice().sort((a, b) => heatOf(b) - heatOf(a) || ts(b.at) - ts(a.at)).slice(0, 2);
     return { t, items, more: by.get(t.id).length - items.length, dur: 4200 + (items.length - 1) * 2600 };
   });
 }

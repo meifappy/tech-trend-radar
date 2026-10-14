@@ -1,5 +1,5 @@
 /* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
-.dock { position: absolute; z-index: 4; left: 50%; bottom: 22px; width: min(640px, calc(100% - 32px)); translate: -50% 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
+.dock { position: absolute; z-index: 4; left: 0; right: 0; margin-inline: auto; bottom: 22px; width: min(640px, calc(100% - 32px)); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
   transition: opacity .3s var(--ease), translate .45s var(--spring), transform .4s var(--spring); }
 .app.open .dock { width: min(640px, calc(100% - var(--side) - var(--gap) * 2 - 32px)); }
 .app.wide .dock { display: none; }

@@ -108,7 +108,7 @@ function trendRow(t, sub) {
   return h('button', { class: 'trow c-' + t.ring, type: 'button', onclick: () => openTrend(t.id), onpointerenter: e => e.pointerType !== 'touch' && hover(t.id, 'panel'), onpointerleave: () => hover(null) },
     h('i', { class: 'tdot' }),
     h('span', { class: 'tt' }, h('b', { text: t.title }), sub ? h('small', { text: sub }) : null),
-    c ? h('span', { class: 'pillnew', text: c + ' new' }) : mv ? h('span', { class: 'pillmove', text: 'Moved' }) : ic('i-chev', 'chev'));
+    c ? h('span', { class: 'pillnew', text: c + ' new' }) : mv ? h('span', { class: 'pillmove', text: 'Moved' }) : (SIG.mom.get(t.id) || {}).dir === 'rising' ? h('span', { class: 'pillmom', text: 'Rising' }) : ic('i-chev', 'chev'));
 }
 function linkOut(url, text) {
   const u = safeUrl(url);

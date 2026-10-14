@@ -51,7 +51,7 @@
   "rated": "2026-10-07",
   "ring": "prepare",
   "scope": "AI spend and return. Not model selection.",
-  "short": "AI FinOps",
+  "short": "Value & FinOps",
   "since": "2026-10-08T06:00:00Z",
   "sources": [
     {
@@ -98,7 +98,7 @@
     }
   ],
   "status": "active",
-  "title": "AI value & FinOps",
+  "title": "Value & FinOps",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 2,

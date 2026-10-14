@@ -71,7 +71,7 @@
 /* Base elements and the shared control set: icon button, primary button, text button, link, pill. */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; overflow: hidden; background: var(--bg); color: var(--t1); font: var(--fs-body)/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+body { margin: 0; text-rendering: optimizeLegibility; overflow: hidden; background: var(--bg); color: var(--t1); font: var(--fs-body)/1.45 var(--font); -webkit-font-smoothing: antialiased; }
 button, input { font: inherit; color: inherit; }
 button { -webkit-tap-highlight-color: transparent; }
 a { color: inherit; }
@@ -146,7 +146,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 
 /* stage: the radar is centred in the space the panel leaves free */
 .stage { position: absolute; inset: 56px 0 0 0; overflow: hidden; }
-.rbox { position: absolute; left: 50%; top: calc(50% - 55px); width: var(--rs, 600px); height: var(--rs, 600px); translate: -50% -50%; touch-action: none; transition: transform .4s var(--spring), opacity .3s var(--ease); }
+.rbox { position: absolute; user-select: none; -webkit-user-select: none; left: 50%; top: calc(50% - 55px); width: var(--rs, 600px); height: var(--rs, 600px); translate: -50% -50%; touch-action: none; transition: transform .4s var(--spring), opacity .3s var(--ease); }
 .app.wide .rbox { top: calc(50% - 12px); }
 .app.open .rbox, .app.open .dock { transform: translateX(calc((var(--side) + var(--gap) * 2) / -2)); }
 .rbox.zoomed { cursor: grab; }
@@ -198,11 +198,13 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .tip b { font-size: var(--fs-body); font-weight: 600; letter-spacing: -.01em; }
 .tip .tmove { font-size: var(--fs-foot); color: var(--t2); }
 .tip .pillnew { margin-top: 3px; }
-.toast { position: fixed; z-index: 40; left: 50%; bottom: 28px; max-width: calc(100% - 32px); padding: 11px 18px; border-radius: 999px; translate: -50% 0; transform: translateY(14px); opacity: 0; pointer-events: none; background: rgb(255 255 255 / .94); color: var(--ink); font-size: var(--fs-sub); font-weight: 600; transition: opacity .25s, transform .4s var(--spring); contain: layout style; }
+.toast { position: fixed; z-index: 40; left: 0; right: 0; bottom: 28px; width: fit-content; max-width: calc(100% - 32px); margin-inline: auto; padding: 11px 18px; border-radius: 999px; transform: translateY(14px); opacity: 0; pointer-events: none; background: rgb(255 255 255 / .94); color: var(--ink); font-size: var(--fs-sub); font-weight: 600; transition: opacity .25s, transform .4s var(--spring); contain: layout style; }
 .toast.on { opacity: 1; transform: none; }
+.tip .tmom { display: flex; align-items: center; gap: 7px; font-size: var(--fs-foot); color: var(--t2); }
+.tip .tmom .spark { width: 40px; height: 12px; }
 
 /* The radar: rings, area buttons, dots, labels, motion overlay. SVG text uses a dark halo so it reads on any ring. */
-.rbox > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; will-change: transform; }
+.rbox > svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
 .rbox.zoomed > svg, .rbox.zoomed > .fx { overflow: hidden; }
 .sweep { position: absolute; border-radius: 50%; pointer-events: none; opacity: 0; will-change: transform; background: conic-gradient(from 0deg, rgb(255 255 255 / 0) 0deg 280deg, rgb(255 255 255 / .04) 320deg, rgb(255 255 255 / .2) 359deg, rgb(255 255 255 / 0) 360deg); }
 .rbox.zoomed .sweep { display: none; }
@@ -215,7 +217,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .q-cloud { left: -8px; bottom: -8px; }
 .q-sci { right: -8px; bottom: -8px; text-align: right; }
 .rbox.zoomed .quad { opacity: 0; pointer-events: none; }
-.allbtn { position: absolute; z-index: 3; left: 50%; top: -6px; translate: -50% 0; }
+.allbtn { position: absolute; z-index: 3; left: 0; right: 0; top: -6px; width: fit-content; margin-inline: auto; }
 
 /* rings and axes */
 /* Rings read as stepped tints (brightest at the centre) with a clear hairline, so the four zones are visible at a glance. */
@@ -261,7 +263,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .rbox.briefing .lbl:not(.sel), .rbox.briefing .lbl2, .rbox.briefing .ld { opacity: 0 !important; }
 
 /* motion overlay (HTML, so endless animations stay on the compositor) */
-.fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; will-change: transform; }
+.fx { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
 .pg, .fxr { position: absolute; left: 0; top: 0; border-radius: 50%; pointer-events: none; }
 .pg { width: 16px; height: 16px; margin: -8px 0 0 -8px; border: 2px solid #fff; opacity: 0; }
 .fxr { width: 27px; height: 27px; margin: -13.5px 0 0 -13.5px; opacity: 0; transition: opacity .3s; }
@@ -407,8 +409,36 @@ q.qt { quotes: "“" "”"; }
 .next-trend .chev { grid-area: c; }
 .panel[data-page="trend"] .p-body { touch-action: pan-y; }
 
+/* Momentum: eight weekly bars (last four brighter) and one line of text. Rising is white, cooling recedes. */
+.mom { margin: 2px 0 0; display: flex; align-items: center; gap: 10px; font-size: var(--fs-foot); color: var(--t2); }
+.spark { flex: none; display: block; }
+.spark rect { fill: rgb(255 255 255 / .22); }
+.spark rect.now { fill: rgb(255 255 255 / .55); }
+.spark.s-rising rect.now { fill: var(--t1); }
+.spark.s-cooling rect.now, .spark.s-quiet rect.now { fill: rgb(255 255 255 / .3); }
+.mom.s-rising { color: var(--t1); }
+.mom.s-quiet { color: var(--t3); }
+.pillmom { flex: none; height: 20px; padding: 0 7px; border-radius: 10px; border: 1px solid rgb(255 255 255 / .28); color: var(--t1); font: 700 var(--fs-cap)/18px var(--round); white-space: nowrap; }
+.rings.areas li { grid-template-columns: 128px minmax(0, 1fr); }
+
+/* My focus: the reader's own context as a filter. */
+.focus { display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 16px; background: var(--fill-1); }
+.focus-in { width: 100%; min-height: 76px; resize: vertical; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgb(0 0 0 / .3); color: var(--t1); font: var(--fs-sub)/1.4 var(--font); }
+.focus-in:focus { outline: 0; border-color: rgb(255 255 255 / .4); }
+.focus-in::placeholder { color: var(--t3); }
+.focus-a { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.focus-a .btn { height: 34px; padding: 0 16px; font-size: var(--fs-sub); }
+.focus-a small { margin-left: auto; font-size: var(--fs-cap); color: var(--t3); }
+.terms { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.term { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 6px 0 11px; border: 0; border-radius: 14px; background: var(--t1); color: var(--ink); font-size: var(--fs-foot); font-weight: 600; cursor: pointer; }
+.term .ic { width: 13px; height: 13px; stroke-width: 2.2; opacity: .6; }
+.term:hover .ic { opacity: 1; }
+.term.none { background: var(--fill-2); color: var(--t3); text-decoration: line-through; text-decoration-color: rgb(235 235 245 / .35); }
+.focus-t { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-foot); color: var(--t3); }
+.focus-t .tdot { width: 6px; height: 6px; border-radius: 50%; background: var(--c); margin-right: 2px; }
+
 /* Floating news bar under the radar (not on wide screens, where the panel lists the news). */
-.dock { position: absolute; z-index: 4; left: 50%; bottom: 22px; width: min(640px, calc(100% - 32px)); translate: -50% 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
+.dock { position: absolute; z-index: 4; left: 0; right: 0; margin-inline: auto; bottom: 22px; width: min(640px, calc(100% - 32px)); display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 8px; padding: 6px 8px 6px 6px; border-radius: 22px; background: rgb(255 255 255 / .05); -webkit-backdrop-filter: blur(24px) saturate(160%); backdrop-filter: blur(24px) saturate(160%); contain: layout style;
   transition: opacity .3s var(--ease), translate .45s var(--spring), transform .4s var(--spring); }
 .app.open .dock { width: min(640px, calc(100% - var(--side) - var(--gap) * 2 - 32px)); }
 .app.wide .dock { display: none; }
@@ -589,10 +619,10 @@ q.qt { quotes: "“" "”"; }
       </svg>
       <div class="sweep" id="sweep" aria-hidden="true"></div>
       <div class="fx" id="fx" aria-hidden="true"><i class="fxr fx-sel" id="fx-sel"></i><i class="fxr fx-cue" id="fx-cue"></i></div>
-      <button class="quad q-ai" type="button" data-area="ai" aria-pressed="false">AI &amp; agents</button>
-      <button class="quad q-sec" type="button" data-area="sec" aria-pressed="false">Security &amp; trust</button>
-      <button class="quad q-cloud" type="button" data-area="cloud" aria-pressed="false">Data &amp; platforms</button>
-      <button class="quad q-sci" type="button" data-area="sci" aria-pressed="false">Frontier tech</button>
+      <button class="quad q-ai" type="button" data-area="ai" aria-pressed="false">Business &amp; AI</button>
+      <button class="quad q-sec" type="button" data-area="sec" aria-pressed="false">Risk &amp; regulation</button>
+      <button class="quad q-cloud" type="button" data-area="cloud" aria-pressed="false">Platforms &amp; data</button>
+      <button class="quad q-sci" type="button" data-area="sci" aria-pressed="false">Emerging tech</button>
       <button class="btn allbtn" id="allbtn" type="button" hidden>Show whole radar</button>
     </div>
     <div class="zoomui" role="group" aria-label="Zoom">
@@ -664,10 +694,12 @@ onMq(mqRM, e => { RM = e.matches; });
 // ---- 02-vocabulary.js
 /* The fixed vocabulary of the radar: areas (quadrants), rings, weights and expert statements. */
 const AREAS = {
-  ai: { label: 'AI & agents', a0: 180, cx: -.5, cy: -.5 },
-  sec: { label: 'Security & trust', a0: 270, cx: .5, cy: -.5 },
-  cloud: { label: 'Data & platforms', a0: 90, cx: -.5, cy: .5 },
-  sci: { label: 'Frontier tech', a0: 0, cx: .5, cy: .5 }
+  // Four decision domains, mutually exclusive: what to adopt, what to protect and comply with, what to build on,
+  // and what to watch. AI runs through all four, so it is not an area of its own.
+  ai: { label: 'Business & AI', hint: 'Using technology to create value: agents, models, spend, skills', a0: 180, cx: -.5, cy: -.5 },
+  sec: { label: 'Risk & regulation', hint: 'Protecting the firm and meeting the rules: security, identity, AI and cyber law', a0: 270, cx: .5, cy: -.5 },
+  cloud: { label: 'Platforms & data', hint: 'What everything runs on: cloud, data, engineering, compute', a0: 90, cx: -.5, cy: .5 },
+  sci: { label: 'Emerging tech', hint: 'Not yet in production: frontier models, robots, quantum, new chips', a0: 0, cx: .5, cy: .5 }
 };
 const AO = ['ai', 'sec', 'cloud', 'sci'];
 const RINGS = {
@@ -682,10 +714,10 @@ const weightOf = t => (t && [1, 2, 3].includes(+t.weight) ? +t.weight : 2);
 const WEIGHT_R = { 1: 3.6, 2: 5.2, 3: 7.2 };
 // "What experts say": sourced statements only (verbatim quotes are marked and short), never generated advice.
 const expertOf = t => (Array.isArray(t && t.expert) ? t.expert.filter(x => x && x.by && x.text && safeUrl(x.url)).slice(0, 3) : []);
-// "Hot": a must-read or must-listen item, flagged by the scan (about one in eight stories). Older data used "big".
-const isHot = n => !!(n && (n.hot || n.big));
+// "Hot": the few must-read or must-listen stories right now, chosen by heat (see 05b-signals.js).
+const isHot = n => !!(n && SIG.hot.has(n.id));
 const hotLabel = n => (n.kind === 'podcast' ? 'Hot listen' : n.kind === 'video' ? 'Hot watch' : 'Hot read');
-const hotPill = n => (isHot(n) ? h('span', { class: 'pillhot', text: hotLabel(n) }) : null);
+const hotPill = n => (isHot(n) ? h('span', { class: 'pillhot', title: 'Why: ' + SIG.hot.get(n.id).join(', '), text: hotLabel(n) }) : null);
 const validTo = t => (ts(t && t.validUntil) ? fmtDay(ts(t.validUntil)) : '');
 const byReading = (a, b) => RO.indexOf(a.ring) - RO.indexOf(b.ring) || AO.indexOf(a.area) - AO.indexOf(b.area) || str(a.title).localeCompare(str(b.title));
 const tkeys = n => (n.t2 && n.t2 !== n.t ? [n.t, n.t2] : [n.t]);
@@ -805,6 +837,7 @@ const Me = {
 };
 function since() { const m = ts(Me.d.mark), now = Date.now(); return m ? Math.max(m, now - 21 * DAY) : now - 7 * DAY; }
 function derive() {
+  if (SIG.news !== S.news || SIG.trends !== S.trends) signals();
   const s = since(), by = new Map();
   let total = 0;
   for (const n of S.news) {
@@ -880,6 +913,9 @@ function setNews() {
   for (const m in S.months) for (const n of S.months[m]) all.push(n);
   all.sort((a, b) => ts(b.at) - ts(a.at) || ts(b.seen) - ts(a.seen) || str(a.title).localeCompare(str(b.title)));
   S.news = all.filter(n => !n.dup);
+  SIG.extra = all.filter(n => n.dup && !n.minor);
+  SIG.dups = new Map();
+  for (const n of SIG.extra) SIG.dups.set(n.dup, (SIG.dups.get(n.dup) || 0) + 1);
   S.byT = new Map();
   for (const n of S.news) for (const k of tkeys(n)) { if (!S.byT.has(k)) S.byT.set(k, []); S.byT.get(k).push(n); }
 }
@@ -906,6 +942,79 @@ function watchFeed() {
   });
 }
 
+// ---- 05b-signals.js
+/* Signals: how strongly each story and each trend pulls right now. The same for every viewer; recomputed only when
+   the data changes. docs/RANKING.md explains the method.
+   Heat (0 to 100) ranks stories: the scan's quality score (or an estimate from the kind of source when an older
+   story has none), plus corroboration (other publishers on the same trend within a
+   week, up to +9), plus the urgency of the trend, faded by age.
+   Hot: the few stories with heat 75 or more from the last 14 days, at most one per trend and six in all.
+   Momentum: a trend's stories in the last four weeks against the four weeks before, shown as eight weekly bars. */
+const SIG = { news: null, trends: null, heat: new Map(), why: new Map(), hot: new Map(), mom: new Map(), dups: new Map(), extra: [] };
+const HOT_MIN = 75, HOT_DAYS = 14, HOT_MAX = 6;
+const EVIDENCE = { rule: 18, paper: 18, advisory: 16, report: 14, podcast: 10, video: 10, announcement: 8 };
+const PRIMARY = new Set(['public', 'journal', 'research', 'paper', 'lab']);
+// The day a story happened: its publication day, or the day the scan found it when the source names only a month.
+const dayOf = n => (/^\d{4}-\d{2}-\d{2}/.test(str(n.at)) ? ts(n.at) : ts(n.seen) || ts(n.at));
+const pubOf = n => str(n.src && n.src.name).replace(/\s*\(.*?\)\s*/g, ' ').trim().toLowerCase();
+const fadeOf = age => (age <= 3 ? 1 : age <= 7 ? .95 : age <= 14 ? .85 : age <= 30 ? .6 : .3);
+const sum = a => a.reduce((x, y) => x + y, 0);
+
+function signals() {
+  SIG.news = S.news; SIG.trends = S.trends;
+  const now = Date.now(), byT = new Map(), heat = new Map(), why = new Map();
+  const add = (k, n) => { if (!byT.has(k)) byT.set(k, []); byT.get(k).push(n); };
+  for (const n of S.news) if (!n.minor) for (const k of tkeys(n)) add(k, n);
+  // Follow-ups of a known story (stored with dup) are not listed, but they count as coverage.
+  const cover = new Map(byT);
+  for (const n of SIG.extra) for (const k of tkeys(n)) { if (!cover.has(k)) cover.set(k, []); cover.get(k).push(n); }
+
+  for (const n of S.news) {
+    const t = S.byId.get(n.t) || S.byId.get(n.t2);
+    if (!t || n.minor) continue;
+    const d = dayOf(n), age = Math.max(0, (now - d) / DAY), r = [];
+    let base;
+    if (typeof n.score === 'number' && n.score > 0) { base = n.score; r.push('scan score ' + n.score); }
+    else base = 40 + (EVIDENCE[n.kind] || 8) + (PRIMARY.has(n.src.type) ? 4 : n.src.type === 'vendor' ? -2 : 0);
+    if (n.hot) { base = Math.max(base, 88); r.push('flagged by the scan'); }
+    else if (n.big) { base = Math.max(base, 80); r.push('major story'); }
+    const pubs = new Set();
+    for (const k of tkeys(n)) for (const m of cover.get(k) || []) if (Math.abs(dayOf(m) - d) <= 7 * DAY) pubs.add(pubOf(m));
+    pubs.delete(pubOf(n));
+    const others = pubs.size + (SIG.dups.get(n.id) || 0), conf = Math.min(3, others);
+    if (others) r.push((others + 1) + ' sources within a week');
+    if (t.ring === 'act') r.push('act-now trend');
+    const raw = base + conf * 3 + (t.ring === 'act' ? 6 : t.ring === 'prepare' ? 3 : 0) + (weightOf(t) === 3 ? 3 : 0);
+    heat.set(n.id, Math.round(Math.min(100, raw * fadeOf(age))));
+    why.set(n.id, r);
+  }
+  // Hot stays scarce: the strongest story per trend, then the top six overall.
+  const hot = new Map(), perT = new Set(), cut = now - HOT_DAYS * DAY;
+  S.news.filter(n => (heat.get(n.id) || 0) >= HOT_MIN && dayOf(n) >= cut)
+    .sort((a, b) => heat.get(b.id) - heat.get(a.id) || dayOf(b) - dayOf(a))
+    .forEach(n => { if (hot.size < HOT_MAX && !perT.has(n.t)) { perT.add(n.t); hot.set(n.id, why.get(n.id).length ? why.get(n.id) : ['strong signal']); } });
+
+  const mom = new Map(), WK = 7 * DAY;
+  for (const t of S.trends) {
+    const w = new Array(8).fill(0);
+    for (const n of cover.get(t.id) || []) { const k = Math.floor((now - dayOf(n)) / WK); if (k >= 0 && k < 8) w[7 - k]++; }
+    const before = sum(w.slice(0, 4)), recent = sum(w.slice(4));
+    const dir = before + recent < 3 ? 'quiet' : recent >= 3 && recent >= 1.5 * before + 1 ? 'rising' : before >= 3 && recent <= before / 2 ? 'cooling' : 'steady';
+    mom.set(t.id, { w, before, recent, dir });
+  }
+  Object.assign(SIG, { heat, why, hot, mom });
+}
+const heatOf = n => SIG.heat.get(n.id) || 0;
+const MOM = { rising: 'Rising', steady: 'Steady', cooling: 'Cooling', quiet: 'Few signals yet' };
+const momText = m => MOM[m.dir] + ': ' + plural(m.recent, 'story').replace('storys', 'stories') + ' in the last 4 weeks, ' + m.before + ' in the 4 before';
+// Eight weekly bars, oldest on the left; the last four weeks are brighter.
+function spark(m) {
+  const mx = Math.max(3, ...m.w), H = 18;
+  const el = sv('svg', { class: 'spark s-' + m.dir, viewBox: '0 0 63 ' + H, width: 63, height: H, 'aria-hidden': 'true' });
+  m.w.forEach((v, i) => el.append(sv('rect', { x: i * 8, y: H - Math.max(1.5, v / mx * H), width: 6, height: Math.max(1.5, v / mx * H), rx: 1.5, class: i >= 4 ? 'now' : '' })));
+  return el;
+}
+
 // ---- 06-radar.js
 /* Radar geometry: sizing, the stable layout of dots per area and ring, camera transform and placement. */
 const RD = {
@@ -929,13 +1038,22 @@ function size() {
   // Wide screens have no floating news bar under the radar, so the radar can use nearly the full height.
   const below = PHONE ? 0 : WIDE ? 40 : short ? 110 : 150;
   let rs = PHONE ? Math.min(innerWidth, Math.max(220, innerHeight - 250)) : Math.min(st.width - aside - (short ? 24 : 48), st.height - below, 1000);
-  rs = Math.max(240, Math.floor(rs));
+  rs = Math.max(240, Math.floor(rs / 2) * 2); // even, so the centred radar lands on whole pixels
   RD.stage.style.setProperty('--rs', rs + 'px');
   RD.W = rs;
   RD.room = PHONE ? 0 : Math.max(0, Math.min(140, (st.width - aside - rs) / 2 - 12));
   RD.R0 = rs / 2 - (PHONE ? 16 : 36);
   RD.svg.setAttribute('viewBox', '0 0 ' + rs + ' ' + rs);
   RD.box.classList.toggle('small', rs < 340);
+  snapBox();
+}
+// Snap the radar to whole device pixels: a half-pixel offset blurs text and icons on Windows (Edge, Chrome).
+function snapBox() {
+  const s = RD.box.style;
+  s.marginLeft = s.marginTop = '0px';
+  const b = RD.box.getBoundingClientRect(), dpr = devicePixelRatio || 1, snap = v => Math.round(v * dpr) / dpr - v;
+  s.marginLeft = snap(b.left).toFixed(3) + 'px';
+  s.marginTop = snap(b.top).toFixed(3) + 'px';
 }
 function worldLayout() {
   const cells = {}, pos = {};
@@ -1197,7 +1315,7 @@ function paintRadar() {
     n.lbl.classList.toggle('new', c > 0 || !!mv);
     n.el.classList.toggle('sel', sel);
     n.lbl.classList.toggle('sel', sel);
-    const dim = (S.ring && t.ring !== S.ring) || (B.on && B.focus && B.focus !== n.id);
+    const dim = (S.ring && t.ring !== S.ring) || (B.on && B.focus && B.focus !== n.id) || (!B.on && focusDim(n.id));
     n.el.classList.toggle('dim', !!dim);
     n.lbl.classList.toggle('dim', !!dim);
     const al = (t.title + '. ' + RINGS[t.ring].label + ', ' + AREAS[t.area].label + '.' + (c ? ' ' + plural(c, 'new update') + '.' : '') + (mv ? ' Moved from ' + RINGS[mv.from].label + '.' : ''));
@@ -1331,12 +1449,13 @@ function maybeReveal() {
 const tip = $('#tip');
 function tipShow(n) {
   if (PHONE || !n || !n.t) return;
-  const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id);
+  const t = n.t, c = D.newBy.get(n.id) || 0, rc = D.recent.get(n.id), m = SIG.mom.get(n.id);
   tip.className = 'tip c-' + t.ring;
   put(tip, 
     h('span', { class: 'k' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
+    m && m.dir !== 'quiet' ? h('span', { class: 'tmom s-' + m.dir }, spark(m), MOM[m.dir] + ', ' + m.recent + ' in 4 weeks') : null,
     c ? h('span', { class: 'pillnew', text: c + ' new' }) : null);
   const r = RD.box.getBoundingClientRect(), x = r.left + n.sx, y = r.top + n.sy;
   tip.classList.add('on');
@@ -1385,11 +1504,20 @@ function zoomAt(px, py, f) {
   camSet({ k: k2, x: wx - (px - RD.W / 2) / k2p, y: wy - (py - RD.W / 2) / k2p });
 }
 const local = e => { const r = RD.box.getBoundingClientRect(); return [e.clientX - r.left, e.clientY - r.top]; };
+// Wheel: a pinch (ctrl + wheel) or a mouse wheel zooms; two-finger scrolling on a touchpad pans the zoomed radar
+// (Edge and Chrome on Windows report touchpad scrolls as small, fractional or sideways pixel deltas).
 RD.box.addEventListener('wheel', e => {
   if (e.target.closest('.zoomui')) return;
   e.preventDefault();
-  const [x, y] = local(e);
-  zoomAt(x, y, Math.exp(-e.deltaY * (e.ctrlKey ? .01 : .0018)));
+  const pad = !e.ctrlKey && e.deltaMode === 0 && (e.deltaX !== 0 || Math.abs(e.deltaY) < 50 || e.deltaY % 1 !== 0);
+  if (pad) {
+    if (RD.cam.k <= 1.01) return;
+    const kk = RD.cam.k * RD.R0;
+    camSet({ k: RD.cam.k, x: RD.cam.x + e.deltaX / kk, y: RD.cam.y + e.deltaY / kk });
+    return;
+  }
+  const [x, y] = local(e), dy = e.deltaMode === 1 ? e.deltaY * 33 : e.deltaY;
+  zoomAt(x, y, Math.exp(-clamp(dy, -120, 120) * (e.ctrlKey ? .01 : .0018)));
 }, { passive: false });
 (() => {
   const pts = new Map();
@@ -1423,7 +1551,7 @@ RD.box.addEventListener('wheel', e => {
   const end = e => {
     if (!pts.has(e.pointerId)) return;
     pts.delete(e.pointerId);
-    if (st && st.moved) { RD.dragged = true; setTimeout(() => { RD.dragged = false; }, 60); }
+    if (st && st.moved) { RD.dragged = true; setTimeout(() => { RD.dragged = false; }, 350); }
   };
   RD.box.addEventListener('pointerup', end);
   RD.box.addEventListener('pointercancel', end);
@@ -1463,6 +1591,10 @@ RD.gN.addEventListener('keydown', e => {
 });
 $$('.quad').forEach(b => b.addEventListener('click', () => setQuad(S.quad === b.dataset.area ? null : b.dataset.area)));
 $('#allbtn').addEventListener('click', () => setQuad(null));
+
+// A drag or pinch never ends as a click on a dot (Edge can deliver the click well after pointerup).
+RD.box.addEventListener('click', e => { if (RD.dragged) { e.stopPropagation(); e.preventDefault(); } }, true);
+RD.box.addEventListener('transitionend', e => { if (e.target === RD.box) snapBox(); });
 
 // ---- 11-panel.js
 /* Panel navigation stack (home, trend, news, list, search, about, briefing) and shared panel parts. */
@@ -1575,7 +1707,7 @@ function trendRow(t, sub) {
   return h('button', { class: 'trow c-' + t.ring, type: 'button', onclick: () => openTrend(t.id), onpointerenter: e => e.pointerType !== 'touch' && hover(t.id, 'panel'), onpointerleave: () => hover(null) },
     h('i', { class: 'tdot' }),
     h('span', { class: 'tt' }, h('b', { text: t.title }), sub ? h('small', { text: sub }) : null),
-    c ? h('span', { class: 'pillnew', text: c + ' new' }) : mv ? h('span', { class: 'pillmove', text: 'Moved' }) : ic('i-chev', 'chev'));
+    c ? h('span', { class: 'pillnew', text: c + ' new' }) : mv ? h('span', { class: 'pillmove', text: 'Moved' }) : (SIG.mom.get(t.id) || {}).dir === 'rising' ? h('span', { class: 'pillmom', text: 'Rising' }) : ic('i-chev', 'chev'));
 }
 function linkOut(url, text) {
   const u = safeUrl(url);
@@ -1598,6 +1730,7 @@ function pageTrend(id) {
     h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ', ' + AREAS[t.area].label),
     h('h2', { class: 'title', id: 'p-title', tabindex: '-1', text: t.title }),
     h('p', { class: 'lead', text: t.line }),
+    momRow(t.id),
     mv ? h('p', { class: 'moved' }, ic(RO.indexOf(mv.ring) < RO.indexOf(mv.from) ? 'i-in' : 'i-outward'), h('span', { text: 'Moved from ' + RINGS[mv.from].label + ' to ' + RINGS[t.ring].label + ', ' + when(mv.at) + '. ' + str(mv.note) })) : null)];
   out.push(section('Latest news', nNew ? nNew + ' new' : items.length ? String(items.length) : '',
     items.length ? h('div', { class: 'feed' }, (all ? items : items.slice(0, 4)).map(n => feedCard(n, { chip: false }))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
@@ -1623,8 +1756,16 @@ function pageTrend(id) {
 }
 
 
+// Momentum: is the trend drawing more coverage than a month ago? Eight weekly bars and one word.
+function momRow(id) {
+  const m = SIG.mom.get(id);
+  return m ? h('p', { class: 'mom s-' + m.dir }, spark(m), h('span', { text: momText(m) + '.' })) : null;
+}
 function pageList() {
   const out = [h('p', { class: 'muted', style: 'margin:0', text: 'The same ' + S.trends.length + ' trends as the radar, from act now to horizon.' })];
+  const up = S.trends.filter(t => (SIG.mom.get(t.id) || {}).dir === 'rising').sort((a, b) => SIG.mom.get(b.id).recent - SIG.mom.get(a.id).recent);
+  if (up.length) out.push(h('section', { class: 'sec' }, h('h2', null, h('span', { text: 'Gaining momentum' }), h('span', { text: 'More stories than a month ago' })),
+    h('div', { class: 'rows' }, up.slice(0, 5).map(t => { const m = SIG.mom.get(t.id); return trendRow(t, plural(m.recent, 'story').replace('storys', 'stories') + ' in 4 weeks, ' + m.before + ' in the 4 before'); }))));
   for (const r of RO) {
     const list = S.trends.filter(t => t.ring === r);
     if (list.length) out.push(h('section', { class: 'sec c-' + r }, h('h2', null, h('span', { class: 'rh' }, h('i'), RINGS[r].label), h('span', { text: RINGS[r].hint })), h('div', { class: 'rows' }, list.map(t => trendRow(t, AREAS[t.area].label)))));
@@ -1704,7 +1845,13 @@ function pageAbout() {
   out.push(section('How long a rating holds', null, h('p', { class: 'muted', text: 'Each trend\u2019s ring is reviewed every quarter and stays valid until the date on the trend, so trends do not come and go with the news. A move between reviews needs two top-tier sources. News on each trend is added every 12 hours. The ' + S.trends.length + ' trends are defined so they do not overlap: each one says what it covers and what belongs elsewhere.' })));
   out.push(section('Movements', null, h('p', { class: 'muted', text: 'A small arrow next to a dot means its rating changed in the last 90 days: pointing to the centre, it became more urgent; pointing outward, less urgent. A dashed line shows a move since your last visit.' })));
   out.push(section('The rings', null, h('ul', { class: 'rings' }, RO.map(r => h('li', { class: 'c-' + r }, h('i'), h('b', { text: RINGS[r].label }), h('span', { text: RINGS[r].hint }))))));
-  out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. Opening a trend or a news item clears them. A white Hot read or Hot listen label marks the few stories each scan rates as must-read or must-listen. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
+  out.push(section('The four areas', null, h('ul', { class: 'rings areas' }, AO.map(a => h('li', null, h('b', { text: AREAS[a].label }), h('span', { text: AREAS[a].hint })))),
+    h('p', { class: 'fine', text: 'Each trend sits in exactly one area, by the decision it asks for. AI runs through all four, so it is not an area of its own.' })));
+  out.push(section('Hot, Top and momentum', null,
+    h('p', { class: 'muted', text: 'Every story gets a heat score from 0 to 100: the scan\u2019s quality score (decision relevance, evidence, novelty), up to 9 points when other publishers cover the same trend within a week, up to 9 for an act-now, high-impact trend, then faded by age. Hot marks at most six stories from the last 14 days with heat 75 or more, one per trend. Top lists the last 30 days by heat.' }),
+    h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
+  out.push(section('My focus', null, h('p', { class: 'muted', text: 'Add your industry, systems, rules or priorities (or paste a short strategy text) under My focus in the news. Stories are ranked by how well they match and the radar highlights the trends they touch. Your focus is saved in this browser only.' })));
+  out.push(section('New for you', null, h('p', { class: 'muted', text: 'Orange dots mark trends with news you have not opened yet. Opening a trend or a news item clears them. ' + (Me.mode === 'account' ? 'Your reading state is saved to your account, so it follows you to other devices.' : Me.mode === 'browser' ? 'Your reading state is saved in this browser.' : 'Your reading state lasts for this visit only.') }), h('button', { class: 'link', type: 'button', onclick: resetNew }, 'Show the last 7 days as new again', ic('i-chev'))));
   out.push(section('Motion', null, h('p', { class: 'muted', text: 'The pause button at the top stops the radar beam and the news bar from moving. It starts paused if your device asks for reduced motion.' })));
   if (basis.length) out.push(section('Built on the big trend reports', null, h('div', { class: 'basis' }, basis.map(b => h('span', { text: b }))), m.nextTaxonomyReview ? h('p', { class: 'fine', text: 'Next review of the megatrends: ' + str(m.nextTaxonomyReview).replace(/^After /, 'after ') + '.' }) : null));
   out.push(section('Sources', String(S.sources.length), STYPES.map(([k, l]) => {
@@ -1724,20 +1871,21 @@ function pageAbout() {
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Hot'], ['pod', 'Audio & video'], ['ai', 'AI'], ['sec', 'Security'], ['cloud', 'Data'], ['sci', 'Frontier']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio & video'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
 
 function feedList() {
-  const f = FEED.f;
-  const ok = S.news.filter(n => {
-    const t = S.byId.get(n.t);
-    return t && !n.minor && (f === 'all' || (f === 'hot' ? isHot(n) : f === 'pod' ? (n.kind === 'podcast' || n.kind === 'video') : t.area === f));
-  });
+  const f = FEED.f, base = S.news.filter(n => S.byId.has(n.t) && !n.minor);
+  // Top: the last 30 days ranked by heat. My focus: ranked by match with the reader's own context.
+  if (f === 'hot') { const cut = Date.now() - 30 * DAY; return base.filter(n => dayOf(n) >= cut).sort((a, b) => heatOf(b) - heatOf(a) || dayOf(b) - dayOf(a)); }
+  if (f === 'focus') return focusList(base);
+  const ok = base.filter(n => f === 'all' || (f === 'pod' ? (n.kind === 'podcast' || n.kind === 'video') : S.byId.get(n.t).area === f));
   const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
   return hotFirst(ok.filter(fresh)).concat(ok.filter(n => !fresh(n)));
 }
+const ranked = () => FEED.f === 'hot' || FEED.f === 'focus';
 const olderMonth = () => (S.meta && Array.isArray(S.meta.months) ? S.meta.months : []).filter(m => /^\d{4}-\d{2}$/.test(m) && !S.months[m]).sort().reverse()[0];
 
 // Filter chips and the radar's area buttons are one control: choosing an area zooms the radar and filters the feed.
@@ -1745,8 +1893,10 @@ function setFilter(f) {
   if (AREAS[f]) { setQuad(f); return; }
   FEED.f = f;
   FEED.n = 12;
+  FOCUS.edit = false;
   if (S.quad) setQuad(null);
   else { P.body.scrollTop = 0; renderPanel(false); }
+  paintRadar();
 }
 
 // A source mark: the story's own preview image when the scan stored one, otherwise a quiet monogram.
@@ -1812,23 +1962,24 @@ function feedLeft() { return feedList().filter(n => fresh(n) && n._new).length; 
 function feedCount() { const el = $('.feed-left', P.body); if (el) el.textContent = feedLeft() ? feedLeft() + ' unread' : 'All read'; }
 
 function pageFeed() {
-  const list = feedList(), shown = list.slice(0, FEED.n), nFresh = list.filter(fresh).length;
+  const list = feedList(), shown = list.slice(0, FEED.n), nFresh = ranked() ? 0 : list.filter(fresh).length;
   const out = [];
   // One row: play the one-minute briefing, then the filters. Keeps the first story above the fold on phones.
   out.push(h('div', { class: 'chips', role: 'toolbar', 'aria-label': 'Briefing and news filters' },
     h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
     FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l))));
+  if (FEED.f === 'focus') out.push(focusBox());
   const cards = [];
   shown.forEach((n, i) => {
     if (i === 0) cards.push(nFresh
       ? h('h2', { class: 'feed-h' }, h('span', { text: 'New for you' }), h('span', { class: 'feed-left', 'aria-live': 'polite', text: feedLeft() ? feedLeft() + ' unread' : 'All read' }))
-      : h('h2', { class: 'feed-h' }, h('span', { text: 'Latest' })));
+      : h('h2', { class: 'feed-h' }, h('span', { text: FEED.f === 'hot' ? 'Top stories, last 30 days' : FEED.f === 'focus' ? 'Matches for your focus' : 'Latest' })));
     if (nFresh && i === nFresh) cards.push(h('div', { class: 'uptodate' }, ic('i-check'), h('span', { text: 'You are up to date' })));
     cards.push(feedCard(n));
   });
-  const end = shown.length < list.length || olderMonth()
+  const end = shown.length < list.length || (FEED.f !== 'hot' && !(FEED.f === 'focus' && !FOCUS.terms.length) && olderMonth())
     ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
-    : h('p', { class: 'muted feed-end', text: list.length ? 'That is everything in the archive.' : S.ok.news ? 'No stories match this filter.' : 'Loading…' });
+    : h('p', { class: 'muted feed-end', text: list.length ? (FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.') : !S.ok.news ? 'Loading…' : FEED.f === 'focus' ? (FOCUS.terms.length ? 'No stories match your focus yet. Try broader terms.' : '') : 'No stories match this filter.' });
   out.push(h('div', { class: 'feed' }, cards), end);
   requestAnimationFrame(feedObserve);
   return out;
@@ -1883,6 +2034,115 @@ function nextTrend(t) {
   return { t: L[(i + 1) % L.length], news: false };
 }
 
+// ---- 12c-focus.js
+/* My focus: the reader's own context (industry, systems, rules, priorities) filters and ranks the feed and lights up
+   the matching trends on the radar. Terms are typed as a short list, or a strategy text is pasted and reduced to the
+   words the radar's sources actually use. Kept in this browser only; nothing is sent anywhere. */
+const FOCUS = { terms: [], edit: false, rx: [], trends: new Set(), tlist: [], score: new Map(), hits: new Map(), tterms: new Set(), news: null };
+const STOP = new Set(('about above after again against also among and any are because been before being below between both but can could does ' +
+  'doing down during each every few for from further had has have having here how into its itself just more most must need needs not now off ' +
+  'once only other our ours out over own same should since some such than that the their them then there these they this those through too ' +
+  'under until very was were what when where which while who why will with within without would your yours company business strategy focus ' +
+  'want looking plan plans year years next team teams goal goals make sure better new use using across based moving meeting piloting duties while being doing towards help helps').split(' '));
+// A few business contexts expand to the words the sources use for them.
+const SYN = {
+  bank: ['banking', 'banks', 'financial', 'finance', 'dora', 'payments'], banking: ['bank', 'banks', 'financial', 'dora'], finance: ['financial', 'bank', 'dora'],
+  insurance: ['insurer', 'solvency'], versicherung: ['insurance', 'insurer'], health: ['healthcare', 'hospital', 'medical', 'clinical'],
+  pharma: ['drug', 'clinical', 'biotech', 'life sciences'], manufacturing: ['industrial', 'factory', 'factories', 'production', 'operational technology'],
+  automotive: ['vehicle', 'automaker', 'cars'], retail: ['commerce', 'shopping', 'consumer'], energy: ['grid', 'utilities', 'utility', 'power'],
+  government: ['public sector', 'administration', 'federal'], 'public sector': ['government', 'administration'], telecom: ['telco', 'network operator', '5g'],
+  logistics: ['supply chain', 'shipping'], mittelstand: ['sme', 'smes', 'mid-sized'], sme: ['mittelstand', 'mid-sized'], germany: ['german', 'bsi', 'bitkom'],
+  europe: ['eu', 'european'], eu: ['european', 'europe'], security: ['cyber', 'cybersecurity'], cyber: ['security', 'cybersecurity']
+};
+const esc = s => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+const termRx = t => new RegExp('(?:^|[^\\p{L}\\p{N}])(?:' + [t].concat(SYN[t] || []).map(w => esc(w) + (w.length <= 3 ? '(?![\\p{L}\\p{N}])' : '')).join('|') + ')', 'iu');
+const trendText = t => [t.title, t.short, t.line, t.scope].concat(Array.isArray(t.why) ? t.why : [t.why]).map(str).join(' ');
+const pts = n => (Array.isArray(n.points) ? n.points.join(' ') : '');
+
+function focusParse(text) {
+  const out = [];
+  for (const part of str(text).split(/[,;\n]+/).map(s => s.trim()).filter(Boolean)) {
+    if (part.split(/\s+/).length <= 3) { out.push(part.toLowerCase()); continue; }
+    // Prose: keep acronyms and the longer words that occur in the radar's trends or stories.
+    // Words that match a sixth of all stories (like "AI") say nothing about this reader, so they are left out.
+    const docs = S.trends.map(trendText).concat(S.news.map(n => n.title + ' ' + n.take));
+    for (const w of part.split(/[^\p{L}\p{N}&+-]+/u)) {
+      const lw = w.toLowerCase();
+      if (STOP.has(lw) || !(/^[A-Z][A-Z0-9&+-]{1,7}$/.test(w) || lw.length >= 4)) continue;
+      const re = termRx(lw), hits = docs.filter(d => re.test(d)).length;
+      if ((hits || /^[A-Z]/.test(w) && w === w.toUpperCase()) && hits <= docs.length / 6) out.push(lw);
+    }
+  }
+  return [...new Set(out)].filter(t => t.length >= 2).slice(0, 12);
+}
+// Scores each story (title 3, text 2, source 1, its trend's definition 1, per term) and each trend (its definition
+// 4 per term, plus its stories' own matches). Only clearly relevant trends light up: a third of the best score or more.
+function focusSync() {
+  FOCUS.news = S.news; FOCUS.tr = S.trends;
+  FOCUS.rx = FOCUS.terms.map(t => ({ t, re: termRx(t) }));
+  FOCUS.trends = new Set(); FOCUS.tlist = []; FOCUS.score = new Map(); FOCUS.hits = new Map(); FOCUS.tterms = new Set();
+  if (!FOCUS.rx.length) return;
+  const tHit = new Map(), tsc = new Map(), bump = (k, v) => tsc.set(k, (tsc.get(k) || 0) + v);
+  for (const t of S.trends) {
+    const txt = trendText(t), m = FOCUS.rx.filter(x => x.re.test(txt)).map(x => x.t);
+    if (m.length) { tHit.set(t.id, m); bump(t.id, 4 * m.length); m.forEach(x => FOCUS.tterms.add(x)); }
+  }
+  for (const n of S.news) {
+    if (n.minor) continue;
+    let s = 0;
+    const tm = new Set(tkeys(n).flatMap(k => tHit.get(k) || []));
+    for (const x of FOCUS.rx) {
+      const own = x.re.test(str(n.title)) ? 3 : x.re.test(str(n.take) + ' ' + pts(n)) ? 2 : x.re.test(str(n.src.name)) ? 1 : 0;
+      const v = own + (tm.has(x.t) ? 1 : 0);
+      if (v) { s += v; FOCUS.hits.set(x.t, (FOCUS.hits.get(x.t) || 0) + 1); }
+      if (own) for (const k of tkeys(n)) if (S.byId.has(k)) bump(k, own);
+    }
+    if (s) FOCUS.score.set(n.id, s);
+  }
+  const top = Math.max(0, ...tsc.values()), min = Math.max(3, top / 3);
+  FOCUS.tlist = S.trends.filter(t => (tsc.get(t.id) || 0) >= min).sort((a, b) => tsc.get(b.id) - tsc.get(a.id));
+  FOCUS.trends = new Set(FOCUS.tlist.map(t => t.id));
+}
+function focusLoad() { const v = ls.get('focus', []); FOCUS.terms = Array.isArray(v) ? v.filter(x => typeof x === 'string').map(x => x.slice(0, 40)).slice(0, 12) : []; }
+function focusSet(terms) {
+  FOCUS.terms = terms;
+  FOCUS.edit = false;
+  ls.set('focus', terms);
+  focusSync();
+  paintRadar();
+  P.body.scrollTop = 0;
+  renderPanel(false);
+}
+// Stories that match, strongest match first, then by heat.
+function focusList(base) {
+  focusFresh();
+  return base.filter(n => FOCUS.score.has(n.id)).sort((a, b) => FOCUS.score.get(b.id) - FOCUS.score.get(a.id) || heatOf(b) - heatOf(a) || dayOf(b) - dayOf(a));
+}
+const focusFresh = () => { if (FOCUS.news !== S.news || FOCUS.tr !== S.trends) focusSync(); };
+const focusDim = id => FEED.f === 'focus' && FOCUS.terms.length > 0 && (focusFresh(), !FOCUS.trends.has(id));
+
+function focusBox() {
+  const terms = FOCUS.terms;
+  if (FOCUS.edit || !terms.length) {
+    const ta = h('textarea', { class: 'focus-in', rows: 3, 'aria-label': 'Your focus', placeholder: 'Industry, systems, rules, priorities. For example: bank, SAP, NIS2, sovereign cloud. Or paste a short strategy text.' });
+    ta.value = terms.join(', ');
+    if (FOCUS.edit) requestAnimationFrame(() => ta.focus());
+    return h('form', { class: 'focus', onsubmit: e => { e.preventDefault(); focusSet(focusParse(ta.value)); } }, ta,
+      h('div', { class: 'focus-a' },
+        h('button', { class: 'btn btn-w', type: 'submit' }, 'Apply'),
+        terms.length ? h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel') : null,
+        h('small', { text: 'Saved in this browser only' })));
+  }
+  const tr = FOCUS.tlist;
+  return h('div', { class: 'focus' },
+    h('div', { class: 'terms' },
+      terms.map(x => h('button', { class: 'term' + (FOCUS.hits.get(x) || FOCUS.tterms.has(x) ? '' : ' none'), type: 'button', 'aria-label': 'Remove ' + x, title: FOCUS.hits.get(x) ? stories(FOCUS.hits.get(x)) + ' match' : 'No match yet', onclick: () => focusSet(terms.filter(y => y !== x)) }, h('span', { text: x }), ic('i-close'))),
+      h('button', { class: 'link sm', type: 'button', onclick: () => { FOCUS.edit = true; renderPanel(false); } }, 'Edit')),
+    tr.length ? h('p', { class: 'focus-t' }, h('span', { text: 'Most relevant ' + (tr.length === 1 ? 'trend' : 'trends') + ':' }),
+      tr.slice(0, 8).map(t => h('button', { class: 'link sm', type: 'button', onclick: () => openTrend(t.id) }, h('i', { class: 'tdot c-' + t.ring }), t.short || t.title))) : null);
+}
+focusLoad();
+
 // ---- 13-briefing.js
 /* The news briefing: one stop per trend with news, the camera travels the radar. */
 const B = { on: false, slides: [], i: 0, playing: false, focus: null, anim: null, animDone: false, markT: 0 };
@@ -1897,7 +2157,7 @@ function buildSlides() {
   const order = S.trends.filter(t => by.has(t.id)).sort((a, b) => RO.indexOf(a.ring) - RO.indexOf(b.ring) || AO.indexOf(a.area) - AO.indexOf(b.area));
   B.scope = fresh.length ? 'new for you' : pool.length ? 'from the last 7 days' : 'latest';
   return order.slice(0, 10).map(t => {
-    const items = by.get(t.id).slice().sort((a, b) => (isHot(b) ? 1 : 0) - (isHot(a) ? 1 : 0) || ts(b.at) - ts(a.at)).slice(0, 2);
+    const items = by.get(t.id).slice().sort((a, b) => heatOf(b) - heatOf(a) || ts(b.at) - ts(a.at)).slice(0, 2);
     return { t, items, more: by.get(t.id).length - items.length, dur: 4200 + (items.length - 1) * 2600 };
   });
 }

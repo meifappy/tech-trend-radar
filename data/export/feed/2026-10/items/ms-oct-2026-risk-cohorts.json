@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-13",
+  "kind": "advisory",
+  "lang": "en",
+  "points": [
+    "15 illustrative risk cohorts cover 1,118 CVE entries; largest: Windows filesystems, storage and backup (136)",
+    "Microsoft: for many customers the priority is to install updates as soon as possible",
+    "Cohorts do not replace review of actively exploited or high-severity flaws"
+  ],
+  "read": "MSRC blog 'Using risk cohorts to prioritize security updates', 13 October 2026",
+  "score": 80,
+  "seen": "2026-10-14T00:36:15Z",
+  "src": {
+    "name": "Microsoft Security Response Center",
+    "type": "platform",
+    "url": "https://www.microsoft.com/en-us/msrc/blog/2026/10/using-risk-cohorts-to-prioritize-security-updates"
+  },
+  "t": "preemptive-defence",
+  "take": "Press tallies put October's Patch Tuesday at about 1,400 fixes, a record. Microsoft now groups CVEs by shared exposure so teams can triage at this volume; one zero-day is exploited.",
+  "title": "Microsoft: record October patch release, sorted into 15 risk cohorts",
+  "via": "search"
+}

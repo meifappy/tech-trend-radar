@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-13T12:37:32Z",
+  "news": 6,
+  "note": "About 22 candidates found, 6 kept (watch 2, search 1, market 2, audio 1; 4 German, 2 English); top item BSI's first NIS2 statistics (20,141 registered). Weekly review (first run this week): last 14 days had 43 stories (sec 16, ai 14, sci 8, cloud 5) and none for ai-ready-data, identity-security, platform-engineering, sovereign-cloud, confidential-computing or novel-computing; German share stays low and podcasts/video rare. Added source BSI NIS-2 in Zahlen; candidate sources: heise KI-Update episode pages (kiupdate.podigee.io), NCSC RSS feeds, CNCF announcements. BMDS and CISA pages unreachable, BSI press search blocked, NCSC list needs JavaScript; sweep slice 38-75 only partly read (Deloitte, DFKI, Forrester, Fraunhofer institutes skipped).",
+  "push": "failed",
+  "pushError": "remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403",
+  "trendsChanged": []
+}

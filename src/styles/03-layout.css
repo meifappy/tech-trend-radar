@@ -18,7 +18,7 @@
 
 /* stage: the radar is centred in the space the panel leaves free */
 .stage { position: absolute; inset: 56px 0 0 0; overflow: hidden; }
-.rbox { position: absolute; left: 50%; top: calc(50% - 55px); width: var(--rs, 600px); height: var(--rs, 600px); translate: -50% -50%; touch-action: none; transition: transform .4s var(--spring), opacity .3s var(--ease); }
+.rbox { position: absolute; user-select: none; -webkit-user-select: none; left: 50%; top: calc(50% - 55px); width: var(--rs, 600px); height: var(--rs, 600px); translate: -50% -50%; touch-action: none; transition: transform .4s var(--spring), opacity .3s var(--ease); }
 .app.wide .rbox { top: calc(50% - 12px); }
 .app.open .rbox, .app.open .dock { transform: translateX(calc((var(--side) + var(--gap) * 2) / -2)); }
 .rbox.zoomed { cursor: grab; }
@@ -70,5 +70,7 @@
 .tip b { font-size: var(--fs-body); font-weight: 600; letter-spacing: -.01em; }
 .tip .tmove { font-size: var(--fs-foot); color: var(--t2); }
 .tip .pillnew { margin-top: 3px; }
-.toast { position: fixed; z-index: 40; left: 50%; bottom: 28px; max-width: calc(100% - 32px); padding: 11px 18px; border-radius: 999px; translate: -50% 0; transform: translateY(14px); opacity: 0; pointer-events: none; background: rgb(255 255 255 / .94); color: var(--ink); font-size: var(--fs-sub); font-weight: 600; transition: opacity .25s, transform .4s var(--spring); contain: layout style; }
+.toast { position: fixed; z-index: 40; left: 0; right: 0; bottom: 28px; width: fit-content; max-width: calc(100% - 32px); margin-inline: auto; padding: 11px 18px; border-radius: 999px; transform: translateY(14px); opacity: 0; pointer-events: none; background: rgb(255 255 255 / .94); color: var(--ink); font-size: var(--fs-sub); font-weight: 600; transition: opacity .25s, transform .4s var(--spring); contain: layout style; }
 .toast.on { opacity: 1; transform: none; }
+.tip .tmom { display: flex; align-items: center; gap: 7px; font-size: var(--fs-foot); color: var(--t2); }
+.tip .tmom .spark { width: 40px; height: 12px; }

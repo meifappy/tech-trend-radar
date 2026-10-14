@@ -4,20 +4,21 @@
    the whole visit, so nothing jumps while you read. The story at the top of the view lights up its trend on the
    radar. Tapping a story opens it in place (key points, link to the source, more on the trend). */
 const FEED = { n: 12, f: 'all', cue: null, openEl: null, obs: null, more: null, dwell: null, timers: new Map() };
-const FILTERS = [['all', 'All'], ['hot', 'Hot'], ['pod', 'Audio & video'], ['ai', 'AI'], ['sec', 'Security'], ['cloud', 'Data'], ['sci', 'Frontier']];
+const FILTERS = [['all', 'All'], ['hot', 'Top'], ['focus', 'My focus'], ['pod', 'Audio & video'], ['ai', 'Business'], ['sec', 'Risk'], ['cloud', 'Platforms'], ['sci', 'Emerging']];
 const stories = n => n + (n === 1 ? ' story' : ' stories');
 // New at the start of this visit (stable while reading); before the first reveal, fall back to the live flag.
 const fresh = n => (knownNew ? knownNew.has(n.id) : !!n._new);
 
 function feedList() {
-  const f = FEED.f;
-  const ok = S.news.filter(n => {
-    const t = S.byId.get(n.t);
-    return t && !n.minor && (f === 'all' || (f === 'hot' ? isHot(n) : f === 'pod' ? (n.kind === 'podcast' || n.kind === 'video') : t.area === f));
-  });
+  const f = FEED.f, base = S.news.filter(n => S.byId.has(n.t) && !n.minor);
+  // Top: the last 30 days ranked by heat. My focus: ranked by match with the reader's own context.
+  if (f === 'hot') { const cut = Date.now() - 30 * DAY; return base.filter(n => dayOf(n) >= cut).sort((a, b) => heatOf(b) - heatOf(a) || dayOf(b) - dayOf(a)); }
+  if (f === 'focus') return focusList(base);
+  const ok = base.filter(n => f === 'all' || (f === 'pod' ? (n.kind === 'podcast' || n.kind === 'video') : S.byId.get(n.t).area === f));
   const hotFirst = l => l.filter(isHot).concat(l.filter(n => !isHot(n)));
   return hotFirst(ok.filter(fresh)).concat(ok.filter(n => !fresh(n)));
 }
+const ranked = () => FEED.f === 'hot' || FEED.f === 'focus';
 const olderMonth = () => (S.meta && Array.isArray(S.meta.months) ? S.meta.months : []).filter(m => /^\d{4}-\d{2}$/.test(m) && !S.months[m]).sort().reverse()[0];
 
 // Filter chips and the radar's area buttons are one control: choosing an area zooms the radar and filters the feed.
@@ -25,8 +26,10 @@ function setFilter(f) {
   if (AREAS[f]) { setQuad(f); return; }
   FEED.f = f;
   FEED.n = 12;
+  FOCUS.edit = false;
   if (S.quad) setQuad(null);
   else { P.body.scrollTop = 0; renderPanel(false); }
+  paintRadar();
 }
 
 // A source mark: the story's own preview image when the scan stored one, otherwise a quiet monogram.
@@ -92,23 +95,24 @@ function feedLeft() { return feedList().filter(n => fresh(n) && n._new).length; 
 function feedCount() { const el = $('.feed-left', P.body); if (el) el.textContent = feedLeft() ? feedLeft() + ' unread' : 'All read'; }
 
 function pageFeed() {
-  const list = feedList(), shown = list.slice(0, FEED.n), nFresh = list.filter(fresh).length;
+  const list = feedList(), shown = list.slice(0, FEED.n), nFresh = ranked() ? 0 : list.filter(fresh).length;
   const out = [];
   // One row: play the one-minute briefing, then the filters. Keeps the first story above the fold on phones.
   out.push(h('div', { class: 'chips', role: 'toolbar', 'aria-label': 'Briefing and news filters' },
     h('button', { class: 'chip chip-play', type: 'button', 'aria-label': 'Play the one-minute news briefing', onclick: () => briefStart() }, ic('i-play'), 'Briefing'),
     FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l))));
+  if (FEED.f === 'focus') out.push(focusBox());
   const cards = [];
   shown.forEach((n, i) => {
     if (i === 0) cards.push(nFresh
       ? h('h2', { class: 'feed-h' }, h('span', { text: 'New for you' }), h('span', { class: 'feed-left', 'aria-live': 'polite', text: feedLeft() ? feedLeft() + ' unread' : 'All read' }))
-      : h('h2', { class: 'feed-h' }, h('span', { text: 'Latest' })));
+      : h('h2', { class: 'feed-h' }, h('span', { text: FEED.f === 'hot' ? 'Top stories, last 30 days' : FEED.f === 'focus' ? 'Matches for your focus' : 'Latest' })));
     if (nFresh && i === nFresh) cards.push(h('div', { class: 'uptodate' }, ic('i-check'), h('span', { text: 'You are up to date' })));
     cards.push(feedCard(n));
   });
-  const end = shown.length < list.length || olderMonth()
+  const end = shown.length < list.length || (FEED.f !== 'hot' && !(FEED.f === 'focus' && !FOCUS.terms.length) && olderMonth())
     ? h('div', { class: 'feed-more', id: 'feed-more' }, h('span', { class: 'skel' }), h('span', { class: 'skel short' }))
-    : h('p', { class: 'muted feed-end', text: list.length ? 'That is everything in the archive.' : S.ok.news ? 'No stories match this filter.' : 'Loading…' });
+    : h('p', { class: 'muted feed-end', text: list.length ? (FEED.f === 'hot' ? 'Older stories are under All.' : 'That is everything in the archive.') : !S.ok.news ? 'Loading…' : FEED.f === 'focus' ? (FOCUS.terms.length ? 'No stories match your focus yet. Try broader terms.' : '') : 'No stories match this filter.' });
   out.push(h('div', { class: 'feed' }, cards), end);
   requestAnimationFrame(feedObserve);
   return out;

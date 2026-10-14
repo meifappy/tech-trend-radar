@@ -63,7 +63,7 @@
   "rated": "2026-10-07",
   "ring": "prepare",
   "scope": "Attacks on AI agents and models. Not general patching.",
-  "short": "AI security",
+  "short": "Agent security",
   "since": "2026-10-08T06:00:00Z",
   "sources": [
     {
@@ -110,7 +110,7 @@
     }
   ],
   "status": "active",
-  "title": "AI security platforms",
+  "title": "Agent & model security",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 2,

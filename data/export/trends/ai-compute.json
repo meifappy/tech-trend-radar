@@ -75,7 +75,7 @@
   "rated": "2026-10-07",
   "ring": "watch",
   "scope": "Chips, memory and power for today's AI. Not new kinds of computing.",
-  "short": "AI supercomputing",
+  "short": "Compute & energy",
   "since": "2026-10-08T06:00:00Z",
   "sources": [
     {
@@ -129,7 +129,7 @@
     }
   ],
   "status": "active",
-  "title": "AI supercomputing & energy",
+  "title": "Compute & energy",
   "updated": "2026-10-08",
   "validUntil": "2027-01-15",
   "weight": 2,

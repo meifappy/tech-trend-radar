@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-13",
+  "dup": "bsi-tuev-ki-sicherheitsstudie",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "84% fear wrong decisions from false or invented information",
+    "78% each see risks from new interface gaps, data leaks and unwanted actions; 74% from unclear liability",
+    "forsa survey of 505 German firms with 20+ staff, June-July 2026, for BSI and TÜV-Verband"
+  ],
+  "read": "TÜV-Verband press release 'KI-Agenten: Unternehmen sehen erhebliche Sicherheitsrisiken', 13 October 2026",
+  "score": 58,
+  "seen": "2026-10-14T00:36:15Z",
+  "src": {
+    "name": "TÜV-Verband",
+    "type": "platform",
+    "url": "https://www.tuev-verband.de/pressemitteilungen/ki-agenten-unternehmen-sehen-erhebliche-sicherheitsrisiken"
+  },
+  "t": "agent-security",
+  "take": "New agent-specific results from the BSI/TÜV survey: firms fear wrong decisions, data leaks and unwanted actions. TÜV calls for independent pre-market testing of frontier models.",
+  "title": "TÜV-Verband: most German firms see high risks in AI agents",
+  "via": "watch"
+}

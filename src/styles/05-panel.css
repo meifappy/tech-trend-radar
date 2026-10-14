@@ -130,3 +130,31 @@ q.qt { quotes: "“" "”"; }
 .next-trend em { grid-area: p; justify-self: start; margin-top: 6px; font-style: normal; }
 .next-trend .chev { grid-area: c; }
 .panel[data-page="trend"] .p-body { touch-action: pan-y; }
+
+/* Momentum: eight weekly bars (last four brighter) and one line of text. Rising is white, cooling recedes. */
+.mom { margin: 2px 0 0; display: flex; align-items: center; gap: 10px; font-size: var(--fs-foot); color: var(--t2); }
+.spark { flex: none; display: block; }
+.spark rect { fill: rgb(255 255 255 / .22); }
+.spark rect.now { fill: rgb(255 255 255 / .55); }
+.spark.s-rising rect.now { fill: var(--t1); }
+.spark.s-cooling rect.now, .spark.s-quiet rect.now { fill: rgb(255 255 255 / .3); }
+.mom.s-rising { color: var(--t1); }
+.mom.s-quiet { color: var(--t3); }
+.pillmom { flex: none; height: 20px; padding: 0 7px; border-radius: 10px; border: 1px solid rgb(255 255 255 / .28); color: var(--t1); font: 700 var(--fs-cap)/18px var(--round); white-space: nowrap; }
+.rings.areas li { grid-template-columns: 128px minmax(0, 1fr); }
+
+/* My focus: the reader's own context as a filter. */
+.focus { display: flex; flex-direction: column; gap: 10px; padding: 14px; border-radius: 16px; background: var(--fill-1); }
+.focus-in { width: 100%; min-height: 76px; resize: vertical; padding: 10px 12px; border: 1px solid var(--line); border-radius: 12px; background: rgb(0 0 0 / .3); color: var(--t1); font: var(--fs-sub)/1.4 var(--font); }
+.focus-in:focus { outline: 0; border-color: rgb(255 255 255 / .4); }
+.focus-in::placeholder { color: var(--t3); }
+.focus-a { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.focus-a .btn { height: 34px; padding: 0 16px; font-size: var(--fs-sub); }
+.focus-a small { margin-left: auto; font-size: var(--fs-cap); color: var(--t3); }
+.terms { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.term { display: inline-flex; align-items: center; gap: 4px; height: 28px; padding: 0 6px 0 11px; border: 0; border-radius: 14px; background: var(--t1); color: var(--ink); font-size: var(--fs-foot); font-weight: 600; cursor: pointer; }
+.term .ic { width: 13px; height: 13px; stroke-width: 2.2; opacity: .6; }
+.term:hover .ic { opacity: 1; }
+.term.none { background: var(--fill-2); color: var(--t3); text-decoration: line-through; text-decoration-color: rgb(235 235 245 / .35); }
+.focus-t { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; font-size: var(--fs-foot); color: var(--t3); }
+.focus-t .tdot { width: 6px; height: 6px; border-radius: 50%; background: var(--c); margin-right: 2px; }
