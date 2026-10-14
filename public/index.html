@@ -59,7 +59,7 @@
   --spring: cubic-bezier(.34, 1.36, .64, 1);
 
   /* layout */
-  --side: 388px;       /* panel width */
+  --side: clamp(388px, 24vw, 540px); /* panel width: grows on large screens */
   --gap: 16px;         /* outer margin of floating surfaces */
   --bar: 64px;         /* top bar height */
 }
@@ -448,7 +448,8 @@ q.qt { quotes: "“" "”"; }
 
 /* Unread: one small orange dot before the story, as in Mail, instead of a pill shouting "New". */
 .unread { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-right: 2px; }
-.chip-focus { margin-left: auto; }
+.chip-focus { border: 1px dashed rgb(255 255 255 / .22); }
+.chip-focus[aria-pressed="true"] { border-style: solid; border-color: transparent; }
 .focus-s { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-sub); }
 .focus-s span { color: var(--t3); font-size: var(--fs-foot); font-variant-numeric: tabular-nums; }
 
@@ -1056,10 +1057,10 @@ function buildBands() {
 function size() {
   const st = RD.stage.getBoundingClientRect();
   const short = innerHeight < 520;
-  const cs = getComputedStyle(document.documentElement), aside = PHONE ? 0 : parseFloat(cs.getPropertyValue('--side')) + 2 * parseFloat(cs.getPropertyValue('--gap'));
+  const cs = getComputedStyle(document.documentElement), aside = PHONE ? 0 : $('#panel').offsetWidth + 2 * (parseFloat(cs.getPropertyValue('--gap')) || 0); // --side is a clamp(), so measure it
   // Wide screens have no floating news bar under the radar, so the radar can use nearly the full height.
   const below = PHONE ? 0 : WIDE ? 40 : short ? 110 : 150;
-  let rs = PHONE ? Math.min(innerWidth, Math.max(220, innerHeight - 250)) : Math.min(st.width - aside - (short ? 24 : 48), st.height - below, 1000);
+  let rs = PHONE ? Math.min(innerWidth, Math.max(220, innerHeight - 250)) : Math.min(st.width - aside - (short ? 24 : 48), st.height - below, 1200);
   rs = Math.max(240, Math.floor(rs / 2) * 2); // even, so the centred radar lands on whole pixels
   RD.stage.style.setProperty('--rs', rs + 'px');
   RD.W = rs;
@@ -2208,7 +2209,7 @@ function focusBox() {
         h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel'),
         h('small', { text: 'Saved in this browser only' })));
   }
-  if (!FOCUS.on) return null;
+  if (!focusActive()) return null;
   const tr = FOCUS.tlist, n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
   return h('div', { class: 'focus' },
     h('p', { class: 'focus-s' }, h('b', { text: 'Only stories for your focus' }), h('span', { text: stories(n) + ' of ' + S.news.filter(x => !x.minor).length })),

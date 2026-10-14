@@ -170,6 +170,7 @@ q.qt { quotes: "“" "”"; }
 
 /* Unread: one small orange dot before the story, as in Mail, instead of a pill shouting "New". */
 .unread { display: inline-block; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-right: 2px; }
-.chip-focus { margin-left: auto; }
+.chip-focus { border: 1px dashed rgb(255 255 255 / .22); }
+.chip-focus[aria-pressed="true"] { border-style: solid; border-color: transparent; }
 .focus-s { margin: 0; display: flex; justify-content: space-between; align-items: baseline; gap: 10px; font-size: var(--fs-sub); }
 .focus-s span { color: var(--t3); font-size: var(--fs-foot); font-variant-numeric: tabular-nums; }

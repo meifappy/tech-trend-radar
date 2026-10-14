@@ -48,7 +48,7 @@
   --spring: cubic-bezier(.34, 1.36, .64, 1);
 
   /* layout */
-  --side: 388px;       /* panel width */
+  --side: clamp(388px, 24vw, 540px); /* panel width: grows on large screens */
   --gap: 16px;         /* outer margin of floating surfaces */
   --bar: 64px;         /* top bar height */
 }

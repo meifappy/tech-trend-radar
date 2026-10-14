@@ -16,10 +16,10 @@ function buildBands() {
 function size() {
   const st = RD.stage.getBoundingClientRect();
   const short = innerHeight < 520;
-  const cs = getComputedStyle(document.documentElement), aside = PHONE ? 0 : parseFloat(cs.getPropertyValue('--side')) + 2 * parseFloat(cs.getPropertyValue('--gap'));
+  const cs = getComputedStyle(document.documentElement), aside = PHONE ? 0 : $('#panel').offsetWidth + 2 * (parseFloat(cs.getPropertyValue('--gap')) || 0); // --side is a clamp(), so measure it
   // Wide screens have no floating news bar under the radar, so the radar can use nearly the full height.
   const below = PHONE ? 0 : WIDE ? 40 : short ? 110 : 150;
-  let rs = PHONE ? Math.min(innerWidth, Math.max(220, innerHeight - 250)) : Math.min(st.width - aside - (short ? 24 : 48), st.height - below, 1000);
+  let rs = PHONE ? Math.min(innerWidth, Math.max(220, innerHeight - 250)) : Math.min(st.width - aside - (short ? 24 : 48), st.height - below, 1200);
   rs = Math.max(240, Math.floor(rs / 2) * 2); // even, so the centred radar lands on whole pixels
   RD.stage.style.setProperty('--rs', rs + 'px');
   RD.W = rs;

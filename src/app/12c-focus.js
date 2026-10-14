@@ -115,7 +115,7 @@ function focusBox() {
         h('button', { class: 'btn', type: 'button', onclick: () => { FOCUS.edit = false; renderPanel(false); } }, 'Cancel'),
         h('small', { text: 'Saved in this browser only' })));
   }
-  if (!FOCUS.on) return null;
+  if (!focusActive()) return null;
   const tr = FOCUS.tlist, n = S.news.filter(x => !x.minor && S.byId.has(x.t) && FOCUS.score.has(x.id)).length;
   return h('div', { class: 'focus' },
     h('p', { class: 'focus-s' }, h('b', { text: 'Only stories for your focus' }), h('span', { text: stories(n) + ' of ' + S.news.filter(x => !x.minor).length })),
