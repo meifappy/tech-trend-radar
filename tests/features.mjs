@@ -136,7 +136,8 @@ for (const dpr of [1.25, 1.5]) {
   const a1 = await rr();
   check(aMid < a0 * .98 && aMid > a1 * 1.02, 'calm: zoom out jumped instead of gliding ' + [a0, aMid, a1].map(Math.round));
   check(await page.locator('#rbox.zoomed').count() === 0, 'calm: zoom out did not finish');
-  await page.locator('#t-motion').click();
+  // The beam runs by default; pause, then play, turns full motion on.
+  await page.locator('#t-motion').click(); await page.locator('#t-motion').click();
   check(!(await page.evaluate(() => document.documentElement.classList.contains('calm'))), 'calm: play button did not turn motion on');
   await ctx.close();
 }
