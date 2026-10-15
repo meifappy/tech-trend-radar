@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-15T00:35:15Z",
+  "news": 5,
+  "note": "About 16 candidates found, 5 kept (watch 2, market 1, search 1, audio 1; 2 German, 3 English): BSI/BMI/BMDS national PQC guideline (2030 deadline for high-risk systems), BSI warning on an exploited Ivanti Connect Secure zero-day, Gartner's $3.5tn AI-capex impairment forecast, a Deakin arXiv study on fixes to agent PRs (ai-engineering), and No Priors on Reflection's Beam open model. Dropped: BSI CS-154 OT warning (third BSI item), Precisely data study (2024), Bitkom KI-Präsentation (no extractable data figures), Synergy/IDC (no new dated enterprise numbers). Still no story in 14 days for ai-ready-data, platform-engineering, ai-governance, novel-computing. Quarterly review due from 15 Oct: ratings were set on 7-8 Oct with validUntil 2027-01-15, so treated as done; no ring moves. ENISA has nothing since 30 Sep, CISA unreachable, BMDS fetch failed, NCSC list needs JavaScript; sweep slice 1-38 partly read.",
+  "push": "failed",
+  "pushError": "git push origin main: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403. (Clone worked; local commit 6263ee8 not pushed.) No GitHub file tool and no add_repo tool in this session.",
+  "trendsChanged": []
+}

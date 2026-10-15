@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-12",
+  "img": "https://www.bsi.bund.de/SharedDocs/Bilder/DE/Bilder_extern/Fotolia/Presse/Handshake_cyber_139277957.jpg?__blob=poster&v=1",
+  "kind": "rule",
+  "lang": "de",
+  "points": [
+    "High-risk use cases to migrate as early as possible, at the latest by end of 2030; migration largely complete by 2035",
+    "Addressed to federal, state and local government plus companies, including KRITIS operators",
+    "Asks for clear responsibilities, binding deadlines, quantum risk in risk management, early vendor involvement and crypto-agility"
+  ],
+  "read": "BSI press release of 12.10.2026 with link to the 'Leitlinie zur Umstellung auf PQC' PDF",
+  "score": 82,
+  "seen": "2026-10-15T00:35:15Z",
+  "src": {
+    "name": "BSI",
+    "type": "public",
+    "url": "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/261012_Leitlinie-PQC.html"
+  },
+  "t": "quantum-safe",
+  "take": "Germany's first official national PQC migration guideline adopts the EU deadlines. CISOs and KRITIS operators now need named owners, binding dates and a crypto inventory.",
+  "title": "BSI, BMI and BMDS: high-risk systems quantum-safe by end of 2030",
+  "via": "watch"
+}

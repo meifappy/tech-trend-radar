@@ -3,16 +3,22 @@
 function pageTrend(id) {
   const t = S.byId.get(id);
   if (!t) return [h('p', { class: 'muted', text: S.ok.trends ? 'This trend is no longer on the radar.' : 'Loading…' })];
-  const items = S.byT.get(id) || [], nNew = items.filter(n => n._new).length, mv = D.moved.get(id), all = S.open.has('all:' + id);
+  // With My focus on, a trend shows only its stories in focus (one tap shows the rest), so the thread is never lost.
+  const every = S.byT.get(id) || [], lens = focusActive() && !S.open.has('lens:' + id), items = lens ? every.filter(inFocus) : every;
+  const nNew = items.filter(n => n._new).length, mv = D.moved.get(id), all = S.open.has('all:' + id);
+  const lensNote = focusActive() && (every.length > items.length || !lens)
+    ? h('p', { class: 'lens-note' }, h('span', { text: lens ? stories(items.length) + ' of ' + every.length + ' match your focus.' : 'Showing all ' + stories(every.length) + '.' }),
+      h('button', { class: 'link sm', type: 'button', onclick: () => { if (lens) S.open.add('lens:' + id); else S.open.delete('lens:' + id); renderPanel(false); } }, lens ? 'Show all ' + every.length : 'Only my focus'))
+    : null;
   const out = [h('header', { class: 'thead c-' + t.ring },
     h('p', { class: 'kicker' }, h('i'), RINGS[t.ring].label + ': ' + RINGS[t.ring].hint.toLowerCase()),
     h('h2', { class: 'title', id: 'p-title', tabindex: '-1', text: t.title }),
     h('p', { class: 'lead', text: t.line }),
     momRow(t.id),
     mv ? h('p', { class: 'moved' }, ic(RO.indexOf(mv.ring) < RO.indexOf(mv.from) ? 'i-in' : 'i-outward'), h('span', { text: 'Moved from ' + RINGS[mv.from].label + ' to ' + RINGS[t.ring].label + ', ' + when(mv.at) + '. ' + str(mv.note) })) : null)];
-  out.push(section('Latest news', nNew ? nNew + ' new' : items.length ? String(items.length) : '',
-    items.length ? h('div', { class: 'feed' }, (all ? items : items.slice(0, 4)).map(n => feedCard(n, { chip: false }))) : h('p', { class: 'muted', text: 'No news yet. The radar scans every 12 hours.' }),
-    items.length > 4 && !all ? h('button', { class: 'link', type: 'button', onclick: () => { S.open.add('all:' + id); renderPanel(false); } }, 'Show all ' + items.length, ic('i-down')) : null));
+  out.push(section('Latest news', nNew ? nNew + ' new' : items.length ? String(items.length) : '', lensNote,
+    items.length ? h('div', { class: 'feed' }, (all ? items : items.slice(0, 4)).map(n => feedCard(n, { chip: false }))) : h('p', { class: 'muted', text: lens ? 'No story on this trend matches your focus yet.' : 'No news yet. The radar scans every 12 hours.' }),
+    items.length > 4 && !all ? h('button', { class: 'link', type: 'button', onclick: () => { S.open.add('all:' + id); renderPanel(false); } }, (items.length - 4) + ' more', ic('i-down')) : null));
   const ex = expertOf(t);
   if (ex.length) out.push(section('What experts say', null, h('ul', { class: 'quotes' }, ex.map(x => h('li', null,
     h(x.verbatim ? 'q' : 'p', { class: 'qt', text: x.text }),
@@ -69,7 +75,7 @@ function pageNews() {
     return [...groups].map(([b, items]) => h('div', null, h('h3', { class: 'day', text: b }), h('div', { class: 'feed' }, items.map(n => feedCard(n)))));
   };
   if (S.newsTab === 'arch') return out.concat(pageArchive(byDay));
-  const list = S.newsTab === 'you' ? S.news.filter(n => n._new) : S.news.filter(n => S.byId.has(n.t)).slice(0, 60);
+  const list = S.newsTab === 'you' ? S.news.filter(n => n._new) : S.news.filter(n => S.byId.has(n.t) && inFocus(n)).slice(0, 60);
   if (!list.length) {
     out.push(S.newsTab === 'you'
       ? h('div', { class: 'caught' }, ic('i-check'), h('p', { text: 'You are all caught up' }), h('button', { class: 'link', type: 'button', text: 'See recent news', onclick: () => { S.newsTab = 'all'; renderPanel(true); } }))
@@ -84,7 +90,7 @@ function pageNews() {
 function pageArchive(byDay) {
   const months = (S.meta && Array.isArray(S.meta.months) ? S.meta.months : Object.keys(S.months)).filter(m => /^\d{4}-\d{2}$/.test(m)).sort().reverse();
   if (S.archM) {
-    const m = S.archM, items = S.months[m] ? S.months[m].filter(n => !n.dup).sort((a, b) => ts(b.at) - ts(a.at)) : null;
+    const m = S.archM, items = S.months[m] ? S.months[m].filter(n => !n.dup && inFocus(n)).sort((a, b) => ts(b.at) - ts(a.at)) : null;
     const out = [h('button', { class: 'link', type: 'button', onclick: () => { S.archM = null; renderPanel(true); } }, ic('i-back'), 'All months'), h('h2', { class: 'arch-h', text: monthName(m) })];
     if (!items) { loadMonth(m); out.push(h('p', { class: 'muted', text: 'Loading ' + monthName(m) + '…' })); return out; }
     return out.concat(items.length ? byDay(items) : [h('p', { class: 'muted', text: 'No news this month.' })]);

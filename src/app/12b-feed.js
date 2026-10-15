@@ -69,7 +69,7 @@ function toggleCard(card, n) {
   const opening = !card.classList.contains('open');
   if (FEED.openEl && FEED.openEl !== card) closeCard(FEED.openEl);
   if (!opening) { closeCard(card); return; }
-  const t = S.byId.get(n.t) || S.byId.get(n.t2), u = safeUrl(n.src.url), more = (S.byT.get(t.id) || []).filter(x => x.id !== n.id).length;
+  const t = S.byId.get(n.t) || S.byId.get(n.t2), u = safeUrl(n.src.url), more = (S.byT.get(t.id) || []).filter(x => x.id !== n.id && inFocus(x)).length;
   const src = str(n.src.name).replace(/\s*\(.*?\)\s*/g, ' ').trim();
   const pts = Array.isArray(n.points) ? n.points.filter(Boolean).slice(0, 3) : [];
   card.classList.add('open');
@@ -168,7 +168,8 @@ function feedStep(d) {
 
 // The next trend to read: the next one in radar order with unread news, else simply the next one.
 function nextTrend(t) {
-  const L = S.trends, i = L.indexOf(t);
+  // With My focus on, the next trend is the next one in focus.
+  const L = focusActive() ? S.trends.filter(x => x === t || !focusDim(x.id)) : S.trends, i = L.indexOf(t);
   for (let k = 1; k < L.length; k++) { const c = L[(i + k) % L.length]; if (D.newBy.get(c.id)) return { t: c, news: true }; }
   return { t: L[(i + 1) % L.length], news: false };
 }

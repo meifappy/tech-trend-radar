@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-14",
+  "kind": "advisory",
+  "lang": "de",
+  "points": [
+    "CVE-2026-104935, CVSS 8.6: unauthenticated remote attackers can bypass authentication and run commands",
+    "Ivanti reports exploitation 'to a limited extent'; its advisory came out on 13 October",
+    "BSI rates the warning as high criticality (version 1.0, 14 October)"
+  ],
+  "read": "BSI Cybersicherheitswarnung 2026-297569-1032 (PDF)",
+  "score": 78,
+  "seen": "2026-10-15T00:35:15Z",
+  "src": {
+    "name": "BSI",
+    "type": "public",
+    "url": "https://www.allianz-fuer-cybersicherheit.de/SharedDocs/Cybersicherheitswarnungen/DE/2026/2026-297569-1032.pdf"
+  },
+  "t": "preemptive-defence",
+  "take": "Another remote-access appliance is under active attack. Operators of Ivanti VPN gateways should check exposure and apply Ivanti's fixes or mitigations now.",
+  "title": "BSI: Ivanti Connect Secure zero-day exploited, attackers bypass sign-in",
+  "via": "watch"
+}

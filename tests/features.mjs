@@ -105,6 +105,14 @@ for (const dpr of [1.25, 1.5]) {
   await page.locator('.chip', { hasText: 'Audio' }).click();
   await page.waitForTimeout(300);
   if (!(await page.locator('.fc').count())) check(await page.locator('.feed-empty .btn').count() >= 2, tag + 'empty focus result has no way out');
+  // Opening a trend from a focused story keeps the focus: its page lists only stories in focus, with a way to see all.
+  await page.locator('.chip', { hasText: 'All' }).first().click();
+  await page.waitForTimeout(300);
+  await page.locator('.fc .fc-k .link').first().click();
+  await page.waitForTimeout(600);
+  const tp = await page.evaluate(() => ({ note: (document.querySelector('.lens-note') || {}).textContent || '', cards: document.querySelectorAll('#p-body .fc').length }));
+  check(/match your focus/.test(tp.note) || tp.cards > 0, tag + 'trend page ignores the focus ' + JSON.stringify(tp));
+  await page.keyboard.press('Escape'); await page.waitForTimeout(400);
   // The focus is a lens over every filter: All and Top stay filtered, and it can be switched off.
   await page.locator('.chip', { hasText: 'All' }).first().click();
   await page.waitForTimeout(300);

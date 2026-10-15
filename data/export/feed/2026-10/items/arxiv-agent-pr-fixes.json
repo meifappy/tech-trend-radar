@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-22",
+  "kind": "paper",
+  "lang": "en",
+  "points": [
+    "6,774 merged PRs from Codex, Devin, Copilot, Cursor and Claude Code across 891 repositories, against 5,044 human PRs",
+    "4.5% of agent merges got a verified fix within 30 days; odds 1.62 times those of human merges",
+    "About 70% of those fixes came from the same agent; preprint, not yet peer reviewed"
+  ],
+  "read": "arXiv:2609.26847 (PDF)",
+  "score": 69,
+  "seen": "2026-10-15T00:35:15Z",
+  "src": {
+    "name": "arXiv (Deakin University A2I2)",
+    "type": "paper",
+    "url": "https://arxiv.org/pdf/2609.26847"
+  },
+  "t": "ai-engineering",
+  "take": "A large preprint gives a hard quality number for agent-written code. Useful benchmark when setting review and post-merge checks for coding agents.",
+  "title": "Deakin study: merged coding-agent PRs need fixes more often than human ones",
+  "via": "search"
+}

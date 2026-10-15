@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-09",
+  "kind": "podcast",
+  "lang": "en",
+  "points": [
+    "CEO Misha Laskin argues enterprises are moving from renting to owning intelligence",
+    "Reflection's blog (5 Oct) claims 501B total, 23B active parameters, 1M-token context, 80.9 on SWE-Bench Verified",
+    "Weights, model card and technical report promised later in October under Apache 2.0"
+  ],
+  "read": "Episode show notes; specs checked on Reflection's blog post 'Introducing Beam'",
+  "score": 59,
+  "seen": "2026-10-15T00:35:15Z",
+  "src": {
+    "name": "No Priors",
+    "type": "podcast",
+    "url": "https://podcasts.apple.com/us/podcast/beam-the-great-american-open-model-with-reflectionai/id1668002688?i=1000794029585"
+  },
+  "t": "model-choice",
+  "take": "A US lab pitches a large open-weight model as an alternative to Chinese open models. Benchmarks are company claims; weights not yet released.",
+  "title": "No Priors: Reflection's 501B open-weight Beam model aims at enterprises",
+  "via": "audio"
+}
