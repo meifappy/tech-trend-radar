@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-30",
+  "img": "https://storage.googleapis.com/gweb-cloudblog-publish/images/03_ThreatIntelligenceWebsiteBannerIdeas_BA.max-2600x2600.png",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Monthly CVE disclosures rose from 5,045 in January to 10,740 in August",
+    "141 vulnerabilities exploited Jan-Aug 2026, more than all of 2025 (127)",
+    "50% of likely AI-discovered flaws allow remote code execution, versus 26% overall"
+  ],
+  "read": "GTIG analysis",
+  "score": 62,
+  "seen": "2026-10-15T12:35:56Z",
+  "src": {
+    "name": "Google Threat Intelligence Group",
+    "type": "consultancy",
+    "url": "https://cloud.google.com/blog/topics/threat-intelligence/vulnerability-discovery-and-exploitation-trends-in-the-ai-era/"
+  },
+  "t": "preemptive-defence",
+  "take": "AI-assisted discovery floods patch queues. GTIG says triage by exploitation evidence, not CVE volume, with edge devices and the AI stack first.",
+  "title": "Google GTIG: monthly CVEs doubled in 2026, exploits up sharply",
+  "via": "watch"
+}

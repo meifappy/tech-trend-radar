@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-15T12:35:56Z",
+  "news": 6,
+  "note": "14 candidates found, 6 kept (watch 4, market 1, search 1; deep-document and audio channels yielded nothing new or only items older than 30 days); 2 German, 4 English. Notable: EU AI Office opened its first AI Act enforcement (information requests to frontier model makers) after agent loss-of-control incidents. Quarterly review: ratings were already refreshed on 7-8 October with validUntil 2027-01-15, so no ring changes this run. Only 1 German item scored 55+ beyond BSI; DLF KI verstehen episode on agent incidents skipped for thin show notes.",
+  "push": "failed",
+  "pushError": "git push 403: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. No add_repo tool available in this session.",
+  "trendsChanged": []
+}

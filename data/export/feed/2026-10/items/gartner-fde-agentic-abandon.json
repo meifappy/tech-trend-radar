@@ -1,0 +1,22 @@
+{
+  "at": "2026-09-29",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Prediction covers agentic AI built through vendor forward-deployed engineering (FDE)",
+    "Under 20% of FDE work will become core vendor product features through 2028",
+    "Gartner warns of 'FDE washing': consulting relabelled at premium prices"
+  ],
+  "read": "Gartner press release",
+  "score": 62,
+  "seen": "2026-10-15T12:35:56Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-09-29-gartner-predicts-70-percent-of-enterprises-will-abandon-agentic-ai-built-by-vendor-forward-deployed-engineering-by-2028"
+  },
+  "t": "agentic-ai",
+  "take": "Vendor forward-deployed engineering builds agents fast but leaves lock-in and cost. Write knowledge transfer, IP and exit terms into contracts before signing.",
+  "title": "Gartner: 70% will abandon vendor-built agentic AI by 2028",
+  "via": "market"
+}

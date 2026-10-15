@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-14",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Civey survey of 500 firms, 18 Sep to 3 Oct 2026; 11% use agents company-wide",
+    "74% allow only supportive or human-supervised work; 5% allow fully autonomous decisions",
+    "47% want an automated emergency stop, 45% strict role and rights allocation"
+  ],
+  "read": "eco press release with Civey results",
+  "score": 64,
+  "seen": "2026-10-15T12:35:56Z",
+  "src": {
+    "name": "eco Verband",
+    "type": "platform",
+    "url": "https://www.eco.de/presse/eco-umfrage-unternehmen-in-deutschland-setzen-ki-agenten-kontrolliert-ein-pauschale-forderungen-nach-einer-verlangsamung-der-ki-entwicklung-greifen-zu-kurz/"
+  },
+  "t": "agentic-ai",
+  "take": "Adoption is broad but supervised: German firms keep agents on a short leash, a useful benchmark for setting autonomy and kill-switch policies.",
+  "title": "eco: 54% of German firms use or test AI agents",
+  "via": "watch"
+}

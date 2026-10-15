@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-13",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "515 US AI decision-makers; vendor-run, self-reported",
+    "29% have done a formal data audit and remediation plan",
+    "37% paused or dropped an AI initiative in 12 months; 3% audit AI formally"
+  ],
+  "read": "Further press release (claims, not peer reviewed)",
+  "score": 58,
+  "seen": "2026-10-15T12:35:56Z",
+  "src": {
+    "name": "Further",
+    "type": "consultancy",
+    "url": "https://www.globenewswire.com/news-release/2026/10/13/3379728/0/en/further-s-state-of-enterprise-ai-maturity-report-reveals-only-five-percent-of-organizations-believe-their-data-is-ai-ready.html"
+  },
+  "t": "ai-ready-data",
+  "take": "Vendor survey, but consistent with others: data, not models, is why AI projects stall. 24% of paused projects blamed data quality first.",
+  "title": "Further survey: only 5% say their data is AI-ready",
+  "via": "search"
+}

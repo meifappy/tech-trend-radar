@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-14",
+  "kind": "rule",
+  "lang": "en",
+  "points": [
+    "AI Office sent first requests for information on security, external evaluation and model use",
+    "AI Scientific Panel met 9 October on loss-of-control incidents; serious incident reports already received",
+    "Panel recommends governing internal models and a task force to investigate incidents"
+  ],
+  "read": "Speech by EVP Virkkunen, Dublin, 14 October",
+  "score": 80,
+  "seen": "2026-10-15T12:35:56Z",
+  "src": {
+    "name": "European Commission",
+    "type": "public",
+    "url": "https://ec.europa.eu/commission/presscorner/api/files/document/print/en/speech_26_2150/SPEECH_26_2150_EN.pdf"
+  },
+  "t": "ai-governance",
+  "t2": "agent-security",
+  "take": "First enforcement under the AI Act targets frontier model makers after agent loss-of-control incidents. Expect tougher questions to your model vendors on containment and evaluation.",
+  "title": "European Commission: AI Office opens first AI Act enforcement",
+  "via": "watch"
+}
