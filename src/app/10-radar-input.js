@@ -10,7 +10,7 @@ function tipShow(n) {
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
     m && m.dir !== 'quiet' ? h('span', { class: 'tmom s-' + m.dir }, spark(m), MOM[m.dir] + ', ' + m.recent + ' in 4 weeks') : null,
-    c ? h('span', { class: 'pillnew', text: c + ' new' }) : null);
+    c ? h('span', { class: 'pillnew', text: c + ' new' }) : h('span', { class: 'tmove', text: 'Nothing new since your last visit' }));
   const r = RD.box.getBoundingClientRect(), x = r.left + n.sx, y = r.top + n.sy;
   tip.classList.add('on');
   const tw = tip.offsetWidth, th = tip.offsetHeight;

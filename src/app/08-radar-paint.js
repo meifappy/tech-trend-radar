@@ -58,10 +58,7 @@ function setQuad(q) {
   if (S.quad) camTo(AREAS[S.quad].cx * .9, AREAS[S.quad].cy * .9, PHONE ? 1.9 : 1.72);
   else camTo(0, 0, 1);
   $$('.quad').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.area === S.quad)));
-  // The feed follows the radar: zooming into an area filters the news to it.
-  if (AREAS[S.quad]) FEED.f = S.quad; else if (AREAS[FEED.f]) FEED.f = 'all';
-  FEED.n = 12;
-  if (cur().page === 'home') { P.body.scrollTop = 0; renderPanel(false); }
+
 }
 function setRing(r) {
   S.ring = S.ring === r ? null : r;

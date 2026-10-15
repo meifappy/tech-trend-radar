@@ -235,7 +235,7 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 /* dots: size = business impact (weight 1 to 3); fill = ring grey; orange = news you have not opened */
 .blip { cursor: pointer; outline: none; transition: opacity .35s; }
 .blip .hit { fill: transparent; }
-.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; transition: fill .45s var(--ease); }
+.blip .dot { fill: rgb(170 170 182); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; transition: fill .45s var(--ease); }
 .blip.has-new .dot { fill: var(--orange); }
 .rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
 .blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
@@ -275,6 +275,23 @@ kbd { display: inline-block; font: 600 var(--fs-cap) var(--font); color: var(--t
 .app.still .fx-sel { animation: none; opacity: 0; }
 @keyframes selpulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
 .rbox.briefing .allbtn { display: none; }
+
+/* Corner descriptions: what each part of the radar groups together. Tapping one zooms in. */
+.quad { gap: 1px; align-items: flex-start; }
+.q-sec, .q-sci { align-items: flex-end; }
+.quad b { font-size: var(--fs-foot); font-weight: 600; color: var(--t1); }
+.quad small { font-size: var(--fs-cap); font-weight: 400; color: var(--t3); }
+/* Legend: how to read colour, size and distance. */
+.legend { position: absolute; z-index: 4; left: 76px; bottom: 26px; display: flex; flex-wrap: wrap; gap: 6px 16px; max-width: calc(100% - 96px); font-size: var(--fs-cap); color: var(--t3); pointer-events: none; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.lg-new { background: var(--orange); }
+.lg-old { background: rgb(170 170 182); }
+.lg-big { width: 12px !important; height: 12px !important; background: none; border: 1.5px solid rgb(235 235 245 / .5); }
+.app.open .legend, .app.wide .legend { display: none; }
+.phone-legend { margin: 0 0 4px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-cap); color: var(--t3); }
+.phone-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.phone-legend i { width: 8px; height: 8px; border-radius: 50%; }
 
 /* Panel content. Hierarchy: grey section title (13) > white headline (15, semibold) > grey reading text (14) > meta (12).
    Clickable items are always white semibold with › or ↗; everything grey is information only. */
@@ -549,7 +566,9 @@ q.qt { quotes: "“" "”"; }
   .quad { padding: 4px 6px; font-size: var(--fs-cap); }
   .allbtn { top: 4px; height: 36px; }
   .lbl { font-size: 11px; stroke-width: 3px; }
-  .rl { display: none; } /* too crowded at phone size; the trend page names the ring */
+  .rl { font-size: 10px; } /* smaller on phones, but always there: the rings are the radar's meaning */
+  .quad small { display: none; }
+  .legend { display: none; }
   .zoomui, .tip { display: none; }
 
   .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: var(--panel-solid);
@@ -692,7 +711,14 @@ q.qt { quotes: "“" "”"; }
       </svg>
       <div class="sweep" id="sweep" aria-hidden="true"></div>
       <div class="fx" id="fx" aria-hidden="true"><i class="fxr fx-sel" id="fx-sel"></i><i class="fxr fx-cue" id="fx-cue"></i></div>
+      <button class="quad q-ai" type="button" data-area="ai" aria-pressed="false"><b>Business &amp; AI</b><small>Creating value with technology</small></button>
+      <button class="quad q-sec" type="button" data-area="sec" aria-pressed="false"><b>Risk &amp; regulation</b><small>Security, identity and the law</small></button>
+      <button class="quad q-cloud" type="button" data-area="cloud" aria-pressed="false"><b>Platforms &amp; data</b><small>What everything runs on</small></button>
+      <button class="quad q-sci" type="button" data-area="sci" aria-pressed="false"><b>Emerging tech</b><small>Not yet in production</small></button>
       <button class="btn allbtn" id="allbtn" type="button" hidden>Show whole radar</button>
+    </div>
+    <div class="legend" id="legend" aria-label="How to read the radar">
+      <span><i class="lg-new"></i>New for you</span><span><i class="lg-old"></i>Nothing new</span><span><i class="lg-big"></i>Bigger dot: bigger impact</span><span>Closer to the centre: act sooner</span>
     </div>
     <div class="zoomui" role="group" aria-label="Zoom">
       <button class="zbtn" id="z-in" type="button" aria-label="Zoom in"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-plus"/></svg></button>
@@ -1292,7 +1318,7 @@ function placeLabels() {
     n.bh = sub ? 29 : 15;
   }
   // On phones the faint ring names may sit under a label (its halo masks them); names of trends matter more.
-  const W = RD.W, occ = PHONE ? [] : RD.rlBoxes.slice(), [cx] = scr(0, 0);
+  const W = RD.W, occ = RD.rlBoxes.slice(), [cx] = scr(0, 0);
   const vis = [], dots = [];
   const hide = n => { n.lbl.classList.add('off'); if (n.l2) n.l2.style.display = 'none'; n.lox = null; };
   // Weighting: at overview only the high-impact trends are named (on desktop also mid-impact ones with news);
@@ -1445,10 +1471,7 @@ function setQuad(q) {
   if (S.quad) camTo(AREAS[S.quad].cx * .9, AREAS[S.quad].cy * .9, PHONE ? 1.9 : 1.72);
   else camTo(0, 0, 1);
   $$('.quad').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.area === S.quad)));
-  // The feed follows the radar: zooming into an area filters the news to it.
-  if (AREAS[S.quad]) FEED.f = S.quad; else if (AREAS[FEED.f]) FEED.f = 'all';
-  FEED.n = 12;
-  if (cur().page === 'home') { P.body.scrollTop = 0; renderPanel(false); }
+
 }
 function setRing(r) {
   S.ring = S.ring === r ? null : r;
@@ -1558,7 +1581,7 @@ function tipShow(n) {
     h('b', { text: t.title }),
     rc ? h('span', { class: 'tmove', text: (rc.up ? 'More urgent' : 'Less urgent') + ': moved from ' + RINGS[rc.x.from].label + ', ' + when(str(rc.x.at).slice(0, 10)) }) : null,
     m && m.dir !== 'quiet' ? h('span', { class: 'tmom s-' + m.dir }, spark(m), MOM[m.dir] + ', ' + m.recent + ' in 4 weeks') : null,
-    c ? h('span', { class: 'pillnew', text: c + ' new' }) : null);
+    c ? h('span', { class: 'pillnew', text: c + ' new' }) : h('span', { class: 'tmove', text: 'Nothing new since your last visit' }));
   const r = RD.box.getBoundingClientRect(), x = r.left + n.sx, y = r.top + n.sy;
   tip.classList.add('on');
   const tw = tip.offsetWidth, th = tip.offsetHeight;
@@ -1968,7 +1991,11 @@ function pageAbout() {
   out.push(section('How long a rating holds', null, h('p', { class: 'muted', text: 'Each trend\u2019s ring is reviewed every quarter and stays valid until the date on the trend, so trends do not come and go with the news. A move between reviews needs two top-tier sources. News on each trend is added every 12 hours. The ' + S.trends.length + ' trends are defined so they do not overlap: each one says what it covers and what belongs elsewhere.' })));
   out.push(section('Movements', null, h('p', { class: 'muted', text: 'A small arrow next to a dot means its rating changed in the last 90 days: pointing to the centre, it became more urgent; pointing outward, less urgent. A dashed line shows a move since your last visit.' })));
   out.push(section('The rings', null, h('ul', { class: 'rings' }, RO.map(r => h('li', { class: 'c-' + r }, h('i'), h('b', { text: RINGS[r].label }), h('span', { text: RINGS[r].hint }))))));
-  out.push(section('No categories', null, h('p', { class: 'muted', text: 'The radar answers one question: how soon do you need to act? AI and most other trends cut across any set of categories, so there are none to learn. Related trends sit next to each other, and My focus filters by your own context.' })));
+  out.push(section('Reading the radar', null, h('ul', { class: 'bul' },
+    h('li', { text: 'Distance from the centre: how soon to act. The rings run from Act now in the middle to Horizon at the edge.' }),
+    h('li', { text: 'Corner: what kind of trend it is. Business & AI (creating value with technology), Risk & regulation (security, identity, the law), Platforms & data (what everything runs on), Emerging tech (not yet in production). Trends close together are related.' }),
+    h('li', { text: 'Colour: orange means stories you have not opened yet, from the last 7 days; grey means nothing new. Opening a story turns it grey.' }),
+    h('li', { text: 'Size: the bigger the dot, the bigger the business impact.' }))));
   out.push(section('Hot, Top and momentum', null,
     h('p', { class: 'muted', text: 'Every story gets a heat score from 0 to 100: the scan\u2019s quality score (decision relevance, evidence, novelty), up to 9 points when other publishers cover the same trend within a week, up to 9 for an act-now, high-impact trend, then faded by age. Hot marks at most six stories from the last 14 days with heat 75 or more, one per trend. Top lists the last 30 days by heat.' }),
     h('p', { class: 'muted', text: 'Momentum compares a trend\u2019s stories in the last four weeks with the four weeks before: Rising, Steady or Cooling, shown as eight weekly bars on each trend. It needs three stories to say anything. Ratings themselves change only at the quarterly review.' })));
@@ -2091,6 +2118,8 @@ function pageFeed() {
     FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l)),
     // My focus is not one more filter but a lens over all of them, so it sits apart and shows when it is on.
     h('button', { class: 'chip chip-focus', type: 'button', 'aria-pressed': String(focusActive()), 'aria-expanded': String(FOCUS.edit), 'aria-label': FOCUS.terms.length ? 'My focus: ' + (focusActive() ? 'on' : 'off') : 'Add my focus', onclick: focusToggle }, FOCUS.terms.length ? 'Focus' : '+ Focus')));
+  // The legend heads the feed (the radar itself has no free corner for it).
+  out.push(h('p', { class: 'phone-legend' }, h('span', null, h('i', { class: 'lg-new' }), 'New for you'), h('span', null, h('i', { class: 'lg-old' }), 'Nothing new'), h('span', { text: 'Centre: act sooner' })));
   const fb = focusBox();
   if (fb) out.push(fb);
   const cards = [];
@@ -2755,13 +2784,14 @@ document.addEventListener('keydown', e => {
 });
 
 // ---- 16b-tour.js
-/* First-visit tour: an optional 15-second walk-through. On the first visit a small card offers it; the tour then
+/* First-visit tour: an optional 20-second walk-through. On the first visit a small card offers it; the tour then
    spotlights one thing at a time with an arrow and one line of text, moving on by itself every 2.3 seconds.
    Tap anywhere for the next step; Esc, the close button or "Skip" ends it. It can be replayed from How it works. */
 const TOUR = { i: 0, t: 0, el: null, steps: [] };
 const tourSteps = () => [
   { sel: '#rbox', text: 'The radar. The closer to the centre, the sooner you should act.' },
-  { sel: '.blip.has-new .dot, .blip .dot', text: 'An orange dot has news you have not opened. Tap a dot for the trend.' },
+  { sel: '.quad', text: 'The four corners group related trends, from using AI for business to technology still in the lab.' },
+  { sel: '.blip.has-new .dot, .blip .dot', text: 'Orange means news you have not opened yet; grey means nothing new. Tap a dot for the trend.' },
   { sel: '.fc', text: 'The latest stories. Tap one for the key points and the source.' },
   { sel: '.chip-play', text: 'Briefing plays the news in one minute, stop by stop on the radar.' },
   { sel: '.chip-focus', text: 'Focus: add your industry or priorities, and everything filters to them.' },
@@ -2773,7 +2803,7 @@ function tourOffer() {
   autoCancel();
   const card = h('div', { class: 'tour-offer', role: 'dialog', 'aria-label': 'Quick tour' },
     h('span', { class: 'tour-ico', 'aria-hidden': 'true' }, ic('i-play')),
-    h('p', null, h('b', { text: 'New here?' }), h('span', { text: 'See how it works in 15 seconds.' })),
+    h('p', null, h('b', { text: 'New here?' }), h('span', { text: 'See how it works in 20 seconds.' })),
     h('button', { class: 'tour-go', type: 'button', onclick: () => { card.remove(); tourStart(); } }, 'Start tour'),
     h('button', { class: 'tour-no', type: 'button', 'aria-label': 'No thanks', onclick: () => card.remove() }, ic('i-close')));
   document.body.append(card);
@@ -2807,7 +2837,7 @@ function tourNext() {
   put(tip, h('small', { text: (TOUR.i + 1) + ' of ' + TOUR.steps.length }), h('span', { text: TOUR.steps[TOUR.i].text }));
   [...bar.children].forEach((x, i) => x.classList.toggle('on', i <= TOUR.i));
   tourPlace();
-  TOUR.t = setTimeout(tourNext, 2300);
+  TOUR.t = setTimeout(tourNext, 3000);
   void spot;
 }
 function tourTarget(st) {

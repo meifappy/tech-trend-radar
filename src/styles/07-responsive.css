@@ -17,7 +17,9 @@
   .quad { padding: 4px 6px; font-size: var(--fs-cap); }
   .allbtn { top: 4px; height: 36px; }
   .lbl { font-size: 11px; stroke-width: 3px; }
-  .rl { display: none; } /* too crowded at phone size; the trend page names the ring */
+  .rl { font-size: 10px; } /* smaller on phones, but always there: the rings are the radar's meaning */
+  .quad small { display: none; }
+  .legend { display: none; }
   .zoomui, .tip { display: none; }
 
   .panel { left: 0; right: 0; top: auto; bottom: 0; width: auto; height: calc(100dvh - 54px); border-radius: 24px 24px 0 0; border-bottom: 0; background: var(--panel-solid);

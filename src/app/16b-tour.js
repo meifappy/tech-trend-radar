@@ -1,10 +1,11 @@
-/* First-visit tour: an optional 15-second walk-through. On the first visit a small card offers it; the tour then
+/* First-visit tour: an optional 20-second walk-through. On the first visit a small card offers it; the tour then
    spotlights one thing at a time with an arrow and one line of text, moving on by itself every 2.3 seconds.
    Tap anywhere for the next step; Esc, the close button or "Skip" ends it. It can be replayed from How it works. */
 const TOUR = { i: 0, t: 0, el: null, steps: [] };
 const tourSteps = () => [
   { sel: '#rbox', text: 'The radar. The closer to the centre, the sooner you should act.' },
-  { sel: '.blip.has-new .dot, .blip .dot', text: 'An orange dot has news you have not opened. Tap a dot for the trend.' },
+  { sel: '.quad', text: 'The four corners group related trends, from using AI for business to technology still in the lab.' },
+  { sel: '.blip.has-new .dot, .blip .dot', text: 'Orange means news you have not opened yet; grey means nothing new. Tap a dot for the trend.' },
   { sel: '.fc', text: 'The latest stories. Tap one for the key points and the source.' },
   { sel: '.chip-play', text: 'Briefing plays the news in one minute, stop by stop on the radar.' },
   { sel: '.chip-focus', text: 'Focus: add your industry or priorities, and everything filters to them.' },
@@ -16,7 +17,7 @@ function tourOffer() {
   autoCancel();
   const card = h('div', { class: 'tour-offer', role: 'dialog', 'aria-label': 'Quick tour' },
     h('span', { class: 'tour-ico', 'aria-hidden': 'true' }, ic('i-play')),
-    h('p', null, h('b', { text: 'New here?' }), h('span', { text: 'See how it works in 15 seconds.' })),
+    h('p', null, h('b', { text: 'New here?' }), h('span', { text: 'See how it works in 20 seconds.' })),
     h('button', { class: 'tour-go', type: 'button', onclick: () => { card.remove(); tourStart(); } }, 'Start tour'),
     h('button', { class: 'tour-no', type: 'button', 'aria-label': 'No thanks', onclick: () => card.remove() }, ic('i-close')));
   document.body.append(card);
@@ -50,7 +51,7 @@ function tourNext() {
   put(tip, h('small', { text: (TOUR.i + 1) + ' of ' + TOUR.steps.length }), h('span', { text: TOUR.steps[TOUR.i].text }));
   [...bar.children].forEach((x, i) => x.classList.toggle('on', i <= TOUR.i));
   tourPlace();
-  TOUR.t = setTimeout(tourNext, 2300);
+  TOUR.t = setTimeout(tourNext, 3000);
   void spot;
 }
 function tourTarget(st) {

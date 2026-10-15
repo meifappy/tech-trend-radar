@@ -29,6 +29,7 @@ for (const dpr of [1.25, 1.5]) {
   await page.waitForFunction(() => document.querySelectorAll('.blip').length > 0 && document.querySelector('.fc'));
   await page.waitForTimeout(900);
 
+  check(await page.locator('#legend').isVisible() || await page.locator('.phone-legend').first().isVisible(), tag + 'legend missing');
   // The radar box starts on a whole device pixel.
   const off = await page.evaluate(() => { const b = document.getElementById('rbox').getBoundingClientRect(), d = devicePixelRatio; return [b.left * d % 1, b.top * d % 1].map(v => Math.min(v, 1 - v)); });
   check(off.every(v => v < .02), tag + 'radar not on whole device pixels ' + off);
@@ -129,8 +130,8 @@ for (const dpr of [1.25, 1.5]) {
   await page.locator('.blip').first().click();
   await page.waitForTimeout(500);
   check(await page.locator('.mom .spark rect').count() === 8, tag + 'no momentum bars on the trend page');
-  // No categories: no area buttons or area chips.
-  check(await page.locator('.quad').count() === 0 && !(await page.locator('.chip', { hasText: 'Risk' }).count()), tag + 'area categories still shown');
+  // Corners describe their group; a legend explains colour, size and distance.
+  check(await page.locator('.quad small').count() === 4 && !(await page.locator('.chip', { hasText: 'Risk' }).count()), tag + 'corner descriptions missing');
   await page.screenshot({ path: process.env.SHOT_DIR ? join(process.env.SHOT_DIR, 'features-' + dpr + '.png') : '/dev/null' }).catch(() => {});
   await ctx.close();
 }
@@ -183,7 +184,7 @@ for (const dpr of [1.25, 1.5]) {
   await page.locator('.tour-go').click();
   await page.waitForTimeout(500);
   const first = await page.locator('.tour-tip').textContent();
-  await page.waitForTimeout(2400);
+  await page.waitForTimeout(3100);
   check(first && (await page.locator('.tour-tip').textContent()) !== first, 'tour: did not move on by itself');
   await page.locator('.tour-x').click();
   check(await page.locator('.tour').count() === 0, 'tour: Skip did not end it');

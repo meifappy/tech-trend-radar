@@ -102,6 +102,8 @@ function pageFeed() {
     FILTERS.map(([k, l]) => h('button', { class: 'chip', type: 'button', 'aria-pressed': String(FEED.f === k), onclick: () => setFilter(k) }, l)),
     // My focus is not one more filter but a lens over all of them, so it sits apart and shows when it is on.
     h('button', { class: 'chip chip-focus', type: 'button', 'aria-pressed': String(focusActive()), 'aria-expanded': String(FOCUS.edit), 'aria-label': FOCUS.terms.length ? 'My focus: ' + (focusActive() ? 'on' : 'off') : 'Add my focus', onclick: focusToggle }, FOCUS.terms.length ? 'Focus' : '+ Focus')));
+  // The legend heads the feed (the radar itself has no free corner for it).
+  out.push(h('p', { class: 'phone-legend' }, h('span', null, h('i', { class: 'lg-new' }), 'New for you'), h('span', null, h('i', { class: 'lg-old' }), 'Nothing new'), h('span', { text: 'Centre: act sooner' })));
   const fb = focusBox();
   if (fb) out.push(fb);
   const cards = [];

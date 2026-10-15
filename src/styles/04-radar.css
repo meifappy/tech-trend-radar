@@ -30,7 +30,7 @@
 /* dots: size = business impact (weight 1 to 3); fill = ring grey; orange = news you have not opened */
 .blip { cursor: pointer; outline: none; transition: opacity .35s; }
 .blip .hit { fill: transparent; }
-.blip .dot { fill: var(--c); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; transition: fill .45s var(--ease); }
+.blip .dot { fill: rgb(170 170 182); stroke: rgb(11 11 13 / .9); stroke-width: 1.5; transition: fill .45s var(--ease); }
 .blip.has-new .dot { fill: var(--orange); }
 .rbox:not(.zoomed) .blip.w1 .dot { opacity: .8; }
 .blip .ring { fill: none; stroke: #fff; stroke-width: 2; opacity: 0; transition: opacity .2s; }
@@ -70,3 +70,20 @@
 .app.still .fx-sel { animation: none; opacity: 0; }
 @keyframes selpulse { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
 .rbox.briefing .allbtn { display: none; }
+
+/* Corner descriptions: what each part of the radar groups together. Tapping one zooms in. */
+.quad { gap: 1px; align-items: flex-start; }
+.q-sec, .q-sci { align-items: flex-end; }
+.quad b { font-size: var(--fs-foot); font-weight: 600; color: var(--t1); }
+.quad small { font-size: var(--fs-cap); font-weight: 400; color: var(--t3); }
+/* Legend: how to read colour, size and distance. */
+.legend { position: absolute; z-index: 4; left: 76px; bottom: 26px; display: flex; flex-wrap: wrap; gap: 6px 16px; max-width: calc(100% - 96px); font-size: var(--fs-cap); color: var(--t3); pointer-events: none; }
+.legend span { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; }
+.lg-new { background: var(--orange); }
+.lg-old { background: rgb(170 170 182); }
+.lg-big { width: 12px !important; height: 12px !important; background: none; border: 1.5px solid rgb(235 235 245 / .5); }
+.app.open .legend, .app.wide .legend { display: none; }
+.phone-legend { margin: 0 0 4px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: var(--fs-cap); color: var(--t3); }
+.phone-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.phone-legend i { width: 8px; height: 8px; border-radius: 50%; }

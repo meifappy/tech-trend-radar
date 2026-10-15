@@ -57,7 +57,7 @@ function placeLabels() {
     n.bh = sub ? 29 : 15;
   }
   // On phones the faint ring names may sit under a label (its halo masks them); names of trends matter more.
-  const W = RD.W, occ = PHONE ? [] : RD.rlBoxes.slice(), [cx] = scr(0, 0);
+  const W = RD.W, occ = RD.rlBoxes.slice(), [cx] = scr(0, 0);
   const vis = [], dots = [];
   const hide = n => { n.lbl.classList.add('off'); if (n.l2) n.l2.style.display = 'none'; n.lox = null; };
   // Weighting: at overview only the high-impact trends are named (on desktop also mid-impact ones with news);
