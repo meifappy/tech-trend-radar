@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-16T00:34:09Z",
+  "news": 4,
+  "note": "About 15 candidates checked, 4 kept (watch 2, market 1, audio 1; 1 German, 3 English): JRC/Eurostat data that AI use in EU strategic sectors rose from 7% to 18% (2021-25), a $955m CHIPS reallocation to GlobalFoundries silicon photonics (first novel-computing story in 14 days), Synergy's $5tn 2031 cloud forecast, and a c't uplink episode on vibe coding (ai-engineering). Dropped: Bitkom poll on public-sector hybrid-attack readiness (54), Bitkom IT-labour study (early Sept, 54), SpyCloud identity report (Sept, vendor), IDC smartphone slump (repeat of memory-cost story). Only one German item reached 55; platform-engineering and identity-security still lack fresh stories; BSI press list empty, ENISA quiet since 30 Sep, heise blocks fetch, OpenAI Rosalind page could not be read. Ratings already reviewed 7-8 Oct (validUntil 2027-01-15), no ring moves.",
+  "push": "failed",
+  "pushError": "git push origin main: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403. (Clone worked; local commit b0714e2 not pushed.) No GitHub file tool and no add_repo tool in this session.",
+  "trendsChanged": []
+}

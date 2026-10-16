@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-14",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Up to $955m of an existing CHIPS award reallocated; total award unchanged",
+    "GlobalFoundries raises its capital plan to $5bn at Malta, NY and Burlington, VT",
+    "Covers silicon photonics, silicon-germanium and the first US source of silicon interposers"
+  ],
+  "read": "Commerce/NIST press release",
+  "score": 60,
+  "seen": "2026-10-16T00:34:09Z",
+  "src": {
+    "name": "NIST / CHIPS for America",
+    "type": "public",
+    "url": "https://www.nist.gov/news-events/news/2026/10/department-commerce-announces-agreement-globalfoundries-amend-its-existing"
+  },
+  "t": "novel-computing",
+  "take": "Public money is now steering US fab capacity toward silicon photonics and advanced packaging, the building blocks of optical AI interconnects.",
+  "title": "US Commerce: $955m CHIPS award shifted to GlobalFoundries silicon photonics",
+  "via": "watch"
+}

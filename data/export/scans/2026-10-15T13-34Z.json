@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-15T13:34:44Z",
+  "news": 3,
+  "note": "16 candidates checked across watch, search, journal, audio and market channels; 3 kept (2 watch, 1 journal; 2 German, 1 English), 0 podcasts reached 55. Notable: ifo/Implement study (Google/CCIA-funded) puts EUR 155bn/yr at risk from tighter AI data rules; novel-computing gets its first story in 14 days. Quarterly review already done 7-8 Oct (validUntil 2027-01-15), so no ring changes. Unreachable: BMDS, heise, Latent Space, MLCommons article, CISA listing; ai-engineering, platform-engineering and identity-security still lack fresh primary stories.",
+  "push": "failed",
+  "pushError": "git clone: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403. No GitHub file tool and no add_repo tool in this session.",
+  "trendsChanged": []
+}

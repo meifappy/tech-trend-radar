@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-05",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Q2 2026 revenue across cloud, SaaS, social and search: $497bn, up 27% year on year",
+    "Forecast: more than threefold growth from 2025 to over $5tn in 2031",
+    "Google, Microsoft, Meta, ByteDance and Amazon hold 65% of revenue"
+  ],
+  "read": "Synergy press release with forecast chart",
+  "score": 57,
+  "seen": "2026-10-16T00:34:09Z",
+  "src": {
+    "name": "Synergy Research Group",
+    "type": "analyst",
+    "url": "https://www.srgresearch.com/articles/annual-revenues-from-key-cloud-and-digital-services-to-pass-5-trillion-in-2031"
+  },
+  "t": "sovereign-cloud",
+  "take": "Five US and Chinese platforms already take 65% of this revenue and hold 70% of hyperscale capacity, so concentration and sovereignty pressure keep rising.",
+  "title": "Synergy: cloud and digital services to pass $5 trillion by 2031",
+  "via": "market"
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-09-15",
+  "img": "https://media.springernature.com/m685/springer-static/image/art%3A10.1038%2Fs41566-026-01987-z/MediaObjects/41566_2026_1987_Fig1_HTML.png",
+  "kind": "paper",
+  "lang": "en",
+  "points": [
+    "Optical losses and electro-optic interfaces dominate power, blocking commercial cloud photonic tensor cores",
+    "Best near-term fit: ultralow-latency edge tasks such as on-fibre processing and vision",
+    "UC Irvine authors see photonics as viable within the existing digital stack over the next decade"
+  ],
+  "read": "Perspective, Nature Photonics vol. 20 (October 2026 issue), published online 15 September 2026",
+  "score": 61,
+  "seen": "2026-10-15T13:34:44Z",
+  "src": {
+    "name": "Nature Photonics (UC Irvine)",
+    "type": "public",
+    "url": "https://www.nature.com/articles/s41566-026-01987-z"
+  },
+  "t": "novel-computing",
+  "t2": "ai-compute",
+  "take": "Peer-reviewed reality check for photonic AI hardware: edge and on-fibre uses come first; datacentre tensor cores stay blocked by optical losses and interface power.",
+  "title": "Nature Photonics: photonic AI chips not yet ready for the cloud",
+  "via": "journal"
+}

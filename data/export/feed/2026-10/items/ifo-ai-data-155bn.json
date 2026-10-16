@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-13",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Baseline: generative AI could add EUR 440bn a year in value added to Germany by 2034",
+    "Restricted training-data access cuts that by EUR 155bn, mainly via weaker models (EUR 75bn)",
+    "Commission has reviewed the EU Copyright Directive since May 2026; authors urge keeping the TDM exception"
+  ],
+  "read": "ifo press release, 13 October 2026 (study by Implement Consulting Group with ifo)",
+  "score": 70,
+  "seen": "2026-10-15T13:34:44Z",
+  "src": {
+    "name": "ifo Institut",
+    "type": "public",
+    "url": "https://www.ifo.de/en/press-release/2026-10-13/stricter-ai-regulation-puts-eur-155-billion-additional-value-added-risk"
+  },
+  "t": "ai-governance",
+  "t2": "ai-value",
+  "take": "Copyright review of EU text-and-data-mining rules could cut Germany's generative-AI upside by a third. Study commissioned by CCIA Europe and Google, so weigh accordingly.",
+  "title": "ifo: tighter AI training-data rules could cost Germany EUR 155bn",
+  "via": "watch"
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-14",
+  "img": "https://joint-research-centre.ec.europa.eu/sites/default/files/styles/ewcms_metatag_image/public/2026-10/IM%20Imagery_1826879191.jpeg?h=e97e2ba8&itok=GQ-2LZnR",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Firms using AI in the 10 Apply AI strategic sectors: 7% in 2021, 18% in 2025",
+    "Energy rose from 18% to 34%, electronics from 12% to 30%",
+    "Across all EU sectors adoption reached 20% in 2025"
+  ],
+  "read": "JRC news release; full report (JRC146753) not opened",
+  "score": 72,
+  "seen": "2026-10-16T00:34:09Z",
+  "src": {
+    "name": "European Commission JRC",
+    "type": "public",
+    "url": "https://joint-research-centre.ec.europa.eu/jrc-news-and-updates/ai-adoption-more-doubles-almost-every-eu-strategic-sector-2026-10-14_en"
+  },
+  "t": "ai-value",
+  "take": "Official Eurostat-based baseline for benchmarking your sector's AI uptake; energy and electronics firms moved fastest, mobility, tourism and agri-food lag.",
+  "title": "EU JRC: AI use in strategic sectors more than doubles since 2021",
+  "via": "watch"
+}

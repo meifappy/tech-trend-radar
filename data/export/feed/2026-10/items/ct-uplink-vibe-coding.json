@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-10",
+  "kind": "podcast",
+  "lang": "de",
+  "points": [
+    "One editor keeps agentic AI off his own machine and works only in browsers and vendor sandboxes",
+    "Both editors find AI useful for refactoring but report faulty code",
+    "Asking the AI for modular code improved results, they say"
+  ],
+  "read": "Episode show notes",
+  "score": 57,
+  "seen": "2026-10-16T00:34:09Z",
+  "src": {
+    "name": "c't uplink (heise)",
+    "type": "podcast",
+    "url": "https://www.podcast.de/episode/707966435/kann-ki-wirklich-programmieren-unsere-experimente-mit-vibe-coding-ct-uplink"
+  },
+  "t": "ai-engineering",
+  "take": "Practitioner view from Germany's leading IT magazine: AI helps with routine work, but teams still need coding fundamentals and sandboxed agents.",
+  "title": "c't uplink: c't editors test vibe coding with AI agents",
+  "via": "audio"
+}
