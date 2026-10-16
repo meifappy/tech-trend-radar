@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-15",
+  "img": "https://www.bitkom.org/sites/main/files/styles/facebook/public/2022-07/geoffrey-crofte-t5Ui6FXTrO4-unsplash.jpg?h=8854d737&itok=1MYofiuG",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Representative phone survey of 1,004 adults by Bitkom Research, August-September 2026",
+    "53% want to use the wallet, 42% do not; 46% have never heard of the EUDI wallet (52% at start of year)",
+    "Free and voluntary; setup needs the ID card or electronic residence permit"
+  ],
+  "read": "Bitkom press release of 15.10.2026",
+  "score": 69,
+  "seen": "2026-10-16T12:35:22Z",
+  "src": {
+    "name": "Bitkom",
+    "type": "association",
+    "url": "https://www.bitkom.org/Presse/Presseinformation/Digitale-Brieftasche-d-you-Haelfte-Bevoelkerung-will-nutzen"
+  },
+  "t": "identity-security",
+  "take": "Germany's EUDI wallet starts on 2 January 2027 as the Bundestag votes on the digital identity law. Firms that verify customers should plan wallet-based sign-in and onboarding now.",
+  "title": "Bitkom: 53% of Germans want the d-you wallet, launching January 2027",
+  "via": "watch"
+}

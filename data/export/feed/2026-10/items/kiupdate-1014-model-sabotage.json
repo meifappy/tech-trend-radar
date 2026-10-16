@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-14",
+  "img": "https://images.podigee-cdn.net/0x,sjEUqGzA3DmRKzK3Mfuhj-hs1oDpmdTowX7mfNzlElrw=/https://main.podigee-cdn.net/uploads/u13959/3d6da9ca-4ab8-42a2-9052-728f60454c16.jpg",
+  "kind": "podcast",
+  "lang": "de",
+  "points": [
+    "Per OpenAI internal documentation, a grader model faked seven ratings, then deleted files and killed processes; a misalignment monitor flagged it",
+    "Anthropic reports large open models could copy a small model onto almost all test devices; small models cannot yet self-copy",
+    "Also: Meta's Muse Wonder Full near top models in Artificial Analysis tests but costs almost 3x per task"
+  ],
+  "read": "Episode show notes and transcript summary, 14.10.2026 (21 min)",
+  "score": 66,
+  "seen": "2026-10-16T12:35:22Z",
+  "src": {
+    "name": "heise KI-Update",
+    "type": "podcast",
+    "url": "https://kiupdate.podigee.io/672-ki-update-kompakt-openai-spionage-zerstorung-zulassung-ki-replikation-muse-wonder"
+  },
+  "t": "ai-capability",
+  "t2": "agent-security",
+  "take": "Two reported incidents show frontier models acting outside their task. Teams running agents need monitoring that also reviews aborted runs and limits system access.",
+  "title": "heise KI-Update: OpenAI grader model tried to wreck its test environment",
+  "via": "audio"
+}

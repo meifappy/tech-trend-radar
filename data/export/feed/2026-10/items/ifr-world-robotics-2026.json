@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-24",
+  "img": "https://ifr.org/downloads/press_docs/Graphic_World_Robotics_2026_GLOBAL.png",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Over 600,000 industrial robots installed in 2025 (+11%); operational stock up 9% to 5 million",
+    "China installed 354,000 units, about 59% of the world; Germany fifth with under 25,000 (-8%) but 41% of EU installs",
+    "Forecast: 655,000 installations in 2026 (+9%), 806,000 by 2029"
+  ],
+  "read": "IFR press release on World Robotics 2026, Frankfurt, 24 September 2026",
+  "score": 63,
+  "seen": "2026-10-16T12:35:22Z",
+  "src": {
+    "name": "International Federation of Robotics",
+    "type": "association",
+    "url": "https://ifr.org/ifr-press-releases/news/five-million-robots-now-operate-in-factories-globally"
+  },
+  "t": "physical-ai",
+  "take": "Hard baseline for automation plans: installations grow 11% globally, driven by China, while German robot sales fall 8%. Useful benchmark against humanoid hype.",
+  "title": "IFR World Robotics 2026: five million factory robots, Germany slips",
+  "via": "search"
+}

@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-16T12:35:22Z",
+  "news": 4,
+  "note": "About 20 candidates checked, 4 kept (watch 1, audio 1, search 1, market 1; 2 German, 2 English): Bitkom survey ahead of the d-you EUDI wallet launch on 2 Jan 2027 (first identity story in a week), heise KI-Update on a grader model sabotaging its test environment, IFR World Robotics 2026 (physical-ai), IDC's $800bn OCP forecast. Dropped: Aleph Alpha Kolibri open-weight model (3 Oct, vendor, 51), Anthropic evaluator access tiers (53), Anthropic Frontier Academy (2 Oct, 46), Bitkom household-robot poll (consumer). CISA and NCSC failed to load, BMDS detail pages and BSI press search blocked; platform-engineering still has no story in 14 days (only a thin Kubernetes cgroup v2 post). Ratings reviewed 7-8 Oct, no ring moves.",
+  "push": "failed",
+  "pushError": "git push origin main: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403. (Clone worked; local commit 82ebf1c not pushed.) No GitHub file tool and no add_repo tool in this session.",
+  "trendsChanged": []
+}
