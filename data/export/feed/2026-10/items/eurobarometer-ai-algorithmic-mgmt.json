@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-14",
+  "img": "https://employment-social-affairs.ec.europa.eu/sites/default/files/styles/ewcms_metatag_image/public/2026-10/young-man-in-yellow-apron-working-on-a-desktop-com-2026-09-25-03-21-07-utc.jpg?h=caf26d13&itok=Fd_anFRc",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Flash Eurobarometer 3696: about 12,800 interviews with heads of firms with 1 to 749 staff in all 27 EU countries, March to April 2026",
+    "42% use AI or algorithmic management, 21% more plan to; top uses: customer service 47%, performance monitoring 36%, staff scheduling 30%",
+    "49% do not trust AI for staff decisions; barriers are investment cost 50%, legal uncertainty 49%, lack of expertise 48%"
+  ],
+  "read": "Flash Eurobarometer 3696 on AI and algorithmic management, 14.10.2026",
+  "score": 75,
+  "seen": "2026-10-17T12:35:02Z",
+  "src": {
+    "name": "European Commission (DG EMPL)",
+    "type": "public",
+    "url": "https://employment-social-affairs.ec.europa.eu/news/growing-use-ai-european-companies-2026-10-14_en"
+  },
+  "t": "ai-skills",
+  "t2": "ai-governance",
+  "take": "The Commission's own survey feeds the coming Quality Jobs Act. HR and works-council talks on AI-based performance monitoring and scheduling should start before the rules do.",
+  "title": "Eurobarometer: 42% of EU SMEs and mid-caps already use AI",
+  "via": "watch"
+}
