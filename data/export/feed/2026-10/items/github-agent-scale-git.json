@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-06",
+  "img": "https://github.blog/wp-content/uploads/2026/01/generic-invertocat-github-logo.png",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "7.38 billion commits in September 2026, over 5x a year earlier; pushes up 4.9x to 3.35 billion a month",
+    "GitHub Actions ran 3.26 billion times in September, over 4x the prior year",
+    "GitHub moves repository data to Azure Blob Storage and claims up to 35x higher write throughput"
+  ],
+  "read": "GitHub engineering blog, 6.10.2026",
+  "score": 57,
+  "seen": "2026-10-17T00:34:30Z",
+  "src": {
+    "name": "GitHub",
+    "type": "vendor",
+    "url": "https://github.blog/engineering/architecture-optimization/building-git-infrastructure-for-agent-scale-development/"
+  },
+  "t": "platform-engineering",
+  "t2": "ai-engineering",
+  "take": "Coding agents multiply load on source control and CI. Platform teams should plan capacity for agent-driven pushes and pipeline runs, not human headcount.",
+  "title": "GitHub: agents drove commits up fivefold, forcing a Git storage rebuild",
+  "via": "watch"
+}

@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-17T00:34:30Z",
+  "news": 3,
+  "note": "About 14 candidates from 27 page reads (watch 16, search 11); kept 3: 2 search (SVRV agentic-commerce report, KPMG Austria cloud monitor), 1 watch (GitHub agent-scale Git data); 2 German, 1 English. Regulator pages were quiet (BSI listing blocked by robots, CISA/NCSC listings undated); Eurobarometer AI-in-companies release (14 Oct) dropped because its figures were not readable at the primary source; platform-engineering had no story in 14 days before this run.",
+  "push": "failed",
+  "pushError": "remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403 (no add_repo tool available in this session)",
+  "trendsChanged": []
+}

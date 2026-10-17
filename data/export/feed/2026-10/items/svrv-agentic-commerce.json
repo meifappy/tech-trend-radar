@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "106-page report handed to the Federal Ministry of Justice and Consumer Protection on 8 October 2026",
+    "Agents should show past spending and let users set a monthly budget cap; background orders cancellable in one click",
+    "Cites forecasts that about one in seven online purchases could involve AI agents by 2030"
+  ],
+  "read": "SVRV report 'Verbraucherschutz im Agentic Commerce', 8.10.2026",
+  "score": 72,
+  "seen": "2026-10-17T00:34:30Z",
+  "src": {
+    "name": "Sachverständigenrat für Verbraucherfragen",
+    "type": "public",
+    "url": "https://www.svr-verbraucherfragen.de/svrv_consumer_protection_in_agentic_commerce/"
+  },
+  "t": "agentic-commerce",
+  "t2": "ai-governance",
+  "take": "The federal government's consumer advisory council wants agent providers to carry most liability for agent errors. Retailers and payment teams should expect budget caps, cancel buttons and disclosure duties.",
+  "title": "SVRV: German consumer council sets 25 rules for AI shopping agents",
+  "via": "search"
+}

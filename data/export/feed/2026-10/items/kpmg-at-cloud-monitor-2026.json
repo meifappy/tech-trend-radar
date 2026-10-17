@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-14",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Survey of 202 Austrian cloud-using firms with 20+ staff, April-May 2026",
+    "58% are checking whether sovereign offers fit; 50% look for alternatives because of geopolitics",
+    "76% run multi-cloud; 45% a balanced public-private hybrid"
+  ],
+  "read": "KPMG Austria Cloud-Monitor 2026 press release, 14.10.2026",
+  "score": 64,
+  "seen": "2026-10-17T00:34:30Z",
+  "src": {
+    "name": "KPMG Austria",
+    "type": "analyst",
+    "url": "https://www.ots.at/presseaussendung/OTS_20261014_OTS0029/kpmg-cloud-monitor-2026-digitale-souveraenitaet-wird-zum-schluesselfaktor-moderner-cloud-strategien"
+  },
+  "t": "sovereign-cloud",
+  "take": "A hard number for the sovereignty premium in a German-speaking market. Useful benchmark when pricing sovereign or EU-only cloud options against hyperscaler defaults.",
+  "title": "KPMG Austria: 42% would pay up to 20% more for sovereign cloud",
+  "via": "search"
+}
