@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-15",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "816B parameters, 42B active, 1M-token context; weights on Hugging Face, SageMaker, Google Model Garden and Microsoft Foundry",
+    "Meta claims leads on MCP-Atlas (89.2) and JobBench; trails Kimi K3 on Terminal-Bench 2.1 (76.4 vs 85.0)",
+    "Muse Model License: 'Built with Muse Spark Open' label required; derivatives include distilled models"
+  ],
+  "read": "Hugging Face model card, Meta Superintelligence Labs, 15 October 2026",
+  "score": 65,
+  "seen": "2026-10-18T00:35:59Z",
+  "src": {
+    "name": "Meta (Hugging Face model card)",
+    "type": "vendor",
+    "url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B"
+  },
+  "t": "model-choice",
+  "take": "A new top US open-weight option for agent work, but check the licence: MaaS above $20m revenue needs a Meta deal and products must show attribution.",
+  "title": "Meta: Muse Spark Open, 816B open-weight model, with licence strings",
+  "via": "search"
+}

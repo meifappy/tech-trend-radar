@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-15",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "500 technical decision makers surveyed in September 2026; 68% call themselves maturing or mature in AI",
+    "Only 7% have 70% or more of their data cleaned, prepared and classified for AI",
+    "Only 28% on average have quantified AI ROI; Microsoft Fabric the most used lakehouse at 49%"
+  ],
+  "read": "Komprise press release (GlobeNewswire), 15 October 2026; vendor survey, claims",
+  "score": 58,
+  "seen": "2026-10-18T00:35:59Z",
+  "src": {
+    "name": "Komprise",
+    "type": "vendor",
+    "url": "https://www.globenewswire.com/news-release/2026/10/15/3381565/0/en/komprise-survey-of-unstructured-data-and-ai-reveals-wide-gap-between-perceived-ai-maturity-and-ai-results.html"
+  },
+  "t": "ai-ready-data",
+  "take": "Another vendor survey confirms the gap: maturity claims run ahead of data preparation and measured ROI. Budget for classification of unstructured data first.",
+  "title": "Komprise survey: over 90% say their data is not AI-ready",
+  "via": "search"
+}

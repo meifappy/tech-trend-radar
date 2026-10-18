@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-13",
+  "img": "https://iab-forum.de/wp-content/uploads/2026/10/26-057_Forum_Beitragsbild.jpg",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Employment aged 20-29 fell about 3% from 2022 to 2025; ages 40-64 under 1%",
+    "AI-exposed occupations grew about 2% for workers 30+, but fell 3.8% for ages 20-29",
+    "Significant negative AI link only in manufacturing (about -6%) and non-academic jobs; descriptive, not causal"
+  ],
+  "read": "IAB-Forum article by Arntz, Dinelli and Schlenker, 13 October 2026 (Federal Employment Agency data 2021-2025)",
+  "score": 76,
+  "seen": "2026-10-18T00:35:59Z",
+  "src": {
+    "name": "IAB (Institut für Arbeitsmarkt- und Berufsforschung)",
+    "type": "public",
+    "url": "https://iab-forum.de/ki-als-jobkiller-fuer-berufseinsteiger-entwarnung-mit-vorbehalt/"
+  },
+  "t": "ai-skills",
+  "t2": "ai-value",
+  "take": "Admin data on 22 million German workers shows AI-exposed jobs grew slightly since 2022. Weak hiring of under-30s is mostly the downturn; plan junior pipelines deliberately.",
+  "title": "IAB: AI is no job killer yet, but young entrants lose ground",
+  "via": "search"
+}

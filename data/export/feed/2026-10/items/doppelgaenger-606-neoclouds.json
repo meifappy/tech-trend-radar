@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-17",
+  "kind": "podcast",
+  "lang": "de",
+  "points": [
+    "Show notes: CoreWeave bonds yield almost 15%; sell-off hits Nvidia and memory makers",
+    "Accenture caps staff Claude spend at $29 per month while selling AI transformation (per 404 Media)",
+    "Hosts discuss reported Merz-Nvidia AI pact for German industry"
+  ],
+  "read": "Doppelgänger Tech Talk #606 show notes, 17 October 2026 (Glöckler, Klöckner)",
+  "score": 56,
+  "seen": "2026-10-18T00:35:59Z",
+  "src": {
+    "name": "Doppelgänger Tech Talk",
+    "type": "podcast",
+    "url": "https://www.doppelgaenger.io/fliegende-autos/"
+  },
+  "t": "ai-compute",
+  "t2": "ai-value",
+  "take": "Credit markets now price real default risk for GPU clouds. Check counterparty risk and exit terms in neocloud capacity contracts.",
+  "title": "Doppelgänger: CoreWeave bonds near 15% as neocloud sell-off spreads",
+  "via": "audio"
+}
