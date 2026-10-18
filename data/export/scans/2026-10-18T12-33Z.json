@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-18T12:33:33Z",
+  "news": 3,
+  "note": "About 30 candidates from watch (BSI, BMDS, BNetzA, CISA, ENISA, NIST, EU Commission, Bitkom, Anthropic, Gartner, acatech, Capgemini), five trend queries, one deep-document search and podcast show notes; kept 3 (2 watch, 1 search; 1 de, 2 en). Quiet news day: BSI press list blocked by robots, NCSC failed to load, EU AI Scientific Panel meeting already covered, RAISE initiative skipped as unverifiable; sweep advanced to 38.",
+  "push": "failed",
+  "pushError": "git push: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. (HTTP 403; no add_repo tool available)",
+  "trendsChanged": []
+}

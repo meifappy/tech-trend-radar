@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-30",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Nova 2026.2 encrypts guest memory with AMD SEV-SNP or Intel TDX via a flavor or image setting",
+    "TDX needs 5th-gen Xeon Scalable or later; SEV-SNP enables signed attestation reports",
+    "Hosts that enable SEV-SNP will not start SEV-ES instances: migrate them first"
+  ],
+  "read": "Nova 2026.2 release notes",
+  "score": 63,
+  "seen": "2026-10-18T12:33:33Z",
+  "src": {
+    "name": "OpenStack",
+    "type": "project",
+    "url": "https://docs.openstack.org/releasenotes/nova/2026.2.html"
+  },
+  "t": "confidential-computing",
+  "t2": "sovereign-cloud",
+  "take": "Open-source private and sovereign clouds can now offer encrypted, attestable VMs natively. Ask your OpenStack-based provider when SEV-SNP or TDX flavors arrive.",
+  "title": "OpenStack Hibiscus: Nova adds AMD SEV-SNP and Intel TDX confidential VMs",
+  "via": "search"
+}

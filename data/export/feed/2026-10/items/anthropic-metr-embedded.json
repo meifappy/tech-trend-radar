@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-15",
+  "img": "https://www-cdn.anthropic.com/images/4zrzovbb/website/d2e351e6311a0ada8ea4a0304ce6cda39243eaf4-1200x630.jpg",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Six METR staff onboarded with internal tools, comparable to Anthropic's own risk teams",
+    "METR can publish findings; Anthropic may only redact predefined categories such as customer data",
+    "Three-tier evaluator access framework; SecureBio, Accenture and Faculty also involved"
+  ],
+  "read": "Anthropic announcement",
+  "score": 59,
+  "seen": "2026-10-18T12:33:33Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "vendor",
+    "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators"
+  },
+  "t": "ai-governance",
+  "t2": "ai-capability",
+  "take": "A template for independent model audits that regulators and buyers may start asking every frontier vendor to match.",
+  "title": "Anthropic: METR evaluators get employee-like access and publish without veto",
+  "via": "watch"
+}

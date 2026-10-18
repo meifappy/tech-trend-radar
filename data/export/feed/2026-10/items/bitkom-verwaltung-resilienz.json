@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-15",
+  "img": "https://www.bitkom.org/sites/main/files/styles/facebook/public/2022-03/pexels-anete-lusina-5240548.jpg?h=a5c62d6c&itok=TeL8ZIoH",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "32% rate public administration well prepared, down from 37% at the start of 2026; 62% say poorly",
+    "53% fear a hybrid attack could paralyse authorities; 73% say Berlin pays too little attention",
+    "Representative survey of 1,004 people by Bitkom Research, weeks 33 to 37"
+  ],
+  "read": "Bitkom press release (German)",
+  "score": 64,
+  "seen": "2026-10-18T12:33:33Z",
+  "src": {
+    "name": "Bitkom",
+    "type": "association",
+    "url": "https://www.bitkom.org/Presse/Presseinformation/Sabotage-Cyberangriff-Desinformation-Nur-ein-Drittel-haelt-die-Verwaltung-fuer-gut-vorbereitet"
+  },
+  "t": "preemptive-defence",
+  "take": "Public confidence in state cyber resilience is falling. Useful benchmark for public-sector CIOs justifying resilience and emergency-plan budgets.",
+  "title": "Bitkom: only 32% think German administration is ready for hybrid attacks",
+  "via": "watch"
+}
