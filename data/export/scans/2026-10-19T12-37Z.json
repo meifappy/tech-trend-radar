@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-19T12:37:16Z",
+  "news": 3,
+  "note": "About 26 candidates from 29 page reads and 20 searches (watch 11: CISA, ENISA, EU Commission, BMDS, NIST, Gartner, IDC, ifo, Lünendonk, Bitkom, Doppelgänger; search 14; pdf 1; audio 4; market 2); kept 3 (watch 1, search 2; 2 de, 1 en), all at or above 55. Dropped: Japan's first cyberspace emergency (9 Oct, press only, 44), Handelsblatt Disrupt PhysicsX episode (thin notes, 52), Lünendonk IT-Sourcing 2026/27 (figures not public). No podcast or video reached 55 again (Hard Fork off-topic, BG2/Latent Space pages without episode lists, heise blocked by robots); regulator lists (CISA, ENISA, NIST, BMDS, EC) had nothing new. Watch tomorrow: Gartner 2027 strategic trends (20 Oct) and the Digital-Gipfel; the Nvidia pact still lacks an official text with amounts.",
+  "push": "failed",
+  "pushError": "git clone/commit/push to meifappy/tech-trend-radar was blocked before running: 'Permission for this action was denied by the Claude Code auto mode classifier. Reason: Blocked by classifier.' No GitHub file tool or add_repo tool in this session; database remains source of truth for the follow-up sync.",
+  "trendsChanged": []
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-14",
+  "kind": "advisory",
+  "lang": "en",
+  "points": [
+    "CVE-2026-110447, CVSS 4.0 score 9.2: unauthenticated command injection via proxy.php",
+    "Fixed in richdocumentscode 26.4.303 (11 Sep); disabling the app is not enough, upgrade or remove it",
+    "Admins reported attacks from 10 September; standalone Collabora Online servers are not affected"
+  ],
+  "read": "3 min",
+  "score": 76,
+  "seen": "2026-10-19T12:37:16Z",
+  "src": {
+    "name": "Collabora Online (GitHub advisory)",
+    "type": "vendor",
+    "url": "https://github.com/CollaboraOnline/online/security/advisories/GHSA-g3vx-3m76-fghh"
+  },
+  "t": "preemptive-defence",
+  "t2": "sovereign-cloud",
+  "take": "Nextcloud with the built-in Collabora CODE app is common in German sovereign workplace stacks. Attackers used the hole for weeks before the advisory; check for web shells, not just patch.",
+  "title": "Collabora: critical Nextcloud CODE flaw exploited since September",
+  "via": "search"
+}

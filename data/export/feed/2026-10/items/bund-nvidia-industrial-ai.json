@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-19",
+  "img": "https://www.deutschland.de/sites/default/files/media/image/570231380-1-.jpg",
+  "kind": "announcement",
+  "lang": "de",
+  "points": [
+    "Announced for the Invest in Germany Summit in Berlin, 19-20 October 2026",
+    "Focus: robotics, industrial manufacturing and autonomous driving",
+    "Expected partners include Siemens, Audi and Black Forest Labs; no amount stated by the government"
+  ],
+  "read": "2 min",
+  "score": 63,
+  "seen": "2026-10-19T12:37:16Z",
+  "src": {
+    "name": "deutschland.de (Federal Government portal)",
+    "type": "public",
+    "url": "https://www.deutschland.de/en/news/merz-announces-ai-partnership-with-nvidia"
+  },
+  "t": "physical-ai",
+  "take": "Berlin is backing Nvidia as the platform for robotics and factory AI, with about a dozen German firms. A signal for vendor choice in industrial AI; funding and terms not yet public.",
+  "title": "German government: Merz and Nvidia to launch industrial AI partnership",
+  "via": "search"
+}
