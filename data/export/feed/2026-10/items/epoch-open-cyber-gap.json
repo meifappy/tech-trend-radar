@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-16",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Best open-weight model, GLM-5.3, scores 160 on Epoch's Cyber ECI; closed leaders score 171",
+    "Index covers 76 models and 35 cyber benchmarks, using UK AISI and CAISI results",
+    "Some scores rest on three or four benchmarks; confidence intervals overlap"
+  ],
+  "read": "4 min",
+  "score": 55,
+  "seen": "2026-10-19T00:34:14Z",
+  "src": {
+    "name": "Epoch AI",
+    "type": "research",
+    "url": "https://epoch.ai/data-insights/open-closed-cyber-eci-gap"
+  },
+  "t": "ai-capability",
+  "t2": "preemptive-defence",
+  "take": "Offensive cyber capability reaches freely downloadable models about half a year after the frontier. Defence plans should assume that lag, not more.",
+  "title": "Epoch AI: open models trail closed ones in cyber skills by 6-7 months",
+  "via": "watch"
+}

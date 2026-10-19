@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-15",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Actor UNC7017 altered AOMEI Backupper and AnyViewer update configs for 5-10 minute windows, April-July 2026",
+    "Victims in IT services, telecoms and higher education across 11 countries",
+    "Mandiant advises signing config files, pinning update domains and hunting back to April"
+  ],
+  "read": "10 min",
+  "score": 60,
+  "seen": "2026-10-19T00:34:14Z",
+  "src": {
+    "name": "Google Threat Intelligence Group",
+    "type": "vendor",
+    "url": "https://cloud.google.com/blog/topics/threat-intelligence/investigating-ephemeral-supply-chain-tampering"
+  },
+  "t": "provenance",
+  "take": "Update files were poisoned only briefly, so audits looked clean. It shows why signed configs and client-side signature checks matter, not just HTTPS.",
+  "title": "Mandiant: attackers tampered AOMEI updates for minutes, then reverted",
+  "via": "watch"
+}

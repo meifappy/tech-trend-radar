@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-15",
+  "img": "https://www.eco.de/wp-content/uploads/2026/10/screenshot-2026-10-11-225138.png",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "techconsult survey of 250 German IT decision-makers for eco and EuroCloud Deutschland",
+    "63% prefer a European provider for business software, 62% for identity and access management",
+    "66% consider a provider or workload change within 12-24 months; only 42% find migration fairly easy"
+  ],
+  "read": "3 min",
+  "score": 70,
+  "seen": "2026-10-19T00:34:14Z",
+  "src": {
+    "name": "eco / EuroCloud Deutschland",
+    "type": "association",
+    "url": "https://www.eco.de/presse/eurocloud-pulse-check-2026-europaeische-clouds-gewinnen-im-ki-zeitalter-an-bedeutung/"
+  },
+  "t": "sovereign-cloud",
+  "take": "A German survey shows sovereignty now shapes AI hosting choices, but switching costs still hold firms back. Useful benchmark for cloud exit and provider shortlists.",
+  "title": "EuroCloud Pulse Check: 53% plan European clouds for AI",
+  "via": "watch"
+}

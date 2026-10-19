@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-19T00:34:14Z",
+  "news": 4,
+  "note": "Monday review run: about 24 candidates from 27 page reads (watch 19, search 12 queries, audio 4, market 2); kept 4 (all watch; 1 de, 3 en), no podcast reached 55 (DLF, Handelsblatt Disrupt, c't uplink, No Priors notes too thin or repeats) and NCSC/CISA/BSI lists gave no dated items; Merz-Nvidia AI pact still only press, expected today. 14-day review (63 stories): sec 21, ai 16, cloud 15, sci 11; de 20 / en 20 / untagged 23; reports 27, announcements 22, podcasts 6, advisories 5, rules 3, papers 0, video 0. Gaps: no papers or videos, emerging tech thinnest; candidate sources (not yet added, watch pages unverified): Confidential Computing Consortium blog, IEEE Spectrum robotics, Bitkom software publications.",
+  "push": "failed",
+  "pushError": "git push: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. (HTTP 403; no GitHub file tool or add_repo tool available)",
+  "trendsChanged": []
+}

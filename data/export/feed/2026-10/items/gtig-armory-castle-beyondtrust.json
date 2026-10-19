@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-15",
+  "kind": "advisory",
+  "lang": "en",
+  "points": [
+    "CVE-2026-102764, unauthenticated file upload, exploited as zero-day since late August 2026",
+    "Attackers dumped the appliance credential vault and moved laterally via support sessions",
+    "Self-hosted appliances up to 26.2.3 need patch BT26-05; SaaS was patched on 9 October"
+  ],
+  "read": "8 min",
+  "score": 70,
+  "seen": "2026-10-19T00:34:14Z",
+  "src": {
+    "name": "Google Threat Intelligence Group",
+    "type": "vendor",
+    "url": "https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-beyondtrust"
+  },
+  "t": "preemptive-defence",
+  "t2": "identity-security",
+  "take": "A remote-access tool that holds admin credentials was hit for weeks before disclosure. Patch now and treat exposed appliances as compromised.",
+  "title": "Google: China-nexus group exploited BeyondTrust Remote Support zero-day",
+  "via": "watch"
+}
