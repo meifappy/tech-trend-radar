@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-19",
+  "img": "https://emt.gartnerweb.com/ngw/globalassets/en/newsroom/images/covers/gartner-press-release.png",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "71% expect to deploy agentic AI within 12 months; only 21% have agentic AI governance (Q2 2026, 2,000+ CIOs)",
+    "Only 13% of CIOs report significant or transformational AI value; 58% of leaders see some value",
+    "Gartner proposes an 'AI central bank' control plane to align value and risk"
+  ],
+  "read": "Gartner press release, IT Symposium/Xpo keynote, Orlando, 19 October 2026",
+  "score": 69,
+  "seen": "2026-10-20T00:34:33Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-19-gartner-it-symposium-xpo-keynote-release-2026"
+  },
+  "t": "ai-value",
+  "t2": "ai-governance",
+  "take": "Symposium keynote frames 2027 planning: most firms see some AI value, few see a lot, and agent rollouts are outpacing governance.",
+  "title": "Gartner: AI risk is growing faster than AI value, CIOs say",
+  "via": "market"
+}

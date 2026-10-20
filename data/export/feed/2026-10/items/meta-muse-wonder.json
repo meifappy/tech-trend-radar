@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-12",
+  "img": "https://research.meta.ai/articles/introducing-muse-wonder/social/muse-wonder-social-v1.webp",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Muse Wonder on Meta Model API at $4/$20 per million input/output tokens; no downloadable weights",
+    "Muse Wonder Full only via Muse Code plans ($50 and $200/month), Contributor mode allows training use by default",
+    "Artificial Analysis index reported by VentureBeat: Full 56, Wonder 52, vs Claude Opus 5.5 at 58"
+  ],
+  "read": "Meta Superintelligence Labs blog, 12 October 2026; pricing and index per VentureBeat",
+  "score": 56,
+  "seen": "2026-10-20T00:34:33Z",
+  "src": {
+    "name": "Meta",
+    "type": "vendor",
+    "url": "https://research.meta.ai/blog/muse-wonder"
+  },
+  "t": "model-choice",
+  "take": "Meta becomes a fourth closed frontier supplier. Check terms: the stronger Full model is subscription-only and defaults to training on your content.",
+  "title": "Meta: Muse Wonder enters the frontier, but the top model has no API",
+  "via": "search"
+}

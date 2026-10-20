@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-20T00:34:33Z",
+  "news": 4,
+  "note": "14 candidates, 4 kept (search 3, market 1; 3 en, 1 de). Watchlist (BSI, ENISA, NIST, CISA, BMDS) had nothing new; NCSC and heise unreadable; podcasts checked (DLF KI verstehen, Handelsblatt Disrupt, c't uplink) but show notes too thin or already covered; Opaque-Anthropic deal (51) and SpyCloud NHI report (43, Sept) below threshold. Gartner 2027 trends not yet public (only 'Disposable Applications' doc); expect press release this week, and NVIDIA GTC Berlin runs 20-22 Oct.",
+  "push": "failed",
+  "pushError": "git clone 403: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. No GitHub file tool or add_repo tool available in this session.",
+  "trendsChanged": []
+}

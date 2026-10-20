@@ -1,0 +1,23 @@
+{
+  "at": "2026-09-14",
+  "img": "https://www.bearingpoint.com/files/SOM_KI_in_der_SW_Entwicklung_PR_DE_SMSI.png?max_w=1200",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Survey of 112 executives in Germany, Austria and Switzerland, April 2026",
+    "Top uses: documentation 77%, code generation 76%, QA and code review 74%",
+    "Main obstacles: security and compliance risk 70%, tool choice 61%, process integration 58%"
+  ],
+  "read": "BearingPoint press release, Frankfurt, 14 September 2026",
+  "score": 69,
+  "seen": "2026-10-20T00:34:33Z",
+  "src": {
+    "name": "BearingPoint",
+    "type": "consultancy",
+    "url": "https://www.bearingpoint.com/de-de/ueber-uns/pressemitteilungen-und-medienberichte/pressemitteilungen/software-entwicklung/"
+  },
+  "t": "ai-engineering",
+  "take": "A DACH benchmark: AI coding is near universal but rarely embedded in process; security and compliance, not tools, is the main brake.",
+  "title": "BearingPoint: 91% use AI in development, only 18% fully integrated",
+  "via": "search"
+}

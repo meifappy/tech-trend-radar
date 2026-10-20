@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-19",
+  "img": "https://www.hpcwire.com/bigdatawire/wp-content/uploads/sites/2/2026/10/fortanix-Press_Release_Banner.jpg",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Composite CPU+GPU attestation gates key release per container; open-source CoCo plugins in development",
+    "SaaS, on-premises or air-gapped deployment; NVIDIA, Intel, Microsoft named as TEE providers",
+    "Vendor survey claims only half of AI leaders can verify data protection during inference"
+  ],
+  "read": "Fortanix press release, Santa Clara, 19 October 2026 (via BigDATAwire)",
+  "score": 58,
+  "seen": "2026-10-20T00:34:33Z",
+  "src": {
+    "name": "Fortanix (via BigDATAwire)",
+    "type": "vendor",
+    "url": "https://www.hpcwire.com/bigdatawire/this-just-in/fortanix-announces-confidential-ai-for-enterprise-grade-kubernetes-workloads-on-cncf-confidential-containers/"
+  },
+  "t": "confidential-computing",
+  "take": "Confidential inference moves into standard Kubernetes: keys are released only after CPU and GPU attestation. Vendor claims; demo at GTC Berlin this week.",
+  "title": "Fortanix: confidential AI on Kubernetes via CNCF Confidential Containers",
+  "via": "search"
+}
