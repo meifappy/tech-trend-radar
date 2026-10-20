@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-01",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "36% of successful sign-ins used a passkey in 2026, up from 26% (participant group changed)",
+    "Passkey sign-ins succeed 93% of the time vs 78% for passwords plus MFA",
+    "All 8 participants measuring it saw fewer successful phishing attacks"
+  ],
+  "read": "FIDO Alliance, Passkey Index 2026 (PDF, October 2026; data compiled 21 September 2026; 15 relying parties incl. Amazon, Google, Microsoft, PayPal)",
+  "score": 62,
+  "seen": "2026-10-20T12:35:05Z",
+  "src": {
+    "name": "FIDO Alliance",
+    "type": "association",
+    "url": "https://fidoalliance.org/wp-content/uploads/2026/10/Passkey-Index-October-2026.pdf"
+  },
+  "t": "identity-security",
+  "take": "Aggregate data from 15 large services gives CISOs a hard benchmark for phasing out passwords: passkeys sign in more reliably, faster and cut phishing.",
+  "title": "FIDO Alliance: passkeys now used in 36% of sign-ins",
+  "via": "pdf"
+}

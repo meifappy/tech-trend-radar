@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-20",
+  "img": "https://emt.gartnerweb.com/ngw/globalassets/en/newsroom/images/covers/gartner-press-release.png",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "75% of CEOs plan to raise technology investment; 80% say technology has become strategy",
+    "77% expect AI industrialisation to affect strategy through 2027, only 20% feel ready",
+    "52% see deploying AI agents 'as employees' as a lever for AI returns (n=203, Apr-May 2026)"
+  ],
+  "read": "Gartner press release, 2027 Gartner CEO Survey, 20 October 2026",
+  "score": 59,
+  "seen": "2026-10-20T12:35:05Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-20-gartner-says-44-percent-of-ceos-struggle-to-demonstrate-ai-financial-returns-as-technology-becomes-central-to-growth"
+  },
+  "t": "ai-value",
+  "take": "CEO survey adds board-level pressure to the CIO value gap: spending rises, but few feel ready for AI industrialisation. Gartner urges workflow redesign over add-on AI.",
+  "title": "Gartner: 44% of CEOs struggle to show AI financial returns",
+  "via": "market"
+}

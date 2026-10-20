@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-16",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Disposable Applications abstract: 'Locking down AI development to control application sprawl is a losing battle'",
+    "Second published trend, Large Quantitative Models, pitched as simulation-driven decision engines with the rigour LLMs lack",
+    "Full trend list due at IT Symposium/Xpo; research is client-only"
+  ],
+  "read": "Gartner Insights abstracts, Top Strategic Technology Trends for 2027, published 16 October 2026",
+  "score": 64,
+  "seen": "2026-10-20T12:35:05Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/documents/8387981"
+  },
+  "t": "ai-engineering",
+  "take": "First 2027 strategic trends published: Gartner says locking down AI-built apps is a losing battle and CIOs should govern short-lived apps instead.",
+  "title": "Gartner: 'disposable applications' among first Top Trends for 2027",
+  "via": "search"
+}

@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-13",
+  "img": "https://bmds.bund.de/fileadmin/_processed_/d/b/csm_header-pin-01_start_81995bde23.png",
+  "kind": "announcement",
+  "lang": "de",
+  "minor": true,
+  "points": [
+    "PIN Reset and Activation Service back in open test since early October, after shutdown end of 2023",
+    "Over 10,000 orders in the first days; free while budget lasts",
+    "BMDS examines a fully digital reset process"
+  ],
+  "read": "BMDS Pressemitteilung, 13 October 2026",
+  "score": 56,
+  "seen": "2026-10-20T12:35:05Z",
+  "src": {
+    "name": "BMDS",
+    "type": "public",
+    "url": "https://bmds.bund.de/aktuelles/pressemitteilungen/detail/online-ausweis-neue-pin-ohne-gang-zum-buergeramt"
+  },
+  "t": "identity-security",
+  "take": "The state EUDI wallet needs an activated eID and PIN; reviving the reset service removes a key onboarding hurdle before the January 2027 launch.",
+  "title": "BMDS: free eID PIN reset service returns ahead of d-you wallet",
+  "via": "watch"
+}
