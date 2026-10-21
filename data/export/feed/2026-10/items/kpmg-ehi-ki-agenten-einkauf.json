@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-19",
+  "img": "https://assets.kpmg.com/is/image/kpmgcloud/person-tipp-am-handy-1500x1000",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "73% would use an AI agent to compare products and prices; only 45% would let it pay (smartphone case)",
+    "64% prefer general AI assistants; just 7% prefer a retailer's or maker's own agent",
+    "79% want to override agent decisions at any time; online survey of 500 consumers by EHI for KPMG"
+  ],
+  "read": "KPMG Consumer Snapshot 'KI-Agenten im Einkauf', reported 19 October 2026",
+  "score": 69,
+  "seen": "2026-10-21T00:38:30Z",
+  "src": {
+    "name": "KPMG Deutschland / EHI Retail Institute",
+    "type": "consultancy",
+    "url": "https://kpmg.com/de/de/insights/digital-transformation/ki-agenten-im-einkauf.html"
+  },
+  "t": "agentic-commerce",
+  "take": "German consumers want agents for research, not checkout, and distrust retailer-owned agents. Merchants should plan for neutral third-party agents and visible human control.",
+  "title": "KPMG/EHI: shoppers let AI agents compare, but not pay",
+  "via": "search"
+}

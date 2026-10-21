@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-14",
+  "kind": "paper",
+  "lang": "en",
+  "points": [
+    "41,824 adversarial runs across 19 GPT, Claude, Gemini, Llama, Gemma and Qwen models; 56 attack scenarios",
+    "Mean attack success 19.6% (LLM-judged); per-model range 3.2% to 41.9%",
+    "Prompt-level hardening cut mean success from 58.2% to 14.3%, with model-specific utility costs"
+  ],
+  "read": "arXiv:2610.20776, submitted 14 October 2026 (Nguyen, Johnson, Leach et al.)",
+  "score": 60,
+  "seen": "2026-10-21T00:38:30Z",
+  "src": {
+    "name": "arXiv",
+    "type": "paper",
+    "url": "https://arxiv.org/abs/2610.20776"
+  },
+  "t": "agent-security",
+  "take": "Unreviewed preprint shows every tested model family is hijackable through tool content and guard models help little; prompt hardening helps most.",
+  "title": "INFUSE benchmark: indirect prompt injection hits 19 models, up to 42%",
+  "via": "journal"
+}

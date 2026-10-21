@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-20",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "CNCF sandbox project led by Red Hat, IBM and Google; adds multi-tenant QoS, zero-downtime upgrades, agent-aware routing",
+    "IBM and Red Hat ran 3,000 concurrent coding agents on one self-hosted deployment",
+    "IBM claims 5-10x lower cost than buying the same open model as a service (unreviewed)"
+  ],
+  "read": "IBM Research blog, 20 October 2026, PyTorch Conference North America",
+  "score": 58,
+  "seen": "2026-10-21T00:38:30Z",
+  "src": {
+    "name": "IBM Research",
+    "type": "vendor",
+    "url": "https://research.ibm.com/blog/llmd-1-0-is-ready-for-production-inference-serving"
+  },
+  "t": "platform-engineering",
+  "take": "Self-hosted model serving becomes a standard platform service on Kubernetes. Platform teams can now price it against API spend.",
+  "title": "llm-d 1.0: Kubernetes-native inference stack declared production-ready",
+  "via": "search"
+}

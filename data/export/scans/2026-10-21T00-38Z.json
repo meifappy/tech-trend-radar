@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-21T00:38:30Z",
+  "news": 6,
+  "note": "About 16 candidates checked, 6 kept (search 3, market 1, journal 1, audio 1; 2 German, 4 English); filled gaps in platform-engineering, agent-security and agentic-commerce. Gartner published its full 2027 Top 10 (taxonomy review due): AI Agent Identity sharpens the agent-security vs identity-security boundary, Sovereign Tech fits sovereign-cloud, and World Models, LQMs and speech reasoning could be named in ai-capability scope; Wetware as a Service fits no trend (no change proposed yet).",
+  "push": "failed",
+  "pushError": "git push origin main: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403 (no GitHub file tool or add_repo tool in this session)",
+  "trendsChanged": []
+}

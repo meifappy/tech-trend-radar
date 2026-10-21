@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-19",
+  "kind": "podcast",
+  "lang": "de",
+  "points": [
+    "Aachen Regional Court injunction bars Google from repeating false AI Mode claims about a physician",
+    "Fines of up to EUR 250,000 per violation threatened; Google can still object",
+    "Same episode: Microsoft/CityU 'Tastebench' finds best model picks the better agent path in under 60% of cases"
+  ],
+  "read": "heise KI-Update kompakt, episode of 19 October 2026 (show notes and transcript)",
+  "score": 66,
+  "seen": "2026-10-21T00:38:30Z",
+  "src": {
+    "name": "heise KI-Update",
+    "type": "podcast",
+    "url": "https://kiupdate.podigee.io/674-19-10-2026"
+  },
+  "t": "ai-governance",
+  "take": "A German court treats false AI answers as the provider's liability. Firms publishing AI-generated answers about people face the same injunction risk.",
+  "title": "heise KI-Update: Aachen court bars Google AI Mode falsehoods about doctor",
+  "via": "audio"
+}

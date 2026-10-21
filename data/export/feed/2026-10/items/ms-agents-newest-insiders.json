@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-19",
+  "img": "https://www.microsoft.com/en-us/security/blog/wp-content/uploads/2026/10/Secure-AI-7.jpg",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Discovery extended to 60 local agent types, incl. Claude Code, OpenAI Codex and GitHub Copilot",
+    "New Dynamic Permissions: task-scoped, time-bound rights; plus Dynamic Agent Risk and Conditional Access for agents",
+    "Microsoft Execution Container sandbox keeps agents from inheriting full device access; no GA dates given"
+  ],
+  "read": "Microsoft Security blog, Nadim Abdo, 19 October 2026",
+  "score": 58,
+  "seen": "2026-10-21T00:38:30Z",
+  "src": {
+    "name": "Microsoft",
+    "type": "vendor",
+    "url": "https://www.microsoft.com/en-us/security/blog/2026/10/19/agents-are-your-newest-insiders-security-must-move-at-their-speed/"
+  },
+  "t": "agent-security",
+  "take": "Microsoft claims agent controls must sit outside the model. Its agent registry, sandbox and time-bound permissions set the bar CISOs will be pitched against.",
+  "title": "Microsoft: treat AI agents as insiders, with task-scoped dynamic permissions",
+  "via": "search"
+}

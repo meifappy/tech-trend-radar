@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-20",
+  "img": "https://emt.gartnerweb.com/ngw/globalassets/en/newsroom/images/covers/gartner-press-release.png",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Ten trends incl. AI Context Platforms, Agent Coding Harness, AI Agent Identity, Autonomous Exposure Remediation, Sovereign Tech, World Models",
+    "Prediction: by 2028, 25% of enterprise security breaches will trace back to AI agent abuse",
+    "Prediction: by 2030, over 75% of non-US organisations will adopt digital sovereignty strategies"
+  ],
+  "read": "Gartner press release, IT Symposium/Xpo Orlando, 20 October 2026 (follows the 16 October abstracts)",
+  "score": 69,
+  "seen": "2026-10-21T00:38:30Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-20-gartner-identifies-the-top-strategic-technology-trends-for-2027"
+  },
+  "t": "agentic-ai",
+  "t2": "sovereign-cloud",
+  "take": "Agents dominate 2027 planning: context platforms, coding harnesses and agent identity join sovereign tech. Use it to test your 2027 roadmap and budget asks.",
+  "title": "Gartner: full Top 10 Strategic Technology Trends for 2027 published",
+  "via": "market"
+}
