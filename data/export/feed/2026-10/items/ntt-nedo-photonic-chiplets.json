@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-20",
+  "img": "https://group.ntt/common/img/ogp.jpg?20250701",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "NTT Innovative Devices, Japan Semiconductor, Furukawa Electric and Shinko Electric build and test a pilot production line",
+    "Target: more than tenfold higher manufacturing productivity than today's R&D-stage processes",
+    "No funding amount or production date disclosed"
+  ],
+  "read": "NTT press release, 20 October 2026",
+  "score": 60,
+  "seen": "2026-10-21T12:38:20Z",
+  "src": {
+    "name": "NTT",
+    "type": "vendor",
+    "url": "https://group.ntt/en/newsrelease/2026/10/20/261020a.html"
+  },
+  "t": "novel-computing",
+  "take": "Japan's NEDO backs four firms to industrialise photonics-electronics convergence devices for AI data centres. Optical chiplets move from lab towards supply chain.",
+  "title": "NTT: Japan funds a pilot line for mass-produced photonic chiplets",
+  "via": "search"
+}

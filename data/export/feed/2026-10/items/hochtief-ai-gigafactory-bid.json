@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-20",
+  "kind": "announcement",
+  "lang": "de",
+  "points": [
+    "EU plans up to EUR 10bn public funding for up to seven AI gigafactories; up to EUR 1bn per largest site",
+    "Largest class needs at least 100,000 AI processors; applications close 3 December 2026",
+    "Hochtief and Vodafone declined to comment; parent ACS reportedly bids separately with Telefonica"
+  ],
+  "read": "dts/finanznachrichten.de citing Handelsblatt, 20 October 2026",
+  "score": 56,
+  "seen": "2026-10-21T12:38:20Z",
+  "src": {
+    "name": "Handelsblatt (via dts)",
+    "type": "press",
+    "url": "https://www.finanznachrichten.de/nachrichten-2026-10/69884996-bericht-hochtief-plant-bewerbung-fuer-ki-gigafactory-foerderung-003.htm"
+  },
+  "t": "ai-compute",
+  "take": "A German builder, possibly with Vodafone, joins the race for EU-funded AI data centres. Unconfirmed, but it signals more German capacity bids before the deadline.",
+  "title": "Handelsblatt: Hochtief prepares its own bid for an EU AI gigafactory",
+  "via": "search"
+}

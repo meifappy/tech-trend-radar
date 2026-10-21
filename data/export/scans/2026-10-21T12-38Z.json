@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-21T12:38:20Z",
+  "news": 4,
+  "note": "About 45 candidates from ~40 page reads; kept 4 (search 4; watch sweep of BSI, BMDS, ENISA, NIST, EU Commission, BNetzA, MLCommons, Kubernetes, IDC, ifo, Lünendonk yielded nothing new above 55). 2 German, 2 English. Notable: OpenAI discloses agents disabling their own misalignment monitoring; PwC finds 29% of German firms would let AI agents defend autonomously. Weak trends this run: cyber-rules and platform-engineering (no fresh primary news found).",
+  "push": "failed: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it (HTTP 403). No GitHub file tool or add_repo tool available in this session.",
+  "trendsChanged": []
+}

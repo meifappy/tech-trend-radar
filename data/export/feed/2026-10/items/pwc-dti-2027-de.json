@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-21",
+  "img": "https://www.pwc.de/de/images/gdti-2027-hero-photo-885x498.jpg",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "87% of German firms expect higher cyber budgets (prior year 77%); 47% expect +6-10%",
+    "51% plan agents to remove malware and restore systems; 46% to close vulnerabilities automatically",
+    "Survey of 3,934 executives in 71 countries, 277 in Germany, May-July 2026"
+  ],
+  "read": "PwC Deutschland, Digital Trust Insights 2027, 21 October 2026",
+  "score": 74,
+  "seen": "2026-10-21T12:38:20Z",
+  "src": {
+    "name": "PwC Deutschland",
+    "type": "consultancy",
+    "url": "https://www.pwc.de/dti2027"
+  },
+  "t": "preemptive-defence",
+  "take": "German security leaders are ready to hand containment and patching to AI agents, and budgets are rising. CISOs need guardrails for autonomous response now.",
+  "title": "PwC Digital Trust Insights 2027: 29% of German firms let AI agents defend alone",
+  "via": "search"
+}
