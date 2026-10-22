@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-16",
+  "kind": "report",
+  "lang": "de",
+  "points": [
+    "Free guide 'Verantwortungsvoller KI-Einsatz: Risiken verstehen, steuern und versichern'",
+    "Bitkom: 57% of German firms use AI, a further 38% plan or discuss it",
+    "Calls for access controls, approvals, monitoring and human oversight for autonomous agents"
+  ],
+  "read": "Bitkom press release",
+  "score": 60,
+  "seen": "2026-10-22T00:35:39Z",
+  "src": {
+    "name": "Bitkom",
+    "type": "association",
+    "url": "https://www.bitkom.org/Presse/Presseinformation/Wer-haftet-wenn-KI-einen-Fehler-macht"
+  },
+  "t": "ai-governance",
+  "take": "Practical German guide for risk managers: which AI risks insurers already cover and where gaps remain, including autonomous agents.",
+  "title": "Bitkom: guide on managing and insuring AI risks",
+  "via": "watch"
+}

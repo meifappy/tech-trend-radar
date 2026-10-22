@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-15",
+  "img": "https://www.bundestag.de/resource/image/1224520/3x2/475/316/f7c2c5cfdc2aafa4158510c95e74f7b8/2C87552F34F11F207E6DCA7D951AEC5C/kw42_de_cyberresilienz_bild.jpg",
+  "kind": "rule",
+  "lang": "de",
+  "points": [
+    "Government bill 21/6134 passed on 15 October after a 20-minute debate",
+    "Interior committee cleared it on 14 October with CDU/CSU, SPD and Greens in favour, amended on when provisions take effect",
+    "BSI becomes market surveillance and notifying authority; the law sets the fine procedure"
+  ],
+  "read": "Bundestag text archive and hib 822/2026",
+  "score": 78,
+  "seen": "2026-10-22T00:35:39Z",
+  "src": {
+    "name": "Deutscher Bundestag",
+    "type": "primary",
+    "url": "https://www.bundestag.de/dokumente/textarchiv/2026/kw42-de-cyberresilienz-1224508"
+  },
+  "t": "cyber-rules",
+  "take": "Germany now has the legal basis for CRA enforcement: the BSI becomes market surveillance and notifying authority for products with digital elements.",
+  "title": "Bundestag: passes German law implementing the Cyber Resilience Act",
+  "via": "search"
+}

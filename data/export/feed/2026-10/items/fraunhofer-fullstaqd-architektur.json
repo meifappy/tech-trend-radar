@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-07",
+  "kind": "paper",
+  "lang": "de",
+  "points": [
+    "FullStaQD project of Fraunhofer IAO, KIT and FZI, funded with about EUR 15m by the BMFTR",
+    "Three layers: applications, system functions and hardware",
+    "Open-source reference implementation planned for next year"
+  ],
+  "read": "Fraunhofer IAO press release",
+  "score": 57,
+  "seen": "2026-10-22T00:35:39Z",
+  "src": {
+    "name": "Fraunhofer IAO",
+    "type": "research",
+    "url": "https://www.iao.fraunhofer.de/de/presseservice/aktuelles/bauplan-fuer-software-kuenftiger-quantencomputer.html"
+  },
+  "t": "quantum",
+  "take": "A German blueprint to decouple quantum applications from specific hardware, reducing lock-in for early quantum pilots.",
+  "title": "Fraunhofer IAO: first reference architecture for quantum software",
+  "via": "search"
+}

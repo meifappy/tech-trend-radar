@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-21",
+  "img": "https://images.ctfassets.net/kftzwdyauwt9/659u0DsrtDQd9LxI8L4J9M/0b95908d6a9ed46ffe20b23d081574b4/openai-models-coming-to-google-cloud-social.png?w=1600&h=900&fit=fill",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Models and Codex to appear in Google Cloud Model Garden, sold via Google Cloud Marketplace",
+    "General availability 'in the coming weeks'; no models, regions or dates named",
+    "OpenAI models also coming to Google Antigravity and Gemini Agent"
+  ],
+  "read": "OpenAI announcement",
+  "score": 63,
+  "seen": "2026-10-22T00:35:39Z",
+  "src": {
+    "name": "OpenAI",
+    "type": "vendor",
+    "url": "https://openai.com/index/openai-models-google-cloud/"
+  },
+  "t": "model-choice",
+  "take": "OpenAI models become buyable against Google Cloud spend commitments, widening multi-cloud access. Microsoft stays OpenAI's primary cloud partner.",
+  "title": "OpenAI: frontier models and Codex coming to Google Cloud",
+  "via": "watch"
+}

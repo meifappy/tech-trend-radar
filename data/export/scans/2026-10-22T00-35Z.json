@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-22T00:35:39Z",
+  "news": 7,
+  "note": "About 30 candidates found, 7 kept (watch 3, search 2, market 1, audio 1; 4 German, 3 English). Notable: critical PHP RCE patch (one flaw AI-found) and the Bundestag's CRA implementation law, ending cyber-rules' 14-day gap; BSI press list and netzpolitik.org blocked by robots, CISA page served stale content.",
+  "push": "failed",
+  "pushError": "git push: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. fatal: unable to access 'https://github.com/meifappy/tech-trend-radar/': The requested URL returned error: 403 (no GitHub file tool or add_repo tool in this session)",
+  "trendsChanged": []
+}

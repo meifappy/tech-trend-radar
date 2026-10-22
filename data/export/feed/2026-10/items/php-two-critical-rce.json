@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-21",
+  "kind": "advisory",
+  "lang": "en",
+  "points": [
+    "PHP 8.5.12, 8.4.27, 8.3.36 and 8.2.35 fix CVE-2026-109618 and CVE-2026-109619, both CVSS v4.0 9.2",
+    "Affects PHP-FPM, mod_php (highest risk), php-cgi, FrankenPHP and LiteSpeed; PHP 8.1 and older get only minimal backports",
+    "OpenAI says one flaw was found with GPT-5.6 Sol in its 'Patch the Planet' effort; Bitkom urges updates without delay"
+  ],
+  "read": "PHP security advisory and release notes",
+  "score": 80,
+  "seen": "2026-10-22T00:35:39Z",
+  "src": {
+    "name": "PHP Group",
+    "type": "primary",
+    "url": "https://www.php.net/"
+  },
+  "t": "preemptive-defence",
+  "take": "Unauthenticated RCE in every PHP install serving web requests, with no complete mitigation. One flaw was found with AI help; expect fast exploitation.",
+  "title": "PHP: two critical remote code execution flaws, patch now",
+  "via": "watch"
+}

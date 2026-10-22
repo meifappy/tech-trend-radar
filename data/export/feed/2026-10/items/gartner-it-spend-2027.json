@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-21",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Data centre systems $1.37tn (+55.5%), software $1.68tn (+14.6%), services $1.63tn (+4.9%)",
+    "IaaS $367bn (+25.7%); 2026 total $6.39tn (+14.5%)",
+    "Gartner's John-David Lovelock expects 'memflation' to last through 2027"
+  ],
+  "read": "Gartner press release",
+  "score": 74,
+  "seen": "2026-10-22T00:35:39Z",
+  "src": {
+    "name": "Gartner",
+    "type": "analyst",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-21-gartner-forecasts-worldwide-it-spending-to-grow-15-percent-in-2027-totaling-7-point-35-trillion"
+  },
+  "t": "ai-value",
+  "take": "Budget baseline for 2027 planning: data centre systems grow 55%, IT services only 5%. Memory-driven price inflation persists through 2027.",
+  "title": "Gartner: IT spending to grow 15% to $7.35 trillion in 2027",
+  "via": "market"
+}
