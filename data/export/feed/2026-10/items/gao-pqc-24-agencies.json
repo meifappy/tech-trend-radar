@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-06",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Only one agency fully completed its cryptographic inventory; none tested PQC in production environments",
+    "18 agencies lack cryptography expertise, 19 have no automated discovery tools",
+    "Public version of a sensitive report with 89 recommendations"
+  ],
+  "read": "Audit report",
+  "score": 58,
+  "seen": "2026-10-22T12:49:28Z",
+  "src": {
+    "name": "US Government Accountability Office",
+    "type": "public",
+    "url": "https://files.gao.gov/reports/GAO-27-108740/index.html"
+  },
+  "t": "quantum-safe",
+  "take": "A useful benchmark for your own PQC programme: the gaps are inventories, funding and testing, driven by missing crypto skills and discovery tools.",
+  "title": "GAO: none of 24 US agencies is fully ready for post-quantum crypto",
+  "via": "search"
+}

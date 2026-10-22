@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-20",
+  "kind": "advisory",
+  "lang": "en",
+  "points": [
+    "Mozilla blocked the intermediates via OneCRL on 17 October, one evening after the report",
+    "Firefox ESR 115.43.1 ships the block list for clients without Remote Settings",
+    "German reporting says eight intermediates used private key values between 0 and 255"
+  ],
+  "read": "Security advisory",
+  "score": 80,
+  "seen": "2026-10-22T12:49:28Z",
+  "src": {
+    "name": "Mozilla",
+    "type": "vendor",
+    "url": "https://www.mozilla.org/en-US/security/advisories/mfsa2026-113/"
+  },
+  "t": "identity-security",
+  "t2": "provenance",
+  "take": "Trivially guessable CA keys let anyone mint trusted TLS certificates. Patch browsers and trust stores, and check whether any of your certificates chain to eMudhra.",
+  "title": "Mozilla: blocks compromised eMudhra intermediate CA certificates",
+  "via": "search"
+}

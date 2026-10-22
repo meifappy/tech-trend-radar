@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-21",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Fewer than one in five organisations separate training and inference today",
+    "By 2031 over half of enterprises will have a multicloud profile",
+    "By 2031 most cloud strategies will cite data gravity as a principle"
+  ],
+  "read": "Conference highlights",
+  "score": 62,
+  "seen": "2026-10-22T12:49:28Z",
+  "src": {
+    "name": "Gartner",
+    "type": "analyst",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-21-gartner-it-symposium-xpo-2026-orlando-day-3-highlights"
+  },
+  "t": "platform-engineering",
+  "take": "Analyst predictions that AI pulls platforms multicloud: plan for models running where they are sourced, not where your data sits.",
+  "title": "Gartner: by 2031 most firms will split AI training and inference",
+  "via": "market"
+}

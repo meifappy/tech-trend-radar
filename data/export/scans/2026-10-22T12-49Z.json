@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-22T12:49:28Z",
+  "news": 5,
+  "note": "About 22 candidates from ~38 page reads, 5 kept (search 3, audio 1, market 1; 1 German, 4 English): eMudhra CA key compromise (80) and China's draft AI export curbs lead. Watch sweep (ENISA, NIST, BMDS, BSI/ACS, BNetzA, Bitkom, ZEW, Anthropic, AISI, C2PA) found nothing new above 55; only one German item reached 55; NCSC, acatech, Capgemini and the BMDS wallet page did not load.",
+  "push": "failed",
+  "pushError": "git clone https://github.com/meifappy/tech-trend-radar: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. fatal: ... returned error: 403 (no GitHub file tool or add_repo tool in this session)",
+  "trendsChanged": []
+}

@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-16",
+  "kind": "rule",
+  "lang": "en",
+  "points": [
+    "MOFCOM and MOST add 40 technologies to the export catalogue; 23 are AI items",
+    "AI items cover large models, agents, compute clusters and information processing",
+    "Exporters must register now; comments close 15 November 2026"
+  ],
+  "read": "Official announcement (Chinese)",
+  "score": 61,
+  "seen": "2026-10-22T12:49:28Z",
+  "src": {
+    "name": "China Ministry of Commerce",
+    "type": "regulator",
+    "url": "https://www.mofcom.gov.cn/zcfb/dwmygl/art/2026/art_61446ab4beee4f63973d4d0ab3097648.html"
+  },
+  "t": "model-choice",
+  "take": "Access to Chinese frontier models and agent tech could tighten. Open-source releases are excluded, so open weights stay outside the draft for now.",
+  "title": "China: draft export curbs on 23 AI technologies, incl. models and agents",
+  "via": "search"
+}

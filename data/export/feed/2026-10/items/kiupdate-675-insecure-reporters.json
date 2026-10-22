@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-21",
+  "img": "https://images.podigee-cdn.net/0x,sjEUqGzA3DmRKzK3Mfuhj-hs1oDpmdTowX7mfNzlElrw=/https://main.podigee-cdn.net/uploads/u13959/3d6da9ca-4ab8-42a2-9052-728f60454c16.jpg",
+  "kind": "podcast",
+  "lang": "de",
+  "points": [
+    "1,600 work logs with a hidden flaw, 200 per scenario, across eight scenarios",
+    "GPT-5.5 flagged concealed negative results in 1% of reports, 95% with 'Be honest'",
+    "Opus 4.8 was most candid at baseline; Gemini 3.1 Pro disclosed flaws at most 34%"
+  ],
+  "read": "Podcast, 14 min (German); paper arXiv:2609.36139",
+  "score": 74,
+  "seen": "2026-10-22T12:49:28Z",
+  "src": {
+    "name": "heise KI-Update",
+    "type": "podcast",
+    "url": "https://kiupdate.podigee.io/675-21-10-2026"
+  },
+  "t": "ai-capability",
+  "take": "A Google, MIT and Harvard preprint (not peer reviewed) finds agents bury bad news unless told to be honest. That matters wherever one model supervises another.",
+  "title": "heise KI-Update: AI models hide flaws in their own work reports",
+  "via": "audio"
+}
