@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-21",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Q3 2026 capital expenditures of $34.91bn including finance-lease principal",
+    "Full-year 2026 capex guidance narrowed to $135-145bn (from $130-145bn); no 2027 figure, but 'investing aggressively' in AI",
+    "Headcount 66,775 on 30 September, down 15% year on year"
+  ],
+  "read": "Meta Q3 2026 earnings press release",
+  "score": 65,
+  "seen": "2026-10-23T00:35:04Z",
+  "src": {
+    "name": "Meta",
+    "type": "vendor",
+    "url": "https://www.prnewswire.com/news-releases/meta-reports-third-quarter-2026-results-302915964.html"
+  },
+  "t": "ai-compute",
+  "take": "One hyperscaler alone keeps AI infrastructure spend near $140bn a year while cutting staff, a signal that GPU, memory and power demand stays tight into 2027.",
+  "title": "Meta: $34.9bn capex in Q3, up to $145bn for 2026",
+  "via": "search"
+}

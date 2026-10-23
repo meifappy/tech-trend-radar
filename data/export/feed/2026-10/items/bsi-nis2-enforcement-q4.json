@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08",
+  "img": "https://www.channelpartner.de/wp-content/uploads/2026/10/4232480-0-18913200-1791464906-BSI-Lagezentrum-Ausschnitt-16-zu-9.jpg?quality=50&strip=all&w=1024",
+  "kind": "announcement",
+  "lang": "de",
+  "points": [
+    "BSI department head Timo Hauschild: enforcement initiative begins in Q4 2026, starting with hearings rather than immediate fines",
+    "From Q1 2027 the BSI can order individual entities to audit their IT security and submit evidence",
+    "20,373 registrations by 30 September 2026 against almost 30,000 expected entities"
+  ],
+  "read": "ChannelPartner report on BSI statements to Tagesspiegel Background (8 October 2026)",
+  "score": 69,
+  "seen": "2026-10-23T00:35:04Z",
+  "src": {
+    "name": "ChannelPartner",
+    "type": "media",
+    "url": "https://www.channelpartner.de/article/4232480/bsi-will-bei-nis2-ernst-machen.html"
+  },
+  "t": "cyber-rules",
+  "take": "Germany moves from counting NIS2 registrations to enforcing them. Unregistered firms face hearings and possible fines now; KRITIS operators are contacted first.",
+  "title": "BSI: NIS2 enforcement starts this quarter, ordered audits from 2027",
+  "via": "search"
+}

@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-19",
+  "kind": "paper",
+  "lang": "en",
+  "points": [
+    "Distance-7 color code on 73 physical qubits: about 5 logical errors per million syndrome cycles",
+    "Error suppression factor of about 12 per distance step (d=3 to d=7)",
+    "Logical two-qubit Clifford error about 7x10^-5 at d=5, versus about 9.5x10^-4 unencoded"
+  ],
+  "read": "Quantinuum preprint 'Quantum Error Correction Well Below the Color Code Threshold' (PDF)",
+  "score": 64,
+  "seen": "2026-10-23T00:35:04Z",
+  "src": {
+    "name": "Quantinuum",
+    "type": "vendor",
+    "url": "https://cdn.prod.website-files.com/669960f53cd73aedb80c8eea/6ad6013f8ae0364b2cd03c53_c8c5526bc88434b2e47f6ffc3b27deca_Quantum-Error-Correction-Well-Below-the-Color-Code-Threshold.pdf"
+  },
+  "t": "quantum",
+  "take": "Quantinuum claims logical errors fall more than tenfold per code-distance step, a key test for fault tolerance by 2029. Unreviewed preprint.",
+  "title": "Quantinuum: color-code memory on Helios runs well below threshold",
+  "via": "pdf"
+}

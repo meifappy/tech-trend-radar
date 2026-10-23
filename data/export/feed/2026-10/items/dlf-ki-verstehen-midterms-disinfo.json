@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-22",
+  "kind": "podcast",
+  "lang": "de",
+  "points": [
+    "False claims about parties and candidates circulate on social media before the midterms",
+    "AI accelerates these campaigns, but the episode finds their impact appears limited"
+  ],
+  "read": "Episode show notes, 40 min (hosts Maximilian Brose, Ralf Krauter)",
+  "score": 61,
+  "seen": "2026-10-23T00:35:04Z",
+  "src": {
+    "name": "Deutschlandfunk KI verstehen",
+    "type": "podcast",
+    "url": "https://www.podcast.de/episode/708633436/us-midterms-ki-befeuert-desinformation-im-wahlkampf"
+  },
+  "t": "provenance",
+  "take": "Ahead of the US midterms, AI-generated false claims spread on social media, but their measurable effect appears limited. Relevant for labelling and origin checks before EU elections.",
+  "title": "Deutschlandfunk KI verstehen: AI fuels US midterm disinformation, limited effect",
+  "via": "audio"
+}

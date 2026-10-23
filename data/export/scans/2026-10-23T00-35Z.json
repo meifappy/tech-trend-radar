@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-23T00:35:04Z",
+  "news": 6,
+  "note": "About 20 candidates from about 35 page reads and searches; 6 kept (search 3, pdf 1, market 1, audio 1; 3 de, 3 en). Quantum gets its first story in 14 days; AI for science still has none. Dropped below 55: Nvidia/Jülich 104-qubit JUPITER simulation (54), Ping Identity AI-trust survey (vendor cap), Barclays AI job cuts. Bitkom PHP warning is a repeat of php-two-critical-rce. Not Monday, no quarterly review due.",
+  "push": "failed",
+  "pushError": "git clone: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. (HTTP 403). No GitHub file tool or add_repo tool available in this session.",
+  "trendsChanged": []
+}

@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-21",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Of 1,010 non-tech S&P 1200 companies, 4% reported AI-enabled cost reduction material enough to disclose in H1 2026",
+    "Gartner names four levers: preventing losses, buying less or differently, employing less capital, reorganising work",
+    "Prediction: by 2029, 60% of AI-deploying firms will have a function mapping AI cost to value"
+  ],
+  "read": "Gartner IT Symposium/Xpo 2026 Orlando, Day 3 highlights (Nate Suda, Daryl Plummer)",
+  "score": 59,
+  "seen": "2026-10-23T00:35:04Z",
+  "src": {
+    "name": "Gartner",
+    "type": "consultancy",
+    "url": "https://www.gartner.com/en/newsroom/press-releases/2026-10-21-gartner-it-symposium-xpo-2026-orlando-day-3-highlights"
+  },
+  "t": "ai-value",
+  "take": "Hard evidence of AI savings is still rare at company level. CFOs will ask CIOs for disclosed results, not pilots, in 2027 budgets.",
+  "title": "Gartner: only 4% of big firms report material AI cost savings",
+  "via": "market"
+}

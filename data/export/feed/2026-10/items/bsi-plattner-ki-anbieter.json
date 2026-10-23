@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-22",
+  "kind": "announcement",
+  "lang": "de",
+  "points": [
+    "Plattner (Spiegel interview, via dts): major AI providers paid too little attention to security of their systems",
+    "Calls for provider accountability, possible liability, and a body that checks compliance",
+    "Wants technical identity for agents: what the AI is, who owns it, who commissioned it, what it may do"
+  ],
+  "read": "dts report on Spiegel interview, published on new-facts.eu",
+  "score": 56,
+  "seen": "2026-10-23T00:35:04Z",
+  "src": {
+    "name": "dts Nachrichtenagentur",
+    "type": "media",
+    "url": "https://www.new-facts.eu/sortierung-top/deutschlandwelt-block/2026/10/22/bsi-kritisiert-ki-anbieter-fuer-laxen-umgang-mit-it-sicherheit/733946/"
+  },
+  "t": "ai-governance",
+  "take": "Germany's cyber agency head says voluntary pledges by US and Chinese AI providers are not enough and calls for regulation plus an oversight body.",
+  "title": "BSI chief Plattner: AI providers neglect security, should be liable",
+  "via": "search"
+}
