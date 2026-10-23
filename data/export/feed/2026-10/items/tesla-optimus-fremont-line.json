@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-22",
+  "img": "https://electrek.co/wp-content/uploads/sites/3/2026/01/Tesla-Optimus-Hyundai-atlas.png?resize=1200,628",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Early production on the former Model S/X line in Fremont, designed for one million robots a year",
+    "Musk: about 20,000 a week will take at least a year; external deliveries around end of 2027",
+    "Open problems named on the call: hands, custom gears, durability and lack of a data-collecting fleet"
+  ],
+  "read": "Electrek report on Tesla's Q3 2026 shareholder letter and earnings call, 22 Oct 2026",
+  "score": 57,
+  "seen": "2026-10-23T12:36:17Z",
+  "src": {
+    "name": "Electrek",
+    "type": "press",
+    "url": "https://electrek.co/2026/10/22/tesla-optimus-delivery-late-2027-hands-ai-problems/"
+  },
+  "t": "physical-ai",
+  "take": "Tesla claims its first production-quality humanoids but says hands and durability are unsolved. Plan humanoid pilots for 2028 or later, not next year.",
+  "title": "Tesla: Optimus production starts, outside deliveries not before late 2027",
+  "via": "search"
+}

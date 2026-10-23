@@ -1,0 +1,22 @@
+{
+  "at": "2026-09",
+  "kind": "paper",
+  "lang": "en",
+  "points": [
+    "Survey of 637 US/UK researchers: 47% use AI daily; three in four report net savings averaging 6.9 hours a week",
+    "46% of those saving time spend over a quarter of it checking AI output; 41% report a growing backlog of untested hypotheses",
+    "49% say AI pushes them to more incremental questions, 28% to riskier ones; built on 360,000 Gemini science interactions"
+  ],
+  "read": "Working paper 'AI in Science: Early Insights' (Google, Google DeepMind, MIT FutureTech), September 2026, PDF",
+  "score": 64,
+  "seen": "2026-10-23T12:36:17Z",
+  "src": {
+    "name": "Google / Google DeepMind",
+    "type": "paper",
+    "url": "https://ai.google/static/documents/AI-in-Science.pdf"
+  },
+  "t": "ai-science",
+  "take": "First large usage study of AI in research. Gains are real but self-reported, verification eats much of them, and AI nudges scientists toward safer questions.",
+  "title": "Google: scientists save 7 hours a week with AI, then verify",
+  "via": "pdf"
+}

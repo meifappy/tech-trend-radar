@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-23T12:36:17Z",
+  "news": 6,
+  "note": "About 22 candidates from about 30 page reads and searches; 6 kept (search 5, pdf 1; 2 de, 4 en). AI for science gets its first story in 14 days (Google's AI-in-Science paper) and physical AI two; AWS adds that PHP flaws were exploited before disclosure. Dropped below 55: OpenAI testnet-wallet misuse (52), Alice & Bob PROQCIMA phase 1 (vendor, below threshold), Korea 20-humanoid factory trial (49), Grafana observability survey, MLPerf in EU gigafactory tender. heise and CISA/EU Commission/NCSC watch pages returned no usable listings. Not Monday, no quarterly review due.",
+  "push": "failed",
+  "pushError": "git push origin main: remote: access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources. fatal: ... returned error: 403 (no GitHub file tool or add_repo tool in this session)",
+  "trendsChanged": []
+}

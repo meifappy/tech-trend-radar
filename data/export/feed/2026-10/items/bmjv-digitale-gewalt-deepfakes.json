@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-07",
+  "kind": "rule",
+  "lang": "de",
+  "points": [
+    "New offences: making or spreading sexualised deepfakes, spreading other reputation-damaging deepfakes, identity misuse",
+    "Also covers digital voyeurism and covert GPS-tracker surveillance; draft first published in April",
+    "Bill now goes to parliament; the press release gives no penalties or timetable"
+  ],
+  "read": "BMJV press release on the Gesetz gegen digitale Gewalt, 7 Oct 2026 (German)",
+  "score": 58,
+  "seen": "2026-10-23T12:36:17Z",
+  "src": {
+    "name": "Bundesministerium der Justiz und für Verbraucherschutz",
+    "type": "primary",
+    "url": "https://www.bmjv.de/SharedDocs/Pressemitteilungen/DE/2026/1007_Digitale_Gewalt.html"
+  },
+  "t": "provenance",
+  "take": "Germany moves to criminalise damaging deepfakes and identity misuse, not just sexual ones. Relevant for executive-impersonation fraud and for platforms hosting synthetic media.",
+  "title": "German cabinet: harmful deepfakes and identity misuse to become crimes",
+  "via": "search"
+}

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-16",
+  "img": "https://www-cdn.anthropic.com/images/4zrzovbb/website/e6c18d30f931ae76d4b600558f5a11377306f1d9-2000x1125.jpg",
+  "kind": "report",
+  "lang": "en",
+  "points": [
+    "Junior share of technical hires fell from 27% to 9%; technical staff share of headcount from 61% to 56%",
+    "Agent work hours passed human hours in March 2026; about 80% of interactive session time is spent waiting for humans",
+    "Commits per engineer about 5x in six months, with no rise in reverted code (company's own data, unreviewed)"
+  ],
+  "read": "Anthropic research post, 16 Oct 2026 (updated 20 Oct)",
+  "score": 62,
+  "seen": "2026-10-23T12:36:17Z",
+  "src": {
+    "name": "Anthropic",
+    "type": "vendor",
+    "url": "https://www.anthropic.com/research/employment-at-anthropic"
+  },
+  "t": "ai-skills",
+  "take": "A rare inside view of a heavy agent user: fewer junior engineers, more time managing agents and meetings. A signal for workforce and graduate-hiring plans.",
+  "title": "Anthropic: junior technical hiring falls from 27% to 9%",
+  "via": "search"
+}
