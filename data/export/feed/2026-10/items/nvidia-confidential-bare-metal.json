@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-21",
+  "img": "https://blogs.nvidia.com/wp-content/uploads/2026/10/gtc26-berlin-ai-factory-confidential-computing-bare-metal-blog-1920x1080-5869427.jpg",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "New Confidential Bare Metal option lets model builders run their own host stack on third-party racks with encrypted transit and hardware access controls",
+    "Supported on GB300/Grace Blackwell NVL72 and HGX/DGX Rubin NVL8; Google Cloud A4X Max named",
+    "CoreWeave, Azure, Google Cloud, Lambda, Nebius, Nscale, Vultr and others signed up; Cohere to use it in Model Vault"
+  ],
+  "read": "NVIDIA blog, GTC Berlin, 21 October 2026",
+  "score": 58,
+  "seen": "2026-10-24T00:34:49Z",
+  "src": {
+    "name": "NVIDIA",
+    "type": "vendor",
+    "url": "https://blogs.nvidia.com/blog/confidential-computing-model-builders-infrastructure/"
+  },
+  "t": "confidential-computing",
+  "t2": "ai-compute",
+  "take": "Confidential computing now covers bare metal, containers and VMs on Blackwell and Rubin, with ten clouds signed up. Model and data stay sealed from the host. Vendor claims, no benchmarks.",
+  "title": "NVIDIA: Confidential Bare Metal lets model builders rent GPUs privately",
+  "via": "search"
+}

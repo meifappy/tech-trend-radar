@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-22",
+  "img": "https://news.sap.com/germany/files/2026/10/09/306218_GettyImages-1486525836_medium_jpg_uncropped_F-1920x600-1.jpg",
+  "kind": "announcement",
+  "lang": "de",
+  "points": [
+    "Joule Studio checks permissions, role policies and process context before an agent action reaches the OpenShell runtime",
+    "SAP engineers contribute supervisor/agent-layer separation, Kubernetes operator support and health monitoring to OpenShell",
+    "Joule Studio runtime free for SAP customers and partners from October 2026; FedRAMP and FIPS on joint roadmap"
+  ],
+  "read": "SAP News Center Deutschland, 22 October 2026",
+  "score": 58,
+  "seen": "2026-10-24T00:34:49Z",
+  "src": {
+    "name": "SAP",
+    "type": "vendor",
+    "url": "https://news.sap.com/germany/2026/10/ki-agenten-sap-und-nvidia-openshell/"
+  },
+  "t": "agent-security",
+  "t2": "agentic-ai",
+  "take": "SAP pairs an isolated open-source agent runtime with its own permission, policy and audit layer, a template for controlling what enterprise agents may execute. Vendor claims.",
+  "title": "SAP: puts NVIDIA OpenShell sandbox under Joule Studio agent governance",
+  "via": "watch"
+}

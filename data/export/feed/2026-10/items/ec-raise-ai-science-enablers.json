@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-15",
+  "kind": "announcement",
+  "lang": "en",
+  "points": [
+    "Seven pledgers: Elsevier, Frontiers, Google, Mistral AI, Novo Nordisk Foundation, NVIDIA, Sanofi",
+    "Google gives $3M in cloud credits plus access to DeepMind science models; Frontiers over €1.6M in data services",
+    "Novo Nordisk Foundation intends to open its Gefion AI supercomputer to European researchers"
+  ],
+  "read": "European Commission, RAISE pledging initiative page, launched 15 October 2026 at the European AI in Science Summit, Dublin",
+  "score": 63,
+  "seen": "2026-10-24T00:34:49Z",
+  "src": {
+    "name": "European Commission",
+    "type": "primary",
+    "url": "https://research-and-innovation.ec.europa.eu/strategy/strategy-research-and-innovation/our-digital-future/european-ai-science-strategy/raise-resource-ai-science-europe/raise-pledging-initiative-ai-science-enablers_en"
+  },
+  "t": "ai-science",
+  "take": "Europe's RAISE programme adds private resources for AI-driven research; useful for R&D-heavy firms partnering with universities, though most pledges are unquantified.",
+  "title": "EU Commission: industry pledges compute and models for AI science",
+  "via": "search"
+}

@@ -1,0 +1,7 @@
+{
+  "at": "2026-10-24T00:34:49Z",
+  "news": 3,
+  "note": "About 30 candidates from watch sweep (BMDS, ENISA, NIST, TÜV-Verband, PwC, SAP; BSI list, NCSC, CISA, EC news, netzpolitik, heise unreachable), 10 trend queries, deep-doc and podcast checks; most were repeats (PHP, Gartner Symposium, TÜV/BSI study, DLF, KI-Update 674/675) or older than 30 days. Kept 3 (search 2, watch 1; 1 German, 2 English): NVIDIA Confidential Bare Metal, SAP-OpenShell agent governance, EU RAISE. Shortfalls: only one German source and no new podcast or primary report this run.",
+  "push": "failed: git push to main refused with 'access denied by the git proxy: meifappy/tech-trend-radar is not in this session's authorized repository set, so the proxy will not inject a credential for it. To fix, add the repository to the session's sources.' (HTTP 403); no add_repo tool in session",
+  "trendsChanged": []
+}
